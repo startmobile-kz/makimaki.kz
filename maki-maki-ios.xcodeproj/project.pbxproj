@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C936D54B28AA5A017DE5813D /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
@@ -16,6 +17,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
+		3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "maki-maki-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9623622A132B1A00C36D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9623642A132B1A00C36D03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,17 +35,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C936D54B28AA5A017DE5813D /* Pods_maki_maki_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3698B4DD150C043E97803E68 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */,
+				27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		CE9623562A132B1A00C36D03 = {
 			isa = PBXGroup;
 			children = (
 				CE9623612A132B1A00C36D03 /* maki-maki-ios */,
 				CE9623602A132B1A00C36D03 /* Products */,
+				3698B4DD150C043E97803E68 /* Pods */,
+				D6CBE501700EA6D289EC04BC /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -67,6 +84,14 @@
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
 		};
+		D6CBE501700EA6D289EC04BC /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -74,9 +99,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9623732A132B1C00C36D03 /* Build configuration list for PBXNativeTarget "maki-maki-ios" */;
 			buildPhases = (
+				52134849F2E280680D85CF8F /* [CP] Check Pods Manifest.lock */,
 				CE96235B2A132B1A00C36D03 /* Sources */,
 				CE96235C2A132B1A00C36D03 /* Frameworks */,
 				CE96235D2A132B1A00C36D03 /* Resources */,
+				BD2D928A47F31DD30AC3E123 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,6 +159,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		52134849F2E280680D85CF8F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-maki-maki-ios-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		BD2D928A47F31DD30AC3E123 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		CE96235B2A132B1A00C36D03 /* Sources */ = {
@@ -282,6 +351,7 @@
 		};
 		CE9623742A132B1C00C36D03 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -310,6 +380,7 @@
 		};
 		CE9623752A132B1C00C36D03 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
