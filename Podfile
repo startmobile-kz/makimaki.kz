@@ -7,6 +7,4 @@ target 'maki-maki-ios' do
 
   # Pods for maki-maki-ios
 
-pod 'SnapKit'
-
 end
