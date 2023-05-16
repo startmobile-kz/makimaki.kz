@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		C936D54B28AA5A017DE5813D /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */; };
+		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
@@ -16,10 +17,22 @@
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		CE15DD372A136D3A006F9968 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE9623572A132B1A00C36D03 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = CE96235E2A132B1A00C36D03;
+			remoteInfo = "maki-maki-ios";
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
 		2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
+		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
 		CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "maki-maki-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9623622A132B1A00C36D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9623642A132B1A00C36D03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -31,6 +44,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		CE15DD302A136D3A006F9968 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE96235C2A132B1A00C36D03 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -48,14 +68,22 @@
 				2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */,
 				27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
+			isa = PBXGroup;
+			children = (
+				CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */,
+			);
+			path = "maki-maki-iosTests";
 			sourceTree = "<group>";
 		};
 		CE9623562A132B1A00C36D03 = {
 			isa = PBXGroup;
 			children = (
 				CE9623612A132B1A00C36D03 /* maki-maki-ios */,
+				CE15DD342A136D3A006F9968 /* maki-maki-iosTests */,
 				CE9623602A132B1A00C36D03 /* Products */,
 				3698B4DD150C043E97803E68 /* Pods */,
 				D6CBE501700EA6D289EC04BC /* Frameworks */,
@@ -66,6 +94,7 @@
 			isa = PBXGroup;
 			children = (
 				CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */,
+				CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -95,6 +124,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		CE15DD322A136D3A006F9968 /* maki-maki-iosTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = CE15DD3B2A136D3A006F9968 /* Build configuration list for PBXNativeTarget "maki-maki-iosTests" */;
+			buildPhases = (
+				CE15DD2F2A136D3A006F9968 /* Sources */,
+				CE15DD302A136D3A006F9968 /* Frameworks */,
+				CE15DD312A136D3A006F9968 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				CE15DD382A136D3A006F9968 /* PBXTargetDependency */,
+			);
+			name = "maki-maki-iosTests";
+			productName = "maki-maki-iosTests";
+			productReference = CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		CE96235E2A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = CE9623732A132B1C00C36D03 /* Build configuration list for PBXNativeTarget "maki-maki-ios" */;
@@ -124,6 +171,10 @@
 				LastSwiftUpdateCheck = 1430;
 				LastUpgradeCheck = 1430;
 				TargetAttributes = {
+					CE15DD322A136D3A006F9968 = {
+						CreatedOnToolsVersion = 14.3;
+						TestTargetID = CE96235E2A132B1A00C36D03;
+					};
 					CE96235E2A132B1A00C36D03 = {
 						CreatedOnToolsVersion = 14.3;
 					};
@@ -143,11 +194,19 @@
 			projectRoot = "";
 			targets = (
 				CE96235E2A132B1A00C36D03 /* maki-maki-ios */,
+				CE15DD322A136D3A006F9968 /* maki-maki-iosTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		CE15DD312A136D3A006F9968 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE96235D2A132B1A00C36D03 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -203,6 +262,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		CE15DD2F2A136D3A006F9968 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		CE96235B2A132B1A00C36D03 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -214,6 +281,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		CE15DD382A136D3A006F9968 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = CE96235E2A132B1A00C36D03 /* maki-maki-ios */;
+			targetProxy = CE15DD372A136D3A006F9968 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		CE9623682A132B1A00C36D03 /* Main.storyboard */ = {
@@ -235,6 +310,50 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		CE15DD392A136D3A006F9968 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N9HN46JWCK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.encodable.maki-maki-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/maki-maki-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/maki-maki-ios";
+			};
+			name = Debug;
+		};
+		CE15DD3A2A136D3A006F9968 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = N9HN46JWCK;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MACOSX_DEPLOYMENT_TARGET = 13.3;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "com.encodable.maki-maki-iosTests";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = auto;
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator macosx";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/maki-maki-ios.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/maki-maki-ios";
+			};
+			name = Release;
+		};
 		CE9623712A132B1C00C36D03 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -410,6 +529,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		CE15DD3B2A136D3A006F9968 /* Build configuration list for PBXNativeTarget "maki-maki-iosTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CE15DD392A136D3A006F9968 /* Debug */,
+				CE15DD3A2A136D3A006F9968 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		CE96235A2A132B1A00C36D03 /* Build configuration list for PBXProject "maki-maki-ios" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
