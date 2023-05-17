@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		C936D54B28AA5A017DE5813D /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
+		CE619D812A14C3B200FC21FE /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = CE619D802A14C3B200FC21FE /* GoogleService-Info.plist */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
@@ -33,6 +34,7 @@
 		3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
+		CE619D802A14C3B200FC21FE /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../GoogleService-Info.plist"; sourceTree = "<group>"; };
 		CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "maki-maki-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9623622A132B1A00C36D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9623642A132B1A00C36D03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -109,6 +111,7 @@
 				CE96236B2A132B1C00C36D03 /* Assets.xcassets */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623702A132B1C00C36D03 /* Info.plist */,
+				CE619D802A14C3B200FC21FE /* GoogleService-Info.plist */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
@@ -212,6 +215,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */,
+				CE619D812A14C3B200FC21FE /* GoogleService-Info.plist in Resources */,
 				CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */,
 				CE96236A2A132B1A00C36D03 /* Main.storyboard in Resources */,
 			);
@@ -244,7 +248,7 @@
 		};
 		BD2D928A47F31DD30AC3E123 /* [CP] Embed Pods Frameworks */ = {
 			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
+			buildActionMask = 8;
 			files = (
 			);
 			inputFileListPaths = (
@@ -254,10 +258,9 @@
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios-frameworks-${CONFIGURATION}-output-files.xcfilelist",
 			);
-			runOnlyForDeploymentPostprocessing = 0;
+			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -315,7 +318,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -337,7 +340,7 @@
 			buildSettings = {
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
@@ -475,7 +478,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
@@ -504,7 +507,7 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 1;
+				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
