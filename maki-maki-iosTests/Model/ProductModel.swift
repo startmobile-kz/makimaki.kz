@@ -9,9 +9,12 @@ import Foundation
 
 struct ProductModel {
     
+    let name: String
+    
     // aadd comment
     
     func someMethod() {
+        
         
     }
 }
