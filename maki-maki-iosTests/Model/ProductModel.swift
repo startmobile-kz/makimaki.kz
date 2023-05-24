@@ -15,6 +15,6 @@ struct ProductModel {
     
     func someMethod() {
         
-        
+    // add some comment
     }
 }
