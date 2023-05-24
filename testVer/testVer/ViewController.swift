@@ -8,14 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
-    
-    let str = "hello world"
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        view.backgroundColor = .systemCyan
-        print(str)
+        // Do any additional setup after loading the view.
     }
 
 
