@@ -16,6 +16,11 @@ final class maki_maki_iosTests: XCTestCase {
     override func tearDownWithError() throws {
        
     }
+    
+    func authTestExample() {
+        print("some code")
+        
+    }
 
     func testExample() throws {
         // This is an example of a functional test case.
