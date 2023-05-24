@@ -8,5 +8,10 @@
 import Foundation
 
 struct ProductModel {
+    
     // aadd comment
+    
+    func someMethod() {
+        
+    }
 }
