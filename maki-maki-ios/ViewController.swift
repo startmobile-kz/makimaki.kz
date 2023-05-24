@@ -14,7 +14,7 @@ class ViewController: UIViewController {
         print("Hello")
     }
     
-    func vcCom() {
+    func viweControllerCom() {
         // add some func
     }
 
