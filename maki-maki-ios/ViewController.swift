@@ -13,6 +13,14 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
     }
+    
+    
+    func newFuntionToMakeAPullRequest() {
+        
+        print("This is a dummy function which does nothing")
+        
+        
+    }
 
 
 }
