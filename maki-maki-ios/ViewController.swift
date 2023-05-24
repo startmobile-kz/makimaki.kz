@@ -9,15 +9,34 @@ import UIKit
 
 class ViewController: UIViewController {
     
-    // comment
+    var button: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("🍣Maki-Maki🍕", for: .normal)
+        button.setTitleColor(.red, for: .normal)
+        button.layer.cornerRadius = 16
+        button.backgroundColor = .orange
+        button.layer.shadowColor = UIColor.black.cgColor
+        button.layer.shadowRadius = 4
+        button.layer.shadowOpacity = 0.2
+        button.layer.shadowOffset = CGSize(width: 0, height: 4)
+        return button
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
+        view.backgroundColor = .yellow
+        setUI()
     }
 
     func setUI() {
-        
+        view.addSubview(button)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        NSLayoutConstraint.activate([
+            button.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            button.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+            button.widthAnchor.constraint(equalToConstant: 200),
+            button.heightAnchor.constraint(equalToConstant: 100)
+        ])
     }
 }
 
