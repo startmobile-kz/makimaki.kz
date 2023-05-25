@@ -9,6 +9,7 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    //создал кнопку
     var button: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("🍣Maki-Maki🍕", for: .normal)
