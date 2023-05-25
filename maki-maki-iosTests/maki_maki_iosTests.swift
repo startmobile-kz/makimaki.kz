@@ -18,6 +18,7 @@ final class maki_maki_iosTests: XCTestCase {
     }
 
     func testExample() throws {
+        print("testExample")
     }
 
     func testPerformanceExample() throws {
