@@ -13,8 +13,12 @@ struct ProductModel {
     
     // aadd comment
     
-    func someMethod() {
+    func someMethod() -> Int {
+        
+        return 99
         
     // add some comment
+    
+        
     }
 }
