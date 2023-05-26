@@ -41,6 +41,9 @@ class ViewController: UIViewController {
         
     }
     
+    func layout() {
+        //Function for creating layout
+    }
     // Jasudakjhwckjwecnjndslknk
     
     
