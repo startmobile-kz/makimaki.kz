@@ -57,9 +57,11 @@ class ViewController: UIViewController {
     }
     
     func layout() {
+        //Function for creating layout
         
+        //Also practice with comments submission
     }
-    
+
     // Jasudakjhwckjwecnjndslknk
     
     
