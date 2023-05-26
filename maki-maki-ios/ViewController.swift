@@ -28,6 +28,42 @@ class ViewController: UIViewController {
         view.backgroundColor = .yellow
         setUI()
     }
+    
+    
+    func newFuntionToMakeAPullRequest() {
+        
+        print("This is a dummy function which does nothing")
+        
+        
+    }
+    
+    func Blablabla() {
+        
+        // blablabla
+        
+    }
+    
+    func setupview() {
+        
+        view.backgroundColor = .systemBlue
+        
+    }
+    
+    func setupHierarchy() {
+        
+        let newView = UIView()
+        view.addSubview(newView)
+        
+    }
+    
+    func layout() {
+        
+    }
+    
+    // Jasudakjhwckjwecnjndslknk
+    
+    
+    // Jadneiwhdowndjod
 
     func setUI() {
         view.addSubview(button)
