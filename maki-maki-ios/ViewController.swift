@@ -2,6 +2,10 @@
 //  ViewController.swift
 //  maki-maki-ios
 //
+func testFunc() {
+    
+}
+
 //  Created by soska on 16.05.2023.
 //
 
@@ -44,6 +48,8 @@ class ViewController: UIViewController {
     func layout() {
         
     }
+    
+    
     
     // Jasudakjhwckjwecnjndslknk
     
