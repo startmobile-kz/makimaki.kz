@@ -8,5 +8,17 @@
 import Foundation
 
 struct ProductModel {
+    
+    let name: String
+    
     // aadd comment
+    
+    func someMethod() -> Int {
+        
+        return 99
+        
+    // add some comment
+    
+        
+    }
 }
