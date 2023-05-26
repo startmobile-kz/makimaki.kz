@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		261524A12A2094EF006F82CE /* ButtonViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261524A02A2094EF006F82CE /* ButtonViewController.swift */; };
 		262B3E412A1F1A06007A8966 /* SomeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 262B3E402A1F1A06007A8966 /* SomeModel.swift */; };
 		C936D54B28AA5A017DE5813D /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
@@ -31,6 +32,7 @@
 
 /* Begin PBXFileReference section */
 		2331FB990A62753B456D291B /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
+		261524A02A2094EF006F82CE /* ButtonViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ButtonViewController.swift; sourceTree = "<group>"; };
 		262B3E402A1F1A06007A8966 /* SomeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SomeModel.swift; sourceTree = "<group>"; };
 		27E688E00F35D6E761D83869 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		3C7478AA8474F73493FF905A /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -115,6 +117,7 @@
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623702A132B1C00C36D03 /* Info.plist */,
 				CE619D802A14C3B200FC21FE /* GoogleService-Info.plist */,
+				261524A02A2094EF006F82CE /* ButtonViewController.swift */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
@@ -281,6 +284,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				261524A12A2094EF006F82CE /* ButtonViewController.swift in Sources */,
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
