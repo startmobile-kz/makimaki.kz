@@ -17,6 +17,11 @@ final class maki_maki_iosTests: XCTestCase {
     override func tearDownWithError() throws {
        print("Hello World")
     }
+    
+    func authTestExample() {
+        print("some code")
+        
+    }
 
     func testExample() throws {
         print("testExample")
