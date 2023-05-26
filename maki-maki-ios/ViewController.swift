@@ -14,6 +14,10 @@ class ViewController: UIViewController {
         print("Hello")
     }
     
+    func testFunc(){
+        print("testFunc")
+    }
+    
     func viewControllerCom() {
         // add some func
     }
@@ -55,7 +59,6 @@ class ViewController: UIViewController {
     
     
     // Jadneiwhdowndjod
-
 
 }
 
