@@ -12,3 +12,7 @@ import UIKit
 class Button {
     
 }
+
+struct Button2 {
+    
+}
