@@ -14,8 +14,9 @@ class ViewController: UIViewController {
         print("Hello")
     }
     
-    func testFunc(){
+    func ravilFunc(){
         print("testFunc")
+        print("test")
     }
     
     func viewControllerCom() {
