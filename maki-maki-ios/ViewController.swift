@@ -6,3 +6,7 @@ class ViewController: UIViewController {
         print("Hello")
     }
 }
+
+func daukesMergeConflict() {
+    
+}
