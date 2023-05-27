@@ -1,14 +1,11 @@
-//
-//  ViewController.swift
-//  maki-maki-ios
-//
-//  Created by soska on 16.05.2023.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
 
+    func testFunc(){
+        // решил, что функция должна быть в классе, поэтому удалил верхние коментарии. Или нужно было вставить эту функцию на 5 строку ничего не удаляя?")
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         print("Hello")
