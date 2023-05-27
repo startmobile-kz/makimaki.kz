@@ -12,8 +12,7 @@ class ViewController: UIViewController {
     }
     
     func ravilFunc(){
-        print("testFunc")
-        print("test")
+        
     }
     
     func viewControllerCom() {
