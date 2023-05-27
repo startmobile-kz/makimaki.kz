@@ -1,10 +1,3 @@
-//
-//  ViewController.swift
-//  maki-maki-ios
-//
-//  Created by soska on 16.05.2023.
-//
-
 import UIKit
 
 class ViewController: UIViewController {
@@ -62,5 +55,6 @@ class ViewController: UIViewController {
     // Jadneiwhdowndjod
 
 
+=======
+>>>>>>> develop
 }
-
