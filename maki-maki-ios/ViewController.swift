@@ -14,6 +14,12 @@ class ViewController: UIViewController {
         print("Hello")
     }
     
+    func functionAlmatPR() {
+        
+        print("This is a dummy function to PR to malr conflict")
+        
+    }
+    
     func viewControllerCom() {
         // add some func
     }
