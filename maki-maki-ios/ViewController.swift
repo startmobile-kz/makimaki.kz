@@ -3,6 +3,10 @@ import UIKit
 class ViewController: UIViewController {
 
     func testFunc(){
+        print("Ravil")
+    }
+    
+    func testFunc(){
         // решил, что функция должна быть в классе, поэтому удалил верхние коментарии. Или нужно было вставить эту функцию на 5 строку ничего не удаляя?")
     }
     
