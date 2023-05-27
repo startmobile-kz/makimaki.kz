@@ -8,6 +8,10 @@
 import UIKit
 
 class ViewController: UIViewController {
+    //takhmina
+    func testFunc(){
+        print("something happen")
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -18,9 +22,6 @@ class ViewController: UIViewController {
         // add some func
     }
     
-    func testTakhminaFunc(){
-        print("something happen")
-    }
     
     
     func newFuntionToMakeAPullRequest() {
