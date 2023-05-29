@@ -9,6 +9,5 @@ target 'maki-maki-ios' do
 
 pod 'SnapKit'
 pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
-pod 'FirebaseAnalytics', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
 
 end
