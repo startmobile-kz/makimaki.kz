@@ -12,6 +12,13 @@ class ProfileEditingViewController: UIViewController {
 
     // MARK: - UI
     
+    lazy var arrowLeftButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("<", for: .normal)
+        button.tintColor = .black
+        return button
+    }()
+    
     lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "Profile"
@@ -68,6 +75,7 @@ class ProfileEditingViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
+        view.addSubview(arrowLeftButton)
         view.addSubview(profileLabel)
         view.addSubview(profileImageView)
         view.addSubview(nameTextField)
@@ -77,6 +85,10 @@ class ProfileEditingViewController: UIViewController {
     }
     
     private func setupContraints() {
+        arrowLeftButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(54)
+            make.leading.equalToSuperview().offset(17.7)
+        }
         profileLabel.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(156)
             make.top.equalToSuperview().offset(58)
