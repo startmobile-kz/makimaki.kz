@@ -120,7 +120,7 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F187EADD2A263EFE00019242 /* MAKI-18 */,
+				F187EADD2A263EFE00019242 /* EditingProfile */,
 				7720EEEA2A23806500A01669 /* Module */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
@@ -132,12 +132,12 @@
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
 		};
-		F187EADD2A263EFE00019242 /* MAKI-18 */ = {
+		F187EADD2A263EFE00019242 /* EditingProfile */ = {
 			isa = PBXGroup;
 			children = (
 				F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */,
 			);
-			path = "MAKI-18";
+			path = EditingProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
