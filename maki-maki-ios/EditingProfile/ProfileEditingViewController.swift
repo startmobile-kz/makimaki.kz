@@ -24,7 +24,6 @@ class ProfileEditingViewController: UIViewController {
         label.text = "Profile"
         label.textColor = .black
         label.font = UIFont.boldSystemFont(ofSize: 20)
-
         return label
     }()
     
