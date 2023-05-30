@@ -1,7 +1,7 @@
 iOS Application for Maki Maki Kazakhstan
 
 [![Build status](https://build.appcenter.ms/v0.1/apps/1eace079-6001-4a57-addc-6438a0e69e10/branches/develop/badge)](https://appcenter.ms)
-[![Swift 5.0](https://img.shields.io/badge/swift-4.0-orange.svg)](#)
+[![Swift 5.0](https://img.shields.io/badge/swift-5.0-orange.svg)](#)
 [![@aitemr](https://img.shields.io/badge/contact-%40aitemr-brightgreen.svg)](https://t.me/aitemr)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
