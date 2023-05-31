@@ -9,17 +9,17 @@ import UIKit
 import SnapKit
 
 
-class WelcomePageViewController: UIViewController {
+final class WelcomePageViewController: UIViewController {
     
     // MARK: - UI elements design
-   lazy var welcomeLabel: UILabel = {
+   private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome!"
        label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         return label
     }()
     
-    lazy var subtitleLabel: UILabel = {
+    private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Sign In or Create Account to quickly manage orders"
         label.font = UIFont.systemFont(ofSize: 15, weight: .regular)
@@ -29,14 +29,14 @@ class WelcomePageViewController: UIViewController {
         return label
     }()
     
-    lazy var phoneNumberTextField: UITextField = {
+    private lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "+7 7082020155"
         textField.borderStyle = .none
         return textField
     }()
     
-    lazy var continueButton: UIButton = {
+   private lazy var continueButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("CONTINUE", for: .normal)
         button.setTitleColor(.black, for: .normal)
@@ -48,17 +48,18 @@ class WelcomePageViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         setUpViews()
         setUpConstraints()
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.phoneNumberTextField.addBottomBorderWithColor(color: UIColor(red: 224/255, green: 224/255, blue: 224/255, alpha: 1), width: 0.5)
     }
     
     // MARK: - Setup Views
-    private func setUpViews(){
+    private func setUpViews() {
+        view.backgroundColor = .white
         view.addSubview(welcomeLabel)
         view.addSubview(subtitleLabel)
         view.addSubview(phoneNumberTextField)
@@ -66,14 +67,12 @@ class WelcomePageViewController: UIViewController {
     }
 
     // MARK: - Setup Constraints
-    private func setUpConstraints(){
-        
+    private func setUpConstraints() {
         welcomeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-202)
             make.top.equalToSuperview().offset(93)
             make.height.equalTo(40)
-            
         }
         
         subtitleLabel.snp.makeConstraints { make in
