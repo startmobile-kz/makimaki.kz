@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		27C3EA2F2A279D64007BFB82 /* Registration in Resources */ = {isa = PBXBuildFile; fileRef = 27C3EA2E2A279D64007BFB82 /* Registration */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
 		773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737B2A2783A20029AA44 /* UIView+Extensions.swift */; };
@@ -37,6 +38,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		27C3EA2E2A279D64007BFB82 /* Registration */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Registration; sourceTree = "<group>"; };
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				27C3EA2E2A279D64007BFB82 /* Registration */,
 				773A73762A2783170029AA44 /* Helpers */,
 				7720EEEA2A23806500A01669 /* Module */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
@@ -284,6 +287,7 @@
 				773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */,
 				773A73862A27877C0029AA44 /* Colors.xcassets in Resources */,
 				773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */,
+				27C3EA2F2A279D64007BFB82 /* Registration in Resources */,
 				CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */,
 				7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */,
 				773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */,
