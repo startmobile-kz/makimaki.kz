@@ -13,7 +13,11 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
+        view.backgroundColor = AppColor.background.uiColor
+//        Examples
+//        labelView.font = AppFont.medium.s12()
+//        labelView.layer.borderColor = AppColor.background.cgColor
+//        imageView.image = AppImage.burger.uiImage
     }
 }
 
