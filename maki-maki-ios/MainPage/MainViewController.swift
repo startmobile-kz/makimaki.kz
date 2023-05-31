@@ -11,14 +11,6 @@ import SnapKit
 class MainViewController: UIViewController {
     
     //MARK: -UI
-//    private lazy var deliveryStack: UIStackView = {
-//        let stack = UIStackView()
-//        stack.axis = .vertical
-//        stack.spacing = 5
-//
-//        return stack
-//    }()
-    
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
         label.text = "DELIVER TO"
@@ -45,6 +37,13 @@ class MainViewController: UIViewController {
         return button
     }()
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.border.uiColor
+        
+        return view
+    }()
+    
     //MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -54,8 +53,7 @@ class MainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        edgesForExtendedLayout = []
-        let subviews = [deliverToLabel,addressLabel ,chevronButton]
+        let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView]
         view.addSubviews(subviews)
        
     }
@@ -76,6 +74,12 @@ class MainViewController: UIViewController {
             make.leading.equalTo(addressLabel.snp.trailing).offset(7.4)
             make.width.equalTo(11.4)
             make.height.equalTo(6)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(addressLabel.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
         }
     }
 }
