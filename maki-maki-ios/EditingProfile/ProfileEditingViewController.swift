@@ -68,6 +68,8 @@ class ProfileEditingViewController: UIViewController {
         
         setupViews()
         setupContraints()
+        title = "Profile"
+        edgesForExtendedLayout = []
     }
     
     // MARK: - Setup Views
@@ -84,16 +86,8 @@ class ProfileEditingViewController: UIViewController {
     }
     
     private func setupContraints() {
-        arrowLeftButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(54)
-            make.leading.equalToSuperview().offset(17.7)
-        }
-        profileLabel.snp.makeConstraints { make in
-            make.left.equalToSuperview().offset(156)
-            make.top.equalToSuperview().offset(58)
-        }
         profileImageView.snp.makeConstraints { make in
-            make.top.equalTo(profileLabel.snp.bottom).offset(40)
+            make.top.equalToSuperview().offset(40)
             make.left.equalToSuperview().inset(119)
             make.right.equalToSuperview().inset(126)
         }
