@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class ProfileEditingViewController: UIViewController {
+final class EditProfileViewController: UIViewController {
 
     // MARK: - UI
     
@@ -21,7 +21,7 @@ final class ProfileEditingViewController: UIViewController {
     }()
     
     private lazy var profileImageView: UIImageView = {
-        let imageView = "man.png"
+        let imageView = "UserAvatar.pdf"
         let image = UIImage(named: imageView)
         let profileImageView = UIImageView(image: image!)
         return profileImageView
@@ -80,8 +80,7 @@ final class ProfileEditingViewController: UIViewController {
     private func setupContraints() {
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40)
-            make.left.equalToSuperview().inset(119)
-            make.right.equalToSuperview().inset(126)
+            make.left.equalToSuperview().offset(119)
         }
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(66)
