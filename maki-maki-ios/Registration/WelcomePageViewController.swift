@@ -16,6 +16,7 @@ final class WelcomePageViewController: UIViewController {
         label.text = "Welcome!"
         label.font = UIFont.systemFont(ofSize: 32, weight: .bold)
         return label
+       //error
     }()
     
     private lazy var subtitleLabel: UILabel = {
