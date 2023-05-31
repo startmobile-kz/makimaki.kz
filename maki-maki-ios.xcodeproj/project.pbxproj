@@ -79,6 +79,13 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
+		688500CA2A27854400E4CB21 /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
 		7720EEEA2A23806500A01669 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -118,6 +125,7 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				688500CA2A27854400E4CB21 /* MainPage */,
 				7720EEEA2A23806500A01669 /* Module */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
