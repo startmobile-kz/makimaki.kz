@@ -12,7 +12,7 @@ class ProfileEditingViewController: UIViewController {
 
     // MARK: - UI
     
-    lazy var profileLabel: UILabel = {
+    private lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "Profile"
         label.textColor = .black
@@ -20,32 +20,32 @@ class ProfileEditingViewController: UIViewController {
         return label
     }()
     
-    lazy var profileImageView: UIImageView = {
+    private lazy var profileImageView: UIImageView = {
         let imageView = "man.png"
         let image = UIImage(named: imageView)
         let profileImageView = UIImageView(image: image!)
         return profileImageView
     }()
     
-    lazy var nameTextField: UITextField = {
+    private lazy var nameTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Name"
         return textField
     }()
     
-    lazy var emailTextField: UITextField = {
+    private lazy var emailTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Email"
         return textField
     }()
     
-    lazy var phoneTextField: UITextField = {
+    private lazy var phoneTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "Phone"
         return textField
     }()
     
-    lazy var saveButton: UIButton = {
+    private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("SAVE", for: .normal)
         button.backgroundColor = .yellow
