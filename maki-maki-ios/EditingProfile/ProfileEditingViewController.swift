@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ProfileEditingViewController: UIViewController {
+final class ProfileEditingViewController: UIViewController {
 
     // MARK: - UI
     
