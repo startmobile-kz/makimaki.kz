@@ -69,12 +69,9 @@ final class EditProfileViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
-        view.addSubview(profileLabel)
-        view.addSubview(profileImageView)
-        view.addSubview(nameTextField)
-        view.addSubview(emailTextField)
-        view.addSubview(phoneTextField)
-        view.addSubview(saveButton)
+        [profileLabel, profileImageView, nameTextField, emailTextField, phoneTextField, saveButton].forEach {
+            view.addSubview($0)
+            }
     }
     
     private func setupContraints() {
