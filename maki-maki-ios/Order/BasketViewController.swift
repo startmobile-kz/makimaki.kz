@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-class OrderViewController: UIViewController {
+final class BasketViewController: UIViewController {
     
     // MARK: - UI
     
-    lazy var orderLabel: UILabel = {
+    private lazy var orderLabel: UILabel = {
         let label = UILabel()
         label.text = "Order"
         label.font = UIFont.boldSystemFont(ofSize: 32)
@@ -20,13 +20,13 @@ class OrderViewController: UIViewController {
         return label
     }()
     
-    lazy var orderTableVIew: UITableView = {
+    private lazy var orderTableView: UITableView = {
         let tableView = UITableView()
         tableView.backgroundColor = .red
         return tableView
     }()
     
-    lazy var totalLabel: UILabel = {
+    private lazy var totalLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
         label.font = UIFont.boldSystemFont(ofSize: 20)
@@ -34,7 +34,7 @@ class OrderViewController: UIViewController {
         return label
     }()
     
-    lazy var priceLabel: UILabel = {
+    private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.text = "$43.95"
         label.font = UIFont.boldSystemFont(ofSize: 24)
@@ -42,17 +42,18 @@ class OrderViewController: UIViewController {
         return label
     }()
     
-    lazy var checkoutButton: UIButton = {
+    private lazy var checkoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("CHECKOUT", for: .normal)
         button.contentHorizontalAlignment = .leading
         button.backgroundColor = .yellow
         button.tintColor = .black
         button.layer.cornerRadius = 14
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         return button
     }()
     
-    lazy var checkoutPriceLabel: UILabel = {
+    private lazy var checkoutPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "$43.95"
         label.font = UIFont.boldSystemFont(ofSize: 15)
@@ -73,42 +74,37 @@ class OrderViewController: UIViewController {
     
     // MARK: - Setup Views
     
-    private func setupViews(){
+    private func setupViews() {
         view.backgroundColor = .white
         
-        view.addSubview(orderLabel)
-        view.addSubview(orderTableVIew)
-        view.addSubview(totalLabel)
-        view.addSubview(priceLabel)
-        view.addSubview(checkoutButton)
-        view.addSubview(checkoutPriceLabel)
-        
+        [orderLabel, orderTableView, totalLabel, priceLabel, checkoutButton, checkoutPriceLabel].forEach {
+            view.addSubview($0)
+        }
     }
     
     // MARK: - Setup Constrains
     
     private func setupConstrains() {
-        
         orderLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(97)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalToSuperview().offset(97)
         }
-        orderTableVIew.snp.makeConstraints { make in
+        orderTableView.snp.makeConstraints { make in
+            make.top.equalTo(orderLabel.snp.bottom)
             make.leading.trailing.equalTo(orderLabel)
             make.trailing.equalTo(orderLabel)
             make.height.equalTo(474.5)
-            make.top.equalTo(orderLabel.snp.bottom)
         }
         
         totalLabel.snp.makeConstraints { make in
+            make.top.equalTo(orderTableView.snp.bottom).offset(30)
             make.leading.equalTo(orderLabel)
-            make.top.equalTo(orderTableVIew.snp.bottom).offset(30)
         }
         
         priceLabel.snp.makeConstraints { make in
+            make.top.equalTo(orderTableView.snp.bottom).offset(24)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalTo(orderTableVIew.snp.bottom).offset(24)
         }
         
         checkoutButton.snp.makeConstraints { make in
