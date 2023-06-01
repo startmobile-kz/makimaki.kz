@@ -64,7 +64,9 @@ class MainViewController: UIViewController {
         let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView, collectionView]
         view.addSubviews(subviews)
         
+        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID)
         collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
+        collectionView.register(PromoBannerCollectionViewCell.self, forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID)
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
     }
     
@@ -91,9 +93,9 @@ class MainViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
-        
+
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(separatorView).offset(16)
+            make.top.equalTo(separatorView).offset(28)
             make.leading.equalTo(view.snp.leading).offset(16)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
@@ -102,30 +104,82 @@ class MainViewController: UIViewController {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { section, env in
-            //Item
-            let item = NSCollectionLayoutItem(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(180)
+            
+            if section == 0 {
+                // Item
+                let item = NSCollectionLayoutItem(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(1)
+                    )
                 )
-            )
-            
-            item.contentInsets.trailing = 16
+                // Group
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .absolute(70),
+                        heightDimension: .absolute(90)
+                    ),
+                    subitems: [item]
+                )
+                
+                // Section
+                let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 10
+                section.orthogonalScrollingBehavior = .continuous
+                return section
+                
+            } else if section == 1 {
+                
+                //Item
+                let item = NSCollectionLayoutItem(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(1)
+                    )
+                )
 
-            //Group
-            let group = NSCollectionLayoutGroup.horizontal(
-                layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
-                    heightDimension: .absolute(236)
-                ),
-                subitems: [item]
-            )
+                //Group
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .absolute(300),
+                        heightDimension: .absolute(160)
+                    ),
+                    subitems: [item]
+                )
             
-            //Section
-            let section = NSCollectionLayoutSection(group: group)
-            section.interGroupSpacing = 32
-            section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-            return section
+                //Section
+                let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 10
+                section.orthogonalScrollingBehavior = .continuous
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                return section
+                
+            } else {
+                
+                //Item
+                let item = NSCollectionLayoutItem(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .absolute(180)
+                    )
+                )
+                item.contentInsets.trailing = 16
+                
+                //Group
+                let group = NSCollectionLayoutGroup.horizontal(
+                    layoutSize: NSCollectionLayoutSize(
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .absolute(236)
+                    ),
+                    subitems: [item]
+                )
+                
+                //Section
+                let section = NSCollectionLayoutSection(group: group)
+                section.interGroupSpacing = 32
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                return section
+            }
         }
     }
     
@@ -149,29 +203,49 @@ extension MainViewController: UICollectionViewDelegate {
 //MARK: -UICollectionView Data Source methods
 extension MainViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        1
+        3
     }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        4
+        if section == 0 {
+            return 10
+        } else if section == 1 {
+            return 4
+        } else {
+            return 4
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
-        
-        return cell
+        if indexPath.section == 0 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseID, for: indexPath) as! CategoryCollectionViewCell
+            
+            return cell
+            
+        } else if indexPath.section == 1 {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoBannerCollectionViewCell.reuseID, for: indexPath) as! PromoBannerCollectionViewCell
+            
+            return cell
+            
+        } else {
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
+            
+            return cell
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseID, for: indexPath) as! SectionHeaderView
             
-            sectionHeader.label.text = "Restaurants"
-            
+             if indexPath.section == 1 {
+                 sectionHeader.label.text = "Promo"
+             } else {
+                 sectionHeader.label.text = "Restaurants"
+             }
             return sectionHeader
         } else {
             return UICollectionReusableView()
         }
     }
-    
-    
 }
