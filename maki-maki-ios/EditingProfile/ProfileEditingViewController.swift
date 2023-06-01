@@ -48,7 +48,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var saveButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("SAVE", for: .normal)
-        button.backgroundColor = .yellow
+        button.backgroundColor = AppColor.accent.uiColor
         button.tintColor = .black
         button.layer.cornerRadius = 14
         return button
