@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		274486012A27B3F200F2FFBD /* UITextFieldExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextFieldExtension.swift */; };
+		274BB4E82A2864C400599092 /* WelcomePageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageViewController.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
 		773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737B2A2783A20029AA44 /* UIView+Extensions.swift */; };
@@ -382,8 +383,8 @@
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextFieldExtension.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
-				274485FF2A27B3D800F2FFBD /* WelcomePageViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
+				274BB4E82A2864C400599092 /* WelcomePageViewController.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
