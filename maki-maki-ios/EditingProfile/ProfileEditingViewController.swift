@@ -21,10 +21,9 @@ final class EditProfileViewController: UIViewController {
     }()
     
     private lazy var profileImageView: UIImageView = {
-        let imageView = "UserAvatar.pdf"
-        let image = UIImage(named: imageView)
-        let profileImageView = UIImageView(image: image!)
-        return profileImageView
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "UserAvatar.pdf")
+        return imageView
     }()
     
     private lazy var nameTextField: UITextField = {
