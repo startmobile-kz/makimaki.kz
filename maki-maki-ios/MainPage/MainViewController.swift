@@ -65,6 +65,7 @@ class MainViewController: UIViewController {
         view.addSubviews(subviews)
         
         collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
     }
     
     private func setupConstraints() {
@@ -123,11 +124,22 @@ class MainViewController: UIViewController {
             //Section
             let section = NSCollectionLayoutSection(group: group)
             section.interGroupSpacing = 32
+            section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
             return section
         }
     }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(43)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+    }
 }
-
 
 //MARK: -UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
@@ -147,6 +159,18 @@ extension MainViewController: UICollectionViewDataSource {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
         
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseID, for: indexPath) as! SectionHeaderView
+            
+            sectionHeader.label.text = "Restaurants"
+            
+            return sectionHeader
+        } else {
+            return UICollectionReusableView()
+        }
     }
     
     
