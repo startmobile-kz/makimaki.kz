@@ -64,41 +64,20 @@ final class MainViewController: UIViewController {
         let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView, collectionView]
         view.addSubviews(subviews)
         
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
+        collectionView.register(DeliveryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DeliveryHeaderView.reuseID)
         collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID)
         collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
         collectionView.register(PromoBannerCollectionViewCell.self, forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID)
-        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
+        collectionView.showsVerticalScrollIndicator = false
     }
     
     private func setupConstraints() {
-        deliverToLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(18)
-            make.leading.equalTo(view.snp.leading).offset(16)
-        }
-        
-        addressLabel.snp.makeConstraints { make in
-            make.top.equalTo(deliverToLabel.snp.bottom).offset(5)
-            make.leading.equalTo(view.snp.leading).offset(16)
-        }
-        
-        chevronButton.snp.makeConstraints { make in
-            make.centerY.equalTo(addressLabel.snp.centerY)
-            make.leading.equalTo(addressLabel.snp.trailing).offset(7.4)
-            make.width.equalTo(11.4)
-            make.height.equalTo(6)
-        }
-        
-        separatorView.snp.makeConstraints { make in
-            make.top.equalTo(addressLabel.snp.bottom).offset(20)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(0.5)
-        }
-
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(separatorView).offset(28)
-            make.leading.equalTo(view.snp.leading).offset(16)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(18)
+            make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalTo(view.snp.bottom).offset(-20)
+            make.bottom.equalTo(view.snp.bottom)
         }
     }
     
@@ -125,8 +104,9 @@ final class MainViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40.5, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 28, leading: 16, bottom: 40.5, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
+                section.boundarySupplementaryItems = [self.supplementaryDeliveryHeaderItem()]
                 return section
                 
             } else if section == 1 {
@@ -151,7 +131,7 @@ final class MainViewController: UIViewController {
                 //Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 40, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
@@ -179,10 +159,22 @@ final class MainViewController: UIViewController {
                 //Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 32
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 20, trailing: 0)
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
             }
         }
+    }
+    
+    private func supplementaryDeliveryHeaderItem() ->  NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(61)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
     }
     
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -240,11 +232,15 @@ extension MainViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseID, for: indexPath) as! SectionHeaderView
             
-             if indexPath.section == 1 {
-                 sectionHeader.label.text = "Promo"
-             } else {
-                 sectionHeader.label.text = "Restaurants"
-             }
+            if indexPath.section == 0 {
+                let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DeliveryHeaderView.reuseID, for: indexPath) as! DeliveryHeaderView
+                
+                return deliverySectionHeader
+            } else if indexPath.section == 1 {
+                sectionHeader.label.text = "Promo"
+            } else {
+                sectionHeader.label.text = "Restaurants"
+            }
             return sectionHeader
         } else {
             return UICollectionReusableView()
