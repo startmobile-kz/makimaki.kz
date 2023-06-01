@@ -70,7 +70,6 @@ final class WelcomePageViewController: UIViewController {
     private func setUpConstraints() {
         welcomeLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-202)
             make.top.equalToSuperview().offset(93)
             make.height.equalTo(40)
         }
