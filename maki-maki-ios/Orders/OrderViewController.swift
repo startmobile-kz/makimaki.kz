@@ -28,6 +28,8 @@ final class OrderViewController: UIViewController {
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
         label.backgroundColor = AppColor.green.uiColor
+        label.layer.masksToBounds = true
+        label.layer.cornerRadius = 6
         return label
     }()
     
