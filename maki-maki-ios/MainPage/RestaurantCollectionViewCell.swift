@@ -24,6 +24,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Taqueria Los Coyotes"
         label.font = AppFont.semibold.s18()
+        label.textColor = AppColor.heading.uiColor
         
         return label
     }()
@@ -45,9 +46,46 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var ratingLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "5.0"
         label.font = AppFont.reqular.s14()
+        label.textColor = AppColor.heading.uiColor
+        
+        return label
+    }()
+    
+    private lazy var firstDotSeparatorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "•"
+        label.font = AppFont.reqular.s12()
+        label.textColor = AppColor.grey300.uiColor
+        
+        return label
+    }()
+    
+    private lazy var timeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "15-20 mins"
+        label.font = AppFont.reqular.s14()
+        label.textColor = AppColor.heading.uiColor
+        
+        return label
+    }()
+    
+    private lazy var secondDotSeparatorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "•"
+        label.font = AppFont.reqular.s12()
+        label.textColor = AppColor.grey300.uiColor
+        
+        return label
+    }()
+    
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "$$"
+        label.font = AppFont.reqular.s14()
+        label.textColor = AppColor.heading.uiColor
         
         return label
     }()
@@ -66,7 +104,8 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         let subviews = [restaurantImageView, restaurantNameLabel, starImageView, infoStackView]
         subviews.forEach( { contentView.addSubview($0) } )
         
-        infoStackView.addArrangedSubview(ratingLabel)
+        let arrangedSubviews = [ratingLabel, firstDotSeparatorLabel, timeLabel, secondDotSeparatorLabel, priceLabel]
+        arrangedSubviews.forEach( {infoStackView.addArrangedSubview($0)} )
     }
     
     private func setupConstraints() {
@@ -87,6 +126,11 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
         infoStackView.snp.makeConstraints { make in
             make.centerY.equalTo(starImageView.snp.centerY)
             make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
+        }
+        
+        firstDotSeparatorLabel.snp.makeConstraints { make in
+            make.height.equalTo(15)
+            make.width.equalTo(7)
         }
     }
 }
