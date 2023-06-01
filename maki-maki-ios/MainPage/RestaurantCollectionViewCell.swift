@@ -23,15 +23,15 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var restaurantNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Taqueria Los Coyotes"
-        label.font = UIFont.systemFont(ofSize: 18, weight: .semibold)
+        label.font = AppFont.semibold.s18()
         
         return label
     }()
     
     private lazy var starImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(systemName: "star.fill")
-        imageView.tintColor = .label
+        imageView.image = UIImage(named: "star")
+        imageView.tintColor = AppColor.heading.uiColor
         
         return imageView
     }()
@@ -47,7 +47,7 @@ class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var ratingLabel: UILabel = {
        let label = UILabel()
         label.text = "5.0"
-        label.font = UIFont.systemFont(ofSize: 14)
+        label.font = AppFont.reqular.s14()
         
         return label
     }()

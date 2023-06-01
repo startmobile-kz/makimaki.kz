@@ -128,7 +128,6 @@ class MainViewController: UIViewController {
     }
 }
 
-
 //MARK: -UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
     
