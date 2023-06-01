@@ -98,7 +98,7 @@ final class MainViewController: UIViewController {
             make.top.equalTo(separatorView).offset(28)
             make.leading.equalTo(view.snp.leading).offset(16)
             make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalTo(view.snp.bottom)
+            make.bottom.equalTo(view.snp.bottom).offset(-20)
         }
     }
     
