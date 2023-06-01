@@ -32,6 +32,7 @@ final class WelcomePageViewController: UIViewController {
     private lazy var phoneNumberTextField: UITextField = {
         let textField = UITextField()
         textField.placeholder = "+7 7082020155"
+        textField.textColor = AppColor.heading.uiColor
         textField.borderStyle = .none
         return textField
     }()
