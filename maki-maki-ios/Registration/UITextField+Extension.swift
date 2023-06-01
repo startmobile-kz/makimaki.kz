@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-// MARK: - Extension for border bottom line
+// MARK: - Extension for border bottom line of TextField
 extension UITextField {
    func addBottomBorder(){
        let bottomLine = CALayer()

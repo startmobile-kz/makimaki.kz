@@ -8,9 +8,9 @@
 import UIKit
 import SnapKit
 
-final class WelcomePageViewController: UIViewController {
+final class WelcomePageVerTwoViewController: UIViewController {
 
-    // MARK: - UI elements design
+    // MARK: - UI Components
    private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome!"
@@ -46,7 +46,7 @@ final class WelcomePageViewController: UIViewController {
        return button
     }()
 
-    // MARK: - Lifecycle
+    // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setUpViews()
