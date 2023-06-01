@@ -8,12 +8,11 @@
 import UIKit
 import SnapKit
 
-class PromoBannerCollectionViewCell: UICollectionViewCell {
+final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = "PromoCell"
     
     // MARK: -UI
-    
     private lazy var promoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "Promo1")
@@ -31,19 +30,16 @@ class PromoBannerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup Views
     private func setupViews() {
         let subviews = [promoImageView, ]
         subviews.forEach( { contentView.addSubview($0) } )
-        
     }
     
+    // MARK: - Setup Constraints
     private func setupConstraints() {
-        
         promoImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
     }
-    
-    
 }

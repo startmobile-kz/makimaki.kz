@@ -7,25 +7,18 @@
 
 import UIKit
 import SnapKit
-class CategoryCollectionViewCell: UICollectionViewCell {
+
+final class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = "CategoryCell"
     
     // MARK: -UI
-    
-//    private lazy var categoryImageView: UIImageView = {
-//        let imageView = UIImageView()
-//        imageView.image = UIImage(named: "Category1")
-//        imageView.backgroundColor = AppColor.accent.uiColor
-//        imageView.layer.cornerRadius = 20
-//        return imageView
-//    }()
-    
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "Category1"), for: .normal)
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 20
+        
         return button
     }()
     
@@ -38,7 +31,6 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -49,29 +41,22 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: -Setup Views
     private func setupViews() {
         let subviews = [categoryButton, categoryNameLabel]
         subviews.forEach( { contentView.addSubview($0) } )
-        
     }
     
+    // MARK: -Setup Constraints
     private func setupConstraints() {
-        
         categoryButton.snp.makeConstraints { make in
-            
             make.top.leading.equalToSuperview()
             make.width.height.equalTo(70)
-            
-            
-            
-            
         }
         categoryNameLabel.snp.makeConstraints { make in
             make.top.equalTo(categoryButton.snp.bottom).offset(5)
             make.leading.equalTo(categoryButton.snp.leading)
             make.centerX.equalTo(contentView)
         }
-        
     }
-    
 }

@@ -52,7 +52,7 @@ final class MainViewController: UIViewController {
         return collectionView
     }()
     
-    //MARK: -Lifecycle
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
