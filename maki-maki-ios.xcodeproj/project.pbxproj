@@ -7,9 +7,17 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		1D4556B52A278B8D00348B12 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D4556B42A278B8D00348B12 /* MainViewController.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
+		773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737B2A2783A20029AA44 /* UIView+Extensions.swift */; };
+		773A737E2A27840F0029AA44 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737D2A27840F0029AA44 /* AppImage.swift */; };
+		773A73802A2784160029AA44 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737F2A2784160029AA44 /* AppColor.swift */; };
+		773A73822A27841E0029AA44 /* AppFont.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A73812A27841E0029AA44 /* AppFont.swift */; };
+		773A73862A27877C0029AA44 /* Colors.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 773A73852A27877C0029AA44 /* Colors.xcassets */; };
+		773A738A2A278D5E0029AA44 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73872A278D5E0029AA44 /* Inter-Bold.ttf */; };
+		773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73882A278D5E0029AA44 /* Inter-Medium.ttf */; };
+		773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73892A278D5E0029AA44 /* Inter-Regular.ttf */; };
+		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
@@ -29,10 +37,18 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		1D4556B42A278B8D00348B12 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = MainViewController.swift; path = "maki-maki-ios/MainViewController.swift"; sourceTree = SOURCE_ROOT; };
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		773A737B2A2783A20029AA44 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
+		773A737D2A27840F0029AA44 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
+		773A737F2A2784160029AA44 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
+		773A73812A27841E0029AA44 /* AppFont.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppFont.swift; sourceTree = "<group>"; };
+		773A73852A27877C0029AA44 /* Colors.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Colors.xcassets; sourceTree = "<group>"; };
+		773A73872A278D5E0029AA44 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		773A73882A278D5E0029AA44 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		773A73892A278D5E0029AA44 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
@@ -81,20 +97,51 @@
 			path = Pods;
 			sourceTree = "<group>";
 		};
-		688500CA2A27854400E4CB21 /* MainPage */ = {
-			isa = PBXGroup;
-			children = (
-				1D4556B42A278B8D00348B12 /* MainViewController.swift */,
-			);
-			path = MainPage;
-			sourceTree = "<group>";
-		};
 		7720EEEA2A23806500A01669 /* Module */ = {
 			isa = PBXGroup;
 			children = (
 				CE9623662A132B1A00C36D03 /* ViewController.swift */,
 			);
 			path = Module;
+			sourceTree = "<group>";
+		};
+		773A73762A2783170029AA44 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				773A73782A2783290029AA44 /* Resourses */,
+				773A73772A27831D0029AA44 /* Extensions */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		773A73772A27831D0029AA44 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		773A73782A2783290029AA44 /* Resourses */ = {
+			isa = PBXGroup;
+			children = (
+				773A737A2A2783740029AA44 /* Fonts */,
+				773A737D2A27840F0029AA44 /* AppImage.swift */,
+				773A737F2A2784160029AA44 /* AppColor.swift */,
+				773A73812A27841E0029AA44 /* AppFont.swift */,
+			);
+			path = Resourses;
+			sourceTree = "<group>";
+		};
+		773A737A2A2783740029AA44 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				773A73872A278D5E0029AA44 /* Inter-Bold.ttf */,
+				773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */,
+				773A73882A278D5E0029AA44 /* Inter-Medium.ttf */,
+				773A73892A278D5E0029AA44 /* Inter-Regular.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
@@ -128,11 +175,12 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				688500CA2A27854400E4CB21 /* MainPage */,
+				773A73762A2783170029AA44 /* Helpers */,
 				7720EEEA2A23806500A01669 /* Module */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
 				CE96236B2A132B1C00C36D03 /* Assets.xcassets */,
+				773A73852A27877C0029AA44 /* Colors.xcassets */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623702A132B1C00C36D03 /* Info.plist */,
 				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
@@ -232,8 +280,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */,
+				773A738A2A278D5E0029AA44 /* Inter-Bold.ttf in Resources */,
+				773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */,
+				773A73862A27877C0029AA44 /* Colors.xcassets in Resources */,
+				773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */,
 				CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */,
 				7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */,
+				773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,8 +368,11 @@
 			files = (
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
+				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
+				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
-				1D4556B52A278B8D00348B12 /* MainViewController.swift in Sources */,
+				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
+				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
