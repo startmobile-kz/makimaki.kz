@@ -82,6 +82,7 @@ final class EditProfileViewController: UIViewController {
         profileImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(40)
             make.left.equalToSuperview().offset(119)
+            make.centerX.equalToSuperview()
         }
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(66)
