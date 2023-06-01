@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class MainViewController: UIViewController {
+final class MainViewController: UIViewController {
     
     //MARK: -UI
     private lazy var deliverToLabel: UILabel = {
