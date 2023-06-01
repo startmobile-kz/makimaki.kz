@@ -32,7 +32,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
     private lazy var categoryNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Burgers"
-        label.font = AppFont.semibold.s12()
+        label.font = AppFont.reqular.s12()
         label.textAlignment = .center
         
         return label
@@ -69,7 +69,7 @@ class CategoryCollectionViewCell: UICollectionViewCell {
         categoryNameLabel.snp.makeConstraints { make in
             make.top.equalTo(categoryButton.snp.bottom).offset(5)
             make.leading.equalTo(categoryButton.snp.leading)
-            make.bottom.equalTo(self.snp.bottom).offset(-16)
+            make.centerX.equalTo(contentView)
         }
         
     }

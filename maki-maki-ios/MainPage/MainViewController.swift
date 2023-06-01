@@ -125,6 +125,7 @@ class MainViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40.5, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
                 return section
                 
@@ -150,6 +151,7 @@ class MainViewController: UIViewController {
                 //Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
+                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 40, trailing: 0)
                 section.orthogonalScrollingBehavior = .continuous
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
