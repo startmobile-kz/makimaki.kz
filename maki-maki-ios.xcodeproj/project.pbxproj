@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3EC352A27A31A009A0E02 /* MainViewController.swift */; };
+		68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
 		773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737B2A2783A20029AA44 /* UIView+Extensions.swift */; };
 		773A737E2A27840F0029AA44 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737D2A27840F0029AA44 /* AppImage.swift */; };
@@ -41,6 +42,7 @@
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68C3EC352A27A31A009A0E02 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		773A737B2A2783A20029AA44 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		773A737D2A27840F0029AA44 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
@@ -103,6 +105,7 @@
 			isa = PBXGroup;
 			children = (
 				68C3EC352A27A31A009A0E02 /* MainViewController.swift */,
+				68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -383,6 +386,7 @@
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
+				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 			);

@@ -44,6 +44,14 @@ class MainViewController: UIViewController {
         return view
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        return collectionView
+    }()
+    
     //MARK: -Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,9 +61,10 @@ class MainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView]
+        let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView, collectionView]
         view.addSubviews(subviews)
-       
+        
+        collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
     }
     
     private func setupConstraints() {
@@ -81,5 +90,64 @@ class MainViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(separatorView).offset(16)
+            make.leading.equalTo(view.snp.leading).offset(16)
+            make.trailing.equalTo(view.snp.trailing)
+            make.bottom.equalTo(view.snp.bottom)
+        }
     }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { section, env in
+            //Item
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(180)
+                )
+            )
+            
+            item.contentInsets.trailing = 16
+
+            //Group
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(236)
+                ),
+                subitems: [item]
+            )
+            
+            //Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.interGroupSpacing = 32
+            return section
+        }
+    }
+}
+
+
+//MARK: -UICollectionView Delegate methods
+extension MainViewController: UICollectionViewDelegate {
+    
+}
+
+//MARK: -UICollectionView Data Source methods
+extension MainViewController: UICollectionViewDataSource {
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        1
+    }
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        4
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
+        
+        return cell
+    }
+    
+    
 }
