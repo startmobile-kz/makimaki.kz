@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 final class SectionHeaderView: UICollectionReusableView {
+    
     static let reuseID = "SectionHeaderView"
+    
     var label: UILabel = {
          let label: UILabel = UILabel()
          label.textColor = .label
@@ -20,14 +22,21 @@ final class SectionHeaderView: UICollectionReusableView {
 
      override init(frame: CGRect) {
          super.init(frame: frame)
-         addSubview(label)
-//
-         label.snp.makeConstraints { make in
-             make.top.equalTo(self.snp.top)
-             make.leading.equalTo(self.snp.leading)
-             make.trailing.equalTo(self.snp.trailing)
-             make.bottom.equalTo(self.snp.bottom).offset(-16)
-         }
+         setupViews()
+         setupConstraints()
+    }
+    
+    private func setupViews() {
+        addSubview(label)
+    }
+    
+    private func setupConstraints() {
+        label.snp.makeConstraints { make in
+            make.top.equalTo(self.snp.top)
+            make.leading.equalTo(self.snp.leading)
+            make.trailing.equalTo(self.snp.trailing)
+            make.bottom.equalTo(self.snp.bottom).offset(-16)
+        }
     }
 
     required init?(coder aDecoder: NSCoder) {
