@@ -8,146 +8,148 @@
 import UIKit
 import SnapKit
 
-class AccountCardsViewController: UIViewController {
+final class AccountCardsViewController: UIViewController {
         
     // MARK: - UI
-    lazy var circleImageView: UIImageView = {
+    private lazy var avatarImageView: UIImageView = {
        let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "#1")
+        imageView.image = #imageLiteral(resourceName: "avatar-ac")
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
     }()
     
-    lazy var userLabel: UILabel = {
+    private lazy var userLabel: UILabel = {
         let label = UILabel()
         label.text = "Islam Temirbek"
-        label.font = UIFont.systemFont(ofSize: 28, weight: UIFont.Weight(700))
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.bold.s28()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var buttonSignOut: UIButton = {
+    private lazy var signOutButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("SIGNOUT", for: .normal)
-        button.backgroundColor = UIColor(red: 242/255, green: 243/255, blue: 245/255, alpha: 1)
+        button.backgroundColor = AppColor.grey100.uiColor
         button.tintColor = .black
         button.layer.cornerRadius = 16
         return button
     }()
     
-    lazy var ordersButton: UIButton = {
+    private lazy var ordersButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "Orders"), for: .normal)
-        button.backgroundColor = UIColor(red: 255/255, green: 204/255, blue: 102/255, alpha: 1)
+        button.setImage(UIImage(named: "orders-ac"), for: .normal)
+        button.backgroundColor = AppColor.accent.uiColor
         button.tintColor = .black
         button.layer.cornerRadius = 16
         return button
     }()
     
-    lazy var ordersLabel: UILabel = {
+    private lazy var ordersLabel: UILabel = {
         let label = UILabel()
         label.text = "Orders"
-        label.font = UIFont.systemFont(ofSize: 12)
+        label.font = AppFont.reqular.s12()
         label.textAlignment = .center
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var profileButton: UIButton = {
+    private lazy var profileButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "user"), for: .normal)
+        button.setImage(UIImage(named: "user-ac"), for: .normal)
         button.backgroundColor = .white
         button.tintColor = .black
-        button.layer.borderColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1).cgColor
+        button.layer.borderColor = AppColor.border.cgColor
         button.layer.borderWidth = 0.4
         button.layer.cornerRadius = 16
         return button
     }()
     
-    lazy var profileLabel: UILabel = {
+    private lazy var profileLabel: UILabel = {
         let label = UILabel()
         label.text = "Profile"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.reqular.s12()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var favoritesButton: UIButton = {
+    private lazy var favoritesButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "Like"), for: .normal)
+        button.setImage(UIImage(named: "like-ac"), for: .normal)
         button.backgroundColor = .white
         button.tintColor = .black
-        button.layer.borderColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1).cgColor
+        button.layer.borderColor = AppColor.border.cgColor
         button.layer.borderWidth = 0.4
         button.layer.cornerRadius = 16
         return button
     }()
     
-    lazy var favoritesLabel: UILabel = {
+    private lazy var favoritesLabel: UILabel = {
         let label = UILabel()
         label.text = "Favorites"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.reqular.s12()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var offersButton: UIButton = {
+    private lazy var offersButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "Offer"), for: .normal)
+        button.setImage(UIImage(named: "offer-ac"), for: .normal)
         button.backgroundColor = .white
         button.tintColor = .black
-        button.layer.borderColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1).cgColor
+        button.layer.borderColor = AppColor.border.cgColor
         button.layer.borderWidth = 0.4
         button.layer.cornerRadius = 16
         return button
     }()
     
-    lazy var offersLabel: UILabel = {
+    private lazy var offersLabel: UILabel = {
         let label = UILabel()
         label.text = "Offers"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.reqular.s12()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var paymentsButton: UIButton = {
+    private lazy var paymentsButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "Payment"), for: .normal)
+        button.setImage(UIImage(named: "payment-ac"), for: .normal)
         button.backgroundColor = .white
         button.tintColor = .black
-        button.layer.borderColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1).cgColor
+        button.layer.borderColor = AppColor.border.cgColor
+        button.layer.cornerRadius = 16
         button.layer.borderWidth = 0.4
         return button
     }()
     
-    lazy var paymentsLabel: UILabel = {
+    private lazy var paymentsLabel: UILabel = {
         let label = UILabel()
         label.text = "Payments"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.reqular.s12()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var addressesButton: UIButton = {
+    private lazy var addressesButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "Location"), for: .normal)
+        button.setImage(UIImage(named: "location-ac"), for: .normal)
         button.backgroundColor = .white
         button.tintColor = .black
-        button.layer.borderColor = UIColor(red: 244/255, green: 244/255, blue: 244/255, alpha: 1).cgColor
+        button.layer.borderColor = AppColor.border.cgColor
+        button.layer.cornerRadius = 16
         button.layer.borderWidth = 0.4
         return button
     }()
     
-    lazy var addressesLabel: UILabel = {
+    private lazy var addressesLabel: UILabel = {
         let label = UILabel()
         label.text = "Addresses"
-        label.font = UIFont.systemFont(ofSize: 12)
-        label.tintColor = UIColor(red: 43/255, green: 43/255, blue: 43/255, alpha: 1)
+        label.font = AppFont.reqular.s12()
+        label.tintColor = AppColor.heading.uiColor
         return label
     }()
     
-    lazy var stackViewHorizontalOne: UIStackView = {
+    private lazy var stackViewHorizontalOne: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [ordersButton, profileButton, favoritesButton])
         stackView.axis = .horizontal
         stackView.spacing = 40
@@ -155,7 +157,7 @@ class AccountCardsViewController: UIViewController {
         return stackView
     }()
     
-    lazy var stackViewHorizontalTwo: UIStackView = {
+    private lazy var stackViewHorizontalTwo: UIStackView = {
        let stackView = UIStackView(arrangedSubviews: [offersButton, paymentsButton, addressesButton])
         stackView.axis = .horizontal
         stackView.distribution = .fillEqually
@@ -163,11 +165,11 @@ class AccountCardsViewController: UIViewController {
         return stackView
     }()
     
-    lazy var allStackView: UIStackView = {
+    private lazy var buttonsStackView: UIStackView = {
         let stackView = UIStackView(arrangedSubviews: [stackViewHorizontalOne, stackViewHorizontalTwo])
         stackView.axis = .vertical
         stackView.distribution = .fillEqually
-        stackView.spacing = 52
+        stackView.spacing = 32
         return stackView
     }()
 
@@ -180,33 +182,24 @@ class AccountCardsViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
-        view.addSubview(circleImageView)
-        view.addSubview(buttonSignOut)
-        view.addSubview(userLabel)
-        view.addSubview(ordersButton)
-        view.addSubview(ordersLabel)
-        view.addSubview(profileButton)
-        view.addSubview(profileLabel)
-        view.addSubview(favoritesButton)
-        view.addSubview(favoritesLabel)
-        view.addSubview(offersButton)
-        view.addSubview(offersLabel)
-        view.addSubview(addressesButton)
-        view.addSubview(addressesLabel)
-        view.addSubview(paymentsButton)
-        view.addSubview(paymentsLabel)
-        view.addSubview(allStackView)
+        
+        [avatarImageView, signOutButton, userLabel,
+         ordersLabel, profileLabel,
+         favoritesLabel, offersLabel,
+         addressesLabel, paymentsLabel, buttonsStackView].forEach {
+            view.addSubview($0)
+        }
     }
     
     // MARK: - Setup Constraints
     private func setupContraints() {
-        circleImageView.snp.makeConstraints { make in
+        avatarImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(84)
             make.centerX.equalToSuperview()
         }
         
         userLabel.snp.makeConstraints { make in
-            make.top.equalTo(circleImageView.snp.bottom).offset(16)
+            make.top.equalTo(avatarImageView.snp.bottom).offset(16)
             make.centerX.equalToSuperview()
         }
         
@@ -265,18 +258,14 @@ class AccountCardsViewController: UIViewController {
             make.centerX.equalTo(paymentsButton.snp.centerX)
         }
         
-//        profileButton.snp.makeConstraints { make in
-//            make.width.height.equalTo(70)
-//        }
-        
-        allStackView.snp.makeConstraints { make in
+        buttonsStackView.snp.makeConstraints { make in
+            make.top.equalTo(userLabel.snp.bottom).offset(40)
             make.left.equalToSuperview().offset(42.5)
             make.trailing.equalToSuperview().offset(-42.5)
-            make.top.equalTo(userLabel.snp.bottom).offset(40)
         }
         
-        buttonSignOut.snp.makeConstraints { make in
-            make.top.equalTo(allStackView.snp.bottom).offset(132)
+        signOutButton.snp.makeConstraints { make in
+            make.top.equalTo(buttonsStackView.snp.bottom).offset(132)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
