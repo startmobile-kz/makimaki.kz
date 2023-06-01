@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RestaurantCollectionViewCell: UICollectionViewCell {
+final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = "RestaurantCell"
     
