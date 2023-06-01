@@ -35,10 +35,23 @@ final class OrderViewController: UIViewController {
     
     private lazy var orderDataLabel: UILabel = {
         let label = UILabel()
-        label.text = "31 May 2020, 07:55 PM  •"
+        let components = [
+            NSAttributedString(string: NSLocalizedString("31 May 2020, 07:55 PM  ", comment: "Data"), attributes: [
+                .foregroundColor: AppColor.paragraph.uiColor,
+                .font: AppFont.reqular.s14()
+            ]),
+            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
+                .foregroundColor: AppColor.grey300.uiColor,
+                .font: AppFont.reqular.s15()
+            ])
+        ]
+        let string = NSMutableAttributedString()
+        components.forEach(string.append)
+        label.attributedText = string
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         label.textAlignment = .center
+        
         return label
     }()
     
@@ -185,15 +198,37 @@ final class OrderViewController: UIViewController {
     private func setupViews() {
         self.view.backgroundColor = AppColor.background.uiColor
         
-        [orderNameLabel, orderStatusLabel, dataPriceLabelsStackView, collapseMenuButton, ordersListStackView, reorderButton].forEach { view.addSubview($0) }
+        [
+            orderNameLabel,
+            orderStatusLabel,
+            dataPriceLabelsStackView,
+            collapseMenuButton,
+            ordersListStackView,
+            reorderButton
+        ].forEach { view.addSubview($0) }
         
-        [orderDataLabel, orderPriceLabel].forEach { dataPriceLabelsStackView.addArrangedSubview($0) }
+        [
+            orderDataLabel,
+            orderPriceLabel
+        ].forEach { dataPriceLabelsStackView.addArrangedSubview($0) }
         
-        [orderListLabel, costOrderLabel].forEach { orderListCostStackView.addArrangedSubview($0) }
-        [secondOrderListLabel, secondCostOrderLabel].forEach { secondOrderListCostStackView.addArrangedSubview($0) }
-        [thirdOrderListLabel, thirdCostOrderLabel].forEach { thirdOrderListCostStackView.addArrangedSubview($0) }
-        
-        [orderListCostStackView, secondOrderListCostStackView, thirdOrderListCostStackView].forEach {ordersListStackView.addArrangedSubview($0)}
+        [
+            orderListLabel,
+            costOrderLabel
+        ].forEach { orderListCostStackView.addArrangedSubview($0) }
+        [
+            secondOrderListLabel,
+            secondCostOrderLabel
+        ].forEach { secondOrderListCostStackView.addArrangedSubview($0) }
+        [
+            thirdOrderListLabel,
+            thirdCostOrderLabel
+        ].forEach { thirdOrderListCostStackView.addArrangedSubview($0) }
+        [
+            orderListCostStackView,
+            secondOrderListCostStackView,
+            thirdOrderListCostStackView
+        ].forEach { ordersListStackView.addArrangedSubview($0) }
     }
     
     private func setupConstraintsWithSnapkit() {
@@ -209,7 +244,7 @@ final class OrderViewController: UIViewController {
             make.height.equalTo(29)
             make.width.equalTo(83)
         }
-
+        
         dataPriceLabelsStackView.snp.makeConstraints { make in
             make.top.equalTo(orderNameLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
