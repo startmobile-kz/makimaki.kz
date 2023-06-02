@@ -7,10 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
-		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
-		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
-		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		032304E82A28EB6700FA76B6 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0343B0AF2A2651C100C90106 /* BasketViewController.swift */; };
 		032304EA2A28F6E900FA76B6 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032304E92A28F6E900FA76B6 /* BasketTableViewCell.swift */; };
 		032304EC2A28F6F800FA76B6 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 032304EB2A28F6F800FA76B6 /* DeliveryTableViewCell.swift */; };
@@ -31,7 +27,6 @@
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
-		F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,11 +40,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
-		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
-		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
-
 		032304E92A28F6E900FA76B6 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
 		032304EB2A28F6F800FA76B6 /* DeliveryTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryTableViewCell.swift; sourceTree = "<group>"; };
 		0343B0AF2A2651C100C90106 /* BasketViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +65,6 @@
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -97,24 +86,6 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		274485FD2A27B3B400F2FFBD /* Registration */ = {
-
-			isa = PBXGroup;
-			children = (
-				274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */,
-				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
-				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
-			);
-			path = Registration;
-
-		2781CD162A27C6AA00964A36 /* AccountCards */ = {
-			isa = PBXGroup;
-			children = (
-				2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */,
-			);
-			path = "maki-maki-ios/AccountCards";
-			name = AccountCards;
-
 		0343B0AE2A2651C100C90106 /* Order */ = {
 			isa = PBXGroup;
 			children = (
@@ -200,7 +171,6 @@
 		CE9623562A132B1A00C36D03 = {
 			isa = PBXGroup;
 			children = (
-				2781CD162A27C6AA00964A36 /* AccountCards */,
 				CE9623612A132B1A00C36D03 /* maki-maki-ios */,
 				CE15DD342A136D3A006F9968 /* maki-maki-iosTests */,
 				CE9623602A132B1A00C36D03 /* Products */,
@@ -221,8 +191,6 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F187EADD2A263EFE00019242 /* EditingProfile */,
-				274485FD2A27B3B400F2FFBD /* Registration */,
 				773A73762A2783170029AA44 /* Helpers */,
 				0343B0AE2A2651C100C90106 /* Order */,
 				7720EEEA2A23806500A01669 /* Module */,
@@ -235,14 +203,6 @@
 				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
 			);
 			path = "maki-maki-ios";
-			sourceTree = "<group>";
-		};
-		F187EADD2A263EFE00019242 /* EditingProfile */ = {
-			isa = PBXGroup;
-			children = (
-				F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */,
-			);
-			path = EditingProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -423,21 +383,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
-				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
-				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
 				032304EA2A28F6E900FA76B6 /* BasketTableViewCell.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
-				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				032304EC2A28F6F800FA76B6 /* DeliveryTableViewCell.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				032304E82A28EB6700FA76B6 /* BasketViewController.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
-				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
