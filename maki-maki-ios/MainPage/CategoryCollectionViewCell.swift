@@ -12,7 +12,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: CategoryCollectionViewCell.self)
     
-    // MARK: -UI
+    // MARK: - UI
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "burger"), for: .normal)
@@ -29,7 +29,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    //MARK: -Lifecycle
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -40,13 +40,13 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: -Setup Views
+    // MARK: - SetupViews
     private func setupViews() {
         let subviews = [categoryButton, categoryNameLabel]
         subviews.forEach( { contentView.addSubview($0) } )
     }
     
-    // MARK: -Setup Constraints
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         categoryButton.snp.makeConstraints { make in
             make.top.leading.equalToSuperview()

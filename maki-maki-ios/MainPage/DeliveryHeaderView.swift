@@ -12,7 +12,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: DeliveryHeaderView.self)
     
-    //MARK: -UI
+    //MARK: - UI
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
         label.text = "DELIVER TO"
@@ -49,10 +49,12 @@ final class DeliveryHeaderView: UICollectionReusableView {
          setupConstraints()
     }
     
+    // MARK: - SetupViews
     private func setupViews() {
         addSubviews([deliverToLabel, addressLabel, chevronButton, separatorView])
     }
     
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         deliverToLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()

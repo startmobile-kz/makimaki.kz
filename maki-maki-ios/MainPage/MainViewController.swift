@@ -10,10 +10,10 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
-    //MARK: -Sections
+    //MARK: - Sections
     let sections: [SectionType] = [.header, .promo, .restaurants]
     
-    //MARK: -UI
+    //MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -34,11 +34,13 @@ final class MainViewController: UIViewController {
         setupConstraints()
     }
     
+    // MARK: - SetupViews
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(collectionView)
     }
     
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(18)
@@ -158,12 +160,12 @@ final class MainViewController: UIViewController {
     }
 }
 
-//MARK: -UICollectionView Delegate methods
+//MARK: - UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
     
 }
 
-//MARK: -UICollectionView Data Source methods
+//MARK: - UICollectionView Data Source methods
 extension MainViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count

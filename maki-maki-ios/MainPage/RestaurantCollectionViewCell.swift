@@ -12,7 +12,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: RestaurantCollectionViewCell.self)
     
-    //MARK: -UI
+    //MARK: - UI
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "restaurant_1")
@@ -82,7 +82,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     }()
     
     
-    //MARK: -Lifecycle
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -93,6 +93,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - SetupViews
     private func setupViews() {
         let subviews = [restaurantImageView, restaurantNameLabel, starImageView, infoStackView]
         subviews.forEach( { contentView.addSubview($0) } )
@@ -101,6 +102,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         arrangedSubviews.forEach( {infoStackView.addArrangedSubview($0)} )
     }
     
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         restaurantImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()

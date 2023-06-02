@@ -12,7 +12,7 @@ final class SectionHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: SectionHeaderView.self)
     
-    //MARK: -UI
+    //MARK: - UI
     var label: UILabel = {
          let label: UILabel = UILabel()
          label.textColor = .label
@@ -21,17 +21,19 @@ final class SectionHeaderView: UICollectionReusableView {
          return label
      }()
     
-    //MARK: -Lifecycle
+    //MARK: - Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
          setupViews()
          setupConstraints()
     }
     
+    //MARK: - SetupViews
     private func setupViews() {
         addSubview(label)
     }
     
+    //MARK: - SetupConstraints
     private func setupConstraints() {
         label.snp.makeConstraints { make in
             make.top.equalTo(self.snp.top)

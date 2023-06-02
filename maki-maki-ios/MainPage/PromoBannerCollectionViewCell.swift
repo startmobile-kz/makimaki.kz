@@ -12,14 +12,14 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: PromoBannerCollectionViewCell.self)
     
-    // MARK: -UI
+    // MARK: - UI
     private lazy var promoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "promo_1")
         return imageView
     }()
     
-    //MARK: -Lifecycle
+    //MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -30,13 +30,13 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup Views
+    // MARK: - SetupViews
     private func setupViews() {
         let subviews = [promoImageView, ]
         subviews.forEach( { contentView.addSubview($0) } )
     }
     
-    // MARK: - Setup Constraints
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         promoImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
