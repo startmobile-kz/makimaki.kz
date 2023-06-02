@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "Rectangle 64.pdf",
+      "filename" : "70 x 70.pdf",
       "idiom" : "universal"
     }
   ],
@@ -10,6 +10,7 @@
     "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true
+    "preserves-vector-representation" : true,
+    "template-rendering-intent" : "original"
   }
 }

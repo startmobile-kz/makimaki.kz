@@ -21,7 +21,12 @@ final class BasketViewController: UIViewController {
     }()
     
     private lazy var orderTableView: UITableView = {
-        let tableView = UITableView()
+        let tableView = UITableView(frame: .zero, style: .plain)
+        tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "basketCell")
+        tableView.register(DeliveryTableViewCell.self, forCellReuseIdentifier: "deliveryCell")
+        tableView.rowHeight = 118
+        tableView.dataSource = self
+        tableView.delegate = self
         tableView.backgroundColor = .red
         return tableView
     }()
@@ -60,7 +65,6 @@ final class BasketViewController: UIViewController {
         label.backgroundColor = .blue
         return label
     }()
-    
     
     // MARK: - LifeCycle
     
@@ -120,4 +124,19 @@ final class BasketViewController: UIViewController {
         }
     }
 
+}
+
+extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == 3 {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryTableViewCell
+            return cell
+        }
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! DeliveryTableViewCell
+        return cell
+    }
 }
