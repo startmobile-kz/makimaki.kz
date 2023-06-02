@@ -11,35 +11,6 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     //MARK: -UI
-    private lazy var deliverToLabel: UILabel = {
-        let label = UILabel()
-        label.text = "DELIVER TO"
-        label.font = AppFont.semibold.s15()
-        label.textColor = AppColor.darkOrange.uiColor
-        return label
-    }()
-    
-    private lazy var addressLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Navoi 37"
-        label.font = AppFont.reqular.s15()
-        label.textColor = AppColor.heading.uiColor
-        return label
-    }()
-    
-    private lazy var chevronButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
-        button.tintColor = AppColor.paragraph.uiColor
-        return button
-    }()
-    
-    private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColor.border.uiColor
-        return view
-    }()
-    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -56,8 +27,7 @@ final class MainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        let subviews = [deliverToLabel,addressLabel ,chevronButton, separatorView, collectionView]
-        view.addSubviews(subviews)
+        view.addSubview(collectionView)
         
         collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
         collectionView.register(DeliveryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DeliveryHeaderView.reuseID)
