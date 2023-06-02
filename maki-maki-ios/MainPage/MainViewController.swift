@@ -15,6 +15,12 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
+        collectionView.register(DeliveryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DeliveryHeaderView.reuseID)
+        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID)
+        collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
+        collectionView.register(PromoBannerCollectionViewCell.self, forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID)
+        collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
     
@@ -28,13 +34,6 @@ final class MainViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(collectionView)
-        
-        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
-        collectionView.register(DeliveryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DeliveryHeaderView.reuseID)
-        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID)
-        collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
-        collectionView.register(PromoBannerCollectionViewCell.self, forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID)
-        collectionView.showsVerticalScrollIndicator = false
     }
     
     private func setupConstraints() {
