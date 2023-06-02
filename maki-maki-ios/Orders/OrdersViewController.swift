@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class OrderViewController: UIViewController {
+final class OrdersViewController: UIViewController {
     
     //MARK: - UI
     
@@ -51,7 +51,6 @@ final class OrderViewController: UIViewController {
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         label.textAlignment = .center
-        
         return label
     }()
     
@@ -185,7 +184,7 @@ final class OrderViewController: UIViewController {
         super.viewDidLoad()
         setupNavigationBar()
         setupViews()
-        setupConstraintsWithSnapkit()
+        setupConstraints()
     }
     
     //MARK: - Setup Views
@@ -196,7 +195,7 @@ final class OrderViewController: UIViewController {
     }
     
     private func setupViews() {
-        self.view.backgroundColor = AppColor.background.uiColor
+        view.backgroundColor = AppColor.background.uiColor
         
         [
             orderNameLabel,
@@ -231,7 +230,7 @@ final class OrderViewController: UIViewController {
         ].forEach { ordersListStackView.addArrangedSubview($0) }
     }
     
-    private func setupConstraintsWithSnapkit() {
+    private func setupConstraints() {
         orderNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(21)
             make.leading.equalToSuperview().offset(16)
