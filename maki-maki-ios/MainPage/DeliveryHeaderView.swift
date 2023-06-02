@@ -12,12 +12,12 @@ final class DeliveryHeaderView: UICollectionReusableView {
     
     static let reuseID = "DeliveryHeaderView"
     
+    //MARK: -UI
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
         label.text = "DELIVER TO"
         label.font = AppFont.semibold.s15()
         label.textColor = AppColor.darkOrange.uiColor
-        
         return label
     }()
     
@@ -26,7 +26,6 @@ final class DeliveryHeaderView: UICollectionReusableView {
         label.text = "Navoi 37"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
@@ -34,17 +33,16 @@ final class DeliveryHeaderView: UICollectionReusableView {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.tintColor = AppColor.paragraph.uiColor
-    
         return button
     }()
     
     private lazy var separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.border.uiColor
-        
         return view
     }()
-
+    
+    //MARK: - Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
          setupViews()

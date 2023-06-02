@@ -15,8 +15,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     //MARK: -UI
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "Restaurant1")
-        
+        imageView.image = UIImage(named: "restaurant_1")
         return imageView
     }()
     
@@ -25,7 +24,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "Taqueria Los Coyotes"
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
@@ -33,7 +31,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
         imageView.tintColor = AppColor.heading.uiColor
-        
         return imageView
     }()
     
@@ -41,7 +38,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.spacing = 8
         stack.axis = .horizontal
-        
         return stack
     }()
     
@@ -50,7 +46,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "5.0"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
@@ -59,7 +54,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "•"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.grey300.uiColor
-        
         return label
     }()
     
@@ -68,7 +62,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "15-20 mins"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
@@ -77,7 +70,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "•"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.grey300.uiColor
-        
         return label
     }()
     
@@ -86,10 +78,11 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "$$"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
+    
+    //MARK: -Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

@@ -16,7 +16,6 @@ final class MainViewController: UIViewController {
         label.text = "DELIVER TO"
         label.font = AppFont.semibold.s15()
         label.textColor = AppColor.darkOrange.uiColor
-        
         return label
     }()
     
@@ -25,7 +24,6 @@ final class MainViewController: UIViewController {
         label.text = "Navoi 37"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
-        
         return label
     }()
     
@@ -33,14 +31,12 @@ final class MainViewController: UIViewController {
         let button = UIButton()
         button.setImage(UIImage(systemName: "chevron.down"), for: .normal)
         button.tintColor = AppColor.paragraph.uiColor
-    
         return button
     }()
     
     private lazy var separatorView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.border.uiColor
-        
         return view
     }()
     
@@ -48,7 +44,6 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        
         return collectionView
     }()
     
@@ -92,6 +87,7 @@ final class MainViewController: UIViewController {
                         heightDimension: .fractionalHeight(1)
                     )
                 )
+                
                 // Group
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: NSCollectionLayoutSize(
@@ -108,9 +104,7 @@ final class MainViewController: UIViewController {
                 section.orthogonalScrollingBehavior = .continuous
                 section.boundarySupplementaryItems = [self.supplementaryDeliveryHeaderItem()]
                 return section
-                
             } else if section == 1 {
-                
                 //Item
                 let item = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
@@ -118,7 +112,7 @@ final class MainViewController: UIViewController {
                         heightDimension: .fractionalHeight(1)
                     )
                 )
-
+                
                 //Group
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: NSCollectionLayoutSize(
@@ -127,7 +121,7 @@ final class MainViewController: UIViewController {
                     ),
                     subitems: [item]
                 )
-            
+                
                 //Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
@@ -135,9 +129,7 @@ final class MainViewController: UIViewController {
                 section.orthogonalScrollingBehavior = .continuous
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                 return section
-                
             } else {
-                
                 //Item
                 let item = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
@@ -213,17 +205,12 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if indexPath.section == 0 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseID, for: indexPath) as! CategoryCollectionViewCell
-            
             return cell
-            
         } else if indexPath.section == 1 {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoBannerCollectionViewCell.reuseID, for: indexPath) as! PromoBannerCollectionViewCell
-            
             return cell
-            
         } else {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
-            
             return cell
         }
     }
@@ -234,7 +221,6 @@ extension MainViewController: UICollectionViewDataSource {
             
             if indexPath.section == 0 {
                 let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DeliveryHeaderView.reuseID, for: indexPath) as! DeliveryHeaderView
-                
                 return deliverySectionHeader
             } else if indexPath.section == 1 {
                 sectionHeader.label.text = "Promo"

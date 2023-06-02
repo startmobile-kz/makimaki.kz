@@ -15,10 +15,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: -UI
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
-        button.setImage(UIImage(named: "Category1"), for: .normal)
+        button.setImage(UIImage(named: "burger"), for: .normal)
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 20
-        
         return button
     }()
     
@@ -27,10 +26,10 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         label.text = "Burgers"
         label.font = AppFont.reqular.s12()
         label.textAlignment = .center
-        
         return label
     }()
     
+    //MARK: -Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

@@ -12,6 +12,7 @@ final class SectionHeaderView: UICollectionReusableView {
     
     static let reuseID = "SectionHeaderView"
     
+    //MARK: -UI
     var label: UILabel = {
          let label: UILabel = UILabel()
          label.textColor = .label
@@ -19,7 +20,8 @@ final class SectionHeaderView: UICollectionReusableView {
          label.sizeToFit()
          return label
      }()
-
+    
+    //MARK: -Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
          setupViews()
