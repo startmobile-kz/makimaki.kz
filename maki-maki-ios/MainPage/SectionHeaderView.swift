@@ -13,7 +13,7 @@ final class SectionHeaderView: UICollectionReusableView {
     static let reuseID = String(describing: SectionHeaderView.self)
     
     //MARK: - UI
-    var label: UILabel = {
+    private lazy var label: UILabel = {
          let label: UILabel = UILabel()
          label.textColor = .label
          label.font = AppFont.semibold.s24()
@@ -41,6 +41,10 @@ final class SectionHeaderView: UICollectionReusableView {
             make.trailing.equalTo(self.snp.trailing)
             make.bottom.equalTo(self.snp.bottom).offset(-16)
         }
+    }
+    
+    func setHeaderTitle(title: String) {
+        label.text = title
     }
 
     required init?(coder aDecoder: NSCoder) {

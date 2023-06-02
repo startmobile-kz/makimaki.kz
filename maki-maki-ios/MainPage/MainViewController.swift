@@ -207,9 +207,9 @@ extension MainViewController: UICollectionViewDataSource {
                 let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DeliveryHeaderView.reuseID, for: indexPath) as! DeliveryHeaderView
                 return deliverySectionHeader
             case .promo:
-                sectionHeader.label.text = "Promo"
+                sectionHeader.setHeaderTitle(title: "Promo")
             case .restaurants:
-                sectionHeader.label.text = "Restaurants"
+                sectionHeader.setHeaderTitle(title: "Restaurants")
             }
             return sectionHeader
         } else {
