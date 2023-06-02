@@ -696,5 +696,4 @@
 		};
 /* End XCConfigurationList section */
 	};
-	rootObject = CE9623572A132B1A00C36D03 /* Project object */;
-}
+
