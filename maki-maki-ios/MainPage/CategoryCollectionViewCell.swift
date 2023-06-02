@@ -10,7 +10,7 @@ import SnapKit
 
 final class CategoryCollectionViewCell: UICollectionViewCell {
     
-    static let reuseID = "CategoryCell"
+    static let reuseID = String(describing: CategoryCollectionViewCell.self)
     
     // MARK: -UI
     private lazy var categoryButton: UIButton = {

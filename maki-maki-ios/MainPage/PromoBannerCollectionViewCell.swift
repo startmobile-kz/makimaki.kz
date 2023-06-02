@@ -10,7 +10,7 @@ import SnapKit
 
 final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
-    static let reuseID = "PromoCell"
+    static let reuseID = String(describing: PromoBannerCollectionViewCell.self)
     
     // MARK: -UI
     private lazy var promoImageView: UIImageView = {

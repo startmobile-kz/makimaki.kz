@@ -10,7 +10,7 @@ import SnapKit
 
 final class RestaurantCollectionViewCell: UICollectionViewCell {
     
-    static let reuseID = "RestaurantCell"
+    static let reuseID = String(describing: RestaurantCollectionViewCell.self)
     
     //MARK: -UI
     private lazy var restaurantImageView: UIImageView = {

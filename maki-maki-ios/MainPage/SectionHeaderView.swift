@@ -10,7 +10,7 @@ import SnapKit
 
 final class SectionHeaderView: UICollectionReusableView {
     
-    static let reuseID = "SectionHeaderView"
+    static let reuseID = String(describing: SectionHeaderView.self)
     
     //MARK: -UI
     var label: UILabel = {

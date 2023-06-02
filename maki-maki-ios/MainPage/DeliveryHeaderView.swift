@@ -10,7 +10,7 @@ import SnapKit
 
 final class DeliveryHeaderView: UICollectionReusableView {
     
-    static let reuseID = "DeliveryHeaderView"
+    static let reuseID = String(describing: DeliveryHeaderView.self)
     
     //MARK: -UI
     private lazy var deliverToLabel: UILabel = {
