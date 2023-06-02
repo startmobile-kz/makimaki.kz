@@ -28,6 +28,7 @@
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
+		F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -205,6 +207,7 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F187EADD2A263EFE00019242 /* EditingProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				773A73762A2783170029AA44 /* Helpers */,
 				7720EEEA2A23806500A01669 /* Module */,
@@ -217,6 +220,14 @@
 				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
 			);
 			path = "maki-maki-ios";
+			sourceTree = "<group>";
+		};
+		F187EADD2A263EFE00019242 /* EditingProfile */ = {
+			isa = PBXGroup;
+			children = (
+				F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */,
+			);
+			path = EditingProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -399,6 +410,7 @@
 			files = (
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
+				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
