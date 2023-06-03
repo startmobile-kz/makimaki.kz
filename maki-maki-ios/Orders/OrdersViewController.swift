@@ -71,6 +71,14 @@ final class OrdersViewController: UIViewController {
         return stackView
     }()
     
+    private lazy var dividerImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = #imageLiteral(resourceName: "divider")
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private lazy var collapseMenuButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(named: "arrow_up"), for: .normal)
@@ -201,6 +209,7 @@ final class OrdersViewController: UIViewController {
             orderNameLabel,
             orderStatusLabel,
             dataPriceLabelsStackView,
+            dividerImageView,
             collapseMenuButton,
             ordersListStackView,
             reorderButton
@@ -248,6 +257,14 @@ final class OrdersViewController: UIViewController {
             make.top.equalTo(orderNameLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
             make.height.equalTo(17)
+        }
+        
+        dividerImageView.snp.makeConstraints { make in
+            make.top.equalTo(dataPriceLabelsStackView.snp.bottom).offset(30)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.centerX.equalToSuperview()
+            
         }
         
         collapseMenuButton.snp.makeConstraints { make in
