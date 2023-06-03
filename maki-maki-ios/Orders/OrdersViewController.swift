@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrdersTableViewController: UIViewController {
+class OrdersViewController: UIViewController {
     
     //MARK: - UI
     
@@ -51,7 +51,7 @@ class OrdersTableViewController: UIViewController {
     }
 }
 
-extension OrdersTableViewController: UITableViewDataSource, UITableViewDelegate {
+extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
