@@ -100,7 +100,7 @@
 				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
 			);
 			path = Registration;
-
+        };
 		2781CD162A27C6AA00964A36 /* AccountCards */ = {
 			isa = PBXGroup;
 			children = (
