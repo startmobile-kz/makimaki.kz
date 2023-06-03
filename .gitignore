@@ -69,7 +69,6 @@ Carthage/Build/
 # Accio dependency management
 Dependencies/
 .accio/
-.DS_Store
 
 # fastlane
 #
@@ -89,3 +88,7 @@ fastlane/test_output
 # https://github.com/johnno1962/injectionforxcode
 
 iOSInjectionProject/
+maki-maki-ios.xcworkspace/xcuserdata
+maki-maki-ios.xcodeproj/project.xcworkspace
+
+.DS_Store
