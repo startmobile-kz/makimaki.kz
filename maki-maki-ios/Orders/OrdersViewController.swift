@@ -73,7 +73,7 @@ final class OrdersViewController: UIViewController {
     
     private lazy var collapseMenuButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "arrowUp"), for: .normal)
+        button.setImage(UIImage(named: "arrow_up"), for: .normal)
         button.backgroundColor = AppColor.background.uiColor
         button.tintColor = AppColor.heading.uiColor
         button.layer.borderWidth = 0.4
