@@ -26,11 +26,15 @@ extension AppImageProtocol {
         }
         return image
     }
+    
+    
 }
 
 enum AppImage: String, AppImageProtocol {
     case burger
     case chevronDown = "chevron.down"
+    case house = "house"
+    case house_fill = "house.fill"
 }
 
 

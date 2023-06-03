@@ -7,15 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
-		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
-		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
-		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
 		1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
 		26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC1D5B2A273626003BA971 /* OrdersCell.swift */; };
+		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
+		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
+		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
+		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
+		68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68374CD82A2B439600B3DC89 /* MainTabbarController.swift */; };
 		683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */; };
 		6866811C2A29D60600BC94E7 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6866811B2A29D60600BC94E7 /* SectionType.swift */; };
 		68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3EC352A27A31A009A0E02 /* MainViewController.swift */; };
@@ -51,16 +52,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
-		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
-		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
-		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
 		1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		26FC1D5B2A273626003BA971 /* OrdersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCell.swift; sourceTree = "<group>"; };
+		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
+		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
+		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
+		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		68374CD82A2B439600B3DC89 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryHeaderView.swift; sourceTree = "<group>"; };
 		6866811B2A29D60600BC94E7 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
 		68C3EC352A27A31A009A0E02 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
@@ -108,6 +110,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		26FC1D542A264B1F003BA971 /* Orders */ = {
+			isa = PBXGroup;
+			children = (
+				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
+				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
+			);
+			path = Orders;
+			sourceTree = "<group>";
+		};
 		274485FD2A27B3B400F2FFBD /* Registration */ = {
 			isa = PBXGroup;
 			children = (
@@ -116,24 +127,14 @@
 				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
 			);
 			path = Registration;
-            sourceTree = "<group>";
-        };
+			sourceTree = "<group>";
+		};
 		2781CD162A27C6AA00964A36 /* AccountCards */ = {
 			isa = PBXGroup;
 			children = (
 				2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */,
 			);
-			name = AccountCards;
-			path = "maki-maki-ios/AccountCards";
-            sourceTree = "<group>";
-        };
-		26FC1D542A264B1F003BA971 /* Orders */ = {
-			isa = PBXGroup;
-			children = (
-				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
-				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
-			);
-			path = Orders;
+			path = AccountCards;
 			sourceTree = "<group>";
 		};
 		327706A57B81CFE57F597C31 /* Frameworks */ = {
@@ -151,6 +152,14 @@
 				BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */,
 			);
 			path = Pods;
+			sourceTree = "<group>";
+		};
+		68374CD72A2B437800B3DC89 /* Tabbar */ = {
+			isa = PBXGroup;
+			children = (
+				68374CD82A2B439600B3DC89 /* MainTabbarController.swift */,
+			);
+			path = Tabbar;
 			sourceTree = "<group>";
 		};
 		68C3EC342A27A308009A0E02 /* MainPage */ = {
@@ -225,7 +234,6 @@
 		CE9623562A132B1A00C36D03 = {
 			isa = PBXGroup;
 			children = (
-				2781CD162A27C6AA00964A36 /* AccountCards */,
 				CE9623612A132B1A00C36D03 /* maki-maki-ios */,
 				CE15DD342A136D3A006F9968 /* maki-maki-iosTests */,
 				CE9623602A132B1A00C36D03 /* Products */,
@@ -246,6 +254,8 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				68374CD72A2B437800B3DC89 /* Tabbar */,
+				2781CD162A27C6AA00964A36 /* AccountCards */,
 				F187EADD2A263EFE00019242 /* EditingProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
@@ -455,6 +465,7 @@
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
+				68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */,
 				26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
