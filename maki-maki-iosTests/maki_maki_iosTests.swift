@@ -2,7 +2,7 @@
 //  maki_maki_iosTests.swift
 //  maki-maki-iosTests
 //
-//  Created by soska on 16.05.2023.
+//  Created by Shyngys on 16.05.2023.
 //
 
 import XCTest
