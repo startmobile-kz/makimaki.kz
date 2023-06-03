@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class OrdersViewController: UIViewController {
+final class OrdersCell: UITableViewCell {
     
     //MARK: - UI
     
@@ -188,22 +188,21 @@ final class OrdersViewController: UIViewController {
     
     //MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavigationBar()
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+
         setupViews()
         setupConstraints()
     }
     
-    //MARK: - Setup Views
-    
-    private func setupNavigationBar() {
-        title = "Orders"
-        edgesForExtendedLayout = []
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    //MARK: - Setup Views
+    
     private func setupViews() {
-        view.backgroundColor = AppColor.background.uiColor
+        contentView.backgroundColor = AppColor.background.uiColor
         
         [
             orderNameLabel,
@@ -213,7 +212,7 @@ final class OrdersViewController: UIViewController {
             collapseMenuButton,
             ordersListStackView,
             reorderButton
-        ].forEach { view.addSubview($0) }
+        ].forEach { contentView.addSubview($0) }
         
         [
             orderDataLabel,
