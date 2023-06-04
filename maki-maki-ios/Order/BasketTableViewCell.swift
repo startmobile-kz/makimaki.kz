@@ -88,7 +88,7 @@ final class BasketTableViewCell: UITableViewCell {
         
         priceOrderLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview()
         }
     }
 }

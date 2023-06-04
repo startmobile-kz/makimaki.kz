@@ -24,46 +24,16 @@ final class BasketViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "basketCell")
         tableView.register(DeliveryTableViewCell.self, forCellReuseIdentifier: "deliveryCell")
-        tableView.rowHeight = 118
+        tableView.rowHeight = 119
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
     }()
     
-    private lazy var totalLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Total:"
-        label.font = AppFont.medium.s20()
-        label.textColor = AppColor.heading.uiColor
-        return label
-    }()
-    
-    private lazy var priceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "$43.95"
-        label.font = AppFont.semibold.s24()
-        label.textColor = AppColor.heading.uiColor
-        return label
-    }()
-    
-    private lazy var checkoutButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = AppColor.accent.uiColor
-        button.layer.cornerRadius = 14
-        button.setTitle("CHECKOUT", for: .normal)
-        button.contentHorizontalAlignment = .leading
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
-        button.tintColor = AppColor.heading.uiColor
-        button.titleLabel?.font = AppFont.medium.s15()
-        return button
-    }()
-    
-    private lazy var checkoutPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "$43.95"
-        label.font = AppFont.medium.s15()
-        label.textColor = AppColor.heading.uiColor
-        return label
+    private lazy var checkoutContainerView: UIViewController = {
+        let containerVC = ContainerViewController()
+        addChild(containerVC)
+        return containerVC
     }()
     
     // MARK: - LifeCycle
@@ -73,7 +43,6 @@ final class BasketViewController: UIViewController {
         
         setupViews()
         setupConstrains()
-        
     }
     
     // MARK: - Setup Views
@@ -81,7 +50,8 @@ final class BasketViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = .white
         
-        [orderLabel, orderTableView, totalLabel, priceLabel, checkoutButton, checkoutPriceLabel].forEach {
+        view.addSubview(checkoutContainerView.view)
+        [orderLabel, orderTableView].forEach {
             view.addSubview($0)
         }
     }
@@ -94,33 +64,19 @@ final class BasketViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+        
         orderTableView.snp.makeConstraints { make in
             make.top.equalTo(orderLabel.snp.bottom)
-            make.leading.trailing.equalToSuperview()
-            //make.height.equalTo(474.5)
-            make.bottom.equalTo(checkoutButton.snp.top).offset(-119.5)
-        }
-        
-        totalLabel.snp.makeConstraints { make in
-            make.top.equalTo(orderTableView.snp.bottom).offset(30)
-            make.leading.equalTo(orderLabel)
-        }
-        
-        priceLabel.snp.makeConstraints { make in
-            make.top.equalTo(orderTableView.snp.bottom).offset(24)
+            make.leading.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
+            make.bottom.equalTo(checkoutContainerView.view.snp.top)
         }
         
-        checkoutButton.snp.makeConstraints { make in
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
+        checkoutContainerView.view.snp.makeConstraints { make in
+            make.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
             make.bottom.equalToSuperview().offset(-29)
-            make.height.equalTo(53)
-        }
-        
-        checkoutPriceLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(checkoutButton.snp.trailing).offset(-16)
-            make.centerY.equalTo(checkoutButton)
+            make.height.equalTo(UIScreen.main.bounds.height/4.029)
         }
     }
 
@@ -134,10 +90,12 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryTableViewCell
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         }
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! BasketTableViewCell
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }
 }

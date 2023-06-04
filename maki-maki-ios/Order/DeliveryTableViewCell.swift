@@ -10,7 +10,7 @@ import SnapKit
 
 final class DeliveryTableViewCell: UITableViewCell {
     
-    //MARK: - UI
+    // MARK: - UI
     
     private lazy var courierBackgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -48,7 +48,6 @@ final class DeliveryTableViewCell: UITableViewCell {
         
         setupViews()
         setupConstaints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -65,7 +64,7 @@ final class DeliveryTableViewCell: UITableViewCell {
     }
     
     
-    //MARK: - Setup Constraints
+    // MARK: - Setup Constraints
     
     private func setupConstaints() {
         courierBackgroundImageView.snp.makeConstraints { make in
@@ -85,7 +84,7 @@ final class DeliveryTableViewCell: UITableViewCell {
         
         deliveryPriceLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview()
         }
     }
 
