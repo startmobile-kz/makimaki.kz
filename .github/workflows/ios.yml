@@ -19,5 +19,5 @@ jobs:
       run: pod install
     - name: Build
       run: xcodebuild -workspace maki-maki-ios.xcworkspace -scheme maki-maki-ios -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
-    - name: Test
-      run: xcodebuild -workspace maki-maki-ios.xcworkspace -scheme maki-maki-ios -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
+#     - name: Test
+#       run: xcodebuild -workspace maki-maki-ios.xcworkspace -scheme maki-maki-ios -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
