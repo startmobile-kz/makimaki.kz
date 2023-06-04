@@ -12,10 +12,12 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.11.1)"
   - PromisesObjC (2.2.0)
   - SnapKit (5.6.0)
+  - SwiftLint (0.52.2)
 
 DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - SnapKit
+  - SwiftLint (= 0.52.2)
 
 SPEC REPOS:
   trunk:
@@ -23,6 +25,7 @@ SPEC REPOS:
     - GoogleUtilities
     - PromisesObjC
     - SnapKit
+    - SwiftLint
 
 EXTERNAL SOURCES:
   FirebaseCore:
@@ -40,7 +43,8 @@ SPEC CHECKSUMS:
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
+  SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: c81604c097b160489f54abf3e468ec97fc7900b6
+PODFILE CHECKSUM: a118b73e0c80441ead35a1fa5baf23c9bffb797f
 
 COCOAPODS: 1.12.1
