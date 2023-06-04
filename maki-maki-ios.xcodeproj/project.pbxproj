@@ -312,6 +312,7 @@
 				CE96235D2A132B1A00C36D03 /* Resources */,
 				7720EEEF2A2384CE00A01669 /* ShellScript */,
 				60F8746003A602B4AAB4E8F7 /* [CP] Embed Pods Frameworks */,
+				9FED20CB2A2CA1FA00C6209E /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -421,6 +422,23 @@
 			runOnlyForDeploymentPostprocessing = 1;
 			shellPath = /bin/sh;
 			shellScript = "\"${BUILD_DIR%/Build/*}/SourcePackages/checkouts/firebase-ios-sdk/Crashlytics/run\"\n";
+		};
+		9FED20CB2A2CA1FA00C6209E /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/SwiftLint/swiftlint\"\n";
 		};
 		BE528D8EB33F8292950BBED2 /* [CP] Check Pods Manifest.lock */ = {
 			isa = PBXShellScriptBuildPhase;

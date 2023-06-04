@@ -7,7 +7,7 @@
 
 import XCTest
 
-final class maki_maki_iosTests: XCTestCase {
+final class MakiMakiTest: XCTestCase {
 
     override func setUpWithError() throws {
     }

@@ -7,7 +7,7 @@ target 'maki-maki-ios' do
 
   # Pods for maki-maki-ios
 
-pod 'SnapKit'
+pod 'SnapKit', '5.6.0'
 pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
-
+pod 'SwiftLint', '0.52.2'
 end
