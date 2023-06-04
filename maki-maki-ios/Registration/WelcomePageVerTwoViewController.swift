@@ -43,6 +43,7 @@ final class WelcomePageVerTwoViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 14
         button.backgroundColor = AppColor.accent.uiColor
+        button.addTarget(self, action: #selector(continueButtonDidPress), for: .touchUpInside)
        return button
     }()
 
@@ -94,5 +95,11 @@ final class WelcomePageVerTwoViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func continueButtonDidPress() {
+        self.navigationController?.pushViewController(MainViewController(), animated: true)
     }
 }

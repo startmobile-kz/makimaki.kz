@@ -33,7 +33,7 @@ class OrdersViewController: UIViewController {
     //MARK: - Setup Views
     
     private func setupNavigationBar() {
-        title = "Orders"
+        self.navigationItem.title = "Orders"
         edgesForExtendedLayout = []
     }
     
