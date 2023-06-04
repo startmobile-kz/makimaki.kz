@@ -16,7 +16,7 @@ PODS:
 
 DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
-  - SnapKit
+  - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
 SPEC REPOS:
@@ -45,6 +45,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: a118b73e0c80441ead35a1fa5baf23c9bffb797f
+PODFILE CHECKSUM: c9198d8d2aefbc26ba3be9c0fca121ef463699f4
 
 COCOAPODS: 1.12.1
