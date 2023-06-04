@@ -35,6 +35,8 @@ enum AppImage: String, AppImageProtocol {
     case chevronDown = "chevron.down"
     case house = "house"
     case house_fill = "house.fill"
+    case check = "Check"
+    case eye = "eye"
 }
 
 
