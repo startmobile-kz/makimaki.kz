@@ -15,6 +15,7 @@
 		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
 		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
+		27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68374CD82A2B439600B3DC89 /* MainTabbarController.swift */; };
 		683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */; };
@@ -60,6 +61,7 @@
 		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
 		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
+		27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		68374CD82A2B439600B3DC89 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
@@ -124,6 +126,7 @@
 			children = (
 				274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */,
 				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
+				27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -483,6 +486,7 @@
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
+				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
 				68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */,
 				26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
