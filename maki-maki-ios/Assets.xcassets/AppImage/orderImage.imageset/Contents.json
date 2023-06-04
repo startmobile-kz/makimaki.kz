@@ -1,7 +1,7 @@
 {
   "images" : [
     {
-      "filename" : "70 x 70.pdf",
+      "filename" : "orderImage.pdf",
       "idiom" : "universal"
     }
   ],
@@ -10,7 +10,6 @@
     "version" : 1
   },
   "properties" : {
-    "preserves-vector-representation" : true,
     "template-rendering-intent" : "original"
   }
 }

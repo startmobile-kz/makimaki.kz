@@ -15,8 +15,8 @@ final class BasketViewController: UIViewController {
     private lazy var orderLabel: UILabel = {
         let label = UILabel()
         label.text = "Order"
-        label.font = UIFont.boldSystemFont(ofSize: 32)
-        label.backgroundColor = .blue
+        label.font = AppFont.bold.s32()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
     
@@ -27,42 +27,42 @@ final class BasketViewController: UIViewController {
         tableView.rowHeight = 118
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.backgroundColor = .red
         return tableView
     }()
     
     private lazy var totalLabel: UILabel = {
         let label = UILabel()
         label.text = "Total:"
-        label.font = UIFont.boldSystemFont(ofSize: 20)
-        label.backgroundColor = .blue
+        label.font = AppFont.medium.s20()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
         label.text = "$43.95"
-        label.font = UIFont.boldSystemFont(ofSize: 24)
-        label.backgroundColor = .blue
+        label.font = AppFont.semibold.s24()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
     
     private lazy var checkoutButton: UIButton = {
         let button = UIButton(type: .system)
+        button.backgroundColor = AppColor.accent.uiColor
+        button.layer.cornerRadius = 14
         button.setTitle("CHECKOUT", for: .normal)
         button.contentHorizontalAlignment = .leading
-        button.backgroundColor = .yellow
-        button.tintColor = .black
-        button.layer.cornerRadius = 14
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
+        button.tintColor = AppColor.heading.uiColor
+        button.titleLabel?.font = AppFont.medium.s15()
         return button
     }()
     
     private lazy var checkoutPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "$43.95"
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.backgroundColor = .blue
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
     
@@ -96,9 +96,9 @@ final class BasketViewController: UIViewController {
         }
         orderTableView.snp.makeConstraints { make in
             make.top.equalTo(orderLabel.snp.bottom)
-            make.leading.trailing.equalTo(orderLabel)
-            make.trailing.equalTo(orderLabel)
-            make.height.equalTo(474.5)
+            make.leading.trailing.equalToSuperview()
+            //make.height.equalTo(474.5)
+            make.bottom.equalTo(checkoutButton.snp.top).offset(-119.5)
         }
         
         totalLabel.snp.makeConstraints { make in
@@ -128,15 +128,16 @@ final class BasketViewController: UIViewController {
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return 5
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 3 {
+        if indexPath.row == 4 {
             let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryTableViewCell
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! DeliveryTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! BasketTableViewCell
         return cell
     }
 }

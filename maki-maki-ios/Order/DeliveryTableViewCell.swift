@@ -8,35 +8,36 @@
 import UIKit
 import SnapKit
 
-class DeliveryTableViewCell: UITableViewCell {
+final class DeliveryTableViewCell: UITableViewCell {
     
     //MARK: - UI
     
     private lazy var courierBackgroundImageView: UIImageView = {
-        let image = UIImage(named: "courier_background.pdf")
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "courier_background")
+        imageView.layer.cornerRadius = 8
         return imageView
     }()
     
     private lazy var courierImageView: UIImageView = {
-        let image = UIImage(named: "courier.pdf")
-        let imageView = UIImageView(image: image)
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "courier")
         return imageView
     }()
     
     private lazy var deliveryLabel: UILabel = {
         let label = UILabel()
         label.text = "Delivery"
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.backgroundColor = .blue
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
     
     private lazy var deliveryPriceLabel: UILabel = {
         let label = UILabel()
         label.text = "$3.40"
-        label.font = UIFont.boldSystemFont(ofSize: 15)
-        label.backgroundColor = .blue
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.paragraph.uiColor
         return label
     }()
 
@@ -67,7 +68,25 @@ class DeliveryTableViewCell: UITableViewCell {
     //MARK: - Setup Constraints
     
     private func setupConstaints() {
+        courierBackgroundImageView.snp.makeConstraints { make in
+            make.size.equalTo(70)
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(16)
+        }
         
+        courierImageView.snp.makeConstraints { make in
+            make.center.equalTo(courierBackgroundImageView.snp.center)
+        }
+        
+        deliveryLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(courierBackgroundImageView.snp.trailing).offset(16)
+        }
+        
+        deliveryPriceLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
+        }
     }
 
 }
