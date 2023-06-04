@@ -20,8 +20,8 @@ class AccountListCell: UITableViewCell {
        let label = UILabel()
         label.numberOfLines = 0
         label.adjustsFontSizeToFitWidth = true
-        label.font = .systemFont(ofSize: 15)
-        label.textColor = .black
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
 

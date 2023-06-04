@@ -11,7 +11,6 @@ import SnapKit
 class AccountListViewController: UIViewController {
 
     // MARK: - UI
-    
     private lazy var tableView: UITableView = {
        let tableView = UITableView()
         tableView.rowHeight = 53.5
@@ -43,6 +42,8 @@ class AccountListViewController: UIViewController {
         }
     }
 }
+
+// MARK: - Extension
 
 extension AccountListViewController: UITableViewDelegate, UITableViewDataSource {
     
