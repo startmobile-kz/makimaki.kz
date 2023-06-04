@@ -123,7 +123,6 @@
 			isa = PBXGroup;
 			children = (
 				274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */,
-				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
 				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
 			);
 			path = Registration;
@@ -196,6 +195,7 @@
 		773A73772A27831D0029AA44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
 				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
