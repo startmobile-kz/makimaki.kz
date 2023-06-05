@@ -33,6 +33,7 @@
 		773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73882A278D5E0029AA44 /* Inter-Medium.ttf */; };
 		773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73892A278D5E0029AA44 /* Inter-Regular.ttf */; };
 		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
+		9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
@@ -119,6 +120,13 @@
 				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		273A2AE02A2DE67A00115DC0 /* AccountCartsNew */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = AccountCartsNew;
 			sourceTree = "<group>";
 		};
 		274485FD2A27B3B400F2FFBD /* Registration */ = {
@@ -299,6 +307,7 @@
 				773A73762A2783170029AA44 /* Helpers */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				2781CD162A27C6AA00964A36 /* AccountCards */,
+				273A2AE02A2DE67A00115DC0 /* AccountCartsNew */,
 				F187EADD2A263EFE00019242 /* EditingProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
@@ -512,9 +521,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
+				9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */,
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
