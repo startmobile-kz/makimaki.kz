@@ -89,23 +89,28 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupBottomBorderLine()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setupViews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupBottomBorderLine()
     }
      
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         navigationController?.isNavigationBarHidden = true
-        emailTextField.addBottomBorder()
-        nameTextField.addBottomBorder()
-        passwordTextField.addBottomBorder()
         [signUpLabel, textFieldsContainer, signUpButton].forEach {
             view.addSubview($0)
         }
+    }
+    
+    // MARK: - Setup Border for textField
+    private func setupBottomBorderLine() {
+        emailTextField.addBottomBorder()
+        nameTextField.addBottomBorder()
+        passwordTextField.addBottomBorder()
     }
     
     // MARK: - Setup Constraints

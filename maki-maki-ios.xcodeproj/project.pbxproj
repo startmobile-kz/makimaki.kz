@@ -200,7 +200,6 @@
 			children = (
 				9F541B8A2A2DC458004B3155 /* Foundation+Extensions */,
 				9F541B892A2DC44A004B3155 /* UIKit+Extensions */,
-				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -248,6 +247,7 @@
 		9F541B892A2DC44A004B3155 /* UIKit+Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
 				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
 			);
 			path = "UIKit+Extensions";
