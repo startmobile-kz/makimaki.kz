@@ -70,6 +70,3 @@ enum AppFont: String, AppFontProtocol {
     case semibold = "Inter-SemiBold"
     case bold = "Inter-Bold"
 }
-
-
-

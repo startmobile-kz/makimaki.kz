@@ -11,14 +11,17 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?
 
-    func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+    func scene(_ scene: UIScene, willConnectTo
+               session: UISceneSession,
+               options connectionOptions: UIScene.ConnectionOptions) {
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
             let isAuthoried = true
             if isAuthoried {
                 window.rootViewController = UINavigationController(rootViewController: MainTabbarController())
             } else {
-                window.rootViewController = UINavigationController(rootViewController: WelcomePageVerOneViewController())
+                window.rootViewController =
+                    UINavigationController(rootViewController: WelcomePageVerOneViewController())
             }
             
             self.window = window
@@ -46,4 +49,3 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
     }
 }
-

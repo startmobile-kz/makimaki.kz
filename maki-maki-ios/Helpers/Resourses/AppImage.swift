@@ -27,7 +27,6 @@ extension AppImageProtocol {
         return image
     }
     
-    
 }
 
 enum AppImage: String, AppImageProtocol {
@@ -36,6 +35,3 @@ enum AppImage: String, AppImageProtocol {
     case house = "house"
     case house_fill = "house.fill"
 }
-
-
-
