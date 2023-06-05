@@ -25,6 +25,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.text = "Burgers"
         label.font = AppFont.reqular.s12()
+        label.textColor = AppColor.paragraph.uiColor
         label.textAlignment = .center
         return label
     }()
