@@ -35,7 +35,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
     
     private lazy var chevronButton: UIButton = {
         let button = UIButton()
-        button.setImage(AppImage.chevronDown.systemImage, for: .normal)
+        button.setImage(AppImage.chevron_down.systemImage, for: .normal)
         button.tintColor = AppColor.paragraph.uiColor
         return button
     }()
