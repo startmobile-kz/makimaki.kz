@@ -11,6 +11,7 @@ PODS:
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.11.1)"
   - InputMask (6.1.0)
+  - IQKeyboardManager (6.5.0)
   - PromisesObjC (2.2.0)
   - SnapKit (5.6.0)
   - SwiftLint (0.52.2)
@@ -18,6 +19,7 @@ PODS:
 DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - InputMask (= 6.1.0)
+  - IQKeyboardManager (= 6.5.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
@@ -26,6 +28,7 @@ SPEC REPOS:
     - FirebaseCoreInternal
     - GoogleUtilities
     - InputMask
+    - IQKeyboardManager
     - PromisesObjC
     - SnapKit
     - SwiftLint
@@ -45,10 +48,11 @@ SPEC CHECKSUMS:
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
+  IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: fb5a5cf8514732cd77443c75e9bbeeb510362cf8
+PODFILE CHECKSUM: b57099817c105897b36cbb0e1d25521643e65838
 
 COCOAPODS: 1.12.1
