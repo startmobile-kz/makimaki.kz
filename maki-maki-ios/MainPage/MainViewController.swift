@@ -11,7 +11,7 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     // MARK: - Sections
-    let sections: [SectionType] = [.categorie, .promo, .restaurants]
+    let sections: [SectionType] = [.categorie, .promo, .restaurant]
     
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
@@ -75,7 +75,7 @@ final class MainViewController: UIViewController {
                 return self?.categorieSectionLayout()
             case .promo:
                 return self?.promoSectionLayout()
-            case .restaurants:
+            case .restaurant:
                 return self?.restaurantSectionLayout()
             }
         }
@@ -213,7 +213,7 @@ extension MainViewController: UICollectionViewDataSource {
             return 10
         case .promo:
             return 4
-        case .restaurants:
+        case .restaurant:
             return 4
         }
     }
@@ -240,7 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
             return cell
-        case .restaurants:
+        case .restaurant:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
                 for: indexPath
@@ -277,7 +277,7 @@ extension MainViewController: UICollectionViewDataSource {
                 return deliverySectionHeader
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")
-            case .restaurants:
+            case .restaurant:
                 sectionHeader.setHeaderTitle(title: "Restaurants")
             }
             return sectionHeader
