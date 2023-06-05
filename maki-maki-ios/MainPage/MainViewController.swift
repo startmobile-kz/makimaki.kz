@@ -10,19 +10,36 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
-    //MARK: - Sections
+    // MARK: - Sections
     let sections: [SectionType] = [.header, .promo, .restaurants]
     
-    //MARK: - UI
+    // MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.register(SectionHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: SectionHeaderView.reuseID)
-        collectionView.register(DeliveryHeaderView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: DeliveryHeaderView.reuseID)
-        collectionView.register(CategoryCollectionViewCell.self, forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID)
-        collectionView.register(RestaurantCollectionViewCell.self, forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID)
-        collectionView.register(PromoBannerCollectionViewCell.self, forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID)
+        collectionView.register(
+            SectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeaderView.reuseID
+        )
+        collectionView.register(
+            DeliveryHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: DeliveryHeaderView.reuseID
+        )
+        collectionView.register(
+            CategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID
+        )
+        collectionView.register(
+            RestaurantCollectionViewCell.self,
+            forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID
+        )
+        collectionView.register(
+            PromoBannerCollectionViewCell.self,
+            forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
+        )
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -51,7 +68,7 @@ final class MainViewController: UIViewController {
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, env in
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             let section = self?.sections[sectionIndex] ?? .promo
             
             switch section {
@@ -74,7 +91,12 @@ final class MainViewController: UIViewController {
                 // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(top: 28, leading: 16, bottom: 40.5, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(
+                    top: 28,
+                    leading: 16,
+                    bottom: 40.5,
+                    trailing: 0
+                )
                 section.orthogonalScrollingBehavior = .continuous
                 
                 if let deliveryHeaderItem = self?.supplementaryDeliveryHeaderItem() {
@@ -82,14 +104,14 @@ final class MainViewController: UIViewController {
                 }
                 return section
             case .promo:
-                //Item
+                // Item
                 let item = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
                         heightDimension: .fractionalHeight(1)
                     )
                 )
-                //Group
+                // Group
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .absolute(300),
@@ -97,10 +119,15 @@ final class MainViewController: UIViewController {
                     ),
                     subitems: [item]
                 )
-                //Section
+                // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 40, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(
+                    top: 0,
+                    leading: 16,
+                    bottom: 40,
+                    trailing: 0
+                )
                 section.orthogonalScrollingBehavior = .continuous
                 
                 if let headerItem = self?.supplementaryHeaderItem() {
@@ -108,7 +135,7 @@ final class MainViewController: UIViewController {
                 }
                 return section
             case .restaurants:
-                //Item
+                // Item
                 let item = NSCollectionLayoutItem(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -116,7 +143,7 @@ final class MainViewController: UIViewController {
                     )
                 )
                 item.contentInsets.trailing = 16
-                //Group
+                // Group
                 let group = NSCollectionLayoutGroup.horizontal(
                     layoutSize: NSCollectionLayoutSize(
                         widthDimension: .fractionalWidth(1),
@@ -124,10 +151,15 @@ final class MainViewController: UIViewController {
                     ),
                     subitems: [item]
                 )
-                //Section
+                // Section
                 let section = NSCollectionLayoutSection(group: group)
                 section.interGroupSpacing = 32
-                section.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 16, bottom: 20, trailing: 0)
+                section.contentInsets = NSDirectionalEdgeInsets(
+                    top: 0,
+                    leading: 16,
+                    bottom: 20,
+                    trailing: 0
+                )
                 
                 if let headerItem = self?.supplementaryHeaderItem() {
                     section.boundarySupplementaryItems = [headerItem]
@@ -137,7 +169,7 @@ final class MainViewController: UIViewController {
         }
     }
     
-    private func supplementaryDeliveryHeaderItem() ->  NSCollectionLayoutBoundarySupplementaryItem {
+    private func supplementaryDeliveryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
@@ -160,12 +192,12 @@ final class MainViewController: UIViewController {
     }
 }
 
-//MARK: - UICollectionView Delegate methods
+// MARK: - UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
     
 }
 
-//MARK: - UICollectionView Data Source methods
+// MARK: - UICollectionView Data Source methods
 extension MainViewController: UICollectionViewDataSource {
     func numberOfSections(in collectionView: UICollectionView) -> Int {
         sections.count
@@ -187,24 +219,41 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[indexPath.section]
         switch section {
         case .header:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CategoryCollectionViewCell.reuseID, for: indexPath) as! CategoryCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: CategoryCollectionViewCell.reuseID,
+                for: indexPath
+            ) as! CategoryCollectionViewCell
             return cell
         case .promo:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PromoBannerCollectionViewCell.reuseID, for: indexPath) as! PromoBannerCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
+                for: indexPath
+            ) as! PromoBannerCollectionViewCell
             return cell
         case .restaurants:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: RestaurantCollectionViewCell.reuseID, for: indexPath) as! RestaurantCollectionViewCell
+            let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
+                for: indexPath
+            ) as! RestaurantCollectionViewCell
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let sectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: SectionHeaderView.reuseID, for: indexPath) as! SectionHeaderView
+            let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: SectionHeaderView.reuseID,
+                for: indexPath
+            ) as! SectionHeaderView
             let section = sections[indexPath.section]
             switch section {
             case .header:
-                let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: DeliveryHeaderView.reuseID, for: indexPath) as! DeliveryHeaderView
+                let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: DeliveryHeaderView.reuseID,
+                    for: indexPath
+                ) as! DeliveryHeaderView
                 return deliverySectionHeader
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")
