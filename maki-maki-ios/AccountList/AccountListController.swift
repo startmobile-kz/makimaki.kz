@@ -12,7 +12,7 @@ final class AccountListController: UIViewController {
     
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "profile-image-accountlist.pdf")
+        profileImage.image = UIImage(named: "profile_image.pdf")
         return profileImage
     }()
     
