@@ -96,7 +96,6 @@ final class SignUpViewController: UIViewController {
         DispatchQueue.main.async { [weak self] in
             self?.setupBottomBorderLine()
         }
-
     }
      
     // MARK: - Setup Views

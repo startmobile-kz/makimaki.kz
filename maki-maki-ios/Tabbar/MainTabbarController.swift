@@ -34,7 +34,7 @@ class MainTabbarController: UITabBarController {
                                       selectedImage: AppImage.house_fill.systemImage)
         orders.tabBarItem = ordersItem
         
-        let account = UINavigationController(rootViewController: AccountCardsViewController())
+        let account = UINavigationController(rootViewController: AccountListViewController())
 //        account.navigationBar.prefersLargeTitles = true
         let accountItem = UITabBarItem(title: "Account",
                                       image: AppImage.house.systemImage,

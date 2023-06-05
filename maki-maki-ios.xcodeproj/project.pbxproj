@@ -48,7 +48,7 @@
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
-		F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */; };
+		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -107,7 +107,7 @@
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileEditingViewController.swift; sourceTree = "<group>"; };
+		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -340,7 +340,7 @@
 				27F53B6E2A2D030C00B42737 /* AccountList */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				2781CD162A27C6AA00964A36 /* AccountCards */,
-				F187EADD2A263EFE00019242 /* EditingProfile */,
+				F187EADD2A263EFE00019242 /* EditProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
 				26FC1D542A264B1F003BA971 /* Orders */,
@@ -349,12 +349,12 @@
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
 		};
-		F187EADD2A263EFE00019242 /* EditingProfile */ = {
+		F187EADD2A263EFE00019242 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
-				F187EADE2A263F5E00019242 /* ProfileEditingViewController.swift */,
+				F187EADE2A263F5E00019242 /* EditProfileViewController.swift */,
 			);
-			path = EditingProfile;
+			path = EditProfile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -561,7 +561,7 @@
 				9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */,
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
-				F187EADF2A263F5E00019242 /* ProfileEditingViewController.swift in Sources */,
+				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
 				27F53B762A2D04B700B42737 /* Constants.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
