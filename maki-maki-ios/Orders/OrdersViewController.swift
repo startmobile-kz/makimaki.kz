@@ -51,6 +51,8 @@ class OrdersViewController: UIViewController {
     }
 }
 
+//MARK: - UICollectionView Data Source and Delegate methods
+
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
