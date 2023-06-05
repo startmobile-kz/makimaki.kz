@@ -14,7 +14,6 @@
 		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
 		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
-		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68374CD82A2B439600B3DC89 /* MainTabbarController.swift */; };
@@ -34,6 +33,7 @@
 		773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73892A278D5E0029AA44 /* Inter-Regular.ttf */; };
 		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
 		9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
+		9F6173452A2E196E00299E56 /* Order in Resources */ = {isa = PBXBuildFile; fileRef = 9F6173442A2E196D00299E56 /* Order */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
@@ -81,6 +81,7 @@
 		773A73882A278D5E0029AA44 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 		773A73892A278D5E0029AA44 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
 		773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		9F6173442A2E196D00299E56 /* Order */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Order; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
@@ -120,13 +121,6 @@
 				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
 			);
 			path = Orders;
-			sourceTree = "<group>";
-		};
-		273A2AE02A2DE67A00115DC0 /* AccountCartsNew */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = AccountCartsNew;
 			sourceTree = "<group>";
 		};
 		274485FD2A27B3B400F2FFBD /* Registration */ = {
@@ -302,12 +296,12 @@
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
+				9F6173442A2E196D00299E56 /* Order */,
 				9F541B882A2DC3BA004B3155 /* App Settings */,
 				9F541B872A2DC3AD004B3155 /* Resources */,
 				773A73762A2783170029AA44 /* Helpers */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				2781CD162A27C6AA00964A36 /* AccountCards */,
-				273A2AE02A2DE67A00115DC0 /* AccountCartsNew */,
 				F187EADD2A263EFE00019242 /* EditingProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
@@ -417,6 +411,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9F6173452A2E196E00299E56 /* Order in Resources */,
 				CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */,
 				773A738A2A278D5E0029AA44 /* Inter-Bold.ttf in Resources */,
 				773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */,
