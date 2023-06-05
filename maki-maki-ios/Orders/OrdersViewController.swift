@@ -51,13 +51,19 @@ class OrdersViewController: UIViewController {
     }
 }
 
+// MARK: - UICollectionView Data Source and Delegate methods
+
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "orders_cell", for: indexPath) as! OrdersCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: "orders_cell",
+                                                       for: indexPath) as? OrdersCell else {
+            fatalError("orders_cell is not registered")
+        }
+
         return cell
     }
     

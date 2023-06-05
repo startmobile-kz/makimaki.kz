@@ -16,7 +16,7 @@ final class SectionHeaderView: UICollectionReusableView {
     private lazy var label: UILabel = {
          let label: UILabel = UILabel()
          label.textColor = .label
-         label.font = AppFont.semibold.s24()
+         label.font = AppFont.semibold.s22()
          label.sizeToFit()
          return label
      }()
