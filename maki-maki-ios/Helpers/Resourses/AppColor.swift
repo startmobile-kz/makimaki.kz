@@ -40,6 +40,3 @@ enum AppColor: String, AppColorProtocol {
     case darkGreen
     case darkOrange
 }
-
-
-

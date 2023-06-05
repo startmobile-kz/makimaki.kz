@@ -18,7 +18,6 @@ struct ProductModel {
         return 99
         
     // add some comment
-    
         
     }
 }

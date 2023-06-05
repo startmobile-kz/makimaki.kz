@@ -20,4 +20,3 @@ class ViewController: UIViewController {
 //        imageView.image = AppImage.burger.uiImage
     }
 }
-
