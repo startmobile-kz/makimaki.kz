@@ -89,12 +89,14 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == 4 {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath) as! DeliveryTableViewCell
+            let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath)
+            as? DeliveryTableViewCell
             cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
             return cell
         }
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath) as! BasketTableViewCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath)
+        as? BasketTableViewCell
         cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }

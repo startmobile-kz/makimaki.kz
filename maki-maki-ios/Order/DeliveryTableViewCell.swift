@@ -63,7 +63,6 @@ final class DeliveryTableViewCell: UITableViewCell {
         contentView.addSubview(deliveryPriceLabel)
     }
     
-    
     // MARK: - Setup Constraints
     
     private func setupConstaints() {
