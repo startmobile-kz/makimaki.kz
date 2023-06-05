@@ -10,7 +10,7 @@ import SnapKit
 
 final class OrdersCell: UITableViewCell {
     
-    //MARK: - UI
+    // MARK: - UI
     
     private lazy var orderNameLabel: UILabel = {
         let label = UILabel()
@@ -186,7 +186,7 @@ final class OrdersCell: UITableViewCell {
         return button
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -199,7 +199,7 @@ final class OrdersCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - Setup Views
+    // MARK: - Setup Views
     
     private func setupViews() {
         contentView.backgroundColor = AppColor.background.uiColor
