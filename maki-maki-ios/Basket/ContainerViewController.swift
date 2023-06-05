@@ -1,5 +1,5 @@
 //
-//  ContainerViewController.swift
+//  ContainerView.swift
 //  maki-maki-ios
 //
 //  Created by Александр Козлов on 05.06.2023.
@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class ContainerViewController: UIViewController {
+class ContainerView: UIView {
 
     // MARK: - UI
     
@@ -55,21 +55,25 @@ class ContainerViewController: UIViewController {
     }()
     
     // MARK: - LifeCycle
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        
+
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+
         setupViews()
         setupConstrains()
     }
-    
+
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+
     // MARK: - Setup Views
     
     private func setupViews() {
-        view.backgroundColor = .white
+        self.backgroundColor = .white
         
         [dividerImage, totalLabel, priceLabel, checkoutButton, checkoutPriceLabel].forEach {
-            view.addSubview($0)
+            addSubview($0)
         }
     }
     

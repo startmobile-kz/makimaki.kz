@@ -83,7 +83,7 @@ final class DeliveryTableViewCell: UITableViewCell {
         
         deliveryPriceLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
         }
     }
 
