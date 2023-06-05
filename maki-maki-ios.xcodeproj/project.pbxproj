@@ -198,8 +198,9 @@
 		773A73772A27831D0029AA44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9F541B8A2A2DC458004B3155 /* Foundation+Extensions */,
+				9F541B892A2DC44A004B3155 /* UIKit+Extensions */,
 				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
-				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -224,6 +225,39 @@
 				773A73892A278D5E0029AA44 /* Inter-Regular.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		9F541B872A2DC3AD004B3155 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				CE96236B2A132B1C00C36D03 /* Assets.xcassets */,
+				773A73852A27877C0029AA44 /* Colors.xcassets */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		9F541B882A2DC3BA004B3155 /* App Settings */ = {
+			isa = PBXGroup;
+			children = (
+				CE9623702A132B1C00C36D03 /* Info.plist */,
+				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
+			);
+			path = "App Settings";
+			sourceTree = "<group>";
+		};
+		9F541B892A2DC44A004B3155 /* UIKit+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
+			);
+			path = "UIKit+Extensions";
+			sourceTree = "<group>";
+		};
+		9F541B8A2A2DC458004B3155 /* Foundation+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Foundation+Extensions";
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
@@ -257,21 +291,19 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
+				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
+				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
+				9F541B882A2DC3BA004B3155 /* App Settings */,
+				9F541B872A2DC3AD004B3155 /* Resources */,
+				773A73762A2783170029AA44 /* Helpers */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				2781CD162A27C6AA00964A36 /* AccountCards */,
 				F187EADD2A263EFE00019242 /* EditingProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
-				773A73762A2783170029AA44 /* Helpers */,
 				26FC1D542A264B1F003BA971 /* Orders */,
 				7720EEEA2A23806500A01669 /* Module */,
-				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
-				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
-				CE96236B2A132B1C00C36D03 /* Assets.xcassets */,
-				773A73852A27877C0029AA44 /* Colors.xcassets */,
-				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
-				CE9623702A132B1C00C36D03 /* Info.plist */,
-				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
@@ -698,14 +730,14 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
+				INFOPLIST_FILE = "maki-maki-ios/App Settings/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Maki Maki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -734,14 +766,14 @@
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
+				INFOPLIST_FILE = "maki-maki-ios/App Settings/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Maki Maki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UIMainStoryboardFile = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 14.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

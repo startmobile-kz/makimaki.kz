@@ -27,7 +27,6 @@ extension AppImageProtocol {
         return image
     }
     
-    
 }
 
 enum AppImage: String, AppImageProtocol {
@@ -38,6 +37,3 @@ enum AppImage: String, AppImageProtocol {
     case check = "Check"
     case eye = "eye"
 }
-
-
-

@@ -239,7 +239,6 @@ final class AccountCardsViewController: UIViewController {
             make.centerX.equalTo(offersButton.snp.centerX)
         }
         
-        
         addressesButton.snp.makeConstraints { make in
             make.width.height.equalTo(70)
         }
