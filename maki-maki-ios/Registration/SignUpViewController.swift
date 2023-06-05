@@ -99,10 +99,10 @@ final class SignUpViewController: UIViewController {
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        self.navigationController?.isNavigationBarHidden = true
-        self.emailTextField.addBottomBorder()
-        self.nameTextField.addBottomBorder()
-        self.passwordTextField.addBottomBorder()
+        navigationController?.isNavigationBarHidden = true
+        emailTextField.addBottomBorder()
+        nameTextField.addBottomBorder()
+        passwordTextField.addBottomBorder()
         [signUpLabel, textFieldsContainer, signUpButton].forEach {
             view.addSubview($0)
         }
