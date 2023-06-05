@@ -7,15 +7,17 @@
 
 import UIKit
 
-// UITabBarControllerDelegate
 class MainTabbarController: UITabBarController {
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabbars()
     }
-    
+
+    // MARK: - Setup
+
     private func setupTabbars() {
         // Create Tab one
         let main = MainViewController()
