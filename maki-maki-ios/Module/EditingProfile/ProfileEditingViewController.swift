@@ -68,7 +68,7 @@ final class EditProfileViewController: UIViewController {
     private func setupNavigationBar() {
         title = "Profile"
         edgesForExtendedLayout = []
-        }
+    }
     
     private func setupViews() {
         view.backgroundColor = .white

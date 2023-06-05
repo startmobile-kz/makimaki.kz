@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.7.1)
   - FirebaseCore (10.11.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -10,17 +11,33 @@ PODS:
   - GoogleUtilities/Logger (7.11.1):
     - GoogleUtilities/Environment
   - "GoogleUtilities/NSData+zlib (7.11.1)"
+  - InputMask (6.1.0)
+  - IQKeyboardManager (6.5.0)
+  - Kingfisher (7.7.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
   - PromisesObjC (2.2.0)
   - SnapKit (5.6.0)
 
 DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
-  - SnapKit
+  - InputMask (= 6.1.0)
+  - IQKeyboardManager (= 6.5.0)
+  - Kingfisher (= 7.7.0)
+  - Moya (= 15.0)
+  - SnapKit (= 5.6.0)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - FirebaseCoreInternal
     - GoogleUtilities
+    - InputMask
+    - IQKeyboardManager
+    - Kingfisher
+    - Moya
     - PromisesObjC
     - SnapKit
 
@@ -31,16 +48,21 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseCore:
-    :commit: 9f009df386e4512065a75d744d004d66cccf4e7b
+    :commit: 9099f7fba6d506f95a6fbbc402c89a4165496e8a
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
-  FirebaseCore: 764863fe7b1cdce57c0fb338843e384272beeeae
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
+  InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
+  IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
 
-PODFILE CHECKSUM: c81604c097b160489f54abf3e468ec97fc7900b6
+PODFILE CHECKSUM: 351796f59fc0796e61f1706f3524f6829e62e766
 
 COCOAPODS: 1.12.1

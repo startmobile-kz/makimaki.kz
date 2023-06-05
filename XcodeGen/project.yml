@@ -1,0 +1,24 @@
+name: maki-maki-ios
+options:
+  bundleIdPrefix: com
+  xcodeVersion: '14.3'
+  deploymentTarget: '14.0'
+  groupSortPosition: top
+  generateEmptyDirectories: true
+  minimumXcodeGenVersion: '2.35.0'
+  
+configs:
+  Debug.Dev: debug
+  Debug.Prod: debug
+  Release: release
+    
+targets:
+  maki-maki-ios:
+    type: application
+    platform: iOS
+    deploymentTarget: 14.0
+    settings:
+      base:
+        MARKETING_VERSION: 1.0
+    sources:
+       - path: ../maki-maki-ios

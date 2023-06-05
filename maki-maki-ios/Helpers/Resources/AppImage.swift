@@ -30,6 +30,10 @@ extension AppImageProtocol {
 
 enum AppImage: String, AppImageProtocol {
     case burger
+    case home
+    case order
+    case profile
+    case search
     case chevronDown = "chevron.down"
 }
 
