@@ -105,7 +105,7 @@ final class MainViewController: UIViewController {
             top: 28,
             leading: 16,
             bottom: 40.5,
-            trailing: 0
+            trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [supplementaryDeliveryHeaderItem()]
@@ -135,7 +135,7 @@ final class MainViewController: UIViewController {
             top: 0,
             leading: 16,
             bottom: 40,
-            trailing: 0
+            trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
         section.boundarySupplementaryItems = [supplementaryHeaderItem()]
