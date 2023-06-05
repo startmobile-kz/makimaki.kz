@@ -52,7 +52,12 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "LogoCell") as! AccountListCell
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "LogoCell",
+            for: indexPath
+        ) as? AccountListCell else {
+                fatalError("Could not cast to CategoryCollectionViewCell")
+        }
         let logo = logos[indexPath.row]
         cell.set(logo: logo)
         return cell
