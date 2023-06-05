@@ -35,8 +35,9 @@ final class OrdersCell: UITableViewCell {
     
     private lazy var orderDataLabel: UILabel = {
         let label = UILabel()
+        let data = "31 May 2020, 07:55 PM  "
         let components = [
-            NSAttributedString(string: NSLocalizedString("31 May 2020, 07:55 PM  ", comment: "Data"), attributes: [
+            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
                 .foregroundColor: AppColor.paragraph.uiColor,
                 .font: AppFont.reqular.s14()
             ]),
