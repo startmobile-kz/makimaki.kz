@@ -1,7 +1,9 @@
 name: SwiftLint
-
 on:
+  push:
+    branches: [ develop, main ]
   pull_request:
+    branches: [ develop, main ]
     paths:
       - '.github/workflows/swiftlint.yml'
       - '.swiftlint.yml'
