@@ -12,7 +12,7 @@ class AccountListController: UIViewController {
     
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
-        profileImage.image = UIImage(named: "profile-image.pdf")
+        profileImage.image = UIImage(named: "profile-image-accountlist.pdf")
         return profileImage
     }()
     
@@ -32,11 +32,13 @@ class AccountListController: UIViewController {
         return signOutButton
     }()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupViews()
         setupConstraints()
+        view.backgroundColor = .white
     }
     
     // MARK: - Setup Views
@@ -62,7 +64,7 @@ class AccountListController: UIViewController {
         signOutButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalTo(118)
+            make.bottom.equalTo(-118)
             make.height.equalTo(53)
         }
     }
