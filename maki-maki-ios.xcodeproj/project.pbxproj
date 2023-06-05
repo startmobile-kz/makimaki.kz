@@ -196,7 +196,8 @@
 		773A73772A27831D0029AA44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
+				9F541B8A2A2DC458004B3155 /* Foundation+Extensions */,
+				9F541B892A2DC44A004B3155 /* UIKit+Extensions */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -239,6 +240,21 @@
 				7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */,
 			);
 			path = "App Settings";
+			sourceTree = "<group>";
+		};
+		9F541B892A2DC44A004B3155 /* UIKit+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
+			);
+			path = "UIKit+Extensions";
+			sourceTree = "<group>";
+		};
+		9F541B8A2A2DC458004B3155 /* Foundation+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Foundation+Extensions";
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
@@ -710,7 +726,7 @@
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
+				INFOPLIST_FILE = "maki-maki-ios/App Settings/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Maki Maki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -746,7 +762,7 @@
 				CURRENT_PROJECT_VERSION = 12;
 				DEVELOPMENT_TEAM = N9HN46JWCK;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "maki-maki-ios/Info.plist";
+				INFOPLIST_FILE = "maki-maki-ios/App Settings/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = "Maki Maki";
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.food-and-drink";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
