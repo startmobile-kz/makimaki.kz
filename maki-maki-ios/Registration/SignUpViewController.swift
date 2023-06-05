@@ -89,12 +89,14 @@ final class SignUpViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        setupBottomBorderLine()
     }
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        setupBottomBorderLine()
+        DispatchQueue.main.async { [weak self] in
+            self?.setupBottomBorderLine()
+        }
+
     }
      
     // MARK: - Setup Views

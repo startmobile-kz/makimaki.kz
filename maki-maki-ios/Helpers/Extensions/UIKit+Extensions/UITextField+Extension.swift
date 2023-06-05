@@ -19,6 +19,5 @@ extension UITextField {
         bottomLine.backgroundColor = AppColor.border.uiColor.cgColor
         borderStyle = .none
         layer.addSublayer(bottomLine)
-        layoutIfNeeded()
     }
 }
