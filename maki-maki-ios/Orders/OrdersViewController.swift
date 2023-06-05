@@ -9,7 +9,7 @@ import UIKit
 
 class OrdersViewController: UIViewController {
     
-    //MARK: - UI
+    // MARK: - UI
     
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -20,7 +20,7 @@ class OrdersViewController: UIViewController {
         return tableView
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -30,7 +30,7 @@ class OrdersViewController: UIViewController {
         setupConstraints()
     }
     
-    //MARK: - Setup Views
+    // MARK: - Setup Views
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Orders"

@@ -17,14 +17,14 @@ final class WelcomePageVerOneViewController: UIViewController {
         imageView.image = bgImg
         imageView.contentMode = .scaleAspectFill
         return imageView
-    } ()
+    }()
     
     private lazy var welcomeView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.background.uiColor
         view.layer.cornerRadius = 14
         return view
-    } ()
+    }()
     
     private lazy var welcomeLabel: UILabel = {
          let label = UILabel()
@@ -60,7 +60,6 @@ final class WelcomePageVerOneViewController: UIViewController {
          button.backgroundColor = AppColor.accent.uiColor
         return button
      }()
-
 
     // MARK: - Lifecycle
     override func viewDidLoad() {

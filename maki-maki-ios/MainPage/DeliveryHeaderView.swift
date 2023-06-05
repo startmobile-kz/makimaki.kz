@@ -12,7 +12,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: DeliveryHeaderView.self)
     
-    //MARK: - UI
+    // MARK: - UI
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
         label.text = "DELIVER TO"
@@ -42,7 +42,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
         return view
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
          setupViews()
