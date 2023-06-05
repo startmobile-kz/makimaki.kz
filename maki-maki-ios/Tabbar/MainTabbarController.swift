@@ -7,15 +7,17 @@
 
 import UIKit
 
-//UITabBarControllerDelegate
 class MainTabbarController: UITabBarController {
-    
+
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         
         setupTabbars()
     }
-    
+
+    // MARK: - Setup
+
     private func setupTabbars() {
         // Create Tab one
         let main = MainViewController()
@@ -23,7 +25,6 @@ class MainTabbarController: UITabBarController {
                                     image: AppImage.house.systemImage,
                                     selectedImage: AppImage.house_fill.systemImage)
         main.tabBarItem = mainItem
-        
         
         let orders = OrdersViewController()
         let ordersItem = UITabBarItem(title: "Orders",
@@ -37,12 +38,12 @@ class MainTabbarController: UITabBarController {
                                       selectedImage: AppImage.house_fill.systemImage)
         account.tabBarItem = accountItem
         
-        
         self.viewControllers = [main, orders, account]
     }
     
     // UITabBarControllerDelegate method
-    func tabBarController(_ tabBarController: UITabBarController, didSelect viewController: UIViewController) {
+    func tabBarController(_ tabBarController: UITabBarController,
+                          didSelect viewController: UIViewController) {
         print("Selected \(viewController.title!)")
     }
 }
