@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class AccountListController: UIViewController {
+final class AccountListController: UIViewController {
     
     private lazy var profileImage: UIImageView = {
         let profileImage = UIImageView()
