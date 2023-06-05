@@ -12,7 +12,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: RestaurantCollectionViewCell.self)
     
-    //MARK: - UI
+    // MARK: - UI
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "restaurant_1")
@@ -81,8 +81,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -96,10 +95,15 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     // MARK: - SetupViews
     private func setupViews() {
         let subviews = [restaurantImageView, restaurantNameLabel, starImageView, infoStackView]
-        subviews.forEach( { contentView.addSubview($0) } )
-        
-        let arrangedSubviews = [ratingLabel, firstDotSeparatorLabel, timeLabel, secondDotSeparatorLabel, priceLabel]
-        arrangedSubviews.forEach( {infoStackView.addArrangedSubview($0)} )
+        subviews.forEach({contentView.addSubview($0)})
+        let arrangedSubviews = [
+            ratingLabel,
+            firstDotSeparatorLabel,
+            timeLabel,
+            secondDotSeparatorLabel,
+            priceLabel
+        ]
+        arrangedSubviews.forEach({infoStackView.addArrangedSubview($0)})
     }
     
     // MARK: - SetupConstraints
@@ -129,4 +133,3 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         }
     }
 }
-

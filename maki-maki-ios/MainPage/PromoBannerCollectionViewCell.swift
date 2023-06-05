@@ -19,7 +19,7 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -32,8 +32,8 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
-        let subviews = [promoImageView, ]
-        subviews.forEach( { contentView.addSubview($0) } )
+        let subviews = [promoImageView]
+        subviews.forEach({contentView.addSubview($0)})
     }
     
     // MARK: - SetupConstraints

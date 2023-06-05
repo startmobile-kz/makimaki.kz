@@ -29,7 +29,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    //MARK: - Lifecycle
+    // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -43,7 +43,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     // MARK: - SetupViews
     private func setupViews() {
         let subviews = [categoryButton, categoryNameLabel]
-        subviews.forEach( { contentView.addSubview($0) } )
+        subviews.forEach({contentView.addSubview($0)})
     }
     
     // MARK: - SetupConstraints
