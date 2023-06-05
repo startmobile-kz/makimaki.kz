@@ -18,7 +18,7 @@ PODS:
 
 DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
-  - InputMask (= 6.1.0)
+  - InputMask
   - IQKeyboardManager (= 6.5.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
@@ -53,6 +53,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: b57099817c105897b36cbb0e1d25521643e65838
+PODFILE CHECKSUM: 51d35997a50df14e9d06402ea018921d7a6ab00b
 
 COCOAPODS: 1.12.1
