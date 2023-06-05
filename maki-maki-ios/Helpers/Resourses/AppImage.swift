@@ -19,11 +19,19 @@ extension AppImageProtocol {
         }
         return image
     }
+    
+    var systemImage: UIImage? {
+        guard let image = UIImage(systemName: rawValue) else {
+            fatalError("Could not find image with name \(rawValue)")
+        }
+        return image
+    }
+    
 }
 
 enum AppImage: String, AppImageProtocol {
     case burger
+    case chevronDown = "chevron.down"
+    case house = "house"
+    case house_fill = "house.fill"
 }
-
-
-

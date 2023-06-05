@@ -1,0 +1,23 @@
+name: Check Build
+on:
+  push:
+    branches: [ develop ]
+  pull_request:
+    branches: [ develop ]
+jobs:
+  buildAndTest:
+    runs-on: macos-latest
+    steps:
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
+      with:
+        path: Pods
+        key: ${{ runner.os }}-pods-${{ hashFiles('**/Podfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-pods-
+    - name: CocoaPod Install
+      run: pod install
+    - name: Build
+      run: xcodebuild -workspace maki-maki-ios.xcworkspace -scheme maki-maki-ios -configuration Release -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12'
+#     - name: Test
+#       run: xcodebuild -workspace maki-maki-ios.xcworkspace -scheme maki-maki-ios -sdk iphonesimulator -destination 'platform=iOS Simulator,name=iPhone 12' test
