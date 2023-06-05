@@ -195,6 +195,14 @@ final class MainViewController: UIViewController {
     }
 }
 
+// MARK: - DeliveryHeaderViewDelegate
+extension MainViewController: DeliveryHeaderViewDelegate {
+    func viewWasTapped() {
+        // Переходной контроллер еще не готов, так что просто сделал пуш в рандомный
+        self.navigationController?.pushViewController(EditProfileViewController(), animated: true)
+    }
+}
+
 // MARK: - UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
     
@@ -274,6 +282,7 @@ extension MainViewController: UICollectionViewDataSource {
                 ) as? DeliveryHeaderView else {
                     fatalError("Could not cast to DeliveryHeaderView")
                 }
+                deliverySectionHeader.delegate = self
                 return deliverySectionHeader
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")

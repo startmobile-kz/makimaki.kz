@@ -46,7 +46,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
         return view
     }()
     
-    //MARK: - Delegate
+    // MARK: - Delegate
     weak var delegate: DeliveryHeaderViewDelegate?
     
     // MARK: - Lifecycle
@@ -95,7 +95,6 @@ final class DeliveryHeaderView: UICollectionReusableView {
     }
     
     @objc func viewWasTapped() {
-        print("Tapped")
         delegate?.viewWasTapped()
     }
 
