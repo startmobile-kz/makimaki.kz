@@ -11,7 +11,7 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     // MARK: - Sections
-    let sections: [SectionType] = [.header, .promo, .restaurants]
+    let sections: [SectionType] = [.categorie, .promo, .restaurants]
     
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
@@ -70,103 +70,106 @@ final class MainViewController: UIViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             let section = self?.sections[sectionIndex] ?? .promo
-            
             switch section {
-            case .header:
-                // Item
-                let item = NSCollectionLayoutItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .fractionalHeight(1)
-                    )
-                )
-                // Group
-                let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .absolute(70),
-                        heightDimension: .absolute(90)
-                    ),
-                    subitems: [item]
-                )
-                // Section
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 28,
-                    leading: 16,
-                    bottom: 40.5,
-                    trailing: 0
-                )
-                section.orthogonalScrollingBehavior = .continuous
-                
-                if let deliveryHeaderItem = self?.supplementaryDeliveryHeaderItem() {
-                    section.boundarySupplementaryItems = [deliveryHeaderItem]
-                }
-                return section
+            case .categorie:
+                return self?.categorieSectionLayout()
             case .promo:
-                // Item
-                let item = NSCollectionLayoutItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .fractionalHeight(1)
-                    )
-                )
-                // Group
-                let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .absolute(300),
-                        heightDimension: .absolute(160)
-                    ),
-                    subitems: [item]
-                )
-                // Section
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 10
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 0,
-                    leading: 16,
-                    bottom: 40,
-                    trailing: 0
-                )
-                section.orthogonalScrollingBehavior = .continuous
-                
-                if let headerItem = self?.supplementaryHeaderItem() {
-                    section.boundarySupplementaryItems = [headerItem]
-                }
-                return section
+                return self?.promoSectionLayout()
             case .restaurants:
-                // Item
-                let item = NSCollectionLayoutItem(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .absolute(180)
-                    )
-                )
-                item.contentInsets.trailing = 16
-                // Group
-                let group = NSCollectionLayoutGroup.horizontal(
-                    layoutSize: NSCollectionLayoutSize(
-                        widthDimension: .fractionalWidth(1),
-                        heightDimension: .absolute(236)
-                    ),
-                    subitems: [item]
-                )
-                // Section
-                let section = NSCollectionLayoutSection(group: group)
-                section.interGroupSpacing = 32
-                section.contentInsets = NSDirectionalEdgeInsets(
-                    top: 0,
-                    leading: 16,
-                    bottom: 20,
-                    trailing: 0
-                )
-                
-                if let headerItem = self?.supplementaryHeaderItem() {
-                    section.boundarySupplementaryItems = [headerItem]
-                }
-                return section
+                return self?.restaurantSectionLayout()
             }
         }
+    }
+    
+    // MARK: - Section Layouts
+    private func categorieSectionLayout() -> NSCollectionLayoutSection {
+        // Item
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        // Group
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .absolute(70),
+                heightDimension: .absolute(90)
+            ),
+            subitems: [item]
+        )
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 28,
+            leading: 16,
+            bottom: 40.5,
+            trailing: 0
+        )
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [supplementaryDeliveryHeaderItem()]
+        return section
+    }
+    
+    private func promoSectionLayout() -> NSCollectionLayoutSection {
+        // Item
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        // Group
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .absolute(300),
+                heightDimension: .absolute(160)
+            ),
+            subitems: [item]
+        )
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 16,
+            bottom: 40,
+            trailing: 0
+        )
+        section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+        return section
+    }
+    
+    private func restaurantSectionLayout() -> NSCollectionLayoutSection {
+        // Item
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(180)
+            )
+        )
+        item.contentInsets.trailing = 16
+        // Group
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(236)
+            ),
+            subitems: [item]
+        )
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 32
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 16,
+            bottom: 20,
+            trailing: 0
+        )
+        section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+        return section
     }
     
     private func supplementaryDeliveryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -206,7 +209,7 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = sections[section]
         switch section {
-        case .header:
+        case .categorie:
             return 10
         case .promo:
             return 4
@@ -215,45 +218,62 @@ extension MainViewController: UICollectionViewDataSource {
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         let section = sections[indexPath.section]
         switch section {
-        case .header:
-            let cell = collectionView.dequeueReusableCell(
+        case .categorie:
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCollectionViewCell.reuseID,
                 for: indexPath
-            ) as! CategoryCollectionViewCell
+            ) as? CategoryCollectionViewCell else {
+                fatalError("Could not cast to CategoryCollectionViewCell")
+            }
             return cell
         case .promo:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
                 for: indexPath
-            ) as! PromoBannerCollectionViewCell
+            ) as? PromoBannerCollectionViewCell else {
+                fatalError("Could not cast to PromoBannerCollectionViewCell")
+            }
             return cell
         case .restaurants:
-            let cell = collectionView.dequeueReusableCell(
+            guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
                 for: indexPath
-            ) as! RestaurantCollectionViewCell
+            ) as? RestaurantCollectionViewCell else {
+                fatalError("Could not cast to RestaurantCollectionViewCell")
+            }
             return cell
         }
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
                 withReuseIdentifier: SectionHeaderView.reuseID,
                 for: indexPath
-            ) as! SectionHeaderView
+            ) as? SectionHeaderView else {
+                fatalError("Could not cast to SectionHeaderView")
+            }
             let section = sections[indexPath.section]
             switch section {
-            case .header:
-                let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(
+            case .categorie:
+                guard let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
                     withReuseIdentifier: DeliveryHeaderView.reuseID,
                     for: indexPath
-                ) as! DeliveryHeaderView
+                ) as? DeliveryHeaderView else {
+                    fatalError("Could not cast to DeliveryHeaderView")
+                }
                 return deliverySectionHeader
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")
