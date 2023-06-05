@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol DeliveryHeaderViewDelegate: AnyObject {
+    func viewWasTapped()
+}
+
 final class DeliveryHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: DeliveryHeaderView.self)
@@ -42,11 +46,15 @@ final class DeliveryHeaderView: UICollectionReusableView {
         return view
     }()
     
+    // MARK: - Delegate
+    weak var delegate: DeliveryHeaderViewDelegate?
+    
     // MARK: - Lifecycle
      override init(frame: CGRect) {
          super.init(frame: frame)
          setupViews()
          setupConstraints()
+         setupGestureRecognizers()
     }
     
     // MARK: - SetupViews
@@ -79,6 +87,15 @@ final class DeliveryHeaderView: UICollectionReusableView {
             make.trailing.equalToSuperview()
             make.height.equalTo(0.5)
         }
+    }
+    
+    private func setupGestureRecognizers() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewWasTapped))
+        addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func viewWasTapped() {
+        delegate?.viewWasTapped()
     }
 
     required init?(coder aDecoder: NSCoder) {
