@@ -34,4 +34,8 @@ enum AppImage: String, AppImageProtocol {
     case chevronDown = "chevron.down"
     case house = "house"
     case house_fill = "house.fill"
+    case home = "home"
+    case search = "search"
+    case shoppingBag = "shopping-bag"
+    case user = "user-ac"
 }
