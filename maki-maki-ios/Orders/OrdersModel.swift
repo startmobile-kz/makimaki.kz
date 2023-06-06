@@ -13,4 +13,5 @@ struct OrdersModel {
     let time: String
     let point: String
     let price: String
+    let ordersList: [OrdersList]
 }
