@@ -12,7 +12,7 @@ struct Images {
     static let locationButtons = UIImage(named: "location-ac")!
     static let offerButtons = UIImage(named: "offer-ac")!
     static let ordersButtons = UIImage(named: "orders-ac")!
-    static let paymentButtons = UIImage(named: "payment-ac")!
+    static let paymentButtons = UIImage(named: "payment")!
     static let userButtons = UIImage(named: "user-ac")!
     static let arrowButton = UIImage(named: "arrow_right")!
 }

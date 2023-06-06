@@ -20,9 +20,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = true
             if isAuthoried {
-                let controller = UINavigationController(rootViewController: BasketViewController())
-                controller.navigationBar.prefersLargeTitles = true
-                window.rootViewController = controller
+//                let controller = UINavigationController(rootViewController: MainT())
+                window.rootViewController = MainTabbarController()
             } else {
                 window.rootViewController =
                     UINavigationController(rootViewController: WelcomePageVerOneViewController())

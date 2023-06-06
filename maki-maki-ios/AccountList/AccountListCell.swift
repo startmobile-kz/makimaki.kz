@@ -12,9 +12,17 @@ class AccountListCell: UITableViewCell {
 
     // MARK: - UI
     
-    private lazy var listImageView = UIImageView()
-    
-    private lazy var arrowImageView = UIImageView()
+    private lazy var listImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
+
+    private lazy var arrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.contentMode = .scaleAspectFill
+        return imageView
+    }()
     
     private lazy var listTitleLabel: UILabel = {
        let label = UILabel()
@@ -52,9 +60,9 @@ class AccountListCell: UITableViewCell {
     // MARK: - Setup Constraints
     func constraints() {
         listImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.size.equalTo(24)
             make.leading.equalToSuperview().offset(14)
-            make.width.height.equalTo(24)
+            make.centerY.equalToSuperview()
         }
         
         listTitleLabel.snp.makeConstraints { make in
