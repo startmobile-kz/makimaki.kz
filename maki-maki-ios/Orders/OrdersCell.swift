@@ -25,7 +25,6 @@ final class OrdersCell: UITableViewCell {
     
     private lazy var costOrderLabel: UILabel = {
         let label = UILabel()
-//        label.text = "$14.40"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -35,7 +34,6 @@ final class OrdersCell: UITableViewCell {
     private lazy var orderListCostStackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-//        stackView.spacing = 104
         stackView.distribution = .equalSpacing
         return stackView
     }()
@@ -57,13 +55,9 @@ final class OrdersCell: UITableViewCell {
     
     private func setupViews() {
         contentView.backgroundColor = AppColor.background.uiColor
-        
         contentView.addSubview(orderListCostStackView)
         
-        [
-            orderListLabel,
-            costOrderLabel
-        ].forEach { orderListCostStackView.addArrangedSubview($0) }
+        [orderListLabel, costOrderLabel].forEach { orderListCostStackView.addArrangedSubview($0) }
     }
     
     private func setupConstraints() {
