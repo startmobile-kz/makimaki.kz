@@ -50,7 +50,12 @@ extension AccountOffersList: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "offers_cell", for: indexPath) as! AccountOffersCell
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: "offers_cell",
+            for: indexPath
+        ) as? AccountOffersCell else {
+            fatalError("Could not cast to CategoryCollectionViewCell")
+        }
         return cell
     }
 }
