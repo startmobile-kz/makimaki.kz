@@ -12,7 +12,7 @@ class OrdersViewController: UIViewController {
     // MARK: - UI
     
     //этот двухмерный массив использую только для nubersOfSections
-    let orders: [OrdersModel] = [ //private?
+    let orders: [OrdersModel] = [
             OrdersModel(cafeName: "Bellissimo Pizza",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ", point: "•",
@@ -45,11 +45,6 @@ class OrdersViewController: UIViewController {
         OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
         OrdersList(positionName: "1 x Pesto Tomato Pizza", price: "$10.95")
     ]
-
-//    lazy var tableFooterView: OrdersTableFooterView = {
-//        let view = OrdersTableFooterView()
-//        return view
-//    }()
 
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -108,7 +103,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("orders_cell is not registered")
         }
         cell.setup(model: ordersList[indexPath.row]) //необходимо реализовать двухмерный массив
-//        let position = orders[indexPath.section].ordersList[indexPath.row]
         return cell
     }
     
