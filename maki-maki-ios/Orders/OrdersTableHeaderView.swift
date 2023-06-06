@@ -105,7 +105,7 @@ class OrdersTableHeaderView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: Setup Views
+    // MARK: - Setup Views
 
     private func setupViews() {
         backgroundColor = AppColor.background.uiColor
@@ -124,10 +124,9 @@ class OrdersTableHeaderView: UIView {
         ].forEach { dataPriceLabelsStackView.addArrangedSubview($0) }
     }
 
-    // MARK: Setup Constraints
+    // MARK: - Setup Constraints
 
     private func setupConstraints() {
-        
         orderNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(21)
             make.leading.equalToSuperview().offset(16)
