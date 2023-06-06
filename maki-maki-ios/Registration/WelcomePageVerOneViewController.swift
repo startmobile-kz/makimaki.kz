@@ -22,7 +22,6 @@ final class WelcomePageVerOneViewController: UIViewController {
     private lazy var welcomeView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.background.uiColor
-        view.layer.cornerRadius = 14
         return view
     }()
     
@@ -68,9 +67,12 @@ final class WelcomePageVerOneViewController: UIViewController {
         setUpConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpViews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async { [weak self] in
+            self?.setupBottomBorderLine()
+            self?.cornerRadius()
+        }
     }
     
     // MARK: - Setup Views
@@ -84,6 +86,14 @@ final class WelcomePageVerOneViewController: UIViewController {
         }
     }
     
+    // MARK: - Setup Border for textField
+    private func setupBottomBorderLine() {
+        phoneNumberTextField.addBottomBorder()
+    }
+    
+    private func cornerRadius() {
+        welcomeView.roundCorners(corners: [.topLeft, .topRight], radius: 14)
+    }
     // MARK: - Setup Constraints
     private func setUpConstraints() {
         makiImage.snp.makeConstraints { make in

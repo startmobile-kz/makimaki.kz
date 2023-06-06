@@ -54,9 +54,11 @@ final class WelcomePageVerTwoViewController: UIViewController {
         setUpConstraints()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpViews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        DispatchQueue.main.async { [weak self] in
+            self?.setupBottomBorderLine()
+        }
     }
 
     // MARK: - Setup Views
@@ -66,6 +68,11 @@ final class WelcomePageVerTwoViewController: UIViewController {
         [welcomeLabel,subtitleLabel,phoneNumberTextField,continueButton].forEach {
             view.addSubview($0)
         }
+    }
+    
+    // MARK: - Setup Border for textField
+    private func setupBottomBorderLine() {
+        phoneNumberTextField.addBottomBorder()
     }
 
     // MARK: - Setup Constraints
