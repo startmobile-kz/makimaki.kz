@@ -10,6 +10,9 @@
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
 		1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
+		26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */; };
+		26E279882A2F4A8B0071863C /* OrdersTableFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279872A2F4A8B0071863C /* OrdersTableFooterView.swift */; };
+		26E2798A2A2F5DE00071863C /* OrdersModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279892A2F5DE00071863C /* OrdersModel.swift */; };
 		26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC1D5B2A273626003BA971 /* OrdersCell.swift */; };
 		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
 		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
@@ -65,6 +68,9 @@
 		1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableHeaderView.swift; sourceTree = "<group>"; };
+		26E279872A2F4A8B0071863C /* OrdersTableFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableFooterView.swift; sourceTree = "<group>"; };
+		26E279892A2F5DE00071863C /* OrdersModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersModel.swift; sourceTree = "<group>"; };
 		26FC1D5B2A273626003BA971 /* OrdersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCell.swift; sourceTree = "<group>"; };
 		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
 		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
@@ -134,6 +140,9 @@
 			children = (
 				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
 				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
+				26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */,
+				26E279872A2F4A8B0071863C /* OrdersTableFooterView.swift */,
+				26E279892A2F5DE00071863C /* OrdersModel.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -562,6 +571,8 @@
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
 				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
+				26E279882A2F4A8B0071863C /* OrdersTableFooterView.swift in Sources */,
+				26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */,
 				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
 				27F53B762A2D04B700B42737 /* Constants.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
@@ -581,6 +592,7 @@
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */,
+				26E2798A2A2F5DE00071863C /* OrdersModel.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,

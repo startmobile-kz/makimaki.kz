@@ -11,9 +11,16 @@ class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
+    let orders: [OrdersModel] = [ //private?
+            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
+            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
+            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
+            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95")
+        ]
+    
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(OrdersCell.self, forCellReuseIdentifier: "orders_cell")
+        tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.rowHeight = 301
         tableView.dataSource = self
         tableView.delegate = self
@@ -57,11 +64,11 @@ class OrdersViewController: UIViewController {
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 4
+        return orders.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "orders_cell",
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: OrdersCell.reuseID,
                                                        for: indexPath) as? OrdersCell else {
             fatalError("orders_cell is not registered")
         }

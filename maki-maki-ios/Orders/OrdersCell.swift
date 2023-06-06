@@ -12,6 +12,8 @@ final class OrdersCell: UITableViewCell {
     
     // MARK: - UI
     
+    static let reuseID = "orders_cell"
+    
     private lazy var orderNameLabel: UILabel = {
         let label = UILabel()
         label.text = "Bellissimo Pizza"
