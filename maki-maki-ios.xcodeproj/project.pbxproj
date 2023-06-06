@@ -42,6 +42,7 @@
 		9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */; };
 		9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173482A2E655B00299E56 /* ContainerViewController.swift */; };
 		9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */; };
+		B4EA9A072A2F013D0077333F /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B4EA9A062A2F013D0077333F /* ForgotPasswordViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
@@ -97,6 +98,7 @@
 		9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryTableViewCell.swift; sourceTree = "<group>"; };
 		9F6173482A2E655B00299E56 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		B4EA9A062A2F013D0077333F /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
@@ -144,6 +146,7 @@
 				274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */,
 				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
 				27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */,
+				B4EA9A062A2F013D0077333F /* ForgotPasswordViewController.swift */,
 			);
 			path = Registration;
 			sourceTree = "<group>";
@@ -555,6 +558,7 @@
 			files = (
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
+				B4EA9A072A2F013D0077333F /* ForgotPasswordViewController.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
 				9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */,
