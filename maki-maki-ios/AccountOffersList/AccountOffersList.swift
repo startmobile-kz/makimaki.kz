@@ -17,7 +17,7 @@ final class AccountOffersList: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(AccountOffersCell.self, forCellReuseIdentifier: "offers_cell")
-        tableView.rowHeight = 124
+        tableView.rowHeight = 148
 //        tableView.separatorStyle = .none
         return tableView
     }()

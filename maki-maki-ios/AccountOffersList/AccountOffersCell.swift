@@ -14,14 +14,16 @@ final class AccountOffersCell: UITableViewCell {
     
     private lazy var couponImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "coupon.pdf")
+        imageView.image = AppImage.coupon.uiImage // App Image
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private lazy var percentLabel: UILabel = {
         let label = UILabel()
         label.text = "30\n%"
         label.numberOfLines = 0
+        label.textAlignment = .center
         label.font = AppFont.bold.s40()
         return label
     }()
@@ -66,7 +68,7 @@ final class AccountOffersCell: UITableViewCell {
 
     private func setupViews() {
         contentView.addSubview(couponImage)
-        contentView.addSubview(nameLabel)
+        contentView.addSubview(percentLabel)
         contentView.addSubview(saleOffLabel)
         contentView.addSubview(daysLabel)
         contentView.addSubview(copyButton)
@@ -76,27 +78,32 @@ final class AccountOffersCell: UITableViewCell {
 
     private func setupConstraints() {
         couponImage.snp.makeConstraints { make in
-            make.centerX.equalToSuperview()
-            make.width.equalTo(343)
+            make.top.equalToSuperview().offset(12)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(124)
-            make.top.equalTo(122)
+            make.bottom.equalToSuperview().offset(-12)
         }
-        nameLabel.snp.makeConstraints { make in
+
+        percentLabel.snp.makeConstraints { make in
             make.leading.equalTo(couponImage.snp.leading).offset(24)
             make.centerY.equalTo(couponImage.snp.centerY)
         }
+
         saleOffLabel.snp.makeConstraints { make in
-            make.leading.equalTo(couponImage.snp.leading).offset(138)
-            make.centerY.equalTo(couponImage.snp.centerY)
+            make.top.equalTo(couponImage.snp.top).offset(36)
+            make.leading.equalTo(percentLabel.snp.trailing).offset(44)
         }
+
         daysLabel.snp.makeConstraints { make in
-            make.leading.equalTo(couponImage.snp.leading).offset(138)
-            make.centerY.equalTo(saleOffLabel.snp.bottom).offset(8)
+            make.top.equalTo(saleOffLabel.snp.bottom).offset(4)
+            make.leading.equalTo(percentLabel.snp.trailing).offset(44)
         }
+
         copyButton.snp.makeConstraints { make in
-            make.leading.equalTo(couponImage.snp.leading).offset(255)
+            make.trailing.equalTo(couponImage.snp.trailing).offset(-24)
             make.centerY.equalTo(couponImage.snp.centerY)
-            make.width.height.equalTo(64)
+            make.size.equalTo(64)
         }
     }
 }

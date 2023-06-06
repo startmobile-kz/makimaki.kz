@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let isAuthoried = true
             if isAuthoried {
 //                let controller = UINavigationController(rootViewController: MainT())
-                window.rootViewController = MainTabbarController()
+                window.rootViewController = AccountOffersList ()
             } else {
                 window.rootViewController =
                     UINavigationController(rootViewController: WelcomePageVerOneViewController())
