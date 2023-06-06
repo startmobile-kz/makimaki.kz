@@ -1,4 +1,13 @@
 PODS:
+  - CHIOTPField (0.1.0):
+    - CHIOTPField/Four (= 0.1.0)
+    - CHIOTPField/One (= 0.1.0)
+    - CHIOTPField/Three (= 0.1.0)
+    - CHIOTPField/Two (= 0.1.0)
+  - CHIOTPField/Four (0.1.0)
+  - CHIOTPField/One (0.1.0)
+  - CHIOTPField/Three (0.1.0)
+  - CHIOTPField/Two (0.1.0)
   - FirebaseCore (10.11.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
@@ -15,12 +24,14 @@ PODS:
   - SwiftLint (0.52.2)
 
 DEPENDENCIES:
+  - CHIOTPField
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
 SPEC REPOS:
   trunk:
+    - CHIOTPField
     - FirebaseCoreInternal
     - GoogleUtilities
     - PromisesObjC
@@ -38,6 +49,7 @@ CHECKOUT OPTIONS:
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
+  CHIOTPField: 5df19b433ccfad2a80e944d3abde128a236aaf01
   FirebaseCore: 764863fe7b1cdce57c0fb338843e384272beeeae
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
@@ -45,6 +57,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: c49dcd9467a596655ac6e41bfca64a2d1f9c0817
+PODFILE CHECKSUM: e9505ed33f7b1890c0a20cac2360610d8e2a453e
 
 COCOAPODS: 1.12.1
