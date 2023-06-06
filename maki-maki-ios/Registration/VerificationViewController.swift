@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import CHIOTPField
 
 final class VerificationViewController: UIViewController {
     // MARK: - Setup UI Elements
@@ -16,15 +17,16 @@ final class VerificationViewController: UIViewController {
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label
-    } ()
+    }()
     
     private lazy var otpTextField: UITextField = {
-        let textField = UITextField()
+        let textField = CHIOTPFieldFour()
         textField.font = AppFont.semibold.s20()
-        textField.textColor = AppColor.heading.uiColor
-        textField.text = "4 5 6 7 5 7"
+        textField.numberOfDigits = 4
+        textField.spacing = 19
+        textField.borderHeight = 2
+        textField.borderColor = AppColor.accent.uiColor
         textField.textAlignment = .center
-        textField.defaultTextAttributes.updateValue(20.0, forKey: NSAttributedString.Key.kern)
         textField.keyboardType = .decimalPad
         return textField
     }()
@@ -85,7 +87,6 @@ final class VerificationViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Verification"
-        navigationItem.leftBarButtonItem
     }
     
     // MARK: - Setup Constraints
