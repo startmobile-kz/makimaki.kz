@@ -65,7 +65,7 @@ class TabBarItem: UIView {
         ellipseImageView.snp.makeConstraints { make in
             make.height.equalTo(4)
             make.width.equalTo(4)
-            make.bottom.equalTo(tabImageView.snp.bottom).offset(6)
+            make.top.equalTo(tabImageView.snp.bottom).offset(6)
             make.centerX.equalToSuperview()
         }
     }
