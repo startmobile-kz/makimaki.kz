@@ -14,7 +14,7 @@ final class AccountOffersCell: UITableViewCell {
     
     private lazy var couponImage: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = AppImage.coupon.uiImage // App Image
+        imageView.image = AppImage.coupon.uiImage 
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()

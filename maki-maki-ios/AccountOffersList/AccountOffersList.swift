@@ -18,7 +18,7 @@ final class AccountOffersList: UIViewController {
         tableView.delegate = self
         tableView.register(AccountOffersCell.self, forCellReuseIdentifier: "offers_cell")
         tableView.rowHeight = 148
-//        tableView.separatorStyle = .none
+        tableView.separatorStyle = .none
         return tableView
     }()
     
