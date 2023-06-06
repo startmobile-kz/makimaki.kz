@@ -18,6 +18,7 @@ final class TabBar: UIView {
     private var selectedIndex = 0
     private var previousSelectedIndex = 0
     weak var tabBarDelegate: TabBarDelegate?
+    
     var tabWidth: CGFloat {
         return (UIScreen.main.bounds.width - 74) / CGFloat(viewControllers.count)
     }
@@ -45,6 +46,7 @@ final class TabBar: UIView {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 0
+//        stackView.alignment = .top
         stackView.distribution = .fillEqually
         stackView.clipsToBounds = true
         return stackView
@@ -72,43 +74,39 @@ final class TabBar: UIView {
 //        stackView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
         separatorView.snp.makeConstraints { make in
-            make.top.equalTo(snp.top).offset(-0.5)
-            make.leading.equalTo(snp.leading)
-            make.trailing.equalTo(snp.trailing)
-            make.height.equalTo(0.5)
+            make.top.equalToSuperview().offset(-1)
+            make.leading.equalToSuperview()
+            make.trailing.equalToSuperview()
+            make.height.equalTo(1)
         }
         
         stackView.snp.makeConstraints { make in
             make.top.equalTo(snp.top).offset(21)
-            make.leading.equalTo(snp.leading)
-            make.trailing.equalTo(snp.trailing)
-            make.height.equalTo(32)
+            make.leading.equalToSuperview().offset(37)
+            make.trailing.equalToSuperview().offset(-37)
+            make.height.equalTo(35)
         }
     }
     
     // MARK: - SetupBars
     private func setupBars() {
-        for vc in viewControllers {
-            let barView = TabBarItem(tabBarItem: vc.tabBarItem)
-            barView.isUserInteractionEnabled = false
+        for index in stride(from: 0, to: viewControllers.count, by: 1) {
+            let barView = TabBarItem(tabBarItem: viewControllers[index].tabBarItem, index: index)
+            barView.tabItemDelegate = self
+//            barView.isUserInteractionEnabled = false
             self.stackView.addArrangedSubview(barView)
         }
     }
-    
-    public override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        super.touchesBegan(touches, with: event)
-        guard let touchArea = touches.first?.location(in: self).x else {
+
+    private func didSelectTab(index: Int) {
+        if index + 1 == selectedIndex {
+            print("Index", index)
+            print("SelectedIndex", index)
             return
         }
-        let index = Int(floor(touchArea / tabWidth))
-        didSelectTab(index: index)
-    }
-    
-    private func didSelectTab(index: Int) {
-        if index + 1 == selectedIndex {return}
+        
         changeTab(index: index)
- 
-        previousSelectedIndex = selectedIndex
+//
         selectedIndex = index + 1
         
         tabBarDelegate?.tabBar(self, didSelectTabAt: index)
@@ -122,3 +120,9 @@ final class TabBar: UIView {
     }
 }
 
+extension TabBar: TabBarItemDelegate {
+    func itemPressed(index: Int) {
+        print("PREESSSEEED")
+        didSelectTab(index: index)
+    }
+}

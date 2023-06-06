@@ -26,7 +26,7 @@ class TabBarController: UIViewController, TabBarDelegate {
         }
     }
     
-    // MARK: -UI
+    // MARK: - UI
     private lazy var tabBar: TabBar = {
         let tabBar = TabBar()
         tabBar.tabBarDelegate = self
@@ -72,7 +72,7 @@ class TabBarController: UIViewController, TabBarDelegate {
     }
     
     func tabBar(_ tabBar: TabBar, didSelectTabAt index: Int) {
-        
+        print("index", index)
         let previousVC = viewControllers[index]
         previousVC.willMove(toParent: nil)
         previousVC.view.removeFromSuperview()

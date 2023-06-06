@@ -8,6 +8,10 @@
 import UIKit
 import SnapKit
 
+protocol TabBarItemDelegate: AnyObject {
+    func itemPressed(index: Int)
+}
+
 class TabBarItem: UIView {
     
     // MARK: - UI
@@ -25,16 +29,20 @@ class TabBarItem: UIView {
     
     // MARK: - Properties
     private let image: UIImage
+    let index: Int
+    weak var tabItemDelegate: TabBarItemDelegate?
     
     // MARK: - Lifecycle
-    init(tabBarItem item: UITabBarItem) {
+    init(tabBarItem item: UITabBarItem, index: Int) {
         guard let tabImage = item.image else {
             fatalError("You should set image to all view controllers")
         }
         self.image = tabImage
+        self.index = index
         super.init(frame: .zero)
         setupViews()
         setupConstraints()
+        setupGestureRecognizers()
     }
     
     required init?(coder: NSCoder) {
@@ -51,15 +59,24 @@ class TabBarItem: UIView {
         tabImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
             make.height.equalTo(22)
-            make.height.equalTo(20)
+            make.width.equalTo(20)
         }
         
         ellipseImageView.snp.makeConstraints { make in
             make.height.equalTo(4)
             make.width.equalTo(4)
             make.bottom.equalTo(tabImageView.snp.bottom).offset(6)
-            make.centerX.equalTo(self.snp.center)
+            make.centerX.equalToSuperview()
         }
+    }
+    
+    private func setupGestureRecognizers() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(barItemTapped))
+        addGestureRecognizer(tapRecognizer)
+    }
+    
+    @objc func barItemTapped() {
+        tabItemDelegate?.itemPressed(index: index)
     }
     
     func selectTab() {
