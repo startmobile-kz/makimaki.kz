@@ -205,7 +205,7 @@ final class MainViewController: UIViewController {
 extension MainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
         // Переходной контроллер еще не готов, так что просто сделал пуш в рандомный
-        let controller = EditProfileViewController()
+        let controller = BasketViewController()
         controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
