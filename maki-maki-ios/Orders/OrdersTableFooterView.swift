@@ -19,7 +19,9 @@ final class OrdersTableFooterView: UIView {
         button.layer.cornerRadius = 14
         return button
     }()
-
+    
+    // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -33,7 +35,7 @@ final class OrdersTableFooterView: UIView {
     // MARK: Setup Views
 
     private func setupViews() {
-        backgroundColor = .white
+        backgroundColor = AppColor.background.uiColor
         addSubview(reorderButton)
     }
 
