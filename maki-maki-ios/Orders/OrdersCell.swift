@@ -179,15 +179,15 @@ final class OrdersCell: UITableViewCell {
         return stackView
     }()
     
-    private lazy var reorderButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.backgroundColor = AppColor.grey100.uiColor
-        button.setTitle("REORDER", for: .normal)
-        button.setTitleColor(AppColor.heading.uiColor, for: .normal)
-        button.titleLabel?.font = AppFont.medium.s15()
-        button.layer.cornerRadius = 14
-        return button
-    }()
+//    private lazy var reorderButton: UIButton = {
+//        let button = UIButton(type: .system)
+//        button.backgroundColor = AppColor.grey100.uiColor
+//        button.setTitle("REORDER", for: .normal)
+//        button.setTitleColor(AppColor.heading.uiColor, for: .normal)
+//        button.titleLabel?.font = AppFont.medium.s15()
+//        button.layer.cornerRadius = 14
+//        return button
+//    }()
     
     // MARK: - Lifecycle
     
@@ -213,8 +213,8 @@ final class OrdersCell: UITableViewCell {
             dataPriceLabelsStackView,
             dividerImageView,
             collapseMenuButton,
-            ordersListStackView,
-            reorderButton
+            ordersListStackView
+//            reorderButton
         ].forEach { contentView.addSubview($0) }
         
         [
@@ -281,12 +281,12 @@ final class OrdersCell: UITableViewCell {
             make.trailing.equalToSuperview().offset(-16)
         }
         
-        reorderButton.snp.makeConstraints { make in
-            make.top.equalTo(ordersListStackView.snp.bottom).offset(15)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.centerX.equalToSuperview()
-            make.height.equalTo(53)
-        }
+//        reorderButton.snp.makeConstraints { make in
+//            make.top.equalTo(ordersListStackView.snp.bottom).offset(15)
+//            make.leading.equalToSuperview().offset(16)
+//            make.trailing.equalToSuperview().offset(-16)
+//            make.centerX.equalToSuperview()
+//            make.height.equalTo(53)
+//        }
     }
 }

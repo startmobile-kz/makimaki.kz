@@ -14,12 +14,17 @@ class OrdersViewController: UIViewController {
     let orders: [OrdersModel] = [ //private?
             OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
             OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
-            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
-            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95")
+//            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
+//            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95")
         ]
-    
+
+//    lazy var tableFooterView: OrdersTableFooterView = {
+//        let view = OrdersTableFooterView()
+//        return view
+//    }()
+
     private lazy var ordersTableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .plain)
+        let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.rowHeight = 301
         tableView.dataSource = self
@@ -63,6 +68,11 @@ class OrdersViewController: UIViewController {
 // MARK: - UICollectionView Data Source and Delegate methods
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
+
+    func numberOfSections(in tableView: UITableView) -> Int {
+        return 4
+    }
+
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders.count
     }
@@ -78,5 +88,30 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = OrdersTableFooterView(frame: CGRect(x:0,
+                                                             y: 0,
+                                                             width: UIScreen.main.bounds.width,
+                                                             height:83))
+        return footerView
+    }
+
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 83
+    }
+
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let footerView = OrdersTableFooterView(frame: CGRect(x:0,
+                                                             y: 0,
+                                                             width: UIScreen.main.bounds.width,
+                                                             height:83))
+        return footerView
+
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 83
     }
 }
