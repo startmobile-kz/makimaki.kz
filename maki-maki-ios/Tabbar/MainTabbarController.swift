@@ -20,19 +20,22 @@ class MainTabbarController: UITabBarController {
 
     private func setupTabbars() {
         // Create Tab one
-        let main = MainViewController()
+        let main = UINavigationController(rootViewController: MainViewController())
         let mainItem = UITabBarItem(title: "Main",
                                     image: AppImage.house.systemImage,
                                     selectedImage: AppImage.house_fill.systemImage)
         main.tabBarItem = mainItem
         
-        let orders = OrdersViewController()
+        let orders = UINavigationController(rootViewController: OrdersViewController())
+//        orders.navigationBar.prefersLargeTitles = true
+
         let ordersItem = UITabBarItem(title: "Orders",
                                       image: AppImage.house.systemImage,
                                       selectedImage: AppImage.house_fill.systemImage)
         orders.tabBarItem = ordersItem
         
-        let account = AccountCardsViewController()
+        let account = UINavigationController(rootViewController: AccountListViewController())
+//        account.navigationBar.prefersLargeTitles = true
         let accountItem = UITabBarItem(title: "Account",
                                       image: AppImage.house.systemImage,
                                       selectedImage: AppImage.house_fill.systemImage)

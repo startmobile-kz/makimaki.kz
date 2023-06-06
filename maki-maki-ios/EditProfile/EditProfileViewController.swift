@@ -1,5 +1,5 @@
 //
-//  ProfileEditingViewController.swift
+//  EditProfileViewController.swift
 //  maki-maki-ios
 //
 //  Created by Ravil on 30.05.2023.
@@ -23,6 +23,7 @@ final class EditProfileViewController: UIViewController {
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "UserAvatar.pdf")
+        imageView.contentMode = .scaleAspectFill
         return imageView
     }()
     
@@ -66,38 +67,41 @@ final class EditProfileViewController: UIViewController {
     // MARK: - Setup Views
     
     private func setupNavigationBar() {
-        title = "Profile"
-        edgesForExtendedLayout = []
-        }
+        self.navigationItem.title = "Profile"
+    }
     
     private func setupViews() {
         view.backgroundColor = .white
         [profileLabel, profileImageView, nameTextField, emailTextField, phoneTextField, saveButton].forEach {
             view.addSubview($0)
-            }
+        }
     }
     
     private func setupContraints() {
         profileImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(40)
-            make.left.equalToSuperview().offset(119)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(40)
             make.centerX.equalToSuperview()
+            make.width.equalTo(138)
+            make.height.equalTo(130)
         }
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(66)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(66)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+
         phoneTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(66)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(phoneTextField.snp.bottom).offset(44.5)
             make.leading.equalToSuperview().offset(16)

@@ -81,6 +81,22 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
+    private lazy var restaurantDeliveryTypeView: UIView = {
+        let uiView = UIView()
+        uiView.layer.cornerRadius = 16
+        uiView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
+        uiView.backgroundColor = AppColor.accent.uiColor
+        return uiView
+    }()
+    
+    private lazy var deliveryTypeLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Delivery Type"
+        label.font = AppFont.reqular.s14()
+        label.textColor = AppColor.heading.uiColor
+        return label
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -94,6 +110,8 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        restaurantImageView.addSubview(restaurantDeliveryTypeView)
+        restaurantDeliveryTypeView.addSubview(deliveryTypeLabel)
         let subviews = [restaurantImageView, restaurantNameLabel, starImageView, infoStackView]
         subviews.forEach({contentView.addSubview($0)})
         let arrangedSubviews = [
@@ -130,6 +148,17 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         firstDotSeparatorLabel.snp.makeConstraints { make in
             make.height.equalTo(15)
             make.width.equalTo(7)
+        }
+        
+        restaurantDeliveryTypeView.snp.makeConstraints { make in
+            make.trailing.bottom.equalToSuperview()
+            make.leading.equalTo(223)
+            make.height.equalTo(41)
+        }
+        
+        deliveryTypeLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
     }
 }

@@ -47,23 +47,29 @@ final class MainViewController: UIViewController {
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+
         setupViews()
         setupConstraints()
+        setupNavigationBar()
+    }
+
+    // MARK: - Setup Navigation Bar
+
+    private func setupNavigationBar() {
+        self.navigationItem.title = "Maki Maki"
     }
     
-    // MARK: - SetupViews
+    // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(collectionView)
     }
     
-    // MARK: - SetupConstraints
+    // MARK: - Setup Constraints
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(18)
-            make.leading.equalTo(view.snp.leading)
-            make.trailing.equalTo(view.snp.trailing)
-            make.bottom.equalTo(view.snp.bottom)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
@@ -199,7 +205,9 @@ final class MainViewController: UIViewController {
 extension MainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
         // Переходной контроллер еще не готов, так что просто сделал пуш в рандомный
-        self.navigationController?.pushViewController(EditProfileViewController(), animated: true)
+        let controller = EditProfileViewController()
+        controller.hidesBottomBarWhenPushed = true
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
