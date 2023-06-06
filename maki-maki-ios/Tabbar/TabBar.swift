@@ -13,9 +13,24 @@ protocol TabBarDelegate: AnyObject {
 }
 
 final class TabBar: UIView {
+    
+    // MARK: Properties
+    private var selectedIndex = 0
+    private var previousSelectedIndex = 0
+    weak var tabBarDelegate: TabBarDelegate?
+    var tabWidth: CGFloat {
+        return (UIScreen.main.bounds.width - 74) / CGFloat(viewControllers.count)
+    }
+    
     var viewControllers = [UIViewController]() {
         didSet {
-            
+            setupBars()
+            guard !viewControllers.isEmpty else {
+                return
+            }
+            setupConstraints()
+            layoutIfNeeded()
+            didSelectTab(index: 0)
         }
     }
     
@@ -34,14 +49,6 @@ final class TabBar: UIView {
         stackView.clipsToBounds = true
         return stackView
     }()
-    
-    // MARK: Properties
-    private var selectedIndex = 0
-    private var previousSelectedIndex = 0
-    weak var tabBarDelegate: TabBarDelegate?
-    var tabWidth: CGFloat {
-        return (UIScreen.main.bounds.width - 74) / CGFloat(viewControllers.count)
-    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
