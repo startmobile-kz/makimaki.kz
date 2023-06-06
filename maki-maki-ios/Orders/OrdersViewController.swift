@@ -11,12 +11,40 @@ class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
+    //этот двухмерный массив использую только для nubersOfSections
     let orders: [OrdersModel] = [ //private?
-            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
-            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
-//            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95"),
-//            OrdersModel(cafeName: "Bellissimo Pizza", status: "Delivered", time: "31 May 2020, 07:55 PM  ", point: "•", price: "$43.95")
+            OrdersModel(cafeName: "Bellissimo Pizza",
+                        status: "Delivered",
+                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        price: "$43.95",
+                        ordersList: [
+                            OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
+                            OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
+                            OrdersList(positionName: "1 x Pesto Tomato Pizza", price: "$10.95")
+                        ]),
+            OrdersModel(cafeName: "Bellissimo Pizza",
+                        status: "Delivered",
+                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        price: "$43.95",
+                        ordersList: []),
+            OrdersModel(cafeName: "Bellissimo Pizza",
+                        status: "Delivered",
+                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        price: "$43.95",
+                        ordersList: []),
+            OrdersModel(cafeName: "Bellissimo Pizza",
+                        status: "Delivered",
+                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        price: "$43.95",
+                        ordersList: [])
         ]
+    
+    //пка при работе с ячейками внутри секции работаю с данным массивом
+    let ordersList: [OrdersList] = [
+        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
+        OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
+        OrdersList(positionName: "1 x Pesto Tomato Pizza", price: "$10.95")
+    ]
 
 //    lazy var tableFooterView: OrdersTableFooterView = {
 //        let view = OrdersTableFooterView()
@@ -26,7 +54,7 @@ class OrdersViewController: UIViewController {
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
-        tableView.rowHeight = 301
+        tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -46,9 +74,6 @@ class OrdersViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Orders"
-
-//        self.navigationController?.title = "Orders"
-//        edgesForExtendedLayout = []
     }
     
     private func setupViews() {
@@ -70,11 +95,11 @@ class OrdersViewController: UIViewController {
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 4
+        return orders.count
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders.count
+        return ordersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -82,14 +107,31 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                        for: indexPath) as? OrdersCell else {
             fatalError("orders_cell is not registered")
         }
-
+        cell.setup(model: ordersList[indexPath.row]) //необходимо реализовать двухмерный массив
+//        let position = orders[indexPath.section].ordersList[indexPath.row]
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
     }
-
+    
+    // MARK: - Header of Section
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let headerView = OrdersTableHeaderView(frame: CGRect(x:0,
+                                                             y: 0,
+                                                             width: UIScreen.main.bounds.width,
+                                                             height:114))
+        return headerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return 114
+    }
+    
+    // MARK: - Footer of Section
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = OrdersTableFooterView(frame: CGRect(x:0,
                                                              y: 0,
@@ -99,19 +141,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 83
-    }
-
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let footerView = OrdersTableFooterView(frame: CGRect(x:0,
-                                                             y: 0,
-                                                             width: UIScreen.main.bounds.width,
-                                                             height:83))
-        return footerView
-
-    }
-
-    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 83
     }
 }
