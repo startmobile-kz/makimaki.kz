@@ -16,7 +16,9 @@ class TabBarItem: UIView {
     
     // MARK: - Properties
     private let image: UIImage
+    
     let index: Int
+    
     weak var tabItemDelegate: TabBarItemDelegate?
     
     // MARK: - UI
