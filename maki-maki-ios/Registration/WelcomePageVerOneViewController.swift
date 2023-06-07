@@ -71,10 +71,8 @@ final class WelcomePageVerOneViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        DispatchQueue.main.async { [weak self] in
-            self?.setupBottomBorderLine()
-            self?.cornerRadius()
-        }
+            setupBottomBorderLine()
+            cornerRadius()
     }
     
     // MARK: - Setup Views

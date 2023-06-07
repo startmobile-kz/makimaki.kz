@@ -34,6 +34,8 @@ final class WelcomePageVerTwoViewController: UIViewController {
         textField.placeholder = "+7 7082020155"
         textField.textColor = AppColor.heading.uiColor
         textField.borderStyle = .none
+        textField.autocorrectionType = .no
+        textField.keyboardType = .numberPad
         return textField
     }()
 
@@ -56,9 +58,7 @@ final class WelcomePageVerTwoViewController: UIViewController {
 
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        DispatchQueue.main.async { [weak self] in
-            self?.setupBottomBorderLine()
-        }
+        setupBottomBorderLine()
     }
 
     // MARK: - Setup Views
