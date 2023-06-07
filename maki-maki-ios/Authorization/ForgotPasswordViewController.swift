@@ -3,12 +3,6 @@
 //  maki-maki-ios
 //
 //  Created by Darkhan on 06.06.2023.
-////
-//  ForgotPasswordViewController.swift
-//  maki-maki-ios
-//
-//  Created by Darkhan on 03.06.2023.
-//
 
 import UIKit
 import SnapKit
@@ -16,11 +10,9 @@ import SnapKit
 final class ForgotPasswordViewController: UIViewController {
 
     // MARK: - UI Components
-    
-    
      private lazy var suggestionLabel: UILabel = {
          let label = UILabel()
-         label.text = "Please enter your email address. You will receive a link to create a new password via email"
+         label.text = "Please enter your email address. You will receive a link to create a new password via email."
          label.font = AppFont.reqular.s15()
          label.textColor = AppColor.paragraph.uiColor
          label.numberOfLines = 0
@@ -28,23 +20,24 @@ final class ForgotPasswordViewController: UIViewController {
          return label
      }()
 
-     private lazy var mailTextfield: UITextField = {
+     private lazy var emailTextfield: UITextField = {
          let textField = UITextField()
-         textField.placeholder = "Enter your mail"
-         textField.textColor = AppColor.heading.uiColor
+         textField.placeholder = "Enter your email"
+         textField.textColor = AppColor.paragraph.uiColor
+         textField.font = AppFont.reqular.s15()
+         textField.autocorrectionType = .no
          textField.borderStyle = .none
          return textField
      }()
 
      private lazy var sendButton: UIButton = {
          let button = UIButton(type: .system)
-         button.setTitle("CONTINUE", for: .normal)
+         button.setTitle("SEND", for: .normal)
          button.setTitleColor(AppColor.heading.uiColor, for: .normal)
          button.layer.cornerRadius = 14
          button.backgroundColor = AppColor.accent.uiColor
         return button
      }()
-
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -53,32 +46,33 @@ final class ForgotPasswordViewController: UIViewController {
         setUpConstraints()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpViews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        setupBottomBorderLine()
     }
-
+    
     // MARK: - Setup Views
     private func setUpViews() {
         view.backgroundColor = AppColor.background.uiColor
-        [suggestionLabel, mailTextfield, sendButton].forEach {
+        [suggestionLabel, emailTextfield, sendButton].forEach {
           view.addSubview($0)
         }
     }
-
+    
+    // MARK: - Setup Border for textField
+    private func setupBottomBorderLine() {
+        emailTextfield.addBottomBorder()
+    }
+    
     // MARK: - Setup Constraints
     private func setUpConstraints() {
-    
-
-        
-
         suggestionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalToSuperview().offset(78)
+            make.top.equalToSuperview().offset(122)
         }
 
-        mailTextfield.snp.makeConstraints { make in
+        emailTextfield.snp.makeConstraints { make in
             make.top.equalTo(suggestionLabel.snp.bottom).offset(40)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
@@ -86,7 +80,7 @@ final class ForgotPasswordViewController: UIViewController {
         }
 
         sendButton.snp.makeConstraints { make in
-            make.top.equalTo(mailTextfield.snp.bottom).offset(32)
+            make.top.equalTo(emailTextfield.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
