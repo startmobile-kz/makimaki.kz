@@ -67,24 +67,24 @@ class OffersCellV2: UITableViewCell {
     
     private func setupConstraints() {
         couponImage.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(12)
+            make.top.equalToSuperview().offset(20)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(124)
-            make.bottom.equalToSuperview().offset(-12)
+            make.height.equalTo(48)
+            make.bottom.equalToSuperview().offset(-20)
         }
         saleOffLabel.snp.makeConstraints { make in
-            make.top.equalTo(couponImage.snp.top).offset(36)
-//            make.leading.equalTo(percentLabel.snp.trailing).offset(44)
+            make.top.equalTo(19)
+            make.leading.equalTo(couponImage.snp.trailing).offset(13)
         }
         daysLabel.snp.makeConstraints { make in
             make.top.equalTo(saleOffLabel.snp.bottom).offset(4)
-//            make.leading.equalTo(percentLabel.snp.trailing).offset(44)
+            make.leading.equalTo(couponImage.snp.trailing).offset(13)
         }
         copyButton.snp.makeConstraints { make in
-            make.trailing.equalTo(couponImage.snp.trailing).offset(-24)
-            make.centerY.equalTo(couponImage.snp.centerY)
-            make.size.equalTo(64)
+            make.top.equalTo(19)
+            make.leading.equalToSuperview().offset(261)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(48)
         }
     }
 }
