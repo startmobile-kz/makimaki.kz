@@ -17,6 +17,8 @@ final class TabBarItem: UIView {
     // MARK: - Properties
     private let image: UIImage
     
+    private let selectedImage: UIImage
+    
     private let index: Int
     
     weak var tabItemDelegate: TabBarItemDelegate?
@@ -34,10 +36,12 @@ final class TabBarItem: UIView {
     
     // MARK: - Lifecycle
     init(tabBarItem item: UITabBarItem, index: Int) {
-        guard let tabImage = item.image else {
+        guard let tabImage = item.image,
+              let selectedTabImage = item.selectedImage else {
             fatalError("You should set image to all view controllers")
         }
         self.image = tabImage
+        self.selectedImage = selectedTabImage
         self.index = index
         super.init(frame: .zero)
         setupViews()
@@ -81,14 +85,12 @@ final class TabBarItem: UIView {
     
     func selectTab() {
         ellipseImageView.alpha = 1
-        tabImageView.image = tabImageView.image?.withRenderingMode(.alwaysTemplate)
-        tabImageView.tintColor = AppColor.accent.uiColor
+        tabImageView.image = selectedImage
      }
      
      func deselectTab() {
          ellipseImageView.alpha = 0
-         tabImageView.image = tabImageView.image?.withRenderingMode(.alwaysTemplate)
-         tabImageView.tintColor = AppColor.paragraph.uiColor
+         tabImageView.image = image
      }
     
     override var intrinsicContentSize: CGSize {
