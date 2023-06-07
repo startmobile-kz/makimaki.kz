@@ -17,7 +17,7 @@ final class TabBarItem: UIView {
     // MARK: - Properties
     private let image: UIImage
     
-    let index: Int
+    private let index: Int
     
     weak var tabItemDelegate: TabBarItemDelegate?
     
@@ -92,6 +92,9 @@ final class TabBarItem: UIView {
      }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: TabBarSettings.tabBarItemImageWidth, height: TabBarSettings.tabBarItemImageHeight)
+        return CGSize(
+            width: TabBarSettings.tabBarItemImageWidth,
+            height: TabBarSettings.tabBarItemImageHeight
+        )
     }
 }
