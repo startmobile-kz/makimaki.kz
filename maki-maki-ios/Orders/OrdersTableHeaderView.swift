@@ -159,4 +159,21 @@ final class OrdersTableHeaderView: UIView {
             make.width.height.equalTo(32)
         }
     }
+
+    private func setUp() {
+//        let components = [
+//            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
+//                .foregroundColor: AppColor.paragraph.uiColor,
+//                .font: AppFont.reqular.s14()
+//            ]),
+//            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
+//                .foregroundColor: AppColor.grey300.uiColor,
+//                .font: AppFont.reqular.s15()
+//            ])
+//        ]
+//
+//        let string = NSMutableAttributedString()
+//        components.forEach(string.append)
+//        orderDataLabel.attributedText = string
+    }
 }

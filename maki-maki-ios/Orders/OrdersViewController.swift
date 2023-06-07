@@ -11,39 +11,54 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
-    //этот двухмерный массив использую только для nubersOfSections
-    let orders: [OrdersModel] = [
+    // этот двухмерный массив использую только для nubersOfSections
+    lazy var orders: [OrdersModel] = {
+        return [
             OrdersModel(cafeName: "Bellissimo Pizza",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        time: "31 May 2020, 07:55 PM  ",
+                        point: "•",
                         price: "$43.95",
-                        ordersList: [
-                            OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
-                            OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
-                            OrdersList(positionName: "1 x Pesto Tomato Pizza", price: "$10.95")
-                        ]),
-            OrdersModel(cafeName: "Bellissimo Pizza",
+                        ordersList: self.firstOrder),
+            OrdersModel(cafeName: "KFC",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        time: "31 May 2020, 07:55 PM  ",
+                        point: "•",
                         price: "$43.95",
-                        ordersList: []),
-            OrdersModel(cafeName: "Bellissimo Pizza",
+                        ordersList: self.secondOrder),
+            OrdersModel(cafeName: "Burger King",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        time: "31 May 2020, 07:55 PM  ",
+                        point: "•",
                         price: "$43.95",
-                        ordersList: []),
-            OrdersModel(cafeName: "Bellissimo Pizza",
+                        ordersList: self.thirdOrder),
+            OrdersModel(cafeName: "Bahandi",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ", point: "•",
+                        time: "31 May 2020, 07:55 PM  ",
+                        point: "•",
                         price: "$43.95",
-                        ordersList: [])
+                        ordersList: self.fouthOrder)
         ]
+    }()
     
-    //пока при работе с ячейками внутри секции работаю с данным массивом
-    let ordersList: [OrdersList] = [
+    // пока при работе с ячейками внутри секции работаю с данным массивом
+    let firstOrder: [OrdersList] = [
+        OrdersList(positionName: "1 x Burger", price: "$14.40"),
+        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
+        OrdersList(positionName: "1 x Cola", price: "$10.95")
+    ]
+
+    let secondOrder: [OrdersList] = [
+        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
+    ]
+
+    let thirdOrder: [OrdersList] = [
+        //        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
+    ]
+
+    let fouthOrder: [OrdersList] = [
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
-        OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
-        OrdersList(positionName: "1 x Pesto Tomato Pizza", price: "$10.95")
+        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
     ]
 
     private lazy var ordersTableView: UITableView = {
@@ -52,6 +67,7 @@ final class OrdersViewController: UIViewController {
         tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
+        tableView.separatorStyle = .none
         return tableView
     }()
     
@@ -94,7 +110,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return ordersList.count
+        return orders[section].ordersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -102,7 +118,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                        for: indexPath) as? OrdersCell else {
             fatalError("orders_cell is not registered")
         }
-        cell.setup(model: ordersList[indexPath.row]) //необходимо реализовать двухмерный массив
+        cell.setup(model: orders[indexPath.section].ordersList[indexPath.row])
         return cell
     }
     
@@ -113,10 +129,12 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     // MARK: - Header of Section
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let headerView = OrdersTableHeaderView(frame: CGRect(x:0,
+        let headerView = OrdersTableHeaderView(frame: CGRect(x: 0,
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:114))
+
+//        headerView.setup orders[section]
         return headerView
     }
     
