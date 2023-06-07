@@ -108,12 +108,52 @@ final class FavoritesTableViewCell: UITableViewCell {
     private func setupConstraints() {
         favoritesImageView.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
+            make.centerY.equalToSuperview()
             make.size.equalTo(90)
+            
         }
         
         favoritesNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(<#T##other: ConstraintRelatableTarget##ConstraintRelatableTarget#>)
+            make.top.equalToSuperview().offset(15)
+            make.leading.equalTo(favoritesImageView.snp.trailing).offset(16)
         }
+        
+        favoritesDescriptionLabel.snp.makeConstraints { make in
+            make.top.equalTo(favoritesNameLabel.snp.bottom).offset(4)
+            make.leading.equalTo(favoritesImageView.snp.trailing).offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
+        
+        starImageView.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-22)
+            make.leading.equalTo(favoritesImageView.snp.trailing).offset(16)
+        }
+        
+        ratingLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-19)
+            make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
+        }
+        
+        firstDotSeparatorLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-19)
+            make.leading.equalTo(ratingLabel.snp.trailing).offset(8)
+        }
+        
+        deliveryTimeLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-19)
+            make.leading.equalTo(firstDotSeparatorLabel.snp.trailing).offset(8)
+        }
+        
+        secondDotSeparatorLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-19)
+            make.leading.equalTo(deliveryTimeLabel.snp.trailing).offset(8)
+        }
+        
+        priceLabel.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-19)
+            make.leading.equalTo(secondDotSeparatorLabel.snp.trailing).offset(8)
+        }
+        
     }
 
 }

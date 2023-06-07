@@ -13,8 +13,8 @@ final class FavoritesViewController: UIViewController {
     
     private lazy var favoritesTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "favoritesCell")
-        tableView.rowHeight = 90
+        tableView.register(FavoritesTableViewCell.self, forCellReuseIdentifier: "favoritesCell")
+        tableView.rowHeight = 120
         tableView.dataSource = self
         tableView.delegate = self
         return tableView
@@ -46,6 +46,12 @@ final class FavoritesViewController: UIViewController {
 
     private func setupConstraints() {
         
+        favoritesTableView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            
+        }
     }
     
 }
@@ -60,6 +66,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
                 as? FavoritesTableViewCell else {
             fatalError("favoritesCell not found")
         }
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
 }
