@@ -106,7 +106,14 @@ final class FavoritesTableViewCell: UITableViewCell {
     // MARK: - Setup Constraints
 
     private func setupConstraints() {
+        favoritesImageView.snp.makeConstraints { make in
+            make.leading.equalToSuperview().offset(16)
+            make.size.equalTo(90)
+        }
         
+        favoritesNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(<#T##other: ConstraintRelatableTarget##ConstraintRelatableTarget#>)
+        }
     }
 
 }

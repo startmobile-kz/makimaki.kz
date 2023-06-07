@@ -58,7 +58,7 @@ extension FavoritesViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "favoritesCell", for: indexPath)
                 as? FavoritesTableViewCell else {
-            fatalError("basketCell not found")
+            fatalError("favoritesCell not found")
         }
         return cell
     }
