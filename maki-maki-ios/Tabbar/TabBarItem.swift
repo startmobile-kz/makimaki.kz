@@ -90,4 +90,8 @@ class TabBarItem: UIView {
          tabImageView.image = tabImageView.image?.withRenderingMode(.alwaysTemplate)
          tabImageView.tintColor = AppColor.paragraph.uiColor
      }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 20, height: 32)
+    }
 }

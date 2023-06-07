@@ -18,10 +18,7 @@ final class TabBar: UIView {
     private var selectedIndex = 0
     private var previousSelectedIndex = 0
     weak var tabBarDelegate: TabBarDelegate?
-    
-    var tabWidth: CGFloat {
-        return (UIScreen.main.bounds.width - 74) / CGFloat(viewControllers.count)
-    }
+    private var spacing = (UIScreen.main.bounds.width - 4 * 20) / 4
     
     var viewControllers = [UIViewController]() {
         didSet {
@@ -45,10 +42,7 @@ final class TabBar: UIView {
     private lazy var stackView: UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 0
-//        stackView.alignment = .top
-        stackView.distribution = .fillEqually
-        stackView.clipsToBounds = true
+        stackView.spacing = spacing
         return stackView
     }()
     
@@ -71,8 +65,13 @@ final class TabBar: UIView {
     // MARK: - SetupConstraints
     private func setupConstraints() {
         
-//        stackView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
+        stackView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
         
+        stackView.arrangedSubviews.forEach { $0.layoutMargins = UIEdgeInsets.zero }
+        stackView.isLayoutMarginsRelativeArrangement = true
+        
+        let size = stackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
+        print(size, "size")
         separatorView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(-1)
             make.leading.equalToSuperview()
@@ -81,10 +80,8 @@ final class TabBar: UIView {
         }
         
         stackView.snp.makeConstraints { make in
-            make.top.equalTo(snp.top).offset(21)
-            make.leading.equalToSuperview().offset(37)
-            make.trailing.equalToSuperview().offset(-37)
-            make.height.equalTo(35)
+            make.bottom.equalToSuperview().offset(-30)
+            make.leading.equalToSuperview().offset(spacing / 2)
         }
     }
     
@@ -100,15 +97,10 @@ final class TabBar: UIView {
 
     private func didSelectTab(index: Int) {
         if index + 1 == selectedIndex {
-            print("Index", index)
-            print("SelectedIndex", index)
             return
         }
-        
         changeTab(index: index)
-//
         selectedIndex = index + 1
-        
         tabBarDelegate?.tabBar(self, didSelectTabAt: index)
     }
     

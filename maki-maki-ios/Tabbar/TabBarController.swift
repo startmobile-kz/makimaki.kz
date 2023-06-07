@@ -18,7 +18,7 @@ class TabBarController: UIViewController, TabBarDelegate {
     weak var delegate: TabBarControllerDelegate?
     
     var selectedIndex = 0
-    var previousSelectedIndex = 0
+//    var previousSelectedIndex = 0
     
     var viewControllers = [UIViewController]() {
         didSet {
@@ -77,7 +77,7 @@ class TabBarController: UIViewController, TabBarDelegate {
         previousVC.willMove(toParent: nil)
         previousVC.view.removeFromSuperview()
         previousVC.removeFromParent()
-        previousSelectedIndex = selectedIndex
+//        previousSelectedIndex = selectedIndex
         
         let vc = viewControllers[index]
         delegate?.tabBarController(self, didSelect: vc)
