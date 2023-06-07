@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16702A2F5E3700401843 /* FavoritesViewController.swift */; };
+		037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
 		1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
@@ -64,6 +65,7 @@
 
 /* Begin PBXFileReference section */
 		037F16702A2F5E3700401843 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
+		037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
@@ -135,6 +137,7 @@
 			isa = PBXGroup;
 			children = (
 				037F16702A2F5E3700401843 /* FavoritesViewController.swift */,
+				037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */,
 			);
 			path = Favorites;
 			sourceTree = "<group>";
@@ -595,6 +598,7 @@
 				037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
+				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 				2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */,
 			);
