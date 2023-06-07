@@ -12,7 +12,7 @@ protocol TabBarItemDelegate: AnyObject {
     func itemPressed(index: Int)
 }
 
-class TabBarItem: UIView {
+final class TabBarItem: UIView {
     
     // MARK: - Properties
     private let image: UIImage
