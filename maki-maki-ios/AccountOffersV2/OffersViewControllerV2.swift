@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class OffersViewControllerV2: UIViewController {
+final class OffersViewControllerV2: UIViewController {
     
     // MARK: - UI
     
