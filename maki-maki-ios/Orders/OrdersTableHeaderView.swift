@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class OrdersTableHeaderView: UIView {
+final class OrdersTableHeaderView: UIView {
 
     static let identifier = String(describing: OrdersTableHeaderView.self)
     

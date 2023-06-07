@@ -7,7 +7,7 @@
 
 import UIKit
 
-class OrdersViewController: UIViewController {
+final class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
@@ -39,7 +39,7 @@ class OrdersViewController: UIViewController {
                         ordersList: [])
         ]
     
-    //пка при работе с ячейками внутри секции работаю с данным массивом
+    //пока при работе с ячейками внутри секции работаю с данным массивом
     let ordersList: [OrdersList] = [
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
         OrdersList(positionName: "1 x Small Chicken Pizza", price: "$15.20"),
