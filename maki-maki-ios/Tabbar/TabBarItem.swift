@@ -14,23 +14,21 @@ protocol TabBarItemDelegate: AnyObject {
 
 class TabBarItem: UIView {
     
+    // MARK: - Properties
+    private let image: UIImage
+    let index: Int
+    weak var tabItemDelegate: TabBarItemDelegate?
+    
     // MARK: - UI
     private lazy var tabImageView: UIImageView = {
         let imageView = UIImageView(image: image)
-        
         return imageView
     }()
     
     private lazy var ellipseImageView: UIImageView = {
         let imageView = UIImageView(image: AppImage.ellipse.uiImage)
-        
         return imageView
     }()
-    
-    // MARK: - Properties
-    private let image: UIImage
-    let index: Int
-    weak var tabItemDelegate: TabBarItemDelegate?
     
     // MARK: - Lifecycle
     init(tabBarItem item: UITabBarItem, index: Int) {

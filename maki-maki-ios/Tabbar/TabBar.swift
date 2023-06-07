@@ -16,8 +16,9 @@ final class TabBar: UIView {
     
     // MARK: Properties
     private var selectedIndex = 0
-    private var previousSelectedIndex = 0
+    
     weak var tabBarDelegate: TabBarDelegate?
+    
     private var spacing = (UIScreen.main.bounds.width - 4 * 20) / 4
     
     var viewControllers = [UIViewController]() {
@@ -64,19 +65,11 @@ final class TabBar: UIView {
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        
-        stackView.frame = self.bounds.inset(by: UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0))
-        
-        stackView.arrangedSubviews.forEach { $0.layoutMargins = UIEdgeInsets.zero }
-        stackView.isLayoutMarginsRelativeArrangement = true
-        
-        let size = stackView.systemLayoutSizeFitting(UIView.layoutFittingCompressedSize)
-        print(size, "size")
         separatorView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(-1)
+            make.top.equalToSuperview().offset(-0.5)
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview()
-            make.height.equalTo(1)
+            make.height.equalTo(0.5)
         }
         
         stackView.snp.makeConstraints { make in
@@ -90,7 +83,6 @@ final class TabBar: UIView {
         for index in stride(from: 0, to: viewControllers.count, by: 1) {
             let barView = TabBarItem(tabBarItem: viewControllers[index].tabBarItem, index: index)
             barView.tabItemDelegate = self
-//            barView.isUserInteractionEnabled = false
             self.stackView.addArrangedSubview(barView)
         }
     }
@@ -112,9 +104,9 @@ final class TabBar: UIView {
     }
 }
 
+// MARK: - TabBarItem delegate
 extension TabBar: TabBarItemDelegate {
     func itemPressed(index: Int) {
-        print("PREESSSEEED")
         didSelectTab(index: index)
     }
 }

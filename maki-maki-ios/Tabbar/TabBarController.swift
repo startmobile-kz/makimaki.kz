@@ -8,17 +8,10 @@
 import UIKit
 import SnapKit
 
-protocol TabBarControllerDelegate: NSObjectProtocol {
-    func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController)
-}
-
 class TabBarController: UIViewController, TabBarDelegate {
     
     // MARK: - Properties
-    weak var delegate: TabBarControllerDelegate?
-    
     var selectedIndex = 0
-//    var previousSelectedIndex = 0
     
     var viewControllers = [UIViewController]() {
         didSet {
@@ -55,7 +48,6 @@ class TabBarController: UIViewController, TabBarDelegate {
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-
         containerView.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top)
             make.leading.equalTo(view.snp.leading)
@@ -72,20 +64,16 @@ class TabBarController: UIViewController, TabBarDelegate {
     }
     
     func tabBar(_ tabBar: TabBar, didSelectTabAt index: Int) {
-        print("index", index)
         let previousVC = viewControllers[index]
         previousVC.willMove(toParent: nil)
         previousVC.view.removeFromSuperview()
         previousVC.removeFromParent()
-//        previousSelectedIndex = selectedIndex
-        
+
         let vc = viewControllers[index]
-        delegate?.tabBarController(self, didSelect: vc)
         addChild(vc)
         selectedIndex = index + 1
         vc.view.frame = containerView.bounds
         containerView.addSubview(vc.view)
         vc.didMove(toParent: self)
-        
     }
 }

@@ -8,27 +8,27 @@
 import UIKit
 import SnapKit
 
-class Main2TabBarController: TabBarController, TabBarControllerDelegate {
-    func tabBarController(_ tabBarController: TabBarController, didSelect viewController: UIViewController) {
-        print("")
-    }
+class Main2TabBarController: TabBarController {
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
-        self.delegate = self
+        setupTabBars()
+    }
+    
+    private func setupTabBars() {
         let mainVC = MainViewController()
         let searchVC = EditProfileViewController()
         let ordersVC = OrdersViewController()
         let profileVC = WelcomePageVerOneViewController()
         
-        mainVC.tabBarItem = UITabBarItem(title: "Home", image: UIImage(named: "home"), selectedImage: nil)
+        mainVC.tabBarItem = UITabBarItem(title: "Home", image: AppImage.home.uiImage, selectedImage: nil)
         searchVC.tabBarItem = UITabBarItem(
-            title: "Search", image: UIImage(named: "search"), selectedImage: nil)
+            title: "Search", image: AppImage.search.uiImage, selectedImage: nil)
         ordersVC.tabBarItem = UITabBarItem(
-            title: "Orders", image: UIImage(named: "shopping_bag"), selectedImage: nil)
+            title: "Orders", image: AppImage.shopping_bag.uiImage, selectedImage: nil)
         profileVC.tabBarItem = UITabBarItem(
-            title: "Profile", image: UIImage(named: "user"), selectedImage: nil)
+            title: "Profile", image: AppImage.user.uiImage, selectedImage: nil)
         
         self.viewControllers = [mainVC, searchVC, ordersVC, profileVC]
     }
