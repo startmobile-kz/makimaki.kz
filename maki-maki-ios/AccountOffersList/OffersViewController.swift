@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class AccountOffersList: UIViewController {
+final class OffersViewController: UIViewController {
 
     // MARK: - UI
     
@@ -16,7 +16,7 @@ final class AccountOffersList: UIViewController {
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(AccountOffersCell.self, forCellReuseIdentifier: "offers_cell")
+        tableView.register(OffersCell.self, forCellReuseIdentifier: "offers_cell")
         tableView.rowHeight = 148
         tableView.separatorStyle = .none
         return tableView
@@ -44,7 +44,7 @@ final class AccountOffersList: UIViewController {
     }
 }
 
-extension AccountOffersList: UITableViewDataSource, UITableViewDelegate {
+extension OffersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return 4
     }
@@ -53,7 +53,7 @@ extension AccountOffersList: UITableViewDataSource, UITableViewDelegate {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "offers_cell",
             for: indexPath
-        ) as? AccountOffersCell else {
+        ) as? OffersCell else {
             fatalError("Could not cast to CategoryCollectionViewCell")
         }
         return cell
