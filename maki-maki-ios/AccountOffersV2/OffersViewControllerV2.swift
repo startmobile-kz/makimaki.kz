@@ -17,8 +17,8 @@ class OffersViewControllerV2: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(OffersCellV2.self, forCellReuseIdentifier: "offers_cellv2")
-//        tableView.rowHeight = 148
-//        tableView.separatorStyle = .none
+        tableView.rowHeight = 88
+        tableView.separatorStyle = .none
         return tableView
     }()
 
