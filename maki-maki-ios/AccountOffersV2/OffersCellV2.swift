@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class OffersCellV2: UITableViewCell {
+final class OffersCellV2: UITableViewCell {
 
     // MARK: - UI
     
