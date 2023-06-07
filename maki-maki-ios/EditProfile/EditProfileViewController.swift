@@ -22,9 +22,20 @@ final class EditProfileViewController: UIViewController {
     
     private lazy var profileImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "UserAvatar.pdf")
+        imageView.image = AppImage.edit_avatar.uiImage
         imageView.contentMode = .scaleAspectFill
         return imageView
+    }()
+    
+    private lazy var editButton: UIButton = {
+        let button = UIButton(type: .system)
+        let imageView = UIImageView()
+        button.backgroundColor = AppColor.accent.uiColor
+        button.layer.cornerRadius = 20
+        button.setImage(AppImage.edit.uiImage, for: .normal)
+        button.imageView?.contentMode = .scaleAspectFit
+        imageView.image = AppImage.edit.uiImage
+        return button
     }()
     
     private lazy var nameTextField: UITextField = {
@@ -72,7 +83,13 @@ final class EditProfileViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
-        [profileLabel, profileImageView, nameTextField, emailTextField, phoneTextField, saveButton].forEach {
+        [profileLabel,
+         profileImageView,
+         editButton,
+         nameTextField,
+         emailTextField,
+         phoneTextField,
+         saveButton].forEach {
             view.addSubview($0)
         }
     }
@@ -83,6 +100,11 @@ final class EditProfileViewController: UIViewController {
             make.centerX.equalToSuperview()
             make.width.equalTo(138)
             make.height.equalTo(130)
+        }
+        editButton.snp.makeConstraints { make in
+            make.leading.equalTo(profileImageView.snp.leading).offset(97.5)
+            make.bottom.equalTo(profileImageView.snp.bottom).offset(-90)
+            make.size.equalTo(40)
         }
         nameTextField.snp.makeConstraints { make in
             make.top.equalTo(profileImageView.snp.bottom).offset(66)
