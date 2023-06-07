@@ -41,6 +41,7 @@ enum AppImage: String, AppImageProtocol {
     case shopping_bag = "shopping_bag"
     case user = "user"
     case ellipse = "ellipse"
+    case coupon = "coupon"
     case edit_avatar = "edit_avatar"
     case edit = "edit"
 }
