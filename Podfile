@@ -7,7 +7,7 @@ target 'maki-maki-ios' do
   pod 'SnapKit', '5.6.0'
   pod 'FirebaseCore', :git => 'https://github.com/firebase/firebase-ios-sdk.git', :branch => 'master'
   pod 'SwiftLint', '0.52.2'
-  pod 'InputMask', '7.2.8'
+  pod 'InputMask', '6.1.0'
   pod 'IQKeyboardManager', '6.5.0'
 
   post_install do |installer|
