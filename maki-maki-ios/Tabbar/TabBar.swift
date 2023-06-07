@@ -19,7 +19,7 @@ final class TabBar: UIView {
     
     weak var tabBarDelegate: TabBarDelegate?
     
-    private var spacing = (UIScreen.main.bounds.width - 4 * 20) / 4
+    private var spacing = TabBarSettings.spacingBetweenItems
     
     var viewControllers = [UIViewController]() {
         didSet {

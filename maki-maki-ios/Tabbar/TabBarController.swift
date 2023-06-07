@@ -57,7 +57,7 @@ class TabBarController: UIViewController, TabBarDelegate {
             make.leading.equalTo(view.snp.leading)
             make.trailing.equalTo(view.snp.trailing)
             make.bottom.equalTo(view.snp.bottom)
-            make.height.equalTo(83)
+            make.height.equalTo(TabBarSettings.tabBarHeight)
         }
     }
     

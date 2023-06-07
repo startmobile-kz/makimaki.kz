@@ -58,13 +58,13 @@ final class TabBarItem: UIView {
     private func setupConstraints() {
         tabImageView.snp.makeConstraints { make in
             make.center.equalToSuperview()
-            make.height.equalTo(22)
-            make.width.equalTo(20)
+            make.height.equalTo(TabBarSettings.tabBarItemImageHeight)
+            make.width.equalTo(TabBarSettings.tabBarItemImageWidth)
         }
         
         ellipseImageView.snp.makeConstraints { make in
-            make.height.equalTo(4)
-            make.width.equalTo(4)
+            make.height.equalTo(TabBarSettings.ellipseHeight)
+            make.width.equalTo(TabBarSettings.ellipseWidth)
             make.top.equalTo(tabImageView.snp.bottom).offset(6)
             make.centerX.equalToSuperview()
         }
@@ -92,6 +92,6 @@ final class TabBarItem: UIView {
      }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 20, height: 32)
+        return CGSize(width: TabBarSettings.tabBarItemImageWidth, height: TabBarSettings.tabBarItemImageHeight)
     }
 }
