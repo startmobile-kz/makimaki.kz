@@ -76,6 +76,11 @@ final class WelcomePageVerOneViewController: UIViewController {
         setUpConstraints()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        cornerRadius()
+    }
+    
     // MARK: - Setup Views
     private func setUpViews() {
         [makiImage, welcomeView].forEach {
