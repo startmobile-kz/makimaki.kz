@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class Main2TabBarController: TabBarController {
+final class Main2TabBarController: TabBarController {
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -17,19 +17,19 @@ class Main2TabBarController: TabBarController {
     }
     
     private func setupTabBars() {
-        let mainVC = MainViewController()
-        let searchVC = EditProfileViewController()
-        let ordersVC = OrdersViewController()
-        let profileVC = WelcomePageVerOneViewController()
+        let mainViewController = MainViewController()
+        let searchViewController = EditProfileViewController()
+        let ordersViewController = OrdersViewController()
+        let profileViewController = WelcomePageVerOneViewController()
         
-        mainVC.tabBarItem = UITabBarItem(title: "Home", image: AppImage.home.uiImage, selectedImage: nil)
-        searchVC.tabBarItem = UITabBarItem(
+        mainViewController.tabBarItem = UITabBarItem(title: "Home", image: AppImage.home.uiImage, selectedImage: nil)
+        searchViewController.tabBarItem = UITabBarItem(
             title: "Search", image: AppImage.search.uiImage, selectedImage: nil)
-        ordersVC.tabBarItem = UITabBarItem(
+        ordersViewController.tabBarItem = UITabBarItem(
             title: "Orders", image: AppImage.shopping_bag.uiImage, selectedImage: nil)
-        profileVC.tabBarItem = UITabBarItem(
+        profileViewController.tabBarItem = UITabBarItem(
             title: "Profile", image: AppImage.user.uiImage, selectedImage: nil)
         
-        self.viewControllers = [mainVC, searchVC, ordersVC, profileVC]
+        self.viewControllers = [mainViewController, searchViewController, ordersViewController, profileViewController]
     }
 }
