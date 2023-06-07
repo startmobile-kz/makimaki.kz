@@ -26,9 +26,9 @@ PODS:
   - SwiftLint (0.52.2)
 
 DEPENDENCIES:
-  - CHIOTPField
+  - CHIOTPField (= 0.1.0)
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
-  - InputMask
+  - InputMask (= 6.1.0)
   - IQKeyboardManager (= 6.5.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
@@ -65,7 +65,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: d7d1b6f5112e16ef8f779b8c8e123b7fdd81f4b0
-PODFILE CHECKSUM: e9505ed33f7b1890c0a20cac2360610d8e2a453e
+PODFILE CHECKSUM: 682d16c2e4f86e9ae0d8d956011a2b3f197d5ca7
 
 COCOAPODS: 1.12.1

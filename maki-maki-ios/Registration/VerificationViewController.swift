@@ -19,7 +19,7 @@ final class VerificationViewController: UIViewController {
         return label
     }()
     
-    private lazy var otpTextField: UITextField = {
+    private lazy var otpTextField: CHIOTPFieldFour = {
         let textField = CHIOTPFieldFour()
         textField.font = AppFont.semibold.s20()
         textField.numberOfDigits = 4
@@ -27,7 +27,7 @@ final class VerificationViewController: UIViewController {
         textField.borderHeight = 2
         textField.borderColor = AppColor.accent.uiColor
         textField.textAlignment = .center
-        textField.keyboardType = .decimalPad
+        textField.keyboardType = .numberPad
         return textField
     }()
     

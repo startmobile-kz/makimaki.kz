@@ -9,6 +9,7 @@ target 'maki-maki-ios' do
   pod 'SwiftLint', '0.52.2'
   pod 'InputMask', '6.1.0'
   pod 'IQKeyboardManager', '6.5.0'
+  pod 'CHIOTPField', '0.1.0'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
@@ -19,6 +20,5 @@ target 'maki-maki-ios' do
       end
     end
   end
-  pod 'CHIOTPField'
 
 end
