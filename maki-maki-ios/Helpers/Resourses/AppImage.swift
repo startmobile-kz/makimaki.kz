@@ -36,6 +36,7 @@ enum AppImage: String, AppImageProtocol {
     case house_fill = "house.fill"
     case check = "check"
     case eye = "eye"
+    case coupon = "coupon"
     case edit_avatar = "edit_avatar"
     case edit = "edit"
     case like = "like_al"
@@ -45,4 +46,7 @@ enum AppImage: String, AppImageProtocol {
     case payment = "payment_al"
     case user = "user_al"
     case arrowRight = "arrow_right"
+    case homeMA = "home_ma"
+    case locationMA = "location_ma"
+    case workMA = "work_ma"
 }
