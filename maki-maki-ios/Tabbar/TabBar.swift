@@ -73,7 +73,7 @@ final class TabBar: UIView {
         }
         
         stackView.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-30)
+            make.bottom.equalToSuperview().offset(-40)
             make.leading.equalToSuperview().offset(spacing / 2)
         }
     }
