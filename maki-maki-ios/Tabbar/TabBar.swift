@@ -15,7 +15,7 @@ protocol TabBarDelegate: AnyObject {
 final class TabBar: UIView {
     
     // MARK: Properties
-    private var selectedIndex = 0
+    private var selectedIndex = -1
     
     weak var tabBarDelegate: TabBarDelegate?
     
@@ -88,11 +88,11 @@ final class TabBar: UIView {
     }
 
     private func didSelectTab(index: Int) {
-        if index + 1 == selectedIndex {
+        if index == selectedIndex {
             return
         }
         changeTab(index: index)
-        selectedIndex = index + 1
+        selectedIndex = index
         tabBarDelegate?.tabBar(self, didSelectTabAt: index)
     }
     

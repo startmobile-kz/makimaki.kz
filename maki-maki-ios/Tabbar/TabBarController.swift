@@ -11,8 +11,6 @@ import SnapKit
 class TabBarController: UIViewController, TabBarDelegate {
     
     // MARK: - Properties
-    var selectedIndex = 0
-    
     var viewControllers = [UIViewController]() {
         didSet {
             tabBar.viewControllers = viewControllers
@@ -71,7 +69,6 @@ class TabBarController: UIViewController, TabBarDelegate {
 
         let vc = viewControllers[index]
         addChild(vc)
-        selectedIndex = index + 1
         vc.view.frame = containerView.bounds
         containerView.addSubview(vc.view)
         vc.didMove(toParent: self)
