@@ -48,6 +48,8 @@ final class WelcomePageVerOneViewController: UIViewController {
          textField.placeholder = "+7 7082020155"
          textField.textColor = AppColor.heading.uiColor
          textField.borderStyle = .none
+         textField.autocorrectionType = .no
+         textField.keyboardType = .numberPad
          return textField
      }()
 
