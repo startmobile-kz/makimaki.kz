@@ -84,7 +84,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
         separatorView.snp.makeConstraints { make in
             make.top.equalTo(addressLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(-16)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(16)
             make.height.equalTo(0.5)
         }
     }
