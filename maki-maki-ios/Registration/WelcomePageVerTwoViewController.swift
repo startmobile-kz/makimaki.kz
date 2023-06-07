@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
 
 final class WelcomePageVerTwoViewController: UIViewController {
 
@@ -29,11 +30,16 @@ final class WelcomePageVerTwoViewController: UIViewController {
         return label
     }()
 
-    private lazy var phoneNumberTextField: UITextField = {
-        let textField = UITextField()
+    private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.title = "PHONE NUMBER"
         textField.placeholder = "+7 7082020155"
+        textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
         textField.autocorrectionType = .no
         textField.keyboardType = .numberPad
         return textField
@@ -56,25 +62,14 @@ final class WelcomePageVerTwoViewController: UIViewController {
         setUpConstraints()
     }
 
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupBottomBorderLine()
-    }
-
     // MARK: - Setup Views
     private func setUpViews() {
         view.backgroundColor = .white
-        self.phoneNumberTextField.addBottomBorder()
         [welcomeLabel,subtitleLabel,phoneNumberTextField,continueButton].forEach {
             view.addSubview($0)
         }
     }
     
-    // MARK: - Setup Border for textField
-    private func setupBottomBorderLine() {
-        phoneNumberTextField.addBottomBorder()
-    }
-
     // MARK: - Setup Constraints
     private func setUpConstraints() {
         welcomeLabel.snp.makeConstraints { make in

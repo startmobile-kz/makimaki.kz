@@ -11,7 +11,6 @@
 		1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
 		26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC1D5B2A273626003BA971 /* OrdersCell.swift */; };
-		274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274486002A27B3F200F2FFBD /* UITextField+Extension.swift */; };
 		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
 		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
@@ -67,7 +66,6 @@
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		26FC1D5B2A273626003BA971 /* OrdersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCell.swift; sourceTree = "<group>"; };
 		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
-		274486002A27B3F200F2FFBD /* UITextField+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Extension.swift"; sourceTree = "<group>"; };
 		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
 		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
 		27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
@@ -275,7 +273,6 @@
 		9F541B892A2DC44A004B3155 /* UIKit+Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				274486002A27B3F200F2FFBD /* UITextField+Extension.swift */,
 				773A737B2A2783A20029AA44 /* UIView+Extensions.swift */,
 			);
 			path = "UIKit+Extensions";
@@ -562,7 +559,6 @@
 				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
 				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
-				274486012A27B3F200F2FFBD /* UITextField+Extension.swift in Sources */,
 				27F53B762A2D04B700B42737 /* Constants.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
 				9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */,
