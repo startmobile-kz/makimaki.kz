@@ -8,7 +8,7 @@
 import UIKit
 
 struct Adress {
-    var imageAdress: AppImage
-    var nameLable: String
-    var addressLable: String
+    var image: AppImage
+    var title: String
+    var subTitle: String
 }

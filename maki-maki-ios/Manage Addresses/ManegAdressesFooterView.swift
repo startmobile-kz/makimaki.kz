@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 import SnapKit
 
-class TableFooter: UITableViewHeaderFooterView {
+class AddressTableViewFooterView: UITableViewHeaderFooterView {
     static let identifier = "TableFooter"
 
     private lazy var addNewAddressButton: UIButton = {
@@ -19,7 +19,7 @@ class TableFooter: UITableViewHeaderFooterView {
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
         return button
-        }()
+    }()
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)

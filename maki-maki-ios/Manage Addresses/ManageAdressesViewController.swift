@@ -8,10 +8,10 @@
 import UIKit
 import SnapKit
 
-class ManageAdressesViewController: UIViewController {
+final class ManageAdressesViewController: UIViewController {
     
     // MARK: - UI
-    private lazy var savedAddressesLable: UILabel = {
+    private lazy var savedAddressesLabel: UILabel = {
        let lable = UILabel()
         lable.text = "SAVED ADDRESSES"
         lable.font = AppFont.medium.s15()
@@ -24,40 +24,38 @@ class ManageAdressesViewController: UIViewController {
         tableView.rowHeight = 78
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.register(ManageAdressesCell.self, forCellReuseIdentifier: "Adresscell")
-        // tableView.register(TableHeader.self, forHeaderFooterViewReuseIdentifier: "header")
-        tableView.register(TableFooter.self, forHeaderFooterViewReuseIdentifier: "footer")
+        tableView.register(ManageAddressesCell.self, forCellReuseIdentifier: "Adresscell")
+        tableView.register(AddressTableViewFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
         tableView.backgroundColor = .white
         return tableView
     }()
     
-    var adress: [Adress] = []
+    var addresses: [Adress] = []
     
-    // MARK: - Lifecyclu
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         view.backgroundColor = .white
-        adress = fetchAdress()
-        setUI()
-        constraitsUI()
+        addresses = fetchAdress()
+        setupViews()
+        setupConstraints()
         view.backgroundColor = .white
     }
     
-    // MARK: - Set UI
-    func setUI() {
+    // MARK: - Setup Views
+    func setupViews() {
         view.addSubview(tableView)
-        view.addSubview(savedAddressesLable)
+        view.addSubview(savedAddressesLabel)
     }
     
-    // MARK: - Constraint
-    func constraitsUI() {
+    // MARK: - Setup Constraints
+    func setupConstraints() {
         tableView.snp.makeConstraints { make in
-            // make.edges.equalToSuperview()
-            make.top.equalTo(savedAddressesLable.snp.bottom).offset(16)
+            make.top.equalTo(savedAddressesLabel.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
-        savedAddressesLable.snp.makeConstraints { make in
+        savedAddressesLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(122)
             make.height.equalTo(18)
@@ -68,23 +66,18 @@ class ManageAdressesViewController: UIViewController {
 // MARK: - Extension: ManageAdressesViewController
 
 extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSource {
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return adress.count
+   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return addresses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: "Adresscell",
             for: indexPath
-        ) as? ManageAdressesCell else {
+        ) as? ManageAddressesCell else {
             fatalError("Could not cast to CategoryCollectionViewCell")
         }
-        let adress = adress[indexPath.row]
+        let adress = addresses[indexPath.row]
         cell.set(address: adress)
         return cell
     }
@@ -93,7 +86,7 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         tableView.beginUpdates()
-        adress.remove(at: indexPath.row)
+        addresses.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.endUpdates()
     }
@@ -106,12 +99,10 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
 }
 
 extension ManageAdressesViewController {
-    
     func fetchAdress() -> [Adress] {
-        let adress1 = Adress(imageAdress: AppImage.homeMA, nameLable: "Home", addressLable: "Navoi 37")
-        let adress2 = Adress(imageAdress: AppImage.workMA, nameLable: "Work", addressLable: "Baizakova 280")
-        let adress3 = Adress(imageAdress: AppImage.locationMA, nameLable: "Other", addressLable: "Bereke 56")
-        
+        let adress1 = Adress(image: AppImage.homeMA, title: "Home", subTitle: "Navoi 37")
+        let adress2 = Adress(image: AppImage.workMA, title: "Work", subTitle: "Baizakova 280")
+        let adress3 = Adress(image: AppImage.locationMA, title: "Other", subTitle: "Bereke 56")
         return [adress1, adress2, adress3]
     }
 }

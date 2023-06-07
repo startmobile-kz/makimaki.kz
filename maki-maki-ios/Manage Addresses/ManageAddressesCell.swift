@@ -8,12 +8,12 @@
 import UIKit
 import SnapKit
 
-class ManageAdressesCell: UITableViewCell {
+final class ManageAddressesCell: UITableViewCell {
     
     // MARK: - UI
-    private lazy var imageAdress = UIImageView()
+    private lazy var imageAddressView = UIImageView()
    
-    private lazy var nameLable: UILabel = {
+    private lazy var nameLabel: UILabel = {
         let label = UILabel()
          label.numberOfLines = 0
          label.adjustsFontSizeToFitWidth = true
@@ -22,7 +22,7 @@ class ManageAdressesCell: UITableViewCell {
          return label
     }()
     
-    private lazy var addressLable: UILabel = {
+    private lazy var addressLabel: UILabel = {
         let label = UILabel()
          label.numberOfLines = 0
          label.adjustsFontSizeToFitWidth = true
@@ -31,11 +31,11 @@ class ManageAdressesCell: UITableViewCell {
          return label
     }()
 
-    // MARK: - Lifecyclu
+    // MARK: - Lifecycle
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
-        setUI()
-        constraintsUI()
+        setupViews()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -43,33 +43,33 @@ class ManageAdressesCell: UITableViewCell {
     }
     
     func set(address: Adress) {
-        imageAdress.image = address.imageAdress.uiImage
-        nameLable.text = address.nameLable
-        addressLable.text = address.addressLable
+        imageAddressView.image = address.image.uiImage
+        nameLabel.text = address.title
+        addressLabel.text = address.subTitle
     }
     
-    // MARK: - Set UI
-    func setUI() {
-        addSubview(imageAdress)
-        addSubview(nameLable)
-        addSubview(addressLable)
+    // MARK: - Setup Views
+    func setupViews() {
+        addSubview(imageAddressView)
+        addSubview(nameLabel)
+        addSubview(addressLabel)
     }
     
-    // MARK: - Constraints
-    func constraintsUI() {
-        imageAdress.snp.makeConstraints { make in
+    // MARK: - Setup Constraints
+    func setupConstraints() {
+        imageAddressView.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(16)
         }
 
-        nameLable.snp.makeConstraints { make in
-            make.top.equalTo(imageAdress.snp.top)
-            make.leading.equalTo(imageAdress.snp.trailing).offset(14)
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalTo(imageAddressView.snp.top)
+            make.leading.equalTo(imageAddressView.snp.trailing).offset(14)
         }
 
-        addressLable.snp.makeConstraints { make in
-            make.top.equalTo(nameLable.snp.bottom).offset(8)
-            make.leading.equalTo(imageAdress.snp.trailing).offset(14)
+        addressLabel.snp.makeConstraints { make in
+            make.top.equalTo(nameLabel.snp.bottom).offset(8)
+            make.leading.equalTo(imageAddressView.snp.trailing).offset(14)
         }
     }
 }
