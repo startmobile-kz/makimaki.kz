@@ -12,7 +12,8 @@ final class ForgotPasswordViewController: UIViewController {
     // MARK: - UI Components
      private lazy var suggestionLabel: UILabel = {
          let label = UILabel()
-         label.text = "Please enter your email address. You will receive a link to create a new password via email."
+         let text1 = "Please enter your email address."
+         label.text = "\(text1) You will receive a link to create a new password via email."
          label.font = AppFont.reqular.s15()
          label.textColor = AppColor.paragraph.uiColor
          label.numberOfLines = 0
