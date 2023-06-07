@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
 
 final class SignUpViewController: UIViewController {
     
@@ -19,14 +20,19 @@ final class SignUpViewController: UIViewController {
         return label
     }()
     
-    private lazy var nameTextField: UITextField = {
-        let textField = UITextField()
+    private lazy var nameTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
-        textField.textAlignment = .left
-        textField.text = "Islam"
+        textField.title = "NAME"
+        textField.placeholder = "Name"
+        textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
         textField.rightViewMode = .always
+        textField.autocorrectionType = .no
         let imageView = UIImageView()
         let image = AppImage.check.uiImage
         imageView.image = image
@@ -34,14 +40,19 @@ final class SignUpViewController: UIViewController {
         return textField
     }()
     
-    private lazy var emailTextField: UITextField = {
-        let textField = UITextField()
+    private lazy var emailTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
-        textField.textAlignment = .left
-        textField.text = "aitemr@mail.com"
+        textField.title = "EMAIL"
+        textField.placeholder = "Email"
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.lineColor = AppColor.border.uiColor
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
         textField.rightViewMode = .always
+        textField.autocorrectionType = .no
         let imageView = UIImageView()
         let image = AppImage.check.uiImage
         imageView.image = image
@@ -49,15 +60,21 @@ final class SignUpViewController: UIViewController {
         return textField
     }()
     
-    private lazy var passwordTextField: UITextField = {
-        let textField = UITextField()
+    private lazy var passwordTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
-        textField.textAlignment = .left
+        textField.title = "PASSWORD"
+        textField.placeholder = "Password"
+        textField.lineColor = AppColor.border.uiColor
+        textField.textColor = AppColor.heading.uiColor
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
         textField.isSecureTextEntry = true
-        textField.textColor = AppColor.heading.uiColor
-        textField.text = "**********"
-        textField.borderStyle = .none
+        textField.keyboardType = .default
         textField.rightViewMode = .always
+        textField.autocorrectionType = .no
         let imageView = UIImageView()
         let image = AppImage.eye.uiImage
         imageView.image = image
@@ -90,13 +107,6 @@ final class SignUpViewController: UIViewController {
         setupViews()
         setupConstraints()
     }
-    
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        DispatchQueue.main.async { [weak self] in
-            self?.setupBottomBorderLine()
-        }
-    }
      
     // MARK: - Setup Views
     private func setupViews() {
@@ -106,14 +116,7 @@ final class SignUpViewController: UIViewController {
             view.addSubview($0)
         }
     }
-    
-    // MARK: - Setup Border for textField
-    private func setupBottomBorderLine() {
-        emailTextField.addBottomBorder()
-        nameTextField.addBottomBorder()
-        passwordTextField.addBottomBorder()
-    }
-    
+        
     // MARK: - Setup Constraints
     private func setupConstraints() {
         signUpLabel.snp.makeConstraints { make in
