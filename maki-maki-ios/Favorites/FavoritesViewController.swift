@@ -39,6 +39,7 @@ final class FavoritesViewController: UIViewController {
     // MARK: - Setup views
     
     private func setupViews() {
+        view.backgroundColor = .white
         view.addSubview(favoritesTableView)
     }
     
