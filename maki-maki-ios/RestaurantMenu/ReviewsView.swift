@@ -10,12 +10,21 @@ import SnapKit
 
 class ReviewsView: UIView {
     
-    //MARK: - UI
+    // MARK: - UI
     lazy var starImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = AppImage.
+        imageView.image = AppImage.star.uiImage
+        return imageView
     }()
     
+    lazy var ratingLabel: UILabel = {
+        let label = UILabel()
+        label.text = "4.8 • 415 Reviews"
+        label.font = AppFont.reqular.s14()
+        label.textColor = AppColor.heading.uiColor
+        return label
+    }()
+
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -28,10 +37,22 @@ class ReviewsView: UIView {
     }
     
     private func setupViews() {
-        
+        addSubviews([starImageView, ratingLabel])
     }
     
     private func setupConstraints() {
+        starImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(15.5)
+        }
         
+        ratingLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
+        }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 174, height: 40)
     }
 }
