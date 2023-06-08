@@ -64,7 +64,7 @@ final class OrdersTableHeaderView: UIView {
         return imageView
     }()
     
-    private lazy var collapseMenuButton: UIButton = {
+    public lazy var collapseMenuButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(AppImage.arrow_down.uiImage, for: .normal)
         button.backgroundColor = AppColor.background.uiColor

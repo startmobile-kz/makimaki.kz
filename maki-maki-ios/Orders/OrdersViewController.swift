@@ -37,7 +37,7 @@ final class OrdersViewController: UIViewController {
         ]
     }()
     
-    let firstOrder: [OrdersList] = [
+    var firstOrder: [OrdersList] = [
         OrdersList(positionName: "1 x Burger", price: "$14.40"),
         OrdersList(positionName: "1 x Fanta", price: "$15.20"),
         OrdersList(positionName: "1 x Cola", price: "$10.95")
@@ -127,7 +127,25 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              width: UIScreen.main.bounds.width,
                                                              height:114))
         headerView.setUp(model: orders[section])
+        
+        // collapse expand
+        headerView.collapseMenuButton.addTarget(self, action: #selector(handleExpandClose),
+                                                for: .touchUpInside)
         return headerView
+    }
+    
+    @objc func handleExpandClose() {
+        print("Trying to Expand and Close section")
+        
+//        let section = 0
+//        var indexPahs = [IndexPath]()
+//
+//        for row in firstOrder.indices {
+//            let indexPath = IndexPath()
+//            indexPahs.append(indexPahs)
+//        }
+//        firstOrder.removeAll()
+//        tableView.deleteRows(at: indexPahs, with: .fade)
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
