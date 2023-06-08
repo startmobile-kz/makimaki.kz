@@ -133,8 +133,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:114))
-
-//        headerView.setup orders[section]
+        headerView.setUp(model: orders[section])
         return headerView
     }
     
