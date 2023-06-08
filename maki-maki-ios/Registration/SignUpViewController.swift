@@ -16,7 +16,7 @@ final class SignUpViewController: UIViewController {
         let label = UILabel()
         label.text = "Sign Up"
         label.font = AppFont.bold.s32()
-        label.textColor = AppColor.heading.uiColor
+        label.textColor = .black
         return label
     }()
     
@@ -152,6 +152,6 @@ final class SignUpViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func signUpButtonDidPressed() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(Main2TabBarController(), animated: true)
     }
 }
