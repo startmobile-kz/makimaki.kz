@@ -15,6 +15,7 @@ protocol OrdersTableHeaderViewDelegate: AnyObject {
 final class OrdersTableHeaderView: UIView {
     
     // MARK: - Properties
+    
     static let identifier = String(describing: OrdersTableHeaderView.self)
     
     private var sectionIsCollapsed: Bool = false {
@@ -28,7 +29,7 @@ final class OrdersTableHeaderView: UIView {
             }
         }
     }
-
+    
     // MARK: - Delegate
     
     weak var delegate: OrdersTableHeaderViewDelegate?
@@ -86,7 +87,7 @@ final class OrdersTableHeaderView: UIView {
         return imageView
     }()
     
-    public lazy var collapseMenuButton: UIButton = {
+    private lazy var collapseMenuButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(AppImage.arrow_down.uiImage, for: .normal)
         button.backgroundColor = AppColor.background.uiColor
@@ -169,7 +170,6 @@ final class OrdersTableHeaderView: UIView {
     
     public func setUp(model: OrdersModel, section: Int) {
         self.section = section
-        
         orderNameLabel.text = model.cafeName
         orderStatusLabel.text = model.status
         if model.status == "Delivered" {

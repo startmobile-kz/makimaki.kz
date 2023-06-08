@@ -10,6 +10,8 @@ import SnapKit
 
 final class OrdersTableFooterView: UIView {
     
+    // MARK: - UI
+    
     private lazy var reorderButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = AppColor.grey100.uiColor
