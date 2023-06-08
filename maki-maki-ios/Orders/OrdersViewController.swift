@@ -40,6 +40,12 @@ final class OrdersViewController: UIViewController {
     var firstOrder: [OrdersList] = [
         OrdersList(positionName: "1 x Burger", price: "$14.40"),
         OrdersList(positionName: "1 x Fanta", price: "$15.20"),
+        OrdersList(positionName: "1 x Cola", price: "$10.95"),
+        OrdersList(positionName: "1 x Burger", price: "$14.40"),
+        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
+        OrdersList(positionName: "1 x Cola", price: "$10.95"),
+        OrdersList(positionName: "1 x Burger", price: "$14.40"),
+        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
         OrdersList(positionName: "1 x Cola", price: "$10.95")
     ]
 
@@ -64,6 +70,8 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
+    
+    private var ordersCopy: [OrdersModel] = []
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -81,6 +89,7 @@ final class OrdersViewController: UIViewController {
     }
     
     private func setupViews() {
+        ordersCopy = orders
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(ordersTableView)
     }
@@ -166,8 +175,17 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
-    func onCollapseMenuButtonDidPressed(section: Int) {
-        self.orders[section].ordersList = []
-        ordersTableView.reloadData()
+    func onCollapseMenuButtonDidPressed(section: Int, isCollapsed: Bool) {
+        var indexPathes: [IndexPath] = []
+        for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
+            indexPathes.append(IndexPath(row: i, section: section))
+        }
+        if !isCollapsed {
+            self.orders[section].ordersList = []
+            ordersTableView.deleteRows(at: indexPathes, with: .fade)
+        } else {
+            orders[section].ordersList = ordersCopy[section].ordersList
+            ordersTableView.insertRows(at: indexPathes, with: .fade)
+        }
     }
 }

@@ -9,12 +9,26 @@ import UIKit
 import SnapKit
 
 protocol OrdersTableHeaderViewDelegate: AnyObject {
-    func onCollapseMenuButtonDidPressed(section: Int)
+    func onCollapseMenuButtonDidPressed(section: Int, isCollapsed: Bool)
 }
 
 final class OrdersTableHeaderView: UIView {
     
+    // MARK: - Properties
     static let identifier = String(describing: OrdersTableHeaderView.self)
+    
+    private var sectionIsCollapsed: Bool = true {
+        didSet {
+            UIView.animate(withDuration: 0.25) {
+                if self.sectionIsCollapsed {
+                    self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
+                } else {
+                    self.collapseMenuButton.transform = CGAffineTransform.identity
+                }
+            }
+        }
+    }
+
 
     // MARK: - Delegate
 
@@ -98,7 +112,7 @@ final class OrdersTableHeaderView: UIView {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
+    
     // MARK: - Setup Views
 
     private func setupViews() {
@@ -181,12 +195,12 @@ final class OrdersTableHeaderView: UIView {
     }
 
     // MARK: - Actions
-
     @objc func handleExpandClose() {
-        self.delegate?.onCollapseMenuButtonDidPressed(section: section)
+        sectionIsCollapsed = !sectionIsCollapsed
+        self.delegate?.onCollapseMenuButtonDidPressed(section: section, isCollapsed: sectionIsCollapsed)
     }
 
     @objc func viewTapped() {
-        self.delegate?.onCollapseMenuButtonDidPressed(section: section)
+//        self.delegate?.onCollapseMenuButtonDidPressed(section: section)
     }
 }
