@@ -59,6 +59,8 @@ final class OrdersViewController: UIViewController {
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
     ]
+    
+    private var ordersCopy: [OrdersModel] = []
 
     lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -70,16 +72,20 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
-    
-    private var ordersCopy: [OrdersModel] = []
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
         setupNavigationBar()
+        setupData()
         setupViews()
         setupConstraints()
+    }
+    
+    // MARK: - SetupData
+    private func setupData() {
+        ordersCopy = orders
     }
     
     // MARK: - Setup Views
@@ -89,7 +95,6 @@ final class OrdersViewController: UIViewController {
     }
     
     private func setupViews() {
-        ordersCopy = orders
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(ordersTableView)
     }
@@ -180,7 +185,7 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
         for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
             indexPathes.append(IndexPath(row: i, section: section))
         }
-        if !isCollapsed {
+        if isCollapsed {
             self.orders[section].ordersList = []
             ordersTableView.deleteRows(at: indexPathes, with: .fade)
         } else {

@@ -17,7 +17,7 @@ final class OrdersTableHeaderView: UIView {
     // MARK: - Properties
     static let identifier = String(describing: OrdersTableHeaderView.self)
     
-    private var sectionIsCollapsed: Bool = true {
+    private var sectionIsCollapsed: Bool = false {
         didSet {
             UIView.animate(withDuration: 0.25) {
                 if self.sectionIsCollapsed {
@@ -28,7 +28,6 @@ final class OrdersTableHeaderView: UIView {
             }
         }
     }
-
 
     // MARK: - Delegate
 
