@@ -118,6 +118,6 @@ final class WelcomePageVerTwoViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func continueButtonDidPress() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(VerificationViewController(), animated: true)
     }
 }
