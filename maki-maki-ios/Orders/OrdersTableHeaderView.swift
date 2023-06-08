@@ -9,14 +9,14 @@ import UIKit
 import SnapKit
 
 final class OrdersTableHeaderView: UIView {
-
+    
     static let identifier = String(describing: OrdersTableHeaderView.self)
     
     // MARK: - UI
     
     private lazy var orderNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Bellissimo Pizza"
+//        label.text = "Bellissimo Pizza"
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -25,7 +25,7 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderStatusLabel: UILabel = {
         let label = UILabel()
-        label.text = "Delivered"
+//        label.text = "Delivered"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -59,7 +59,7 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$43.95"
+//        label.text = "$43.95"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -92,7 +92,7 @@ final class OrdersTableHeaderView: UIView {
         button.layer.cornerRadius = 10
         return button
     }()
-
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -106,7 +106,7 @@ final class OrdersTableHeaderView: UIView {
     }
     
     // MARK: - Setup Views
-
+    
     private func setupViews() {
         backgroundColor = AppColor.background.uiColor
         
@@ -123,9 +123,9 @@ final class OrdersTableHeaderView: UIView {
             orderPriceLabel
         ].forEach { dataPriceLabelsStackView.addArrangedSubview($0) }
     }
-
+    
     // MARK: - Setup Constraints
-
+    
     private func setupConstraints() {
         orderNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(21)
@@ -159,21 +159,25 @@ final class OrdersTableHeaderView: UIView {
             make.width.height.equalTo(32)
         }
     }
-
-    private func setUp() {
-//        let components = [
-//            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
-//                .foregroundColor: AppColor.paragraph.uiColor,
-//                .font: AppFont.reqular.s14()
-//            ]),
-//            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
-//                .foregroundColor: AppColor.grey300.uiColor,
-//                .font: AppFont.reqular.s15()
-//            ])
-//        ]
-//
-//        let string = NSMutableAttributedString()
-//        components.forEach(string.append)
-//        orderDataLabel.attributedText = string
+    
+    final func setUp(model: OrdersModel) {
+        //        let components = [
+        //            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
+        //                .foregroundColor: AppColor.paragraph.uiColor,
+        //                .font: AppFont.reqular.s14()
+        //            ]),
+        //            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
+        //                .foregroundColor: AppColor.grey300.uiColor,
+        //                .font: AppFont.reqular.s15()
+        //            ])
+        //        ]
+        //
+        //        let string = NSMutableAttributedString()
+        //        components.forEach(string.append)
+        //        orderDataLabel.attributedText = string
+        orderNameLabel.text = model.cafeName
+        orderStatusLabel.text = model.status
+        orderPriceLabel.text = model.price
+        //        orderStatusLabel.backgroundColor = model.
     }
 }
