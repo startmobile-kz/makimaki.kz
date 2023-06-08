@@ -8,7 +8,7 @@
 import Foundation
 
 struct OrdersList {
-//    let count: Int  необходимо сверстать в ячейке данный элемент
+    let count: Int
     let positionName: String
     let price: String
 }
