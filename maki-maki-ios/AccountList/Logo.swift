@@ -8,7 +8,7 @@
 import UIKit
 
 struct Logo {
-    var image: UIImage
+    var image: AppImage
     var title: String
-    var arrow: UIImage
+    var arrow: AppImage
 }
