@@ -21,10 +21,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let isAuthoried = true
             if isAuthoried {
 //                let controller = UINavigationController(rootViewController: MainT())
-                window.rootViewController = WelcomePageVerOneViewController()
+                window.rootViewController = ResetPasswordViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: WelcomePageVerOneViewController())
+                    UINavigationController(rootViewController: ResetPasswordViewController())
             }
             
             self.window = window
