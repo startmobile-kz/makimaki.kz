@@ -54,7 +54,7 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseCore:
-    :commit: f7fcc7ddc0d9c1490cb47df44eaba55a6e674c9f
+    :commit: f2194c8a3c675551746fa4d8b80cd735e8c5f487
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
