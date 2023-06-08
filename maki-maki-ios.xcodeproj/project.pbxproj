@@ -20,6 +20,7 @@
 		27943BE92A308726003F3C7B /* Adress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE82A308726003F3C7B /* Adress.swift */; };
 		2789D5F32A2F6A300030A3B8 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */; };
 		27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */; };
+		27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */; };
 		27F53B702A2D033400B42737 /* AccountListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B6F2A2D033400B42737 /* AccountListController.swift */; };
 		27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B712A2D049700B42737 /* AccountListCell.swift */; };
 		27F53B742A2D04A500B42737 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B732A2D04A500B42737 /* Logo.swift */; };
@@ -85,6 +86,7 @@
 		27943BE82A308726003F3C7B /* Adress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adress.swift; sourceTree = "<group>"; };
 		2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
 		27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		27F53B6F2A2D033400B42737 /* AccountListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListController.swift; sourceTree = "<group>"; };
 		27F53B712A2D049700B42737 /* AccountListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListCell.swift; sourceTree = "<group>"; };
 		27F53B732A2D04A500B42737 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
@@ -177,6 +179,14 @@
 			path = AccountCards;
 			sourceTree = "<group>";
 		};
+		27F521292A309E6A0095A5EB /* Authorization */ = {
+			isa = PBXGroup;
+			children = (
+				27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */,
+			);
+			path = Authorization;
+            sourceTree = "<group>";
+        };
 		27943BE12A308688003F3C7B /* Manage Addresses */ = {
 			isa = PBXGroup;
 			children = (
@@ -369,6 +379,7 @@
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
+				27F521292A309E6A0095A5EB /* Authorization */,
 				9F541B882A2DC3BA004B3155 /* App Settings */,
 				9F541B872A2DC3AD004B3155 /* Resources */,
 				773A73762A2783170029AA44 /* Helpers */,
@@ -601,6 +612,7 @@
 			files = (
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
+				27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
 				9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */,
