@@ -6,6 +6,7 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
 
 final class ForgotPasswordViewController: UIViewController {
 
@@ -21,13 +22,16 @@ final class ForgotPasswordViewController: UIViewController {
          return label
      }()
 
-     private lazy var emailTextfield: UITextField = {
-         let textField = UITextField()
+     private lazy var emailTextfield: SkyFloatingLabelTextField = {
+         let textField = SkyFloatingLabelTextField()
          textField.placeholder = "Enter your email"
+         textField.lineHeight = 0.5
+         textField.lineColor = AppColor.border.uiColor
+         textField.selectedLineColor = AppColor.blue.uiColor
+         textField.selectedLineHeight = 2
          textField.textColor = AppColor.paragraph.uiColor
          textField.font = AppFont.reqular.s15()
          textField.autocorrectionType = .no
-         textField.borderStyle = .none
          return textField
      }()
 
@@ -45,11 +49,7 @@ final class ForgotPasswordViewController: UIViewController {
         super.viewDidLoad()
         setUpViews()
         setUpConstraints()
-    }
-
-    override func viewDidLayoutSubviews() {
-        super.viewDidLayoutSubviews()
-        setupBottomBorderLine()
+        setupNavigationBar()
     }
     
     // MARK: - Setup Views
@@ -60,9 +60,9 @@ final class ForgotPasswordViewController: UIViewController {
         }
     }
     
-    // MARK: - Setup Border for textField
-    private func setupBottomBorderLine() {
-        emailTextfield.addBottomBorder()
+    // MARK: - Setup Navigation Bar
+    private func setupNavigationBar() {
+        self.navigationItem.title = "Forgot Password"
     }
     
     // MARK: - Setup Constraints
@@ -70,7 +70,7 @@ final class ForgotPasswordViewController: UIViewController {
         suggestionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.top.equalToSuperview().offset(122)
+            make.top.equalTo(view.safeAreaLayoutGuide).offset(40)
         }
 
         emailTextfield.snp.makeConstraints { make in
