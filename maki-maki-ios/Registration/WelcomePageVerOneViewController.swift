@@ -7,14 +7,15 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
 
 final class WelcomePageVerOneViewController: UIViewController {
     
     // MARK: - UI Components
     private lazy var makiImage: UIImageView = {
         let imageView = UIImageView()
-        let bgImg = UIImage(named: "welcomeImg")
-        imageView.image = bgImg
+        let backgroundImg = AppImage.welcomeImg.uiImage
+        imageView.image = backgroundImg
         imageView.contentMode = .scaleAspectFill
         return imageView
     }()
@@ -22,7 +23,6 @@ final class WelcomePageVerOneViewController: UIViewController {
     private lazy var welcomeView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.background.uiColor
-        view.layer.cornerRadius = 14
         return view
     }()
     
@@ -44,11 +44,16 @@ final class WelcomePageVerOneViewController: UIViewController {
          return label
      }()
 
-     private lazy var phoneNumberTextField: UITextField = {
-         let textField = UITextField()
+     private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
+         let textField = SkyFloatingLabelTextField()
+         textField.title = "PHONE NUMBER"
          textField.placeholder = "+7 7082020155"
+         textField.lineColor = AppColor.border.uiColor
          textField.textColor = AppColor.heading.uiColor
-         textField.borderStyle = .none
+         textField.selectedLineColor = AppColor.blue.uiColor
+         textField.selectedTitleColor = AppColor.blue.uiColor
+         textField.selectedLineHeight = 2
+         textField.lineHeight = 0.5
          textField.autocorrectionType = .no
          textField.keyboardType = .numberPad
          return textField
@@ -60,6 +65,7 @@ final class WelcomePageVerOneViewController: UIViewController {
          button.setTitleColor(.black, for: .normal)
          button.layer.cornerRadius = 14
          button.backgroundColor = AppColor.accent.uiColor
+         button.addTarget(self, action: #selector(continueButtonDidPress), for: .touchUpInside)
         return button
      }()
 
@@ -70,14 +76,13 @@ final class WelcomePageVerOneViewController: UIViewController {
         setUpConstraints()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpViews()
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        cornerRadius()
     }
     
     // MARK: - Setup Views
     private func setUpViews() {
-        self.phoneNumberTextField.addBottomBorder()
         [makiImage, welcomeView].forEach {
             view.addSubview($0)
         }
@@ -86,6 +91,9 @@ final class WelcomePageVerOneViewController: UIViewController {
         }
     }
     
+    private func cornerRadius() {
+        welcomeView.roundCorners(corners: [.topLeft, .topRight], radius: 14)
+    }
     // MARK: - Setup Constraints
     private func setUpConstraints() {
         makiImage.snp.makeConstraints { make in
@@ -123,5 +131,10 @@ final class WelcomePageVerOneViewController: UIViewController {
             make.trailing.equalTo(welcomeView).offset(-16)
             make.height.equalTo(53)
         }
+    }
+    // MARK: - Actions
+    
+    @objc private func continueButtonDidPress() {
+        self.navigationController?.pushViewController(MainViewController(), animated: true)
     }
 }

@@ -115,12 +115,12 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
 
 extension AccountListViewController {
     func fetchData() -> [Logo] {
-        let logo1 = Logo(image: Images.ordersButtons, title: "My Orders", arrow: Images.arrowButton)
-        let logo2 = Logo(image: Images.userButtons, title: "My Profile", arrow: Images.arrowButton)
-        let logo3 = Logo(image: Images.likeButtons, title: "Favorites", arrow: Images.arrowButton)
-        let logo4 = Logo(image: Images.offerButtons, title: "Offers & Promos", arrow: Images.arrowButton)
-        let logo5 = Logo(image: Images.paymentButtons, title: "Payments", arrow: Images.arrowButton)
-        let logo6 = Logo(image: Images.locationButtons, title: "Location", arrow: Images.arrowButton)
+        let logo1 = Logo(image: AppImage.orders, title: "My Orders", arrow: AppImage.arrowRight)
+        let logo2 = Logo(image: AppImage.user, title: "My Profile", arrow: AppImage.arrowRight)
+        let logo3 = Logo(image: AppImage.like, title: "Favorites", arrow: AppImage.arrowRight)
+        let logo4 = Logo(image: AppImage.offer, title: "Offers & Promos", arrow: AppImage.arrowRight)
+        let logo5 = Logo(image: AppImage.payment, title: "Payments", arrow: AppImage.arrowRight)
+        let logo6 = Logo(image: AppImage.location, title: "Location", arrow: AppImage.arrowRight)
         return [logo1, logo2, logo3, logo4, logo5, logo6]
     }
 }
