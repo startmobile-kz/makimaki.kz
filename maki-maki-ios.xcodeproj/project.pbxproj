@@ -206,6 +206,13 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
+		68D0A5452A31B668008BB3C2 /* RestaurantMenu */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = RestaurantMenu;
+			sourceTree = "<group>";
+		};
 		7720EEEA2A23806500A01669 /* Module */ = {
 			isa = PBXGroup;
 			children = (
@@ -336,6 +343,7 @@
 				9F541B882A2DC3BA004B3155 /* App Settings */,
 				9F541B872A2DC3AD004B3155 /* Resources */,
 				773A73762A2783170029AA44 /* Helpers */,
+				68D0A5452A31B668008BB3C2 /* RestaurantMenu */,
 				9F61734E2A2E656100299E56 /* Basket */,
 				27F53B6E2A2D030C00B42737 /* AccountList */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
