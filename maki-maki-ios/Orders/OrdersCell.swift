@@ -16,7 +16,6 @@ final class OrdersCell: UITableViewCell {
     
     private lazy var orderListLabel: UILabel = {
         let label = UILabel()
-//        label.text = "1 x Medium Supremo Pizza"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -56,7 +55,6 @@ final class OrdersCell: UITableViewCell {
     private func setupViews() {
         contentView.backgroundColor = AppColor.background.uiColor
         contentView.addSubview(orderListCostStackView)
-        
         [orderListLabel, costOrderLabel].forEach { orderListCostStackView.addArrangedSubview($0) }
     }
     
