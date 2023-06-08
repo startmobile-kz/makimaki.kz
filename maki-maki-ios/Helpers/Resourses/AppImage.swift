@@ -49,7 +49,7 @@ enum AppImage: String, AppImageProtocol {
     case offer = "offer_al"
     case orders = "orders_al"
     case payment = "payment_al"
-    case user = "user_al"
+    case user_al = "user_al"
     case arrowRight = "arrow_right"
     case homeMA = "home_ma"
     case locationMA = "location_ma"
