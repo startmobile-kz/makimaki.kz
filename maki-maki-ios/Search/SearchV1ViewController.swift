@@ -18,7 +18,6 @@ final class SearchV1ViewController: UIViewController {
         searchBar.setImage(UIImage(named: "clear_icon"), for: UISearchBar.Icon.clear, state: .normal)
         searchBar.searchTextField.textColor = AppColor.heading.uiColor
         searchBar.searchTextField.font = AppFont.reqular.s14()
-        searchBar.frame.size.height = 120
         return searchBar
     }()
     private lazy var searchTableView: UITableView = {
