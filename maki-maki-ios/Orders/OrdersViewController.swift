@@ -54,7 +54,7 @@ final class OrdersViewController: UIViewController {
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
     ]
 
-    private lazy var ordersTableView: UITableView = {
+    lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.rowHeight = 36
@@ -126,16 +126,14 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:114))
-        headerView.setUp(model: orders[section])
-        
-        // collapse expand
-        headerView.collapseMenuButton.addTarget(self, action: #selector(handleExpandClose),
-                                                for: .touchUpInside)
+
+        headerView.delegate = self
+        headerView.setUp(model: orders[section], section: section)
         return headerView
     }
-    
-    @objc func handleExpandClose() {
-        print("Trying to Expand and Close section")
+
+//    @objc func handleExpandClose() {
+//        print("Trying to Expand and Close section")
         
 //        let section = 0
 //        var indexPahs = [IndexPath]()
@@ -146,7 +144,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 //        }
 //        firstOrder.removeAll()
 //        tableView.deleteRows(at: indexPahs, with: .fade)
-    }
+//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
@@ -164,5 +162,12 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 83
+    }
+}
+
+extension OrdersViewController: OrdersTableHeaderViewDelegate {
+    func onCollapseMenuButtonDidPressed(section: Int) {
+        self.orders[section].ordersList = []
+        ordersTableView.reloadData()
     }
 }

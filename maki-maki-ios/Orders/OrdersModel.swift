@@ -12,5 +12,5 @@ struct OrdersModel {
     let status: String
     let time: String
     let price: String
-    let ordersList: [OrdersList]
+    var ordersList: [OrdersList]
 }

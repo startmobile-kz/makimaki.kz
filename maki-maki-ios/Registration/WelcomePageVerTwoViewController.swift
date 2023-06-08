@@ -13,11 +13,11 @@ import InputMask
 final class WelcomePageVerTwoViewController: UIViewController {
 
     // MARK: - UI Components
-   private lazy var welcomeLabel: UILabel = {
+    private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome!"
         label.font = AppFont.bold.s32()
-       label.textColor = AppColor.heading.uiColor
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
 
@@ -32,24 +32,24 @@ final class WelcomePageVerTwoViewController: UIViewController {
     }()
     
     // MARK: - MaskedTextField Listener
-        private lazy var listener: MaskedTextFieldDelegate = {
-            let listener = MaskedTextFieldDelegate()
-            listener.onMaskedTextChangedCallback = { textField, _, isFilled in
-                let updatedText = textField.text ?? ""
-                if isFilled {
-                    print("Text field is filled: \(updatedText)")
-                }
-            }
-            listener.delegate = self
-            listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
-            return listener
-        }()
+//    private lazy var listener: MaskedTextFieldDelegate = {
+//        let listener = MaskedTextFieldDelegate()
+//        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+//            let updatedText = textField.text ?? ""
+//            if isFilled {
+//                print("Text field is filled: \(updatedText)")
+//            }
+//        }
+//        listener.delegate = self
+//        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+//        return listener
+//    }()
 
     private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.title = "PHONE NUMBER"
         textField.placeholder = "+7 (777) 777 77 77"
-        textField.delegate = listener
+//        textField.delegate = listener
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
         textField.selectedLineColor = AppColor.blue.uiColor
@@ -68,7 +68,7 @@ final class WelcomePageVerTwoViewController: UIViewController {
         button.layer.cornerRadius = 14
         button.backgroundColor = AppColor.accent.uiColor
         button.addTarget(self, action: #selector(continueButtonDidPress), for: .touchUpInside)
-       return button
+        return button
     }()
 
     // MARK: - LifeCycle
