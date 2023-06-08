@@ -11,7 +11,6 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
-    // этот двухмерный массив использую только для nubersOfSections
     lazy var orders: [OrdersModel] = {
         return [
             OrdersModel(cafeName: "Bellissimo Pizza",
@@ -21,39 +20,39 @@ final class OrdersViewController: UIViewController {
                         ordersList: self.firstOrder),
             OrdersModel(cafeName: "Capital One Cafe",
                         status: "Cancelled",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
+                        time: "24 May 2020, 04:50 PM  ",
+                        price: "$5.48",
                         ordersList: self.secondOrder),
             OrdersModel(cafeName: "Street Cafe",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
+                        time: "18 May 2020, 02:37 PM  ",
+                        price: "$18.30",
                         ordersList: self.thirdOrder),
             OrdersModel(cafeName: "Smile House Cafe",
                         status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
+                        time: "18 May 2020, 02:08 PM  ",
+                        price: "$14.00",
                         ordersList: self.fouthOrder)
         ]
     }()
     
     var firstOrder: [OrdersList] = [
-        OrdersList(positionName: "1 x Burger", price: "$14.40"),
-        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
-        OrdersList(positionName: "1 x Cola", price: "$10.95")
+        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 5, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 22, positionName: " x Cola", price: "$10.95")
     ]
-
+    
     let secondOrder: [OrdersList] = [
-        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
+        OrdersList(count: 1, positionName: " x Medium Supremo Pizza", price: "$14.40")
     ]
-
+    
     let thirdOrder: [OrdersList] = []
-
+    
     let fouthOrder: [OrdersList] = [
-        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
-        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
+        OrdersList(count: 1, positionName: " x Medium Supremo Pizza", price: "$14.40"),
+        OrdersList(count: 333, positionName: " x Medium Supremo Pizza", price: "$14.40")
     ]
-
+    
     lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
@@ -97,11 +96,10 @@ final class OrdersViewController: UIViewController {
 // MARK: - UICollectionView Data Source and Delegate methods
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
-
     func numberOfSections(in tableView: UITableView) -> Int {
         return orders.count
     }
-
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return orders[section].ordersList.count
     }
@@ -126,25 +124,10 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:114))
-
         headerView.delegate = self
         headerView.setUp(model: orders[section], section: section)
         return headerView
     }
-
-//    @objc func handleExpandClose() {
-//        print("Trying to Expand and Close section")
-        
-//        let section = 0
-//        var indexPahs = [IndexPath]()
-//
-//        for row in firstOrder.indices {
-//            let indexPath = IndexPath()
-//            indexPahs.append(indexPahs)
-//        }
-//        firstOrder.removeAll()
-//        tableView.deleteRows(at: indexPahs, with: .fade)
-//    }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
@@ -159,7 +142,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              height:83))
         return footerView
     }
-
+    
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 83
     }
