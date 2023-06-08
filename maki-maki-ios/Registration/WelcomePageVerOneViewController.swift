@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
+import InputMask
 
 final class WelcomePageVerOneViewController: UIViewController {
     
@@ -43,11 +44,26 @@ final class WelcomePageVerOneViewController: UIViewController {
          label.lineBreakMode = .byWordWrapping
          return label
      }()
+    
+    // MARK: - MaskedTextField Listener
+        private lazy var listener: MaskedTextFieldDelegate = {
+            let listener = MaskedTextFieldDelegate()
+            listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+                let updatedText = textField.text ?? ""
+                if isFilled {
+                    print("Text field is filled: \(updatedText)")
+                }
+            }
+            listener.delegate = self
+            listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+            return listener
+        }()
 
      private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
          let textField = SkyFloatingLabelTextField()
          textField.title = "PHONE NUMBER"
-         textField.placeholder = "+7 7082020155"
+         textField.placeholder = "+7 (777) 777 77 77"
+         textField.delegate = listener
          textField.lineColor = AppColor.border.uiColor
          textField.textColor = AppColor.heading.uiColor
          textField.selectedLineColor = AppColor.blue.uiColor
@@ -135,6 +151,6 @@ final class WelcomePageVerOneViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func continueButtonDidPress() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(VerificationViewController(), animated: true)
     }
 }

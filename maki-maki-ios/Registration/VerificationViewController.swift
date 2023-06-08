@@ -119,6 +119,6 @@ final class VerificationViewController: UIViewController {
     }
     // MARK: - Actions
     @objc private func verifyButtonDidPressed() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(Main2TabBarController(), animated: true)
     }
 }
