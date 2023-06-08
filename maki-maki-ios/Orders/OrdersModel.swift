@@ -11,7 +11,6 @@ struct OrdersModel {
     let cafeName: String
     let status: String
     let time: String
-    let point: String
     let price: String
     let ordersList: [OrdersList]
 }
