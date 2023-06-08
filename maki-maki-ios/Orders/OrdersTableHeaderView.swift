@@ -76,7 +76,7 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var dividerImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = #imageLiteral(resourceName: "divider")
+        imageView.image = AppImage.divider.uiImage
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
         return imageView
@@ -84,7 +84,7 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var collapseMenuButton: UIButton = {
         let button = UIButton(type: .system)
-        button.setImage(UIImage(named: "arrow_up"), for: .normal)
+        button.setImage(AppImage.arrow_down.uiImage, for: .normal)
         button.backgroundColor = AppColor.background.uiColor
         button.tintColor = AppColor.heading.uiColor
         button.layer.borderWidth = 0.4
