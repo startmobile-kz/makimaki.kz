@@ -42,4 +42,5 @@ enum AppImage: String, AppImageProtocol {
     case homeMA = "home_ma"
     case locationMA = "location_ma"
     case workMA = "work_ma"
+    case welcomeImg = "welcomeImg"
 }
