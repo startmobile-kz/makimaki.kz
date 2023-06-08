@@ -60,6 +60,8 @@
 		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
+		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
+		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
 		F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4D2A2F072B0072E258 /* OffersViewController.swift */; };
 		F1725D502A2F07920072E258 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4F2A2F07920072E258 /* OffersCell.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
@@ -133,6 +135,8 @@
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
+		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
 		F1725D4D2A2F072B0072E258 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		F1725D4F2A2F07920072E258 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
@@ -398,6 +402,7 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
+				F1725D712A3027940072E258 /* AccountOffersV2 */,
 				275F31232A31CF9D00E94CDC /* SignIn */,
 				F1725D4C2A2F070E0072E258 /* AccountOffersList */,
 				037F166D2A2F5DC800401843 /* Favorites */,
@@ -421,6 +426,15 @@
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
+		};
+		F1725D712A3027940072E258 /* AccountOffersV2 */ = {
+			isa = PBXGroup;
+			children = (
+				F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */,
+				F1725D752A30283F0072E258 /* OffersCellV2.swift */,
+			);
+			path = AccountOffersV2;
+      sourceTree = "<group>";
 		};
 		F1725D4C2A2F070E0072E258 /* AccountOffersList */ = {
 			isa = PBXGroup;
@@ -635,6 +649,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */,
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */,
@@ -663,6 +678,7 @@
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
+				F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */,
 				6866811C2A29D60600BC94E7 /* SectionType.swift in Sources */,
 				1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */,
 				689BC90C2A2F5087008FD14F /* Main2TabBarController.swift in Sources */,
