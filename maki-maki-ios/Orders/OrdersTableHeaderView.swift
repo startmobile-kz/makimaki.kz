@@ -16,7 +16,6 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderNameLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Bellissimo Pizza"
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -25,11 +24,9 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderStatusLabel: UILabel = {
         let label = UILabel()
-//        label.text = "Delivered"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
-        label.backgroundColor = AppColor.green.uiColor
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 6
         return label
@@ -37,20 +34,6 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderDataLabel: UILabel = {
         let label = UILabel()
-        let data = "31 May 2020, 07:55 PM  "
-        let components = [
-            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
-                .foregroundColor: AppColor.paragraph.uiColor,
-                .font: AppFont.reqular.s14()
-            ]),
-            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
-                .foregroundColor: AppColor.grey300.uiColor,
-                .font: AppFont.reqular.s15()
-            ])
-        ]
-        let string = NSMutableAttributedString()
-        components.forEach(string.append)
-        label.attributedText = string
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         label.textAlignment = .center
@@ -59,7 +42,6 @@ final class OrdersTableHeaderView: UIView {
     
     private lazy var orderPriceLabel: UILabel = {
         let label = UILabel()
-//        label.text = "$43.95"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
@@ -160,24 +142,27 @@ final class OrdersTableHeaderView: UIView {
         }
     }
     
-    final func setUp(model: OrdersModel) {
-        //        let components = [
-        //            NSAttributedString(string: NSLocalizedString(data, comment: "Data"), attributes: [
-        //                .foregroundColor: AppColor.paragraph.uiColor,
-        //                .font: AppFont.reqular.s14()
-        //            ]),
-        //            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
-        //                .foregroundColor: AppColor.grey300.uiColor,
-        //                .font: AppFont.reqular.s15()
-        //            ])
-        //        ]
-        //
-        //        let string = NSMutableAttributedString()
-        //        components.forEach(string.append)
-        //        orderDataLabel.attributedText = string
+    public func setUp(model: OrdersModel) {
         orderNameLabel.text = model.cafeName
         orderStatusLabel.text = model.status
+        if model.status == "Delivered" {
+            orderStatusLabel.backgroundColor = AppColor.green.uiColor
+        } else {
+            orderStatusLabel.backgroundColor = AppColor.red.uiColor
+        }
         orderPriceLabel.text = model.price
-        //        orderStatusLabel.backgroundColor = model.
+        let dataComponents = [
+            NSAttributedString(string: NSLocalizedString(model.time, comment: "Data"), attributes: [
+                .foregroundColor: AppColor.paragraph.uiColor,
+                .font: AppFont.reqular.s14()
+            ]),
+            NSAttributedString(string: NSLocalizedString("•", comment: "Point"), attributes: [
+                .foregroundColor: AppColor.grey300.uiColor,
+                .font: AppFont.reqular.s15()
+            ])
+        ]
+        let string = NSMutableAttributedString()
+        dataComponents.forEach(string.append)
+        orderDataLabel.attributedText = string
     }
 }
