@@ -7,6 +7,8 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
+import InputMask
 
 final class WelcomePageVerTwoViewController: UIViewController {
 
@@ -28,12 +30,34 @@ final class WelcomePageVerTwoViewController: UIViewController {
         label.lineBreakMode = .byWordWrapping
         return label
     }()
+    
+    // MARK: - MaskedTextField Listener
+        private lazy var listener: MaskedTextFieldDelegate = {
+            let listener = MaskedTextFieldDelegate()
+            listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+                let updatedText = textField.text ?? ""
+                if isFilled {
+                    print("Text field is filled: \(updatedText)")
+                }
+            }
+            listener.delegate = self
+            listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+            return listener
+        }()
 
-    private lazy var phoneNumberTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "+7 7082020155"
+    private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.title = "PHONE NUMBER"
+        textField.placeholder = "+7 (777) 777 77 77"
+        textField.delegate = listener
+        textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.autocorrectionType = .no
+        textField.keyboardType = .numberPad
         return textField
     }()
 
@@ -54,20 +78,14 @@ final class WelcomePageVerTwoViewController: UIViewController {
         setUpConstraints()
     }
 
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        setUpViews()
-    }
-
     // MARK: - Setup Views
     private func setUpViews() {
         view.backgroundColor = .white
-        self.phoneNumberTextField.addBottomBorder()
         [welcomeLabel,subtitleLabel,phoneNumberTextField,continueButton].forEach {
             view.addSubview($0)
         }
     }
-
+    
     // MARK: - Setup Constraints
     private func setUpConstraints() {
         welcomeLabel.snp.makeConstraints { make in
@@ -100,6 +118,6 @@ final class WelcomePageVerTwoViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func continueButtonDidPress() {
-        self.navigationController?.pushViewController(MainViewController(), animated: true)
+        self.navigationController?.pushViewController(VerificationViewController(), animated: true)
     }
 }
