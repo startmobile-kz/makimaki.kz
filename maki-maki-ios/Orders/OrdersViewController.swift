@@ -17,31 +17,26 @@ final class OrdersViewController: UIViewController {
             OrdersModel(cafeName: "Bellissimo Pizza",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ",
-                        point: "•",
                         price: "$43.95",
                         ordersList: self.firstOrder),
-            OrdersModel(cafeName: "KFC",
-                        status: "Delivered",
+            OrdersModel(cafeName: "Capital One Cafe",
+                        status: "Cancelled",
                         time: "31 May 2020, 07:55 PM  ",
-                        point: "•",
                         price: "$43.95",
                         ordersList: self.secondOrder),
-            OrdersModel(cafeName: "Burger King",
+            OrdersModel(cafeName: "Street Cafe",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ",
-                        point: "•",
                         price: "$43.95",
                         ordersList: self.thirdOrder),
-            OrdersModel(cafeName: "Bahandi",
+            OrdersModel(cafeName: "Smile House Cafe",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ",
-                        point: "•",
                         price: "$43.95",
                         ordersList: self.fouthOrder)
         ]
     }()
     
-    // пока при работе с ячейками внутри секции работаю с данным массивом
     let firstOrder: [OrdersList] = [
         OrdersList(positionName: "1 x Burger", price: "$14.40"),
         OrdersList(positionName: "1 x Fanta", price: "$15.20"),
@@ -52,9 +47,7 @@ final class OrdersViewController: UIViewController {
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
     ]
 
-    let thirdOrder: [OrdersList] = [
-        //        OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40")
-    ]
+    let thirdOrder: [OrdersList] = []
 
     let fouthOrder: [OrdersList] = [
         OrdersList(positionName: "1 x Medium Supremo Pizza", price: "$14.40"),
