@@ -37,15 +37,15 @@ final class OrdersViewController: UIViewController {
     }()
     
     var firstOrder: [OrdersList] = [
-        OrdersList(positionName: "1 x Burger", price: "$14.40"),
-        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
-        OrdersList(positionName: "1 x Cola", price: "$10.95"),
-        OrdersList(positionName: "1 x Burger", price: "$14.40"),
-        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
-        OrdersList(positionName: "1 x Cola", price: "$10.95"),
-        OrdersList(positionName: "1 x Burger", price: "$14.40"),
-        OrdersList(positionName: "1 x Fanta", price: "$15.20"),
-        OrdersList(positionName: "1 x Cola", price: "$10.95")
+        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 1, positionName: " x Cola", price: "$10.95"),
+        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 1, positionName: " x Cola", price: "$10.95"),
+        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 1, positionName: " x Cola", price: "$10.95")
     ]
     
     let secondOrder: [OrdersList] = [
@@ -60,6 +60,7 @@ final class OrdersViewController: UIViewController {
     ]
     
     private var ordersCopy: [OrdersModel] = []
+    
     lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
