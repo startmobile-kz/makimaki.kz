@@ -95,10 +95,7 @@ final class OrdersTableHeaderView: UIView {
         button.layer.borderWidth = 0.4
         button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 10
-        button.addTarget(self,
-                         action: #selector(handleExpandClose),
-                         for: .touchUpInside)
-
+        button.isUserInteractionEnabled = false
         return button
     }()
     
@@ -217,11 +214,6 @@ final class OrdersTableHeaderView: UIView {
     }
     
     // MARK: - Actions
-    
-    @objc func handleExpandClose() {
-        sectionIsExpanded = !sectionIsExpanded
-        self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
-    }
     
     @objc func viewTapped() {
         sectionIsExpanded = !sectionIsExpanded
