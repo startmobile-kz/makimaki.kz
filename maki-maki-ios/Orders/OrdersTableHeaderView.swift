@@ -98,6 +98,7 @@ final class OrdersTableHeaderView: UIView {
         button.addTarget(self,
                          action: #selector(handleExpandClose),
                          for: .touchUpInside)
+
         return button
     }()
     
@@ -108,7 +109,9 @@ final class OrdersTableHeaderView: UIView {
         
         setupViews()
         setupConstraints()
+        setupGestureRecognizers()
         restoreState(isExpanded: isExpanded)
+        
     }
     
     required init?(coder: NSCoder) {
@@ -206,6 +209,13 @@ final class OrdersTableHeaderView: UIView {
         sectionIsExpanded = isExpanded
     }
     
+    // MARK: - Setup Gesture Recognizers
+    
+    private func setupGestureRecognizers() {
+        let tapRecognizer = UITapGestureRecognizer(target: self, action: #selector(viewTapped))
+        addGestureRecognizer(tapRecognizer)
+    }
+    
     // MARK: - Actions
     
     @objc func handleExpandClose() {
@@ -214,6 +224,7 @@ final class OrdersTableHeaderView: UIView {
     }
     
     @objc func viewTapped() {
+        sectionIsExpanded = !sectionIsExpanded
         self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
     }
 }
