@@ -152,21 +152,21 @@ final class EditProfileViewController: UIViewController {
             make.size.equalTo(40)
         }
         nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(66)
+            make.top.equalTo(profileImageView.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
         }
 
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(66)
+            make.top.equalTo(nameTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
         }
 
         phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(66)
+            make.top.equalTo(emailTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
