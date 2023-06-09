@@ -12,12 +12,23 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: CategoryCollectionViewCell.self)
     
+    override var isSelected: Bool {
+        didSet {
+            if self.isSelected {
+                categoryButton.backgroundColor = AppColor.accent.uiColor
+            } else {
+                categoryButton.backgroundColor = AppColor.background.uiColor
+            }
+        }
+    }
+    
     // MARK: - UI
     private lazy var categoryButton: UIButton = {
         let button = UIButton()
         button.setImage(UIImage(named: "burger"), for: .normal)
-        button.backgroundColor = AppColor.accent.uiColor
+        button.backgroundColor = AppColor.background.uiColor
         button.layer.cornerRadius = 20
+        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         return button
     }()
     
@@ -35,6 +46,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        isSelected = false
     }
     
     required init?(coder: NSCoder) {
@@ -58,5 +70,10 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             make.leading.equalTo(categoryButton.snp.leading)
             make.centerX.equalTo(contentView)
         }
+    }
+    
+    // MARK: - Button actions
+    @objc func categoryButtonTapped() {
+        isSelected.toggle()
     }
 }
