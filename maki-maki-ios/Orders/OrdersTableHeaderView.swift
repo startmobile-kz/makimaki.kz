@@ -108,13 +108,7 @@ final class OrdersTableHeaderView: UIView {
         
         setupViews()
         setupConstraints()
-        
-        if !isExpanded {
-            self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
-        } else {
-            delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: !isExpanded)
-        }
-        sectionIsExpanded = isExpanded
+        restoreState(isExpanded: isExpanded)
     }
     
     required init?(coder: NSCoder) {
@@ -201,6 +195,17 @@ final class OrdersTableHeaderView: UIView {
         orderDataLabel.attributedText = string
     }
     
+    // MARK: - Restore state
+    
+    private func restoreState(isExpanded: Bool) {
+        if !isExpanded {
+            self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
+        } else {
+            delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: !isExpanded)
+        }
+        sectionIsExpanded = isExpanded
+    }
+    
     // MARK: - Actions
     
     @objc func handleExpandClose() {
@@ -209,6 +214,6 @@ final class OrdersTableHeaderView: UIView {
     }
     
     @objc func viewTapped() {
-//        self.delegate?.onCollapseMenuButtonDidPressed(section: section)
+        self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
     }
 }
