@@ -35,7 +35,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
     
     private lazy var chevronButton: UIButton = {
         let button = UIButton()
-        button.setImage(AppImage.chevronDown.systemImage, for: .normal)
+        button.setImage(AppImage.chevron_down.systemImage, for: .normal)
         button.tintColor = AppColor.paragraph.uiColor
         return button
     }()
@@ -84,7 +84,7 @@ final class DeliveryHeaderView: UICollectionReusableView {
         separatorView.snp.makeConstraints { make in
             make.top.equalTo(addressLabel.snp.bottom).offset(20)
             make.leading.equalToSuperview().offset(-16)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(16)
             make.height.equalTo(0.5)
         }
     }
