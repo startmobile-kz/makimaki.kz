@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol OrdersTableHeaderViewDelegate: AnyObject {
-    func onCollapseMenuButtonDidPressed(section: Int, isCollapsed: Bool)
+    func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool)
 }
 
 final class OrdersTableHeaderView: UIView {
@@ -18,13 +18,13 @@ final class OrdersTableHeaderView: UIView {
     
     static let identifier = String(describing: OrdersTableHeaderView.self)
     
-    private var sectionIsCollapsed: Bool = false {
+    private var sectionIsExpanded: Bool = true {
         didSet {
             UIView.animate(withDuration: 0.25) {
-                if self.sectionIsCollapsed {
-                    self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
-                } else {
+                if self.sectionIsExpanded {
                     self.collapseMenuButton.transform = CGAffineTransform.identity
+                } else {
+                    self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
                 }
             }
         }
@@ -103,10 +103,18 @@ final class OrdersTableHeaderView: UIView {
     
     // MARK: - Lifecycle
     
-    override init(frame: CGRect) {
+    init(frame: CGRect, isExpanded: Bool) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
+        
+        if !isExpanded {
+            self.collapseMenuButton.transform = CGAffineTransform(rotationAngle: -CGFloat.pi * 0.999)
+        } else {
+            delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: !isExpanded)
+        }
+        sectionIsExpanded = isExpanded
     }
     
     required init?(coder: NSCoder) {
@@ -196,8 +204,8 @@ final class OrdersTableHeaderView: UIView {
     // MARK: - Actions
     
     @objc func handleExpandClose() {
-        sectionIsCollapsed = !sectionIsCollapsed
-        self.delegate?.onCollapseMenuButtonDidPressed(section: section, isCollapsed: sectionIsCollapsed)
+        sectionIsExpanded = !sectionIsExpanded
+        self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
     }
     
     @objc func viewTapped() {

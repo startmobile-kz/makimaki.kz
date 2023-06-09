@@ -61,6 +61,8 @@ final class OrdersViewController: UIViewController {
     
     private var ordersCopy: [OrdersModel] = []
     
+    private var sectionIsExpanded: [Bool] = []
+    
     lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
@@ -86,6 +88,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupData() {
         ordersCopy = orders
+        sectionIsExpanded = Array(repeating: true, count: orders.count)
     }
     
     // MARK: - Setup Views
@@ -138,7 +141,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         let headerView = OrdersTableHeaderView(frame: CGRect(x: 0,
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
-                                                             height:114))
+                                                             height:114),
+                                               isExpanded: sectionIsExpanded[section])
         headerView.delegate = self
         headerView.setUp(model: orders[section], section: section)
         return headerView
@@ -164,12 +168,13 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
-    func onCollapseMenuButtonDidPressed(section: Int, isCollapsed: Bool) {
+    func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
         for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
             indexPathes.append(IndexPath(row: i, section: section))
         }
-        if isCollapsed {
+        sectionIsExpanded[section] = !sectionIsExpanded[section]
+        if !isExpanded {
             self.orders[section].ordersList = []
             ordersTableView.deleteRows(at: indexPathes, with: .fade)
         } else {
