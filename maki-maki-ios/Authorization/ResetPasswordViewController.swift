@@ -78,7 +78,6 @@ final class ResetPasswordViewController: UIViewController {
     // MARK: - Setup Views
     private func setUpViews() {
         view.backgroundColor = .white
-        self.newPasswordTextField.addBottomBorder()
         [subtitleLabel,
          newPasswordLabel,
          confirmPasswordLabel, newPasswordTextField,
