@@ -60,4 +60,7 @@ enum AppImage: String, AppImageProtocol {
     case shopping_bag_selected = "shopping_bag_selected"
     case user_selected = "user_selected"
     case welcomeImg = "welcomeImg"
+    case cardImage_1 = "cardImage_1"
+    case search_icon = "search_icon"
+    case clear_icon = "clear_icon"
 }

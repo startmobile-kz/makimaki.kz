@@ -13,7 +13,7 @@ class SearchResultTableViewCell: UITableViewCell {
     // MARK: - UI
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "cardImage_1")
+        imageView.image = AppImage.cardImage_1.uiImage
         imageView.layer.cornerRadius = 8
         return imageView
     }()
