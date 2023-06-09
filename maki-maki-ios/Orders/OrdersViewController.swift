@@ -167,6 +167,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
 }
 
+// MARK: - Collapse Animation
+
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
