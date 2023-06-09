@@ -27,7 +27,9 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         let button = UIButton()
         button.setImage(UIImage(named: "burger"), for: .normal)
         button.backgroundColor = AppColor.background.uiColor
+        button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 20
+        button.layer.borderWidth = 0.4
         button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         return button
     }()
