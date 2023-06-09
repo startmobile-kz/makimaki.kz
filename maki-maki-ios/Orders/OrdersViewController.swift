@@ -38,14 +38,14 @@ final class OrdersViewController: UIViewController {
     
     var firstOrder: [OrdersList] = [
         OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
-        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
-        OrdersList(count: 1, positionName: " x Cola", price: "$10.95"),
-        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
-        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
-        OrdersList(count: 1, positionName: " x Cola", price: "$10.95"),
-        OrdersList(count: 1, positionName: " x Burger", price: "$14.40"),
-        OrdersList(count: 1, positionName: " x Fanta", price: "$15.20"),
-        OrdersList(count: 1, positionName: " x Cola", price: "$10.95")
+        OrdersList(count: 11, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 12, positionName: " x Cola", price: "$10.95"),
+        OrdersList(count: 131, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 9, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 2, positionName: " x Cola", price: "$10.95"),
+        OrdersList(count: 17, positionName: " x Burger", price: "$14.40"),
+        OrdersList(count: 5, positionName: " x Fanta", price: "$15.20"),
+        OrdersList(count: 99, positionName: " x Cola", price: "$10.95")
     ]
     
     let secondOrder: [OrdersList] = [
