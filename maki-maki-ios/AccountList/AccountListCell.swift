@@ -45,9 +45,9 @@ class AccountListCell: UITableViewCell {
     }
     
     func set(logo: Logo) {
-        listImageView.image = logo.image
+        listImageView.image = logo.image.uiImage
         listTitleLabel.text = logo.title
-        arrowImageView.image = logo.arrow
+        arrowImageView.image = logo.arrow.uiImage
     }
     
     // MARK: - Set UI
