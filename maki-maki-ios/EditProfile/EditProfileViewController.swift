@@ -40,12 +40,6 @@ final class EditProfileViewController: UIViewController {
         return button
     }()
     
-//    private lazy var nameTextField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Name"
-//        return textField
-//    }()
-    
     private lazy var nameTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.title = "NAME"
@@ -60,12 +54,6 @@ final class EditProfileViewController: UIViewController {
         textField.keyboardType = .numberPad
         return textField
     }()
-    
-//    private lazy var emailTextField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Email"
-//        return textField
-//    }()
     
     private lazy var emailTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
@@ -83,6 +71,7 @@ final class EditProfileViewController: UIViewController {
     }()
     
     // MARK: - MaskedTextField Listener
+    
         private lazy var listener: MaskedTextFieldDelegate = {
             let listener = MaskedTextFieldDelegate()
             listener.onMaskedTextChangedCallback = { textField, _, isFilled in
@@ -95,12 +84,6 @@ final class EditProfileViewController: UIViewController {
             listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
             return listener
         }()
-    
-//    private lazy var phoneTextField: UITextField = {
-//        let textField = UITextField()
-//        textField.placeholder = "Phone"
-//        return textField
-//    }()
     
     private lazy var phoneTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
