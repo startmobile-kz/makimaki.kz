@@ -37,7 +37,7 @@ final class OrdersTableHeaderView: UIView {
     
     // MARK: - UI
     
-    private lazy var orderNameLabel: UILabel = {
+    private lazy var cafeNameLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
@@ -119,7 +119,7 @@ final class OrdersTableHeaderView: UIView {
         backgroundColor = AppColor.background.uiColor
         
         [
-            orderNameLabel,
+            cafeNameLabel,
             orderStatusLabel,
             dataPriceLabelsStackView,
             dividerImageView,
@@ -135,7 +135,7 @@ final class OrdersTableHeaderView: UIView {
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
-        orderNameLabel.snp.makeConstraints { make in
+        cafeNameLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(21)
             make.leading.equalToSuperview().offset(16)
             make.height.equalTo(22)
@@ -149,7 +149,7 @@ final class OrdersTableHeaderView: UIView {
         }
         
         dataPriceLabelsStackView.snp.makeConstraints { make in
-            make.top.equalTo(orderNameLabel.snp.bottom).offset(8)
+            make.top.equalTo(cafeNameLabel.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
             make.height.equalTo(17)
         }
@@ -170,7 +170,7 @@ final class OrdersTableHeaderView: UIView {
     
     public func setUp(model: OrdersModel, section: Int) {
         self.section = section
-        orderNameLabel.text = model.cafeName
+        cafeNameLabel.text = model.cafeName
         orderStatusLabel.text = model.status
         if model.status == "Delivered" {
             orderStatusLabel.backgroundColor = AppColor.green.uiColor
