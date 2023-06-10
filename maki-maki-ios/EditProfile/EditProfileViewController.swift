@@ -51,7 +51,7 @@ final class EditProfileViewController: UIViewController {
         textField.selectedLineHeight = 2
         textField.lineHeight = 0.5
         textField.autocorrectionType = .no
-        textField.keyboardType = .numberPad
+        textField.keyboardType = .default
         return textField
     }()
     
@@ -66,7 +66,7 @@ final class EditProfileViewController: UIViewController {
         textField.selectedLineHeight = 2
         textField.lineHeight = 0.5
         textField.autocorrectionType = .no
-        textField.keyboardType = .numberPad
+        textField.keyboardType = .emailAddress
         return textField
     }()
     
