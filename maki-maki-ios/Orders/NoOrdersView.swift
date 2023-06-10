@@ -49,10 +49,25 @@ class NoOrdersView: UIView {
     }
     
     private func setupViews() {
-        
+        addSubviews([noOrdersImageView, noOrderslabel, proposalLabel])
     }
     
     private func setupConstraints() {
+        noOrdersImageView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
+            make.width.equalTo(111.41)
+            make.height.equalTo(124)
+        }
         
+        noOrderslabel.snp.makeConstraints { make in
+            make.top.equalTo(noOrdersImageView.snp.bottom).offset(16)
+            make.centerX.equalToSuperview()
+        }
+        
+        proposalLabel.snp.makeConstraints { make in
+            make.top.equalTo(noOrderslabel.snp.bottom).offset(8)
+            make.centerX.equalToSuperview()
+        }
     }
 }
