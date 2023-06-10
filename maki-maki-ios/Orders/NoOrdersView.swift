@@ -11,7 +11,6 @@ import SnapKit
 class NoOrdersView: UIView {
     
     // MARK: - UI
-    
     private lazy var noOrdersImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.no_orders.uiImage
@@ -48,10 +47,12 @@ class NoOrdersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - SetupViews
     private func setupViews() {
         addSubviews([noOrdersImageView, noOrderslabel, proposalLabel])
     }
     
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         noOrdersImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()

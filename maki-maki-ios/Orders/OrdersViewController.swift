@@ -13,26 +13,26 @@ final class OrdersViewController: UIViewController {
     
     lazy var orders: [OrdersModel] = {
         return [
-//            OrdersModel(cafeName: "Bellissimo Pizza",
-//                        status: "Delivered",
-//                        time: "31 May 2020, 07:55 PM  ",
-//                        price: "$43.95",
-//                        ordersList: self.firstOrder),
-//            OrdersModel(cafeName: "Capital One Cafe",
-//                        status: "Cancelled",
-//                        time: "24 May 2020, 04:50 PM  ",
-//                        price: "$5.48",
-//                        ordersList: self.secondOrder),
-//            OrdersModel(cafeName: "Street Cafe",
-//                        status: "Delivered",
-//                        time: "18 May 2020, 02:37 PM  ",
-//                        price: "$18.30",
-//                        ordersList: self.thirdOrder),
-//            OrdersModel(cafeName: "Smile House Cafe",
-//                        status: "Delivered",
-//                        time: "18 May 2020, 02:08 PM  ",
-//                        price: "$14.00",
-//                        ordersList: self.fouthOrder)
+            OrdersModel(cafeName: "Bellissimo Pizza",
+                        status: "Delivered",
+                        time: "31 May 2020, 07:55 PM  ",
+                        price: "$43.95",
+                        ordersList: self.firstOrder),
+            OrdersModel(cafeName: "Capital One Cafe",
+                        status: "Cancelled",
+                        time: "24 May 2020, 04:50 PM  ",
+                        price: "$5.48",
+                        ordersList: self.secondOrder),
+            OrdersModel(cafeName: "Street Cafe",
+                        status: "Delivered",
+                        time: "18 May 2020, 02:37 PM  ",
+                        price: "$18.30",
+                        ordersList: self.thirdOrder),
+            OrdersModel(cafeName: "Smile House Cafe",
+                        status: "Delivered",
+                        time: "18 May 2020, 02:08 PM  ",
+                        price: "$14.00",
+                        ordersList: self.fouthOrder)
         ]
     }()
     
@@ -73,6 +73,15 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
+    lazy var ordersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Orders"
+        label.textColor = AppColor.heading.uiColor
+        label.font = AppFont.bold.s32()
+        label.isHidden = true
+        return label
+    }()
+    
     lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
         view.isHidden = true
@@ -106,7 +115,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([ordersTableView, noOrdersView])
+        view.addSubviews([ordersTableView, ordersLabel, noOrdersView])
     }
     
     // MARK: - Setup Constraints
@@ -116,8 +125,13 @@ final class OrdersViewController: UIViewController {
             make.edges.equalToSuperview()
         }
         
+        ordersLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21.4)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
         noOrdersView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(150)
+            make.top.equalTo(ordersLabel.snp.top).offset(150)
             make.centerX.equalToSuperview()
         }
     }
@@ -125,9 +139,11 @@ final class OrdersViewController: UIViewController {
     private func showNoOrdersViewIfNeeded() {
         if orders.isEmpty {
             ordersTableView.isHidden = true
+            ordersLabel.isHidden = false
             noOrdersView.isHidden = false
         } else {
             ordersTableView.isHidden = false
+            ordersLabel.isHidden = true
             noOrdersView.isHidden = true
         }
     }
