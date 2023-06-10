@@ -6,6 +6,7 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
 
 final class ResetPasswordViewController: UIViewController {
 
@@ -20,40 +21,50 @@ final class ResetPasswordViewController: UIViewController {
         return label
     }()
     
-    private lazy var newPasswordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "NEW PASSWORD"
-        label.font = AppFont.reqular.s15()
-        label.textColor = AppColor.paragraph.uiColor
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        return label
-    }()
-    
-    private lazy var confirmPasswordLabel: UILabel = {
-        let label = UILabel()
-        label.text = "CONFIRM PASSWORD"
-        label.font = AppFont.reqular.s15()
-        label.textColor = AppColor.paragraph.uiColor
-        label.numberOfLines = 0
-        label.lineBreakMode = .byWordWrapping
-        return label
-    }()
-    
-    private lazy var newPasswordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "**********"
+    private lazy var newPasswordTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.font = AppFont.reqular.s15()
+        textField.title = "PASSWORD"
+        textField.text = "********"
+        textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.isSecureTextEntry = true
+        textField.keyboardType = .default
+        textField.rightViewMode = .always
+        textField.autocorrectionType = .no
+        let imageView = UIImageView()
+        let image = AppImage.eye.uiImage
+        imageView.image = image
+        textField.rightView = imageView
         return textField
     }()
-    private lazy var confirmPasswordTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "**********"
+    
+    private lazy var confirmPasswordTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.font = AppFont.reqular.s15()
+        textField.title = "PASSWORD"
+        textField.text = "********"
+        textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
-        textField.borderStyle = .none
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.isSecureTextEntry = true
+        textField.keyboardType = .default
+        textField.rightViewMode = .always
+        textField.autocorrectionType = .no
+        let imageView = UIImageView()
+        let image = AppImage.eye.uiImage
+        imageView.image = image
+        textField.rightView = imageView
         return textField
     }()
+    
     private lazy var changePasswordButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("CHANGE PASSWORD", for: .normal)
@@ -62,10 +73,18 @@ final class ResetPasswordViewController: UIViewController {
         button.backgroundColor = AppColor.accent.uiColor
         return button
     }()
+    
+    private lazy var textFieldsContainer: UIStackView = {
+             let vrStackView = UIStackView(arrangedSubviews: [newPasswordTextField, confirmPasswordTextField])
+             vrStackView.axis = .vertical
+             vrStackView.spacing = 24
+             vrStackView.distribution = .fillEqually
+             return vrStackView
+         }()
+    
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupNavigation()
         setUpViews()
         setUpConstraints()
@@ -77,11 +96,8 @@ final class ResetPasswordViewController: UIViewController {
 
     // MARK: - Setup Views
     private func setUpViews() {
-        view.backgroundColor = .white
-        [subtitleLabel,
-         newPasswordLabel,
-         confirmPasswordLabel, newPasswordTextField,
-         confirmPasswordTextField, changePasswordButton].forEach {
+        view.backgroundColor = AppColor.background.uiColor
+        [subtitleLabel, textFieldsContainer, changePasswordButton].forEach {
             view.addSubview($0)
         }
     }
@@ -92,34 +108,19 @@ final class ResetPasswordViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+
         newPasswordTextField.snp.makeConstraints { make in
-            make.top.equalTo(subtitleLabel.snp.bottom).offset(40)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(60)
-        }
-
-        confirmPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(newPasswordTextField.snp.bottom).offset(23.5)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
-
-        newPasswordLabel.snp.makeConstraints { make in
-            make.top.equalTo(confirmPasswordLabel.snp.bottom).offset(43)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
-        }
-
-        confirmPasswordTextField.snp.makeConstraints { make in
-            make.top.equalTo(newPasswordLabel.snp.bottom).offset(29.5)
-            make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(48)
         }
-
+        confirmPasswordTextField.snp.makeConstraints { make in
+            make.height.equalTo(48)
+        }
+        textFieldsContainer.snp.makeConstraints { make in
+                    make.top.equalTo(subtitleLabel.snp.bottom).offset(41)
+                    make.leading.trailing.equalToSuperview().inset(16)
+                }
         changePasswordButton.snp.makeConstraints { make in
-            make.top.equalTo(confirmPasswordTextField.snp.bottom).offset(29.5)
+            make.top.equalTo(textFieldsContainer.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
