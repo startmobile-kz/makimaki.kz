@@ -63,7 +63,7 @@ final class OrdersViewController: UIViewController {
     
     private var sectionIsExpanded: [Bool] = []
     
-    lazy var ordersTableView: UITableView = {
+    private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.rowHeight = 36
@@ -73,7 +73,7 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
-    lazy var ordersLabel: UILabel = {
+    private lazy var ordersLabel: UILabel = {
         let label = UILabel()
         label.text = "Orders"
         label.textColor = AppColor.heading.uiColor
@@ -82,7 +82,7 @@ final class OrdersViewController: UIViewController {
         return label
     }()
     
-    lazy var noOrdersView: NoOrdersView = {
+    private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
         view.isHidden = true
         return view

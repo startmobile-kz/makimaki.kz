@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class NoOrdersView: UIView {
+final class NoOrdersView: UIView {
     
     // MARK: - UI
     private lazy var noOrdersImageView: UIImageView = {
