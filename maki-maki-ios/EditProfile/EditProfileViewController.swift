@@ -157,21 +157,18 @@ final class EditProfileViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
         }
-        
         emailTextField.snp.makeConstraints { make in
             make.top.equalTo(nameTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
         }
-        
         phoneTextField.snp.makeConstraints { make in
             make.top.equalTo(emailTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
         }
-        
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(phoneTextField.snp.bottom).offset(44.5)
             make.leading.equalToSuperview().offset(16)
@@ -179,5 +176,4 @@ final class EditProfileViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
-    
 }
