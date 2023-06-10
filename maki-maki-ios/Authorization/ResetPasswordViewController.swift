@@ -24,7 +24,7 @@ final class ResetPasswordViewController: UIViewController {
     private lazy var newPasswordTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
-        textField.title = "PASSWORD"
+        textField.title = "NEW PASSWORD"
         textField.text = "********"
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
@@ -46,7 +46,7 @@ final class ResetPasswordViewController: UIViewController {
     private lazy var confirmPasswordTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
-        textField.title = "PASSWORD"
+        textField.title = "CONFIRM PASSWORD"
         textField.text = "********"
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
