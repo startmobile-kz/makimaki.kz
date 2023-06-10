@@ -13,11 +13,11 @@ import InputMask
 final class WelcomePageVerTwoViewController: UIViewController {
 
     // MARK: - UI Components
-   private lazy var welcomeLabel: UILabel = {
+    private lazy var welcomeLabel: UILabel = {
         let label = UILabel()
         label.text = "Welcome!"
         label.font = AppFont.bold.s32()
-       label.textColor = AppColor.heading.uiColor
+        label.textColor = AppColor.heading.uiColor
         return label
     }()
 
@@ -32,18 +32,18 @@ final class WelcomePageVerTwoViewController: UIViewController {
     }()
     
     // MARK: - MaskedTextField Listener
-        private lazy var listener: MaskedTextFieldDelegate = {
-            let listener = MaskedTextFieldDelegate()
-            listener.onMaskedTextChangedCallback = { textField, _, isFilled in
-                let updatedText = textField.text ?? ""
-                if isFilled {
-                    print("Text field is filled: \(updatedText)")
-                }
+    private lazy var listener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
             }
-            listener.delegate = self
-            listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
-            return listener
-        }()
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+        return listener
+    }()
 
     private lazy var phoneNumberTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
@@ -68,7 +68,7 @@ final class WelcomePageVerTwoViewController: UIViewController {
         button.layer.cornerRadius = 14
         button.backgroundColor = AppColor.accent.uiColor
         button.addTarget(self, action: #selector(continueButtonDidPress), for: .touchUpInside)
-       return button
+        return button
     }()
 
     // MARK: - LifeCycle
