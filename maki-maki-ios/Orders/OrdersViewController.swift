@@ -13,26 +13,26 @@ final class OrdersViewController: UIViewController {
     
     lazy var orders: [OrdersModel] = {
         return [
-            OrdersModel(cafeName: "Bellissimo Pizza",
-                        status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
-                        ordersList: self.firstOrder),
-            OrdersModel(cafeName: "Capital One Cafe",
-                        status: "Cancelled",
-                        time: "24 May 2020, 04:50 PM  ",
-                        price: "$5.48",
-                        ordersList: self.secondOrder),
-            OrdersModel(cafeName: "Street Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:37 PM  ",
-                        price: "$18.30",
-                        ordersList: self.thirdOrder),
-            OrdersModel(cafeName: "Smile House Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:08 PM  ",
-                        price: "$14.00",
-                        ordersList: self.fouthOrder)
+//            OrdersModel(cafeName: "Bellissimo Pizza",
+//                        status: "Delivered",
+//                        time: "31 May 2020, 07:55 PM  ",
+//                        price: "$43.95",
+//                        ordersList: self.firstOrder),
+//            OrdersModel(cafeName: "Capital One Cafe",
+//                        status: "Cancelled",
+//                        time: "24 May 2020, 04:50 PM  ",
+//                        price: "$5.48",
+//                        ordersList: self.secondOrder),
+//            OrdersModel(cafeName: "Street Cafe",
+//                        status: "Delivered",
+//                        time: "18 May 2020, 02:37 PM  ",
+//                        price: "$18.30",
+//                        ordersList: self.thirdOrder),
+//            OrdersModel(cafeName: "Smile House Cafe",
+//                        status: "Delivered",
+//                        time: "18 May 2020, 02:08 PM  ",
+//                        price: "$14.00",
+//                        ordersList: self.fouthOrder)
         ]
     }()
     
@@ -73,6 +73,12 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
+    lazy var noOrdersView: NoOrdersView = {
+        let view = NoOrdersView()
+        view.isHidden = true
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -82,6 +88,7 @@ final class OrdersViewController: UIViewController {
         setupData()
         setupViews()
         setupConstraints()
+        showNoOrdersViewIfNeeded()
     }
     
     // MARK: - SetupData
@@ -99,7 +106,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubview(ordersTableView)
+        view.addSubviews([ordersTableView, noOrdersView])
     }
     
     // MARK: - Setup Constraints
@@ -107,6 +114,21 @@ final class OrdersViewController: UIViewController {
     private func setupConstraints() {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        noOrdersView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(150)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func showNoOrdersViewIfNeeded() {
+        if orders.isEmpty {
+            ordersTableView.isHidden = true
+            noOrdersView.isHidden = false
+        } else {
+            ordersTableView.isHidden = false
+            noOrdersView.isHidden = true
         }
     }
 }
