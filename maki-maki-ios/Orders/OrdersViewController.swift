@@ -63,7 +63,7 @@ final class OrdersViewController: UIViewController {
     
     private var sectionIsExpanded: [Bool] = []
     
-    lazy var ordersTableView: UITableView = {
+    private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.rowHeight = 36
@@ -71,6 +71,21 @@ final class OrdersViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         return tableView
+    }()
+    
+    private lazy var ordersLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Orders"
+        label.textColor = AppColor.heading.uiColor
+        label.font = AppFont.bold.s32()
+        label.isHidden = true
+        return label
+    }()
+    
+    private lazy var noOrdersView: NoOrdersView = {
+        let view = NoOrdersView()
+        view.isHidden = true
+        return view
     }()
     
     // MARK: - Lifecycle
@@ -82,6 +97,7 @@ final class OrdersViewController: UIViewController {
         setupData()
         setupViews()
         setupConstraints()
+        showNoOrdersViewIfNeeded()
     }
     
     // MARK: - SetupData
@@ -99,7 +115,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubview(ordersTableView)
+        view.addSubviews([ordersTableView, ordersLabel, noOrdersView])
     }
     
     // MARK: - Setup Constraints
@@ -107,6 +123,28 @@ final class OrdersViewController: UIViewController {
     private func setupConstraints() {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        ordersLabel.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21.4)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        noOrdersView.snp.makeConstraints { make in
+            make.top.equalTo(ordersLabel.snp.top).offset(150)
+            make.centerX.equalToSuperview()
+        }
+    }
+    
+    private func showNoOrdersViewIfNeeded() {
+        if orders.isEmpty {
+            ordersTableView.isHidden = true
+            ordersLabel.isHidden = false
+            noOrdersView.isHidden = false
+        } else {
+            ordersTableView.isHidden = false
+            ordersLabel.isHidden = true
+            noOrdersView.isHidden = true
         }
     }
 }
