@@ -49,7 +49,7 @@ class PageHeaderView: UICollectionReusableView {
         }
         
         viewWithCollection.snp.makeConstraints { make in
-            make.top.equalTo(topView.snp.bottom).offset(16)
+            make.top.equalTo(topView.snp.bottom).offset(24)
             make.leading.equalToSuperview()
             make.trailing.equalTo(-14)
             make.height.equalTo(40)

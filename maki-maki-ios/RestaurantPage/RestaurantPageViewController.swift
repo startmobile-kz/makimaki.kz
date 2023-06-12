@@ -10,6 +10,13 @@ import SnapKit
 
 class RestaurantPageViewController: UIViewController {
     
+    // MARK: - Properties
+    private var lastContentOffsetY: CGFloat = 0
+    private var isScrollingUp = false
+    private let replacementViewHeight: CGFloat = 40
+    private let initialHeaderHeight: CGFloat = 318
+    private let spacingBetweenHeaderAndSection: CGFloat = 32
+    
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -25,6 +32,8 @@ class RestaurantPageViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: PageHeaderView.reuseID
         )
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
     
@@ -72,7 +81,7 @@ class RestaurantPageViewController: UIViewController {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(318)
+                heightDimension: .absolute(initialHeaderHeight)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
@@ -88,6 +97,7 @@ class RestaurantPageViewController: UIViewController {
     
     // MARK: - SetupViews
     private func setupViews() {
+        self.edgesForExtendedLayout = []
         view.backgroundColor = .systemBackground
         view.addSubviews([collectionView, replacementView])
     }
@@ -95,13 +105,92 @@ class RestaurantPageViewController: UIViewController {
     // MARK: - SetupConstraints
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.equalTo(view.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         replacementView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(-40)
             make.leading.equalToSuperview().offset(14)
             make.trailing.equalToSuperview().offset(-14)
+            make.height.equalTo(40)
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var sticked = false
+        
+        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+        
+//        if replacementView.frame.maxY > replacementViewHeight {
+//            if sticked == false {
+//                UIView.animate(withDuration: 0.3) { [weak self] in
+//                    guard let self = self else {
+//                        return
+//                    }
+//                    self.replacementView.snp.remakeConstraints { make in
+//                        make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+//                        make.leading.trailing.equalToSuperview()
+//                        make.height.equalTo(40)
+//                    }
+//                    self.replacementView.bringSubviewToFront(self.view)
+//                    self.view.layoutIfNeeded()
+//                }
+//            }
+//            sticked = true
+//        } else
+        if scrollView.contentOffset.y > initialHeaderHeight {
+            if !sticked {
+                replacementView.alpha = 1
+                UIView.animate(withDuration: 0.4) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.replacementView.snp.remakeConstraints { make in
+                        make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+                        make.leading.trailing.equalToSuperview()
+                        make.height.equalTo(40)
+                    }
+                    self.replacementView.bringSubviewToFront(self.view)
+                    self.view.layoutIfNeeded()
+                }
+            }
+            
+        }
+        
+        if isScrollingUp {
+            if scrollView.contentOffset.y < initialHeaderHeight + spacingBetweenHeaderAndSection {
+                UIView.animate(withDuration: 1) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.replacementView.alpha = 0
+                } completion: { _ in
+                    self.hideReplacementView()
+                }
+                sticked = false
+            }
+        }
+        
+        lastContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    private func hideReplacementView() {
+        replacementView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(14)
+            make.trailing.equalToSuperview().offset(-14)
+            make.height.equalTo(40)
+        }
+    }
+    
+//    private func stick
+    
+    private func checkScrollDirection(viewOffsetY: CGFloat) {
+        if lastContentOffsetY > viewOffsetY {
+            isScrollingUp = true
+        } else {
+            isScrollingUp = false
         }
     }
 }
@@ -114,7 +203,7 @@ extension RestaurantPageViewController: UICollectionViewDelegate {
 // MARK: UICollectionViewDataSource methods
 extension RestaurantPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 6
+        return 10
     }
     
     func collectionView(
