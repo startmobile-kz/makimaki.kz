@@ -28,15 +28,18 @@ class RestaurantPageViewController: UIViewController {
             // Item
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .fractionalWidth(1),
+                    widthDimension: .fractionalWidth(0.5),
                     heightDimension: .fractionalHeight(1)
                 )
             )
             
+            item.contentInsets.trailing = 14
+            item.contentInsets.bottom = 14
+            
             // Group
             let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
-                    widthDimension: .absolute(165),
+                    widthDimension: .fractionalWidth(1),
                     heightDimension: .absolute(242)
                 ),
                 subitems: [item]
@@ -44,6 +47,12 @@ class RestaurantPageViewController: UIViewController {
             
             // Section
             let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(
+                top: 0,
+                leading: 16,
+                bottom: 40,
+                trailing: 0
+            )
             return section
         }
     }
@@ -57,12 +66,15 @@ class RestaurantPageViewController: UIViewController {
     
     // MARK: - SetupViews
     private func setupViews() {
-        
+        view.backgroundColor = .systemBackground
+        view.addSubviews([collectionView])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        
+        collectionView.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }
 
