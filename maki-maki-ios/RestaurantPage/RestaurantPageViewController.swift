@@ -141,13 +141,10 @@ class RestaurantPageViewController: UIViewController {
         
         if isScrollingUp {
             if scrollView.contentOffset.y < initialHeaderHeight {
-                UIView.animate(withDuration: 1) { [weak self] in
-                    guard let self = self else {
-                        return
-                    }
+                UIView.animate(withDuration: 0.5) {
                     self.replacementView.alpha = 0
-                } completion: { _ in
                     self.hideReplacementView()
+                    self.view.layoutIfNeeded()
                 }
                 sticked = false
             }
