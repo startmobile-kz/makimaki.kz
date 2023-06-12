@@ -10,16 +10,7 @@ import UIKit
 final class SearchV1ViewController: UIViewController {
     
     // MARK: - UI
-    private lazy var searchBar: UISearchBar = {
-        let searchBar = UISearchBar()
-        searchBar.searchBarStyle = UISearchBar.Style.default
-        searchBar.placeholder = "Search for a dish"
-        searchBar.setImage(UIImage(named: "search_icon"), for: UISearchBar.Icon.search, state: .normal)
-        searchBar.setImage(UIImage(named: "clear_icon"), for: UISearchBar.Icon.clear, state: .normal)
-        searchBar.searchTextField.textColor = AppColor.heading.uiColor
-        searchBar.searchTextField.font = AppFont.reqular.s14()
-        return searchBar
-    }()
+    private lazy var searchBar: SearchBar = SearchBar()
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "searchResult_cell")
@@ -46,7 +37,6 @@ final class SearchV1ViewController: UIViewController {
 
     // MARK: - Setup Constraints
     private func setupContrains() {
-        
         searchBar.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
@@ -55,7 +45,6 @@ final class SearchV1ViewController: UIViewController {
         }
         
         searchTableView.snp.makeConstraints { make in
-            
             make.top.equalTo(searchBar.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(150)
