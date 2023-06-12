@@ -132,26 +132,16 @@ final class OrdersViewController: UIViewController {
         }
         
         noOrdersView.snp.makeConstraints { make in
-            make.centerX.equalTo(view.snp.centerX)
-            make.centerY.equalTo(view.snp.centerY).offset(TabBarSettings.tabBarHeight)
+            make.center.equalTo(view.snp.center)
         }
     }
     
     private func showNoOrdersViewIfNeeded() {
-//        if orders.isEmpty {
-//            ordersTableView.backgroundView = noOrdersView
-//        } else {
-//            ordersTableView.backgroundView = nil
-//        }
-//        if orders.isEmpty {
-//            ordersTableView.isHidden = true
-//            ordersLabel.isHidden = false
-//            noOrdersView.isHidden = false
-//        } else {
-//            ordersTableView.isHidden = false
-//            ordersLabel.isHidden = true
-//            noOrdersView.isHidden = true
-//        }
+        if orders.isEmpty {
+            ordersTableView.backgroundView = noOrdersView
+        } else {
+            ordersTableView.backgroundView = nil
+        }
     }
 }
 
