@@ -9,7 +9,7 @@ import SnapKit
 import SkyFloatingLabelTextField
 
 final class ResetPasswordViewController: UIViewController {
-
+    
     // MARK: - UI elements design
     private lazy var subtitleLabel: UILabel = {
         let label = UILabel()
@@ -25,7 +25,7 @@ final class ResetPasswordViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
         textField.title = "NEW PASSWORD"
-        textField.text = "********"
+        textField.placeholder = "Password"
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
         textField.selectedLineColor = AppColor.blue.uiColor
@@ -47,7 +47,7 @@ final class ResetPasswordViewController: UIViewController {
         let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
         textField.title = "CONFIRM PASSWORD"
-        textField.text = "********"
+        textField.placeholder = "Repeat Password"
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
         textField.selectedLineColor = AppColor.blue.uiColor
@@ -75,12 +75,12 @@ final class ResetPasswordViewController: UIViewController {
     }()
     
     private lazy var textFieldsContainer: UIStackView = {
-             let vrStackView = UIStackView(arrangedSubviews: [newPasswordTextField, confirmPasswordTextField])
-             vrStackView.axis = .vertical
-             vrStackView.spacing = 24
-             vrStackView.distribution = .fillEqually
-             return vrStackView
-         }()
+        let vrStackView = UIStackView(arrangedSubviews: [newPasswordTextField, confirmPasswordTextField])
+        vrStackView.axis = .vertical
+        vrStackView.spacing = 24
+        vrStackView.distribution = .fillEqually
+        return vrStackView
+    }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
@@ -89,11 +89,11 @@ final class ResetPasswordViewController: UIViewController {
         setUpViews()
         setUpConstraints()
     }
-
+    
     private func setupNavigation() {
         title = "Reset Password"
     }
-
+    
     // MARK: - Setup Views
     private func setUpViews() {
         view.backgroundColor = AppColor.background.uiColor
@@ -104,11 +104,11 @@ final class ResetPasswordViewController: UIViewController {
     // MARK: - Setup Constraints
     private func setUpConstraints() {
         subtitleLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(13)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(17)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
-
+        
         newPasswordTextField.snp.makeConstraints { make in
             make.height.equalTo(48)
         }
@@ -116,9 +116,9 @@ final class ResetPasswordViewController: UIViewController {
             make.height.equalTo(48)
         }
         textFieldsContainer.snp.makeConstraints { make in
-                    make.top.equalTo(subtitleLabel.snp.bottom).offset(41)
-                    make.leading.trailing.equalToSuperview().inset(16)
-                }
+            make.top.equalTo(subtitleLabel.snp.bottom).offset(41)
+            make.leading.trailing.equalToSuperview().inset(16)
+        }
         changePasswordButton.snp.makeConstraints { make in
             make.top.equalTo(textFieldsContainer.snp.bottom).offset(32)
             make.leading.equalToSuperview().offset(16)
