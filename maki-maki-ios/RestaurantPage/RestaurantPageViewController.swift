@@ -16,6 +16,7 @@ class RestaurantPageViewController: UIViewController {
     private let replacementViewHeight: CGFloat = 40
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private let reinsurance: CGFloat = 2
     
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
@@ -122,44 +123,24 @@ class RestaurantPageViewController: UIViewController {
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
         
-//        if replacementView.frame.maxY > replacementViewHeight {
-//            if sticked == false {
-//                UIView.animate(withDuration: 0.3) { [weak self] in
-//                    guard let self = self else {
-//                        return
-//                    }
-//                    self.replacementView.snp.remakeConstraints { make in
-//                        make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-//                        make.leading.trailing.equalToSuperview()
-//                        make.height.equalTo(40)
-//                    }
-//                    self.replacementView.bringSubviewToFront(self.view)
-//                    self.view.layoutIfNeeded()
-//                }
-//            }
-//            sticked = true
-//        } else
-        if scrollView.contentOffset.y > initialHeaderHeight {
+        if replacementView.frame.maxY > replacementViewHeight {
+            sticked = true
+        } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
             if !sticked {
                 replacementView.alpha = 1
-                UIView.animate(withDuration: 0.4) { [weak self] in
+                UIView.animate(withDuration: 0.3) { [weak self] in
                     guard let self = self else {
                         return
                     }
-                    self.replacementView.snp.remakeConstraints { make in
-                        make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
-                        make.leading.trailing.equalToSuperview()
-                        make.height.equalTo(40)
-                    }
+                    pinReplacementViewToTheTop()
                     self.replacementView.bringSubviewToFront(self.view)
                     self.view.layoutIfNeeded()
                 }
             }
-            
         }
         
         if isScrollingUp {
-            if scrollView.contentOffset.y < initialHeaderHeight + spacingBetweenHeaderAndSection {
+            if scrollView.contentOffset.y < initialHeaderHeight {
                 UIView.animate(withDuration: 1) { [weak self] in
                     guard let self = self else {
                         return
@@ -184,13 +165,19 @@ class RestaurantPageViewController: UIViewController {
         }
     }
     
-//    private func stick
-    
     private func checkScrollDirection(viewOffsetY: CGFloat) {
         if lastContentOffsetY > viewOffsetY {
             isScrollingUp = true
         } else {
             isScrollingUp = false
+        }
+    }
+    
+    private func pinReplacementViewToTheTop() {
+        replacementView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
 }
@@ -210,20 +197,28 @@ extension RestaurantPageViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(
+        guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: DishCell.reuseID,
             for: indexPath
-        ) as! DishCell
+        ) as? DishCell else {
+            fatalError("Could not cast to DishCell")
+        }
         return cell
     }
     
-    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let header = collectionView.dequeueReusableSupplementaryView(
+            guard let header = collectionView.dequeueReusableSupplementaryView(
                 ofKind: UICollectionView.elementKindSectionHeader,
                 withReuseIdentifier: PageHeaderView.reuseID,
                 for: indexPath
-            ) as! PageHeaderView
+            ) as? PageHeaderView else {
+                fatalError("Could not cast to PageHeaderView")
+            }
             return header
         } else {
             return UICollectionReusableView()
