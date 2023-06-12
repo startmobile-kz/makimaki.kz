@@ -64,4 +64,7 @@ enum AppImage: String, AppImageProtocol {
     case user_selected = "user_selected"
     case welcomeImg = "welcomeImg"
     case no_orders = "no_orders"
+    case add_button = "add_button"
+    case payments_card = "payments_card"
+    case apple_pay = "apple_pay"
 }
