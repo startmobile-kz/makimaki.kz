@@ -10,6 +10,10 @@ import SnapKit
 import CHIOTPField
 
 final class VerificationViewController: UIViewController {
+    
+    private var timeRemaining: Int = 59
+    private var timer: Timer?
+    
     // MARK: - Setup UI Elements
     private lazy var otplabel: UILabel = {
         let label = UILabel()
@@ -30,10 +34,27 @@ final class VerificationViewController: UIViewController {
         textField.keyboardType = .numberPad
         return textField
     }()
+        
+    private func startTimer() {
+        timer = Timer.scheduledTimer(
+            timeInterval: 1,
+            target: self,
+            selector: #selector(updateTime),
+            userInfo: nil ,
+            repeats: true
+        )
+        resendButton.isEnabled = false
+    }
+    
+    private func timeFormatter(_ seconds: Int) -> String {
+        let minute = Int(timeRemaining) / 60 % 60
+        let second = Int(timeRemaining) % 60
+        return String(format: "%02i:%02i", minute, second)
+    }
     
     private lazy var otpStatusMessageLabel: UILabel = {
         let label = UILabel()
-        label.text = "Didn't receive the OTP?"
+        label.text = "Time remaining: \(timeFormatter(timeRemaining))"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s14()
         label.textAlignment = .right
@@ -44,7 +65,9 @@ final class VerificationViewController: UIViewController {
         let button = UIButton(type: .system)
         button.setTitle("RESEND", for: .normal)
         button.titleLabel?.font = AppFont.semibold.s14()
-        button.setTitleColor(AppColor.blue.uiColor, for: .normal)
+        button.setTitleColor(AppColor.grey300.uiColor, for: .disabled)
+        button.isEnabled = false
+        button.addTarget(self, action: #selector(resetTimer), for: .touchUpInside)
         return button
     }()
     
@@ -67,12 +90,23 @@ final class VerificationViewController: UIViewController {
         return button
     }()
     
+    deinit {
+        print("DEINITED: \(self)")
+    }
+    
     // MARK: - LifeCycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
         setupNavigationBar()
+        startTimer()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        timer?.invalidate()
+        timer = nil
     }
     
     // MARK: - Setup Views
@@ -120,5 +154,21 @@ final class VerificationViewController: UIViewController {
     // MARK: - Actions
     @objc private func verifyButtonDidPressed() {
         self.navigationController?.pushViewController(Main2TabBarController(), animated: true)
+    }
+    
+    @objc private func updateTime() {
+        if timeRemaining >= 0 {
+            otpStatusMessageLabel.text = "Time remaining: \(timeFormatter(timeRemaining))"
+            timeRemaining -= 1
+        } else {
+            timer?.invalidate()
+            resendButton.isEnabled = true
+            resendButton.setTitleColor(AppColor.blue.uiColor, for: .normal)
+        }
+    }
+    
+    @objc private func resetTimer() {
+        timeRemaining = 59
+        startTimer()
     }
 }
