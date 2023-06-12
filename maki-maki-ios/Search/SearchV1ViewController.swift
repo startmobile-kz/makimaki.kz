@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SnapKit
 
 final class SearchV1ViewController: UIViewController {
     
@@ -14,6 +15,7 @@ final class SearchV1ViewController: UIViewController {
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "searchResult_cell")
+        tableView.register(RecentSearchesTableViewCell.self, forCellReuseIdentifier: "recentSearches_cell")
         tableView.rowHeight = 66
         tableView.dataSource = self
         tableView.delegate = self
@@ -22,6 +24,7 @@ final class SearchV1ViewController: UIViewController {
         
     }()
     
+    // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -53,7 +56,6 @@ final class SearchV1ViewController: UIViewController {
 }
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         6
     }
@@ -61,9 +63,8 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult_cell", for: indexPath)
                 as? SearchResultTableViewCell else {
-            fatalError("searchResultCell not found")
+            fatalError("recent not found")
         }
         return cell
     }
-    
 }

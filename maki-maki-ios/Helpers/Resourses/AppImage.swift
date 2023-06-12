@@ -67,4 +67,5 @@ enum AppImage: String, AppImageProtocol {
     case cardImage_1 = "cardImage_1"
     case search_icon = "search_icon"
     case clear_icon = "clear_icon"
+    case clock = "clock"
 }
