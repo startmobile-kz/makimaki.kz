@@ -28,6 +28,8 @@
 		27943BE72A30870D003F3C7B /* ManegAdressesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */; };
 		27943BE92A308726003F3C7B /* Adress.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE82A308726003F3C7B /* Adress.swift */; };
 		27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */; };
+		27D6199B2A373E3F00D64E62 /* ViewCartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */; };
+		27D6199D2A37404400D64E62 /* RestaurantMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */; };
 		27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */; };
 		27F53B702A2D033400B42737 /* AccountListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B6F2A2D033400B42737 /* AccountListController.swift */; };
 		27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B712A2D049700B42737 /* AccountListCell.swift */; };
@@ -105,6 +107,8 @@
 		27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManegAdressesFooterView.swift; sourceTree = "<group>"; };
 		27943BE82A308726003F3C7B /* Adress.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Adress.swift; sourceTree = "<group>"; };
 		27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCartContainer.swift; sourceTree = "<group>"; };
+		27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMainViewController.swift; sourceTree = "<group>"; };
 		27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		27F53B6F2A2D033400B42737 /* AccountListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListController.swift; sourceTree = "<group>"; };
 		27F53B712A2D049700B42737 /* AccountListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListCell.swift; sourceTree = "<group>"; };
@@ -195,6 +199,15 @@
 				685AA9E02A344ADB00D5E82B /* NoOrdersView.swift */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		2732B6D62A37249C001F6E66 /* RestaurantMenu */ = {
+			isa = PBXGroup;
+			children = (
+				27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */,
+				27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */,
+			);
+			path = RestaurantMenu;
 			sourceTree = "<group>";
 		};
 		274485FD2A27B3B400F2FFBD /* Registration */ = {
@@ -438,6 +451,7 @@
 				27943BE12A308688003F3C7B /* Manage Addresses */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
+				2732B6D62A37249C001F6E66 /* RestaurantMenu */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
 				26FC1D542A264B1F003BA971 /* Orders */,
 				7720EEEA2A23806500A01669 /* Module */,
@@ -669,6 +683,7 @@
 			files = (
 				F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */,
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
+				27D6199B2A373E3F00D64E62 /* ViewCartContainer.swift in Sources */,
 				685AA9E12A344ADB00D5E82B /* NoOrdersView.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */,
@@ -700,6 +715,7 @@
 				275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
+				27D6199D2A37404400D64E62 /* RestaurantMainViewController.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
 				F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */,
 				6866811C2A29D60600BC94E7 /* SectionType.swift in Sources */,
