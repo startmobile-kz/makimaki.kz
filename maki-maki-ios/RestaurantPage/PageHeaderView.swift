@@ -10,14 +10,17 @@ import SnapKit
 
 class PageHeaderView: UICollectionReusableView {
     
+    static let reuseID = String(describing: PageHeaderView.self)
+    
     // MARK: - UI
     private lazy var topView: UIView = {
         let view = UIView()
         view.backgroundColor = .orange
         return view
     }()
-    private lazy var viewWithCollection: HeaderCollectionView = {
-        let view = HeaderCollectionView()
+    private lazy var viewWithCollection: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.accent.uiColor
         return view
     }()
     
@@ -40,14 +43,16 @@ class PageHeaderView: UICollectionReusableView {
     // MARK: - SetupConstraints
     private func setupConstraints() {
         topView.snp.makeConstraints { make in
-            make.top.leading.trailing.equalToSuperview()
+            make.top.leading.equalToSuperview()
+            make.trailing.equalTo(-14)
             make.height.equalTo(254)
         }
         
         viewWithCollection.snp.makeConstraints { make in
             make.top.equalTo(topView.snp.bottom).offset(16)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview()
+            make.trailing.equalTo(-14)
+            make.height.equalTo(40)
         }
-        
     }
 }

@@ -24,12 +24,11 @@ class HeaderCollectionView: UIView {
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = AppColor.accent.uiColor
+        addSubviews([])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        snp.makeConstraints { make in
-            make.edges.equalToSuperview()
-        }
+    
     }
 }

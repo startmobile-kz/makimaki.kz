@@ -20,6 +20,11 @@ class RestaurantPageViewController: UIViewController {
             DishCell.self,
             forCellWithReuseIdentifier: DishCell.reuseID
         )
+        collectionView.register(
+            PageHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: PageHeaderView.reuseID
+        )
         return collectionView
     }()
     
@@ -44,17 +49,28 @@ class RestaurantPageViewController: UIViewController {
                 ),
                 subitems: [item]
             )
-            
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(
-                top: 0,
+                top: 32,
                 leading: 16,
                 bottom: 40,
                 trailing: 0
             )
+            section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
             return section
         }
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(318)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
     }
     
     // MARK: - Lifecycle
@@ -98,5 +114,18 @@ extension RestaurantPageViewController: UICollectionViewDataSource {
             for: indexPath
         ) as! DishCell
         return cell
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, viewForSupplementaryElementOfKind kind: String, at indexPath: IndexPath) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: PageHeaderView.reuseID,
+                for: indexPath
+            ) as! PageHeaderView
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
     }
 }
