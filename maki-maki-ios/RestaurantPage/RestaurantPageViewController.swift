@@ -28,6 +28,12 @@ class RestaurantPageViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var replacementView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.accent.uiColor
+        return view
+    }()
+    
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { section, _ in
             // Item
@@ -83,13 +89,19 @@ class RestaurantPageViewController: UIViewController {
     // MARK: - SetupViews
     private func setupViews() {
         view.backgroundColor = .systemBackground
-        view.addSubviews([collectionView])
+        view.addSubviews([collectionView, replacementView])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+        
+        replacementView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(14)
+            make.trailing.equalToSuperview().offset(-14)
         }
     }
 }
