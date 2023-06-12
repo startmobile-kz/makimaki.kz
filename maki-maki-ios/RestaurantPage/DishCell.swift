@@ -14,6 +14,11 @@ class DishCell: UICollectionViewCell {
     static let reuseID = String(describing: DishCell.self)
     
     // MARK: - UI
+    let view: UIView = {
+        let view = UIView()
+        view.backgroundColor = .cyan
+        return view
+    }()
     
     // MARK: - Lifecycle
     override init(frame: CGRect) {
@@ -28,11 +33,13 @@ class DishCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
-        
+        addSubview(view)
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        
+        view.snp.makeConstraints { make in
+            make.edges.equalToSuperview()
+        }
     }
 }

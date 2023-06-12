@@ -15,6 +15,11 @@ class RestaurantPageViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
+        
+        collectionView.register(
+            DishCell.self,
+            forCellWithReuseIdentifier: DishCell.reuseID
+        )
         return collectionView
     }()
     
@@ -76,6 +81,10 @@ extension RestaurantPageViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let cell = collectionView.dequeueReusableCell(
+            withReuseIdentifier: DishCell.reuseID,
+            for: indexPath
+        ) as! DishCell
+        return cell
     }
 }
