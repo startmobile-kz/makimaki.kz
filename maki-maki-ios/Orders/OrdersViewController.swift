@@ -70,6 +70,7 @@ final class OrdersViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.backgroundView = noOrdersView
         return tableView
     }()
     
@@ -84,7 +85,7 @@ final class OrdersViewController: UIViewController {
     
     private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
-        view.isHidden = true
+//        view.isHidden = true
         return view
     }()
     
@@ -115,7 +116,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([ordersTableView, ordersLabel, noOrdersView])
+        view.addSubviews([ordersTableView, ordersLabel])
     }
     
     // MARK: - Setup Constraints
@@ -131,21 +132,26 @@ final class OrdersViewController: UIViewController {
         }
         
         noOrdersView.snp.makeConstraints { make in
-            make.top.equalTo(ordersLabel.snp.top).offset(150)
-            make.centerX.equalToSuperview()
+            make.centerX.equalTo(view.snp.centerX)
+            make.centerY.equalTo(view.snp.centerY).offset(TabBarSettings.tabBarHeight)
         }
     }
     
     private func showNoOrdersViewIfNeeded() {
-        if orders.isEmpty {
-            ordersTableView.isHidden = true
-            ordersLabel.isHidden = false
-            noOrdersView.isHidden = false
-        } else {
-            ordersTableView.isHidden = false
-            ordersLabel.isHidden = true
-            noOrdersView.isHidden = true
-        }
+//        if orders.isEmpty {
+//            ordersTableView.backgroundView = noOrdersView
+//        } else {
+//            ordersTableView.backgroundView = nil
+//        }
+//        if orders.isEmpty {
+//            ordersTableView.isHidden = true
+//            ordersLabel.isHidden = false
+//            noOrdersView.isHidden = false
+//        } else {
+//            ordersTableView.isHidden = false
+//            ordersLabel.isHidden = true
+//            noOrdersView.isHidden = true
+//        }
     }
 }
 
