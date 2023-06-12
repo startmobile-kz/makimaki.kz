@@ -151,6 +151,7 @@ final class WelcomePageVerOneViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func continueButtonDidPress() {
-        self.navigationController?.pushViewController(VerificationViewController(), animated: true)
+        let controller = VerificationViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }

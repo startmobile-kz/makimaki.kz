@@ -167,6 +167,10 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
+        let controller = BasketViewController()
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Header of Section
@@ -199,6 +203,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 83
     }
+
 }
 
 // MARK: - Collapse Animation

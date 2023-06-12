@@ -95,4 +95,9 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
         cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+//        self.navigationController?.popViewController(animated: true)
+        dismiss(animated: true)
+    }
 }
