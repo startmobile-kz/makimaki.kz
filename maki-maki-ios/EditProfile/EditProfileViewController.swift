@@ -7,9 +7,11 @@
 
 import UIKit
 import SnapKit
+import SkyFloatingLabelTextField
+import InputMask
 
 final class EditProfileViewController: UIViewController {
-
+    
     // MARK: - UI
     
     private lazy var profileLabel: UILabel = {
@@ -38,21 +40,64 @@ final class EditProfileViewController: UIViewController {
         return button
     }()
     
-    private lazy var nameTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Name"
+    private lazy var nameTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.title = "NAME"
+        textField.placeholder = "Islam"
+        textField.lineColor = AppColor.border.uiColor
+        textField.textColor = AppColor.heading.uiColor
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.autocorrectionType = .no
+        textField.keyboardType = .default
         return textField
     }()
     
-    private lazy var emailTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Email"
+    private lazy var emailTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.title = "EMAIL"
+        textField.placeholder = "aitemr16@gmail.com"
+        textField.lineColor = AppColor.border.uiColor
+        textField.textColor = AppColor.heading.uiColor
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.autocorrectionType = .no
+        textField.keyboardType = .emailAddress
         return textField
     }()
     
-    private lazy var phoneTextField: UITextField = {
-        let textField = UITextField()
-        textField.placeholder = "Phone"
+    // MARK: - MaskedTextField Listener
+    
+    private lazy var listener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
+            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "+7 ([000]) [000] [00] [00]"
+        return listener
+    }()
+    
+    private lazy var phoneTextField: SkyFloatingLabelTextField = {
+        let textField = SkyFloatingLabelTextField()
+        textField.title = "PHONE"
+        textField.placeholder = "+7 (777) 777 77 77"
+        textField.delegate = listener
+        textField.lineColor = AppColor.border.uiColor
+        textField.textColor = AppColor.heading.uiColor
+        textField.selectedLineColor = AppColor.blue.uiColor
+        textField.selectedTitleColor = AppColor.blue.uiColor
+        textField.selectedLineHeight = 2
+        textField.lineHeight = 0.5
+        textField.autocorrectionType = .no
+        textField.keyboardType = .numberPad
         return textField
     }()
     
@@ -107,23 +152,23 @@ final class EditProfileViewController: UIViewController {
             make.size.equalTo(40)
         }
         nameTextField.snp.makeConstraints { make in
-            make.top.equalTo(profileImageView.snp.bottom).offset(66)
+            make.top.equalTo(profileImageView.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(60)
         }
-
         emailTextField.snp.makeConstraints { make in
-            make.top.equalTo(nameTextField.snp.bottom).offset(66)
+            make.top.equalTo(nameTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(60)
         }
-
         phoneTextField.snp.makeConstraints { make in
-            make.top.equalTo(emailTextField.snp.bottom).offset(66)
+            make.top.equalTo(emailTextField.snp.bottom).offset(25)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(60)
         }
-
         saveButton.snp.makeConstraints { make in
             make.top.equalTo(phoneTextField.snp.bottom).offset(44.5)
             make.leading.equalToSuperview().offset(16)
@@ -131,5 +176,4 @@ final class EditProfileViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
-    
 }
