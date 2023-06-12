@@ -71,4 +71,8 @@ final class NoOrdersView: UIView {
             make.centerX.equalToSuperview()
         }
     }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 229, height: 194)
+    }
 }
