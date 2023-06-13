@@ -21,14 +21,13 @@ class SearchBar: UIView {
     }()
     
     private lazy var searchBarTextField: UITextField = {
-       
         let textField = UITextField()
         textField.placeholder = "Search for a dish"
         textField.backgroundColor = AppColor.grey100.uiColor
         textField.layer.cornerRadius = 14
         textField.font = AppFont.reqular.s14()
         textField.textColor = AppColor.heading.uiColor
-        let paddingView = UIView(frame: CGRectMake(0, 0, 48, self.frame.height))
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
         textField.leftView = paddingView
         textField.leftViewMode = UITextField.ViewMode.always
         textField.layer.borderColor = AppColor.border.cgColor
