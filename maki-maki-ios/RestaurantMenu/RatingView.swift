@@ -27,7 +27,7 @@ final class RatingView: UIView {
     
     private lazy var ratingStack: UIStackView = {
         let stack = UIStackView()
-        stack.axis = .vertical
+        stack.axis = .horizontal
         stack.spacing = 5.5
         return stack
     }()
@@ -66,7 +66,7 @@ final class RatingView: UIView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        backgroundColor = .blue
+        backgroundColor = AppColor.grey100.uiColor
         [starImageView, ratingLabel].forEach { view in
             ratingStack.addArrangedSubview(view)
         }

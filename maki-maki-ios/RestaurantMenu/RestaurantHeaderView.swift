@@ -40,8 +40,6 @@ final class RestaurantHeaderView: UICollectionReusableView {
         ratingView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
             make.leading.equalToSuperview().offset(16)
-//            make.height.equalTo(40)
-//            make.width.equalTo(100)
         }
     }
 
