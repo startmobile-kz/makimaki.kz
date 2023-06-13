@@ -11,9 +11,21 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     // MARK: - Sections
-    let sections: [SectionType] = [.categorie, .promo, .restaurant]
+    let sections: [SectionType] = [.categories, .promos, .restaurants]
     
     // MARK: - UI
+    private lazy var deliveryHeaderView: DeliveryHeaderView = {
+        let view = DeliveryHeaderView()
+        view.delegate = self
+        return view
+    }()
+    
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.border.uiColor
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -24,21 +36,16 @@ final class MainViewController: UIViewController {
             withReuseIdentifier: SectionHeaderView.reuseID
         )
         collectionView.register(
-            DeliveryHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: DeliveryHeaderView.reuseID
-        )
-        collectionView.register(
             CategoryCollectionViewCell.self,
             forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID
         )
         collectionView.register(
-            RestaurantCollectionViewCell.self,
-            forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID
-        )
-        collectionView.register(
             PromoBannerCollectionViewCell.self,
             forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
+        )
+        collectionView.register(
+            RestaurantCollectionViewCell.self,
+            forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID
         )
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
@@ -50,38 +57,42 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
-        setupNavigationBar()
-    }
-
-    // MARK: - Setup Navigation Bar
-
-    private func setupNavigationBar() {
-        self.navigationItem.title = "Maki Maki"
     }
     
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubview(collectionView)
+        view.addSubviews([deliveryHeaderView, separatorView, collectionView])
     }
     
     // MARK: - Setup Constraints
     private func setupConstraints() {
+        deliveryHeaderView.snp.makeConstraints { make in
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(deliveryHeaderView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+        
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(separatorView.snp.bottom).priority(250)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            let section = self?.sections[sectionIndex] ?? .promo
+            let section = self?.sections[sectionIndex] ?? .promos
             switch section {
-            case .categorie:
+            case .categories:
                 return self?.categorieSectionLayout()
-            case .promo:
+            case .promos:
                 return self?.promoSectionLayout()
-            case .restaurant:
+            case .restaurants:
                 return self?.restaurantSectionLayout()
             }
         }
@@ -114,7 +125,6 @@ final class MainViewController: UIViewController {
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [supplementaryDeliveryHeaderItem()]
         return section
     }
     
@@ -178,21 +188,10 @@ final class MainViewController: UIViewController {
         return section
     }
     
-    private func supplementaryDeliveryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        return NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(61)
-            ),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-    }
-    
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
+                widthDimension: .fractionalWidth(0.2),
                 heightDimension: .absolute(43)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -205,8 +204,8 @@ final class MainViewController: UIViewController {
 extension MainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
         // Переходной контроллер еще не готов, так что просто сделал пуш в рандомный
-        let controller = BasketViewController()
-        controller.hidesBottomBarWhenPushed = true
+        let controller = ManageAdressesViewController()
+//        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -225,12 +224,12 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = sections[section]
         switch section {
-        case .categorie:
-            return 10
-        case .promo:
-            return 4
-        case .restaurant:
-            return 4
+        case .categories:
+            return 24
+        case .promos:
+            return 30
+        case .restaurants:
+            return 100
         }
     }
     
@@ -240,7 +239,7 @@ extension MainViewController: UICollectionViewDataSource {
     ) -> UICollectionViewCell {
         let section = sections[indexPath.section]
         switch section {
-        case .categorie:
+        case .categories:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCollectionViewCell.reuseID,
                 for: indexPath
@@ -248,7 +247,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to CategoryCollectionViewCell")
             }
             return cell
-        case .promo:
+        case .promos:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
                 for: indexPath
@@ -256,7 +255,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
             return cell
-        case .restaurant:
+        case .restaurants:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
                 for: indexPath
@@ -282,19 +281,11 @@ extension MainViewController: UICollectionViewDataSource {
             }
             let section = sections[indexPath.section]
             switch section {
-            case .categorie:
-                guard let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: DeliveryHeaderView.reuseID,
-                    for: indexPath
-                ) as? DeliveryHeaderView else {
-                    fatalError("Could not cast to DeliveryHeaderView")
-                }
-                deliverySectionHeader.delegate = self
-                return deliverySectionHeader
-            case .promo:
+            case .categories:
+                return UICollectionReusableView()
+            case .promos:
                 sectionHeader.setHeaderTitle(title: "Promo")
-            case .restaurant:
+            case .restaurants:
                 sectionHeader.setHeaderTitle(title: "Restaurants")
             }
             return sectionHeader

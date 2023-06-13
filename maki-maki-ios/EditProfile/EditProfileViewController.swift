@@ -107,6 +107,7 @@ final class EditProfileViewController: UIViewController {
         button.backgroundColor = AppColor.accent.uiColor
         button.tintColor = .black
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(saveButtonDidPress), for: .touchUpInside)
         return button
     }()
     
@@ -175,5 +176,11 @@ final class EditProfileViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc func saveButtonDidPress() {
+        self.navigationController?.popViewController(animated: true)
     }
 }
