@@ -221,6 +221,8 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
     }
 }
 
+// MARK: - Navigation Action
+
 extension OrdersViewController: OrdersTableFooterViewDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
