@@ -24,9 +24,9 @@ final class RestaurantViewController: UIViewController {
         collectionView.register(DishesCollectionViewCell.self,
                                 forCellWithReuseIdentifier: DishesCollectionViewCell.reuseID
         )
-        collectionView.register(SectionsHeaderView.self,
+        collectionView.register(DishSectionHeaderView.self,
                                 forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-                                withReuseIdentifier: SectionsHeaderView.reuseId)
+                                withReuseIdentifier: DishSectionHeaderView.reuseId)
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -167,8 +167,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: SectionsHeaderView.reuseId,
-                for: indexPath) as? SectionsHeaderView else {
+                withReuseIdentifier: DishSectionHeaderView.reuseId,
+                for: indexPath) as? DishSectionHeaderView else {
                 return  UICollectionReusableView()
             }
             

@@ -24,7 +24,7 @@
 		275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F31242A31CFAB00E94CDC /* SignInViewController.swift */; };
 		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		2789D5F32A2F6A300030A3B8 /* VerificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */; };
-		279037A42A38CE73008F3CCD /* SectionsHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279037A32A38CE73008F3CCD /* SectionsHeaderView.swift */; };
+		279037A42A38CE73008F3CCD /* DishSectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */; };
 		27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE22A3086DC003F3C7B /* ManageAdressesViewController.swift */; };
 		27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE42A3086E9003F3C7B /* ManageAddressesCell.swift */; };
 		27943BE72A30870D003F3C7B /* ManegAdressesFooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */; };
@@ -109,7 +109,7 @@
 		275F31242A31CFAB00E94CDC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
 		2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VerificationViewController.swift; sourceTree = "<group>"; };
-		279037A32A38CE73008F3CCD /* SectionsHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionsHeaderView.swift; sourceTree = "<group>"; };
+		279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishSectionHeaderView.swift; sourceTree = "<group>"; };
 		27943BE22A3086DC003F3C7B /* ManageAdressesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAdressesViewController.swift; sourceTree = "<group>"; };
 		27943BE42A3086E9003F3C7B /* ManageAddressesCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressesCell.swift; sourceTree = "<group>"; };
 		27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManegAdressesFooterView.swift; sourceTree = "<group>"; };
@@ -223,7 +223,7 @@
 				687352042A384BFE006052E5 /* RestaurantHeaderView.swift */,
 				687352062A384D08006052E5 /* RatingView.swift */,
 				271D74422A38967300774B01 /* SectionDishesType.swift */,
-				279037A32A38CE73008F3CCD /* SectionsHeaderView.swift */,
+				279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */,
 			);
 			path = RestaurantMenu;
 			sourceTree = "<group>";
@@ -702,7 +702,7 @@
 				F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */,
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
 				27D6199B2A373E3F00D64E62 /* ViewCartContainer.swift in Sources */,
-				279037A42A38CE73008F3CCD /* SectionsHeaderView.swift in Sources */,
+				279037A42A38CE73008F3CCD /* DishSectionHeaderView.swift in Sources */,
 				687352072A384D08006052E5 /* RatingView.swift in Sources */,
 				685AA9E12A344ADB00D5E82B /* NoOrdersView.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,

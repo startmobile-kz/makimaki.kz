@@ -9,11 +9,11 @@ import Foundation
 import UIKit
 import SnapKit
 
-final class SectionsHeaderView: UICollectionReusableView {
+final class DishSectionHeaderView: UICollectionReusableView {
     
     // MARK: - Reusable Id for cell
     
-    static let reuseId = String(describing: SectionsHeaderView.self)
+    static let reuseId = String(describing: DishSectionHeaderView.self)
     
     // MARK: - UI
     
