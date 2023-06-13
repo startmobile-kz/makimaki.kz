@@ -8,14 +8,15 @@
 import UIKit
 import SnapKit
 
-class RecentSearchesTableViewCell: UITableViewCell {
+final class RecentSearchesTableViewCell: UITableViewCell {
 
+    static let reuseID = String(describing: RecentSearchesTableViewCell.self)
+    
     // MARK: - UI
     private lazy var clockImage: UIImageView = {
         let image = UIImageView()
         image.image = AppImage.clock.uiImage
         return image
-        
     }()
     
     private lazy var recentSearchLabel: UILabel = {
@@ -24,12 +25,13 @@ class RecentSearchesTableViewCell: UITableViewCell {
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label
-        
     }()
     
     private lazy var recentInfoStackView: UIStackView = {
-        let stackView = UIStackView()
+        let stackView = UIStackView(arrangedSubviews: [clockImage, recentSearchLabel])
         stackView.axis = .horizontal
+        stackView.distribution = .fillProportionally
+        stackView.spacing = 11
         return stackView
     }()
     
@@ -38,7 +40,6 @@ class RecentSearchesTableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setupConstraints()
-        
     }
     
     required init?(coder: NSCoder) {
@@ -47,30 +48,24 @@ class RecentSearchesTableViewCell: UITableViewCell {
     
     // MARK: - Setup Views
     private func setupViews() {
-        let subviews = [clockImage, recentSearchLabel]
-        recentInfoStackView.addSubviews(subviews)
         contentView.addSubview(recentInfoStackView)
-        
     }
     
     // MARK: - Setup Constraints
     private func setupConstraints() {
         recentInfoStackView.snp.makeConstraints { make in
-            make.leading.equalTo(16)
-            make.trailing.equalTo(243)
-            make.height.equalTo(40)
             make.top.equalTo(13)
-            make.bottom.equalTo(-13)
+            make.leading.equalTo(16)
+            make.width.equalTo(116)
+            make.centerY.equalToSuperview()
         }
         
         clockImage.snp.makeConstraints { make in
-            make.leading.equalToSuperview()
-            make.centerY.equalToSuperview()
+            make.height.width.equalTo(14)
         }
         
         recentSearchLabel.snp.makeConstraints { make in
-            make.leading.equalTo(clockImage.snp.trailing).offset(11)
-            make.centerY.equalToSuperview()
+            make.height.equalTo(18)
         }
     }
 }

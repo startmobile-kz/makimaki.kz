@@ -12,23 +12,26 @@ final class SearchV1ViewController: UIViewController {
     
     // MARK: - UI
     private lazy var searchBar: SearchBar = SearchBar()
+    
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(SearchResultTableViewCell.self, forCellReuseIdentifier: "searchResult_cell")
-        tableView.register(RecentSearchesTableViewCell.self, forCellReuseIdentifier: "recentSearches_cell")
+        tableView.register(SearchResultTableViewCell.self,
+                           forCellReuseIdentifier: SearchResultTableViewCell.reuseID)
+        tableView.register(RecentSearchesTableViewCell.self,
+                           forCellReuseIdentifier: RecentSearchesTableViewCell.reuseID)
+        //  Here need to make logic, when table view decides which cell to display
         tableView.rowHeight = 66
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
         return tableView
-        
     }()
     
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupContrains()
+        setupConstraints()
     }
     
     // MARK: - Setup Views
@@ -39,7 +42,7 @@ final class SearchV1ViewController: UIViewController {
     }
 
     // MARK: - Setup Constraints
-    private func setupContrains() {
+    private func setupConstraints() {
         searchBar.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
@@ -61,7 +64,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "searchResult_cell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(                                     withIdentifier: SearchResultTableViewCell.reuseID, for: indexPath)
                 as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }

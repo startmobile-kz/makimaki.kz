@@ -5,14 +5,13 @@
 //  Created by Almat Alibekov on 12.06.2023.
 //
 
-import Foundation
 import UIKit
 import SnapKit
 
-class SearchBar: UIView {
+final class SearchBar: UIView {
 
     // MARK: - UI Custom searchBar properties
-    static let identifier: String = "[SearchBar]"
+    static let reuseID = String(describing: SearchBar.self)
     
     private lazy var searchIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -27,8 +26,6 @@ class SearchBar: UIView {
         textField.layer.cornerRadius = 14
         textField.font = AppFont.reqular.s14()
         textField.textColor = AppColor.heading.uiColor
-        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
-        textField.leftView = paddingView
         textField.leftViewMode = UITextField.ViewMode.always
         textField.layer.borderColor = AppColor.border.cgColor
         return textField
@@ -39,6 +36,7 @@ class SearchBar: UIView {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
+        setupSearchTextfieldFrame()
     }
     
     required init?(coder: NSCoder) {
@@ -61,5 +59,11 @@ class SearchBar: UIView {
             make.leading.top.equalTo(16.25)
             make.height.width.equalTo(15.5)
         }
+    }
+    
+    // MARK: - Search textfield frame setup
+    private func setupSearchTextfieldFrame() {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
+        searchBarTextField.leftView = paddingView
     }
 }
