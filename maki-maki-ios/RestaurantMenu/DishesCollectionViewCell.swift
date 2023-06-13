@@ -58,11 +58,11 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var hrstackView: UIStackView = {
-       let stackView = UIStackView(arrangedSubviews: [dishPriceLabel, dishCountButton])
+        let stackView = UIStackView(arrangedSubviews: [dishPriceLabel, dishCountButton])
         stackView.axis = .horizontal
         stackView.spacing = 77
         stackView.distribution = .equalSpacing
-       return stackView
+        return stackView
     }()
     
     // MARK: - Lifecycle
@@ -103,7 +103,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
                                   cornerRadii: CGSize(width: cornerRadius, height: cornerRadius)).cgPath
         layer.shadowPath = cgPath
     }
-
+    
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
