@@ -14,7 +14,7 @@ final class DishCell: UICollectionViewCell {
     static let reuseID = String(describing: DishCell.self)
     
     // MARK: - UI
-    let view: UIView = {
+    private let view: UIView = {
         let view = UIView()
         view.backgroundColor = .cyan
         return view
