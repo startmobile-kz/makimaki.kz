@@ -7,7 +7,7 @@
 
 import UIKit
 
-class AddNewCardTableViewCell: UITableViewCell {
+final class ApplePayCardTableViewCell: UITableViewCell {
 
     private lazy var cardImageView: UIImageView = {
         let imageView = UIImageView()
@@ -17,24 +17,24 @@ class AddNewCardTableViewCell: UITableViewCell {
     
     private lazy var addNewCardLabel: UILabel = {
         let label = UILabel()
-        label.text = "Add new card"
+        label.text = "Apple Pay"
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
         return label
     }()
+//
+//    private lazy var addButton: UIButton = {
+//        let button = UIButton()
+//        button.backgroundColor = AppColor.grey100.uiColor
+//        button.layer.cornerRadius = 12
+//        return button
+//    }()
     
-    private lazy var addButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = AppColor.grey100.uiColor
-        button.layer.cornerRadius = 12
-        return button
-    }()
-    
-    private lazy var addButtonImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = AppImage.add_button.uiImage
-        return imageView
-    }()
+//    private lazy var addButtonImageView: UIImageView = {
+//        let imageView = UIImageView()
+//        imageView.image = AppImage.add_button.uiImage
+//        return imageView
+//    }()
     
     // MARK: - Lifecyle
     
@@ -52,7 +52,7 @@ class AddNewCardTableViewCell: UITableViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
-        [cardImageView, addNewCardLabel, addButton, addButtonImageView].forEach {
+        [cardImageView, addNewCardLabel].forEach {
             contentView.addSubview($0)
         }
     }
@@ -70,15 +70,15 @@ class AddNewCardTableViewCell: UITableViewCell {
             make.leading.equalTo(cardImageView.snp.trailing).offset(16)
         }
         
-        addButton.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.trailing.equalToSuperview().offset(-16)
-            make.size.equalTo(40)
-        }
-        
-        addButtonImageView.snp.makeConstraints { make in
-            make.center.equalTo(addButton.snp.center)
-        }
+//        addButton.snp.makeConstraints { make in
+//            make.centerY.equalToSuperview()
+//            make.trailing.equalToSuperview().offset(-16)
+//            make.size.equalTo(40)
+//        }
+//        
+//        addButtonImageView.snp.makeConstraints { make in
+//            make.center.equalTo(addButton.snp.center)
+//        }
         
     }
 }

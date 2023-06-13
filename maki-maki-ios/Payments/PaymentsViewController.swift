@@ -14,7 +14,7 @@ final class PaymentsViewController: UIViewController {
     private lazy var paymentsTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(PaymentsTableViewCell.self, forCellReuseIdentifier: "paymentsCell")
-        tableView.register(AddNewCardTableViewCell.self, forCellReuseIdentifier: "addNewCard")
+        tableView.register(ApplePayCardTableViewCell.self, forCellReuseIdentifier: "applePay")
         tableView.rowHeight = 80
         tableView.delegate = self
         tableView.dataSource = self
@@ -79,9 +79,9 @@ extension PaymentsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.section == 2 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "addNewCard", for: indexPath)
-                    as? AddNewCardTableViewCell else {
-                fatalError("AddNewCard not found")
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "applePay", for: indexPath)
+                    as? ApplePayCardTableViewCell else {
+                fatalError("applePay not found")
             }
             cell.layer.borderWidth = 1
             cell.layer.cornerRadius = 16

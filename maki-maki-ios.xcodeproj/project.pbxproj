@@ -10,7 +10,7 @@
 		0349DDC52A36FC6600BACD4F /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDC42A36FC6600BACD4F /* PaymentsViewController.swift */; };
 		0349DDC72A36FD0700BACD4F /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */; };
 		0349DDC92A3721EC00BACD4F /* PaymentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */; };
-		0349DDCB2A37CD9600BACD4F /* AddNewCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDCA2A37CD9600BACD4F /* AddNewCardTableViewCell.swift */; };
+		0349DDCB2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */; };
 		037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16702A2F5E3700401843 /* FavoritesViewController.swift */; };
 		037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
@@ -92,7 +92,7 @@
 		0349DDC42A36FC6600BACD4F /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsTableViewCell.swift; sourceTree = "<group>"; };
-		0349DDCA2A37CD9600BACD4F /* AddNewCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNewCardTableViewCell.swift; sourceTree = "<group>"; };
+		0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayCardTableViewCell.swift; sourceTree = "<group>"; };
 		037F16702A2F5E3700401843 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -189,7 +189,7 @@
 				0349DDC42A36FC6600BACD4F /* PaymentsViewController.swift */,
 				0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */,
 				0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */,
-				0349DDCA2A37CD9600BACD4F /* AddNewCardTableViewCell.swift */,
+				0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -735,7 +735,7 @@
 				037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */,
 				26E2798A2A2F5DE00071863C /* OrdersModel.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
-				0349DDCB2A37CD9600BACD4F /* AddNewCardTableViewCell.swift in Sources */,
+				0349DDCB2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift in Sources */,
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,

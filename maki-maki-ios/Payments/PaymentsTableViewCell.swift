@@ -19,7 +19,7 @@ final class PaymentsTableViewCell: UITableViewCell {
     
     private lazy var cardNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Credit Card"
+        label.text = "Credit Card **7747"
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
         return label
