@@ -66,6 +66,7 @@ final class RatingView: UIView {
     
     // MARK: - SetupViews
     private func setupViews() {
+        backgroundColor = .blue
         [starImageView, ratingLabel].forEach { view in
             ratingStack.addArrangedSubview(view)
         }
@@ -82,5 +83,9 @@ final class RatingView: UIView {
         mainStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
         }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 174, height: 40)
     }
 }

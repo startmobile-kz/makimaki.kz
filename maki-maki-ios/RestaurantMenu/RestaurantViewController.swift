@@ -16,6 +16,11 @@ final class RestaurantViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.register(
+            RestaurantHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: RestaurantHeaderView.reuseID
+        )
+        collectionView.register(
             DishesCollectionViewCell.self,
             forCellWithReuseIdentifier: DishesCollectionViewCell.reuseID
         )
@@ -117,5 +122,25 @@ extension RestaurantViewController: UICollectionViewDataSource {
         }
         
         return cell
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: RestaurantHeaderView.reuseID,
+                for: indexPath
+            ) as? RestaurantHeaderView else {
+                fatalError("Could not cast to RestaurantHeaderView")
+            }
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
+        
     }
 }
