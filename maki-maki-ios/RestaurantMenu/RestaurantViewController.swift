@@ -49,12 +49,12 @@ final class RestaurantViewController: UIViewController {
                  // Section
                  let section = NSCollectionLayoutSection(group: group)
                  section.contentInsets = NSDirectionalEdgeInsets(
-                     top: 32,
+                     top: 24,
                      leading: 16,
                      bottom: 40,
                      trailing: 0
                  )
-//                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
                  return section
              }
          }
@@ -79,6 +79,17 @@ final class RestaurantViewController: UIViewController {
             make.top.equalTo(view.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(254)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
     }
 }
 
