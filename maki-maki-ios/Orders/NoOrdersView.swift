@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class NoOrdersViewController: UIView {
+final class NoOrdersView: UIView {
     
     // MARK: - UI
     
