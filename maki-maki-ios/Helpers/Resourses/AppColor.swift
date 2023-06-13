@@ -2,7 +2,7 @@
 //  AppColor.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 31.05.2023.
+//  Created by Shyngys on 31.05.2023.
 //
 
 import UIKit

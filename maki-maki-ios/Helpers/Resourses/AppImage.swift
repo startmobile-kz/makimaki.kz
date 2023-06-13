@@ -2,7 +2,7 @@
 //  AppImage.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 31.05.2023.
+//  Created by Shyngys on 31.05.2023.
 //
 
 import UIKit
@@ -64,5 +64,9 @@ enum AppImage: String, AppImageProtocol {
     case user_selected = "user_selected"
     case welcomeImg = "welcomeImg"
     case no_orders = "no_orders"
+    case cardImage_1 = "cardImage_1"
+    case search_icon = "search_icon"
+    case clear_icon = "clear_icon"
+    case clock = "clock"
     case pizza_image = "pizza_image"
 }
