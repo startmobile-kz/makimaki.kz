@@ -153,7 +153,10 @@ final class VerificationViewController: UIViewController {
     }
     // MARK: - Actions
     @objc private func verifyButtonDidPressed() {
-        self.navigationController?.pushViewController(Main2TabBarController(), animated: true)
+        let controller = Main2TabBarController()
+        controller.navigationItem.hidesBackButton = true
+        self.navigationController?.pushViewController(controller, animated: true)
+//        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func updateTime() {
