@@ -31,7 +31,7 @@
 		27A754412A3757A400D81A86 /* CategoryMenuCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A754402A3757A400D81A86 /* CategoryMenuCollectionViewCell.swift */; };
 		27A754432A37580500D81A86 /* DishesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27A754422A37580500D81A86 /* DishesCollectionViewCell.swift */; };
 		27D6199B2A373E3F00D64E62 /* ViewCartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */; };
-		27D6199D2A37404400D64E62 /* RestaurantMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */; };
+		27D6199D2A37404400D64E62 /* RestaurantViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27D6199C2A37404400D64E62 /* RestaurantViewController.swift */; };
 		27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */; };
 		27F53B702A2D033400B42737 /* AccountListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B6F2A2D033400B42737 /* AccountListController.swift */; };
 		27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B712A2D049700B42737 /* AccountListCell.swift */; };
@@ -114,7 +114,7 @@
 		27A754402A3757A400D81A86 /* CategoryMenuCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMenuCollectionViewCell.swift; sourceTree = "<group>"; };
 		27A754422A37580500D81A86 /* DishesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishesCollectionViewCell.swift; sourceTree = "<group>"; };
 		27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewCartContainer.swift; sourceTree = "<group>"; };
-		27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantMainViewController.swift; sourceTree = "<group>"; };
+		27D6199C2A37404400D64E62 /* RestaurantViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantViewController.swift; sourceTree = "<group>"; };
 		27F5212A2A309ECD0095A5EB /* ForgotPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForgotPasswordViewController.swift; sourceTree = "<group>"; };
 		27F53B6F2A2D033400B42737 /* AccountListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListController.swift; sourceTree = "<group>"; };
 		27F53B712A2D049700B42737 /* AccountListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListCell.swift; sourceTree = "<group>"; };
@@ -213,7 +213,7 @@
 			isa = PBXGroup;
 			children = (
 				27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */,
-				27D6199C2A37404400D64E62 /* RestaurantMainViewController.swift */,
+				27D6199C2A37404400D64E62 /* RestaurantViewController.swift */,
 				27A754402A3757A400D81A86 /* CategoryMenuCollectionViewCell.swift */,
 				27A754422A37580500D81A86 /* DishesCollectionViewCell.swift */,
 				687352042A384BFE006052E5 /* RestaurantHeaderView.swift */,
@@ -730,7 +730,7 @@
 				275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
-				27D6199D2A37404400D64E62 /* RestaurantMainViewController.swift in Sources */,
+				27D6199D2A37404400D64E62 /* RestaurantViewController.swift in Sources */,
 				27A754432A37580500D81A86 /* DishesCollectionViewCell.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
 				F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */,

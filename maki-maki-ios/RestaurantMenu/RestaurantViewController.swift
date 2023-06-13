@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RestaurantMainViewController: UIViewController {
+final class RestaurantViewController: UIViewController {
     
     // MARK: - UI
     
