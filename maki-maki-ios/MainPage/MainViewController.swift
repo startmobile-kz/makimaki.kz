@@ -178,17 +178,6 @@ final class MainViewController: UIViewController {
         return section
     }
     
-    private func supplementaryDeliveryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        return NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(61)
-            ),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
-    }
-    
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
@@ -283,7 +272,7 @@ extension MainViewController: UICollectionViewDataSource {
             let section = sections[indexPath.section]
             switch section {
             case .categorie:
-                UICollectionReusableView()
+                return UICollectionReusableView()
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")
             case .restaurant:
