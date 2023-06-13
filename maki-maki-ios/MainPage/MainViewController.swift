@@ -40,12 +40,12 @@ final class MainViewController: UIViewController {
             forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID
         )
         collectionView.register(
-            RestaurantCollectionViewCell.self,
-            forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID
-        )
-        collectionView.register(
             PromoBannerCollectionViewCell.self,
             forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
+        )
+        collectionView.register(
+            RestaurantCollectionViewCell.self,
+            forCellWithReuseIdentifier: RestaurantCollectionViewCell.reuseID
         )
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
@@ -57,13 +57,6 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
-        setupNavigationBar()
-    }
-
-    // MARK: - Setup Navigation Bar
-
-    private func setupNavigationBar() {
-        self.navigationItem.title = "Maki Maki"
     }
     
     // MARK: - Setup Views
@@ -86,7 +79,7 @@ final class MainViewController: UIViewController {
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(separatorView.snp.bottom).priority(999)
+            make.top.equalTo(separatorView.snp.bottom).priority(250)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -198,7 +191,7 @@ final class MainViewController: UIViewController {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
+                widthDimension: .fractionalWidth(0.2),
                 heightDimension: .absolute(43)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -232,11 +225,11 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[section]
         switch section {
         case .categories:
-            return 10
+            return 24
         case .promos:
-            return 4
+            return 30
         case .restaurants:
-            return 4
+            return 100
         }
     }
     
