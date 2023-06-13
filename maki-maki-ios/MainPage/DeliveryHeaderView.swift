@@ -12,7 +12,7 @@ protocol DeliveryHeaderViewDelegate: AnyObject {
     func viewWasTapped()
 }
 
-final class DeliveryHeaderView: UICollectionReusableView {
+final class DeliveryHeaderView: UIView {
     
     static let reuseID = String(describing: DeliveryHeaderView.self)
     

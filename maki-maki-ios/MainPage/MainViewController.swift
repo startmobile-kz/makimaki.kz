@@ -283,15 +283,7 @@ extension MainViewController: UICollectionViewDataSource {
             let section = sections[indexPath.section]
             switch section {
             case .categorie:
-                guard let deliverySectionHeader = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: DeliveryHeaderView.reuseID,
-                    for: indexPath
-                ) as? DeliveryHeaderView else {
-                    fatalError("Could not cast to DeliveryHeaderView")
-                }
-                deliverySectionHeader.delegate = self
-                return deliverySectionHeader
+                UICollectionReusableView()
             case .promo:
                 sectionHeader.setHeaderTitle(title: "Promo")
             case .restaurant:
