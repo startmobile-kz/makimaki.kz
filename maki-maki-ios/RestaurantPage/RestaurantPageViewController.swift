@@ -65,6 +65,7 @@ class RestaurantPageViewController: UIViewController {
                 ),
                 subitems: [item]
             )
+            
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(
@@ -149,7 +150,6 @@ class RestaurantPageViewController: UIViewController {
                 sticked = false
             }
         }
-        
         lastContentOffsetY = scrollView.contentOffset.y
     }
     
