@@ -27,7 +27,7 @@ class RestaurantHeaderView: UICollectionReusableView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        
+        backgroundColor = .cyan
     }
     
     // MARK: - SetupConstraints
