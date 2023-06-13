@@ -10,6 +10,8 @@ import SnapKit
 
 class RestaurantHeaderView: UICollectionReusableView {
     
+    static let reuseID = String(describing: RestaurantHeaderView.self)
+    
     // MARK: - UI
     
     // MARK: - Lifecycle

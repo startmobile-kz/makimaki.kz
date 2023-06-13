@@ -72,6 +72,17 @@ final class RestaurantMainViewController: UIViewController {
             make.height.equalTo(40)
         }
     }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(254)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+    }
 }
 
 // MARK: - UICollectionViewDataSource
@@ -88,6 +99,25 @@ extension RestaurantMainViewController: UICollectionViewDataSource {
             as? CategoryMenuCollectionViewCell else { return UICollectionViewCell() }
         cell.categoryLabel.text = categoryName[indexPath.item]
         return cell
+    }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let header = collectionView.dequeueReusableSupplementaryView(
+                ofKind: UICollectionView.elementKindSectionHeader,
+                withReuseIdentifier: RestaurantHeaderView.reuseID,
+                for: indexPath
+            ) as? RestaurantHeaderView else {
+                fatalError("Could not cast to RestaurantHeaderView")
+            }
+            return header
+        } else {
+            return UICollectionReusableView()
+        }
     }
 }
 
