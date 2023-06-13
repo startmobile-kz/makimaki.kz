@@ -99,7 +99,6 @@ final class RestaurantPageViewController: UIViewController {
     
     // MARK: - SetupViews
     private func setupViews() {
-        self.edgesForExtendedLayout = []
         view.backgroundColor = .systemBackground
         view.addSubviews([collectionView, replacementView])
     }

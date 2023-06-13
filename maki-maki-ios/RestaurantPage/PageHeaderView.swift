@@ -18,6 +18,7 @@ final class PageHeaderView: UICollectionReusableView {
         view.backgroundColor = .orange
         return view
     }()
+    
     private lazy var viewWithCollection: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.accent.uiColor
