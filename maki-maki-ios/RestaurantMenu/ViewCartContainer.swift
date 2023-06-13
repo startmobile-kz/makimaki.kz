@@ -5,9 +5,9 @@
 //  Created by Tami on 12.06.2023.
 //
 
-import Foundation
+import UIKit
 import SnapKit
 
-class ViewCartConatiner : UIView {
+final class ViewCartConatiner : UIView {
     
 }
