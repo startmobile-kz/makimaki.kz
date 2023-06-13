@@ -32,7 +32,7 @@ final class RestaurantMainViewController: UIViewController {
         
         collection.delegate = self
         collection.dataSource = self
-        collection.register(CategoryMenuCollectionViewCell.self, forCellWithReuseIdentifier: "cell")
+        collection.register(CategoryMenuCollectionViewCell.self, forCellWithReuseIdentifier: "\(CategoryMenuCollectionViewCell.self)")
         collection.selectItem(at: [0,0], animated: true, scrollPosition:[])
         return collection
     }()
@@ -83,7 +83,7 @@ extension RestaurantMainViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: "cell",
+            withReuseIdentifier: "\(CategoryMenuCollectionViewCell.self)",
             for: indexPath)
             as? CategoryMenuCollectionViewCell else { return UICollectionViewCell() }
         cell.categoryLabel.text = categoryName[indexPath.item]
@@ -105,7 +105,7 @@ extension RestaurantMainViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
-        let categoryFont = UIFont(name: "Arial", size: 16)
+        let categoryFont = AppFont.reqular.s14()
         let categoryAttribuites = [NSAttributedString.Key.font : categoryFont as Any]
         let categoryWidth = categoryName[indexPath.item].size(withAttributes: categoryAttribuites).width + 30
         return CGSize(width: categoryWidth, height: collectionView.frame.height )
