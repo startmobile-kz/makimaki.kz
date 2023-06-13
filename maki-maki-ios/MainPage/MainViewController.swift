@@ -20,6 +20,12 @@ final class MainViewController: UIViewController {
         return view
     }()
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.border.uiColor
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -63,7 +69,7 @@ final class MainViewController: UIViewController {
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([deliveryHeaderView, collectionView])
+        view.addSubviews([deliveryHeaderView, separatorView, collectionView])
     }
     
     // MARK: - Setup Constraints
