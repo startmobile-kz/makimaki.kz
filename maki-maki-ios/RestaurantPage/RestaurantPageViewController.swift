@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class RestaurantPageViewController: UIViewController {
+final class RestaurantPageViewController: UIViewController {
     
     // MARK: - Properties
     private var lastContentOffsetY: CGFloat = 0

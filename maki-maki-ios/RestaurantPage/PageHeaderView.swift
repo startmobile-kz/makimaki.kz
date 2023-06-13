@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class PageHeaderView: UICollectionReusableView {
+final class PageHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: PageHeaderView.self)
     

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class DishCell: UICollectionViewCell {
+final class DishCell: UICollectionViewCell {
     
     // MARK: - Properties
     static let reuseID = String(describing: DishCell.self)
