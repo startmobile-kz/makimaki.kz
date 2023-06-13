@@ -14,6 +14,11 @@ final class MainViewController: UIViewController {
     let sections: [SectionType] = [.categories, .promos, .restaurants]
     
     // MARK: - UI
+    private lazy var deliveryHeaderView: DeliveryHeaderView = {
+        let view = DeliveryHeaderView()
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -63,6 +68,7 @@ final class MainViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubview(collectionView)
+        view.addSubview(deliveryHeaderView)
     }
     
     // MARK: - Setup Constraints
