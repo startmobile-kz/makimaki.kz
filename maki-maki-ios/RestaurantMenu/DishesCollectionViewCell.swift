@@ -9,4 +9,6 @@ import UIKit
 
 class DishesCollectionViewCell: UICollectionViewCell {
     
+    static let reuseID = String(describing: DishesCollectionViewCell.self)
+    
 }
