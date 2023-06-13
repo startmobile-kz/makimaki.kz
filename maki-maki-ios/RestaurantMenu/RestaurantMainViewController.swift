@@ -77,17 +77,6 @@ final class RestaurantMainViewController: UIViewController {
             make.height.equalTo(40)
         }
     }
-    
-    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        return NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(254)
-            ),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .top
-        )
-    }
 }
 
 // MARK: - UICollectionViewDataSource
