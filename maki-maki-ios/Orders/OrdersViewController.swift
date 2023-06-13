@@ -70,6 +70,7 @@ final class OrdersViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
+        tableView.backgroundView = noOrdersView
         return tableView
     }()
     
@@ -84,7 +85,7 @@ final class OrdersViewController: UIViewController {
     
     private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
-        view.isHidden = true
+//        view.isHidden = true
         return view
     }()
     
@@ -115,7 +116,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([ordersTableView, ordersLabel, noOrdersView])
+        view.addSubviews([ordersTableView, ordersLabel])
     }
     
     // MARK: - Setup Constraints
@@ -131,20 +132,15 @@ final class OrdersViewController: UIViewController {
         }
         
         noOrdersView.snp.makeConstraints { make in
-            make.top.equalTo(ordersLabel.snp.top).offset(150)
-            make.centerX.equalToSuperview()
+            make.center.equalTo(view.snp.center)
         }
     }
     
     private func showNoOrdersViewIfNeeded() {
         if orders.isEmpty {
-            ordersTableView.isHidden = true
-            ordersLabel.isHidden = false
-            noOrdersView.isHidden = false
+            ordersTableView.backgroundView = noOrdersView
         } else {
-            ordersTableView.isHidden = false
-            ordersLabel.isHidden = true
-            noOrdersView.isHidden = true
+            ordersTableView.backgroundView = nil
         }
     }
 }
@@ -171,6 +167,10 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         print(indexPath)
+        let controller = BasketViewController()
+        controller.modalPresentationStyle = .fullScreen
+        present(controller, animated: true)
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     // MARK: - Header of Section
@@ -197,12 +197,14 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:83))
+        footerView.delegate = self
         return footerView
     }
     
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 83
     }
+
 }
 
 // MARK: - Collapse Animation
@@ -221,5 +223,13 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
             orders[section].ordersList = ordersCopy[section].ordersList
             ordersTableView.insertRows(at: indexPathes, with: .fade)
         }
+    }
+}
+
+// MARK: - Navigation Action
+
+extension OrdersViewController: OrdersTableFooterViewDelegate {
+    func onReorderButtonPressed() {
+        self.navigationController?.pushViewController(BasketViewController(), animated: true)
     }
 }

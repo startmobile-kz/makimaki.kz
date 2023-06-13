@@ -20,7 +20,7 @@ final class Main2TabBarController: TabBarController {
         let mainViewController = MainViewController()
         let searchViewController = EditProfileViewController()
         let ordersViewController = OrdersViewController()
-        let profileViewController = WelcomePageVerOneViewController()
+        let profileViewController = AccountListViewController()
         
         mainViewController.tabBarItem = UITabBarItem(
             title: "Home",

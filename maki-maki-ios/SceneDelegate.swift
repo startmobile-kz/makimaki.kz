@@ -18,9 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = .light
 
-            let isAuthoried = true
+            let isAuthoried = false
             if isAuthoried {
-//                let controller = UINavigationController(rootViewController: MainT())
                 window.rootViewController = Main2TabBarController()
             } else {
                 window.rootViewController =
