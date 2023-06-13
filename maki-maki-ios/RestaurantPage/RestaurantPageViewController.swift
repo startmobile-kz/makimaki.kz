@@ -119,7 +119,6 @@ final class RestaurantPageViewController: UIViewController {
         }
     }
     
-    
     // MARK: - SetupNavigationBar
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -138,25 +137,18 @@ final class RestaurantPageViewController: UIViewController {
         } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
             if !sticked {
                 replacementView.alpha = 1
-                UIView.animate(withDuration: 0.1) { [weak self] in
-                    guard let self = self else {
-                        return
-                    }
-                    makeNavigationBarVisible()
-                    pinReplacementViewToTheTop()
-                    self.replacementView.bringSubviewToFront(self.view)
-                    self.view.layoutIfNeeded()
-                }
+                makeNavigationBarVisible()
+                pinReplacementViewToTheTop()
+                self.replacementView.bringSubviewToFront(self.view)
+                self.view.layoutIfNeeded()
             }
         }
         
         if isScrollingUp {
             if scrollView.contentOffset.y < initialHeaderHeight {
-                UIView.animate(withDuration: 0.5) {
-                    self.replacementView.alpha = 0
-                    self.hideReplacementView()
-                    self.view.layoutIfNeeded()
-                }
+                self.replacementView.alpha = 0
+                self.hideReplacementView()
+                self.view.layoutIfNeeded()
                 self.setupNavigationBar()
                 sticked = false
             }
