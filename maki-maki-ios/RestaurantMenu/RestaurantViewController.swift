@@ -10,6 +10,8 @@ import SnapKit
 
 final class RestaurantViewController: UIViewController {
     
+    private let sections: [SectionDishesType] = []
+    
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -40,8 +42,8 @@ final class RestaurantViewController: UIViewController {
                  // Group
                  let group = NSCollectionLayoutGroup.horizontal(
                      layoutSize: NSCollectionLayoutSize(
-                         widthDimension: .fractionalWidth(1),
-                         heightDimension: .absolute(242)
+                        widthDimension: .fractionalWidth(1),
+                        heightDimension: .fractionalHeight(0.33)
                      ),
                      subitems: [item]
                  )
@@ -69,14 +71,14 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupViews
     private func setupViews() {
         self.edgesForExtendedLayout = []
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
@@ -90,8 +92,37 @@ extension RestaurantViewController: UICollectionViewDelegate {
 // MARK: - UICollectionViewDataSource methods
 extension RestaurantViewController: UICollectionViewDataSource {
     
+//    func numberOfSections(in collectionView: UICollectionView) -> Int {
+//        sections.count
+//    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+//        let section = sections[section]
+//        switch section {
+//        case .mostPopular:
+//            return 3
+//        case .pizza:
+//            return 3
+//        case .sushi:
+//            return 3
+//        case .rolls:
+//            return 3
+//        case .burgers:
+//            return 3
+//        case .breakfast:
+//            return 3
+//        case .sandwichs:
+//            return 3
+//        case .kebab:
+//            return 3
+//        case .salads:
+//            return 3
+//        case .frenchFries:
+//            return 3
+//        case .coldDrinks:
+//            return 3
+//        }
+        10
     }
     
     func collectionView(
