@@ -64,7 +64,6 @@
 		773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73882A278D5E0029AA44 /* Inter-Medium.ttf */; };
 		773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73892A278D5E0029AA44 /* Inter-Regular.ttf */; };
 		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
-		9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173462A2E655B00299E56 /* BasketViewController.swift */; };
 		9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */; };
 		9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173482A2E655B00299E56 /* ContainerViewController.swift */; };
@@ -734,7 +733,6 @@
 				26C63CC12A2F97F50095CF47 /* OrdersList.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
-				9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */,
 				9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */,
 				773799302A36433800E2CF7F /* AuthEndpoint.swift in Sources */,
 				689BC9082A2F4C8D008FD14F /* TabBar.swift in Sources */,
