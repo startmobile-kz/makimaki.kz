@@ -30,11 +30,6 @@ final class MainViewController: UIViewController {
             withReuseIdentifier: SectionHeaderView.reuseID
         )
         collectionView.register(
-            DeliveryHeaderView.self,
-            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: DeliveryHeaderView.reuseID
-        )
-        collectionView.register(
             CategoryCollectionViewCell.self,
             forCellWithReuseIdentifier: CategoryCollectionViewCell.reuseID
         )
