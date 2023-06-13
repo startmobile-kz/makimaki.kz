@@ -64,8 +64,10 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(                                     withIdentifier: SearchResultTableViewCell.reuseID, for: indexPath)
-                as? SearchResultTableViewCell else {
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchResultTableViewCell.reuseID,
+            for: indexPath
+        ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
         return cell
