@@ -18,12 +18,6 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-//    func following (sender: AnyObject){
-//        if categoryButton.tag == sender.tag {
-//            categoryButton.setTitle("Most Popular", for: .normal)
-//        }
-//    }
-    
     override var isSelected: Bool {
         didSet {
             contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
