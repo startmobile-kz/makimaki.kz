@@ -14,8 +14,6 @@ protocol DeliveryHeaderViewDelegate: AnyObject {
 
 final class DeliveryHeaderView: UIView {
     
-    static let reuseID = String(describing: DeliveryHeaderView.self)
-    
     // MARK: - UI
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
