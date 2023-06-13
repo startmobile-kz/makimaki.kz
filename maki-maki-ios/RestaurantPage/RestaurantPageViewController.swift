@@ -95,6 +95,7 @@ final class RestaurantPageViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupNavigationBar()
     }
     
     // MARK: - SetupViews
@@ -118,6 +119,15 @@ final class RestaurantPageViewController: UIViewController {
         }
     }
     
+    
+    // MARK: - SetupNavigationBar
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var sticked = false
         
@@ -128,10 +138,11 @@ final class RestaurantPageViewController: UIViewController {
         } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
             if !sticked {
                 replacementView.alpha = 1
-                UIView.animate(withDuration: 0.3) { [weak self] in
+                UIView.animate(withDuration: 0.1) { [weak self] in
                     guard let self = self else {
                         return
                     }
+                    makeNavigationBarVisible()
                     pinReplacementViewToTheTop()
                     self.replacementView.bringSubviewToFront(self.view)
                     self.view.layoutIfNeeded()
@@ -146,6 +157,7 @@ final class RestaurantPageViewController: UIViewController {
                     self.hideReplacementView()
                     self.view.layoutIfNeeded()
                 }
+                self.setupNavigationBar()
                 sticked = false
             }
         }
@@ -175,6 +187,13 @@ final class RestaurantPageViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
+    }
+    
+    private func makeNavigationBarVisible() {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = .clear
     }
 }
 
