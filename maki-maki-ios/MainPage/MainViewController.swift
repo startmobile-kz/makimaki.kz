@@ -11,7 +11,7 @@ import SnapKit
 final class MainViewController: UIViewController {
     
     // MARK: - Sections
-    let sections: [SectionType] = [.categorie, .promo, .restaurant]
+    let sections: [SectionType] = [.categories, .promos, .restaurants]
     
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
@@ -75,13 +75,13 @@ final class MainViewController: UIViewController {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            let section = self?.sections[sectionIndex] ?? .promo
+            let section = self?.sections[sectionIndex] ?? .promos
             switch section {
-            case .categorie:
+            case .categories:
                 return self?.categorieSectionLayout()
-            case .promo:
+            case .promos:
                 return self?.promoSectionLayout()
-            case .restaurant:
+            case .restaurants:
                 return self?.restaurantSectionLayout()
             }
         }
@@ -114,7 +114,6 @@ final class MainViewController: UIViewController {
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [supplementaryDeliveryHeaderItem()]
         return section
     }
     
@@ -214,11 +213,11 @@ extension MainViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = sections[section]
         switch section {
-        case .categorie:
+        case .categories:
             return 10
-        case .promo:
+        case .promos:
             return 4
-        case .restaurant:
+        case .restaurants:
             return 4
         }
     }
@@ -229,7 +228,7 @@ extension MainViewController: UICollectionViewDataSource {
     ) -> UICollectionViewCell {
         let section = sections[indexPath.section]
         switch section {
-        case .categorie:
+        case .categories:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: CategoryCollectionViewCell.reuseID,
                 for: indexPath
@@ -237,7 +236,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to CategoryCollectionViewCell")
             }
             return cell
-        case .promo:
+        case .promos:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
                 for: indexPath
@@ -245,7 +244,7 @@ extension MainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
             return cell
-        case .restaurant:
+        case .restaurants:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
                 for: indexPath
@@ -271,11 +270,11 @@ extension MainViewController: UICollectionViewDataSource {
             }
             let section = sections[indexPath.section]
             switch section {
-            case .categorie:
+            case .categories:
                 return UICollectionReusableView()
-            case .promo:
+            case .promos:
                 sectionHeader.setHeaderTitle(title: "Promo")
-            case .restaurant:
+            case .restaurants:
                 sectionHeader.setHeaderTitle(title: "Restaurants")
             }
             return sectionHeader
