@@ -8,7 +8,15 @@
 import UIKit
 import SnapKit
 
+protocol OrdersTableFooterViewDelegate: AnyObject {
+    func onReorderButtonPressed()
+}
+
 final class OrdersTableFooterView: UIView {
+    
+    // MARK: - Delegate
+    
+    weak var delegate: OrdersTableFooterViewDelegate?
     
     // MARK: - UI
     
@@ -19,6 +27,7 @@ final class OrdersTableFooterView: UIView {
         button.setTitleColor(AppColor.heading.uiColor, for: .normal)
         button.titleLabel?.font = AppFont.medium.s15()
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(reorder), for: .touchUpInside)
         return button
     }()
     
@@ -50,5 +59,11 @@ final class OrdersTableFooterView: UIView {
             make.height.equalTo(53)
             make.centerY.equalToSuperview()
         }
+    }
+    
+    // MARK: - Acton
+    
+    @objc func reorder() {
+        self.delegate?.onReorderButtonPressed()
     }
 }

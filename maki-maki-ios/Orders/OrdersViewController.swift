@@ -193,6 +193,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              y: 0,
                                                              width: UIScreen.main.bounds.width,
                                                              height:83))
+        footerView.delegate = self
         return footerView
     }
     
@@ -217,5 +218,11 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
             orders[section].ordersList = ordersCopy[section].ordersList
             ordersTableView.insertRows(at: indexPathes, with: .fade)
         }
+    }
+}
+
+extension OrdersViewController: OrdersTableFooterViewDelegate {
+    func onReorderButtonPressed() {
+        self.navigationController?.pushViewController(BasketViewController(), animated: true)
     }
 }
