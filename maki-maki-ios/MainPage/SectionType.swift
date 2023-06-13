@@ -8,7 +8,7 @@
 import Foundation
 
 enum SectionType {
-    case categorie
-    case promo
-    case restaurant
+    case categories
+    case promos
+    case restaurants
 }
