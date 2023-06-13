@@ -59,7 +59,7 @@ final class DeliveryHeaderView: UIView {
     // MARK: - SetupConstraints
     private func setupConstraints() {
         deliverToLabel.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalToSuperview().offset(2)
             make.leading.equalToSuperview()
         }
         
