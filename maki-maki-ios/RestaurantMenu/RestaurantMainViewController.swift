@@ -33,6 +33,11 @@ final class RestaurantMainViewController: UIViewController {
         collection.delegate = self
         collection.dataSource = self
         collection.register(CategoryMenuCollectionViewCell.self, forCellWithReuseIdentifier: "\(CategoryMenuCollectionViewCell.self)")
+        collection.register(
+            RestaurantHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: RestaurantHeaderView.reuseID
+        )
         collection.selectItem(at: [0,0], animated: true, scrollPosition:[])
         return collection
     }()
