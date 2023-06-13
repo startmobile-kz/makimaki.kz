@@ -26,7 +26,7 @@ final class RatingView: UIView {
     }()
     
     private lazy var ratingStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [starImageView, ratingLabel])
+        let stack = UIStackView()
         stack.axis = .vertical
         stack.spacing = 5.5
         return stack
@@ -47,7 +47,7 @@ final class RatingView: UIView {
     }()
     
     private lazy var mainStack: UIStackView = {
-        let stack = UIStackView(arrangedSubviews: [ratingStack, dotImageView, reviewsLabel])
+        let stack = UIStackView()
         stack.axis = .horizontal
         stack.spacing = 8
         return stack
@@ -66,6 +66,14 @@ final class RatingView: UIView {
     
     // MARK: - SetupViews
     private func setupViews() {
+        [starImageView, ratingLabel].forEach { view in
+            ratingStack.addArrangedSubview(view)
+        }
+        
+        [ratingStack, dotImageView, reviewsLabel].forEach { view in
+            mainStack.addArrangedSubview(view)
+        }
+
         addSubviews([mainStack])
     }
     
