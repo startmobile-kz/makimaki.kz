@@ -61,7 +61,7 @@ final class OrdersTableFooterView: UIView {
         }
     }
     
-    // MARK: - Acton
+    // MARK: - Action
     
     @objc func reorder() {
         self.delegate?.onReorderButtonPressed()
