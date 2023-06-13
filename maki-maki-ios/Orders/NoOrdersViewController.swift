@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class NoOrdersViewController: UIViewController {
+final class NoOrdersViewController: UIView {
     
     // MARK: - UI
     
@@ -39,30 +39,28 @@ final class NoOrdersViewController: UIViewController {
     
     // MARK: - Lifecycle
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        setupNavigationBar()
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }
     
-    // MARK: - Setup Views
-    
-    private func setupNavigationBar() {
-        self.navigationItem.title = "Orders"
-        edgesForExtendedLayout = []
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
-        view.backgroundColor = AppColor.background.uiColor
-        [noOrdersImageView, noOrderslabel, proposalLabel].forEach { view.addSubview($0) }
+        [noOrdersImageView, noOrderslabel, proposalLabel].forEach { addSubview($0) }
     }
     
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
         noOrdersImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(150)
+            make.top.equalToSuperview()
             make.centerX.equalToSuperview()
             make.width.equalTo(111.41)
             make.height.equalTo(124)
@@ -77,5 +75,9 @@ final class NoOrdersViewController: UIViewController {
             make.top.equalTo(noOrderslabel.snp.bottom).offset(8)
             make.centerX.equalToSuperview()
         }
+    }
+    
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 229, height: 194)
     }
 }
