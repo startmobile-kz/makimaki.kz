@@ -70,7 +70,7 @@ final class RestaurantViewController: UIViewController {
     private func setupViews() {
         self.edgesForExtendedLayout = []
         view.backgroundColor = .systemBackground
-        view.addSubviews([collectionView,])
+        view.addSubviews([collectionView])
     }
     
     // MARK: - SetupConstraints
@@ -94,7 +94,10 @@ extension RestaurantViewController: UICollectionViewDataSource {
         8
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: DishesCollectionViewCell.reuseID,
             for: indexPath
