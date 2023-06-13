@@ -77,11 +77,16 @@ final class MainViewController: UIViewController {
         deliveryHeaderView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             make.leading.equalToSuperview().offset(16)
-            make.trailing.equalToSuperview().offset(-16).priority(999)
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(deliveryHeaderView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
         }
         
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(deliveryHeaderView.snp.bottom).priority(999)
+            make.top.equalTo(separatorView.snp.bottom).priority(999)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
