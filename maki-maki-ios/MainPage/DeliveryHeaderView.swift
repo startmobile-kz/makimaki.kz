@@ -40,12 +40,6 @@ final class DeliveryHeaderView: UIView {
         return button
     }()
     
-    private lazy var separatorView: UIView = {
-        let view = UIView()
-        view.backgroundColor = AppColor.border.uiColor
-        return view
-    }()
-    
     // MARK: - Delegate
     weak var delegate: DeliveryHeaderViewDelegate?
     
@@ -59,7 +53,7 @@ final class DeliveryHeaderView: UIView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        addSubviews([deliverToLabel, addressLabel, chevronButton, separatorView])
+        addSubviews([deliverToLabel, addressLabel, chevronButton])
     }
     
     // MARK: - SetupConstraints
@@ -80,13 +74,6 @@ final class DeliveryHeaderView: UIView {
             make.width.equalTo(11.4)
             make.height.equalTo(6)
         }
-        
-        separatorView.snp.makeConstraints { make in
-            make.top.equalTo(addressLabel.snp.bottom).offset(20)
-            make.leading.equalToSuperview().offset(-16)
-            make.trailing.equalToSuperview().offset(16)
-            make.height.equalTo(0.5)
-        }
     }
     
     private func setupGestureRecognizers() {
@@ -103,6 +90,6 @@ final class DeliveryHeaderView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 88, height: 61.5)
+        return CGSize(width: 88, height: 43)
     }
 }

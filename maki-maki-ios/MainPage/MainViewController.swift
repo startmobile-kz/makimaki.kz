@@ -63,8 +63,7 @@ final class MainViewController: UIViewController {
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubview(collectionView)
-        view.addSubview(deliveryHeaderView)
+        view.addSubviews([deliveryHeaderView, collectionView])
     }
     
     // MARK: - Setup Constraints
