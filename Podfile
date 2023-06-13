@@ -1,4 +1,5 @@
 platform :ios, '13.0'
+inhibit_all_warnings!
 
 target 'maki-maki-ios' do
   use_frameworks!
@@ -22,5 +23,4 @@ target 'maki-maki-ios' do
       end
     end
   end
-
 end

@@ -2,14 +2,13 @@
 //  AuthEndpoint.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 12.06.2023.
+//  Created by Shyngys on 12.06.2023.
 //
 
 import Foundation
 import Moya
 
 enum AuthEndpoint {
-
     case login(parameters: [String: String])
     case registration(parameters: [String: String])
     case changePassword(parameters: [String: String])
@@ -21,7 +20,7 @@ extension AuthEndpoint: TargetType {
         
         switch self {
         case .changePassword:
-//            let token = StorageManager.shared.getToken()
+            //            let token = StorageManager.shared.getToken()
             return ["Authorization" : "Bearer token"]
         default:
             return [:]
@@ -59,10 +58,9 @@ extension AuthEndpoint: TargetType {
     var task: Task {
         switch self {
         case .login(let parameters),
-             .registration(let parameters),
-             .changePassword(let parameters):
+                .registration(let parameters),
+                .changePassword(let parameters):
             return .requestParameters(parameters: parameters, encoding: JSONEncoding.default)
         }
     }
 }
-

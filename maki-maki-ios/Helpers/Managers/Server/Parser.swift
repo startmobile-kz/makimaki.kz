@@ -2,7 +2,7 @@
 //  Parser.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 11.06.2023.
+//  Created by Shyngys on 11.06.2023.
 //
 
 import Foundation
@@ -24,7 +24,6 @@ struct Response<T: Codable>: Codable {
     let message: String?
     let data: T?
 }
-
 
 struct Parser: Parsing {
 

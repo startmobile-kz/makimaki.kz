@@ -2,15 +2,13 @@
 //  Error+Extensions.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 12.06.2023.
+//  Created by Shyngys on 12.06.2023.
 //
 
 import Foundation
 
 extension NSError {
-
     var isConnectivityError: Bool {
-        
         guard domain == NSURLErrorDomain else { return false }
 
         let connectivityErrors = [
@@ -22,3 +20,4 @@ extension NSError {
 
         return connectivityErrors.contains(code)
     }
+}

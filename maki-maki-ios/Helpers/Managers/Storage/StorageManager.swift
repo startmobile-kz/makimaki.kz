@@ -2,7 +2,7 @@
 //  StorageManager.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 12.06.2023.
+//  Created by Shyngys on 12.06.2023.
 //
 
 import Foundation
@@ -32,4 +32,3 @@ extension StorageManager {
 //        storage.save(customObject: token, inKey: Key.Storage.token)
 //    }
 }
-

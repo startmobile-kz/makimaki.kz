@@ -2,7 +2,7 @@
 //  Server.swift
 //  maki-maki-ios
 //
-//  Created by   Shyngys on 11.06.2023.
+//  Created by Shyngys on 11.06.2023.
 //
 
 import Foundation
@@ -14,7 +14,8 @@ struct Server {
     
     static let shared = Server()
     
-    private(set) var provider = MoyaProvider<MultiTarget>(endpointClosure: { (target: TargetType) -> Endpoint in
+    private(set) var provider =
+        MoyaProvider<MultiTarget>(endpointClosure: { (target: TargetType) -> Endpoint in
         let defaultEndpoint = MoyaProvider.defaultEndpointMapping(for: MultiTarget(target))
         switch defaultEndpoint.task {
         case .requestParameters(var params, let encoding):
@@ -49,12 +50,10 @@ struct Server {
                     if let error = (error as? AFError)?.underlyingError as NSError? {
                         if error.isConnectivityError == true {
                             completion(.error(message: "connectivity_error_message"))
-                        }
-                        else{
+                        } else {
                             completion(.error(message: "unknown_error_message"))
                         }
-                    }
-                    else{
+                    } else {
                         completion(.error(message: "unknown_error_message"))
                     }
                 default:
@@ -63,4 +62,5 @@ struct Server {
             }
         }
     }
+    
 }
