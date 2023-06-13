@@ -16,6 +16,7 @@ final class MainViewController: UIViewController {
     // MARK: - UI
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
         let view = DeliveryHeaderView()
+        view.delegate = self
         return view
     }()
     
