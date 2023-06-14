@@ -8,6 +8,7 @@
 import UIKit
 import FirebaseCore
 import IQKeyboardManager
+import YandexMapsMobile
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -17,6 +18,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         FirebaseApp.configure()
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().isEnableAutoToolbar = false
+        
+        YMKMapKit.setApiKey("08250651-9f7f-46bd-ada3-472616554102")
+        YMKMapKit.sharedInstance()
+        
         return true
     }
     // swiftlint:enable line_length

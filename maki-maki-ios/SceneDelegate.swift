@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = false
             if isAuthoried {
-                window.rootViewController = Main2TabBarController()
+                window.rootViewController = SelectLocationViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: WelcomePageVerOneViewController())
+                    UINavigationController(rootViewController: SelectLocationViewController())
             }
             
             self.window = window
