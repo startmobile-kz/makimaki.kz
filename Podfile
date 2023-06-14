@@ -1,4 +1,5 @@
 platform :ios, '13.0'
+inhibit_all_warnings!
 
 target 'maki-maki-ios' do
   use_frameworks!
@@ -11,6 +12,7 @@ target 'maki-maki-ios' do
   pod 'IQKeyboardManager', '6.5.0'
   pod 'SkyFloatingLabelTextField', '3.8.0'
   pod 'CHIOTPField', '0.1.0'
+  pod 'Moya', '15.0'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
@@ -21,5 +23,4 @@ target 'maki-maki-ios' do
       end
     end
   end
-
 end

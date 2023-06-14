@@ -1,4 +1,5 @@
 PODS:
+  - Alamofire (5.7.1)
   - CHIOTPField (0.1.0):
     - CHIOTPField/Four (= 0.1.0)
     - CHIOTPField/One (= 0.1.0)
@@ -21,6 +22,10 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.11.1)"
   - InputMask (6.1.0)
   - IQKeyboardManager (6.5.0)
+  - Moya (15.0.0):
+    - Moya/Core (= 15.0.0)
+  - Moya/Core (15.0.0):
+    - Alamofire (~> 5.0)
   - PromisesObjC (2.2.0)
   - SkyFloatingLabelTextField (3.8.0)
   - SnapKit (5.6.0)
@@ -31,17 +36,20 @@ DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - InputMask (= 6.1.0)
   - IQKeyboardManager (= 6.5.0)
+  - Moya (= 15.0)
   - SkyFloatingLabelTextField (= 3.8.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
 SPEC REPOS:
   trunk:
+    - Alamofire
     - CHIOTPField
     - FirebaseCoreInternal
     - GoogleUtilities
     - InputMask
     - IQKeyboardManager
+    - Moya
     - PromisesObjC
     - SkyFloatingLabelTextField
     - SnapKit
@@ -58,17 +66,19 @@ CHECKOUT OPTIONS:
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
+  Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   CHIOTPField: 5df19b433ccfad2a80e944d3abde128a236aaf01
   FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
+  Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 6d41a2c40e9f96f85116fc3aba8aeadb60c2a214
+PODFILE CHECKSUM: ea3616320667c305af046088f49eba98fd8607a9
 
 COCOAPODS: 1.12.1
