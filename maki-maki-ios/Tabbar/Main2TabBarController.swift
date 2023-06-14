@@ -18,7 +18,7 @@ final class Main2TabBarController: TabBarController {
     
     private func setupTabBars() {
         let mainViewController = MainViewController()
-        let searchViewController = EditProfileViewController()
+        let searchViewController = SearchV1ViewController()
         let ordersViewController = OrdersViewController()
         let profileViewController = AccountListViewController()
         
