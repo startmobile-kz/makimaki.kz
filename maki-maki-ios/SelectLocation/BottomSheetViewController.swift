@@ -12,7 +12,7 @@ final class BottomSheetViewController: UIViewController {
     
     // MARK: - UI
     
-    lazy var selectLocationLabel: UILabel = {
+    private lazy var selectLocationLabel: UILabel = {
         let label = UILabel()
         label.text = "Select Location"
         label.textColor = AppColor.heading.uiColor
@@ -20,7 +20,7 @@ final class BottomSheetViewController: UIViewController {
         return label
     }()
     
-    lazy var yourLocationLabel: UILabel = {
+    private lazy var yourLocationLabel: UILabel = {
         let label = UILabel()
         label.text = "YOUR LOCATION"
         label.textColor = AppColor.paragraph.uiColor
@@ -28,9 +28,9 @@ final class BottomSheetViewController: UIViewController {
         return label
     }()
     
-    lazy var locationTextField = OneLineTextField()
+    private lazy var locationTextField = OneLineTextField()
     
-    lazy var saveAsLabel: UILabel = {
+    private lazy var saveAsLabel: UILabel = {
         let label = UILabel()
         label.text = "Save As"
         label.textColor = AppColor.paragraph.uiColor
@@ -38,7 +38,9 @@ final class BottomSheetViewController: UIViewController {
         return label
     }()
     
-    lazy var saveAsSegmentedController = UISegmentedControl(first: "Home", second: "Work", third: "Other")
+    private lazy var saveAsSegmentedController = UISegmentedControl(first: "Home",
+                                                                    second: "Work",
+                                                                    third: "Other")
     
     private lazy var saveAddressButton: UIButton = {
         let button = UIButton(type: .system)

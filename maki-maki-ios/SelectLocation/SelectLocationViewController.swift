@@ -12,7 +12,7 @@ import YandexMapsMobile
 final class SelectLocationViewController: UIViewController {
     
     // MARK: - UI
-    lazy var yandexMap = YMKMapView()
+    private lazy var yandexMap = YMKMapView()
     
     // MARK: - lifecycle
     override func viewDidLoad() {
