@@ -15,6 +15,7 @@
 		1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */; };
 		1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */; };
 		1D75FE9A2A2F563000D4DBF9 /* SearchResultTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */; };
+		261494F02A3A598800767D1B /* StepperView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 261494EF2A3A598800767D1B /* StepperView.swift */; };
 		2620524B2A382EC900A2DC88 /* DishViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620524A2A382EC900A2DC88 /* DishViewController.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
 		26C63CC12A2F97F50095CF47 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C63CC02A2F97F50095CF47 /* OrdersList.swift */; };
@@ -97,6 +98,7 @@
 		1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 		1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchV1ViewController.swift; sourceTree = "<group>"; };
 		1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchResultTableViewCell.swift; sourceTree = "<group>"; };
+		261494EF2A3A598800767D1B /* StepperView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StepperView.swift; sourceTree = "<group>"; };
 		2620524A2A382EC900A2DC88 /* DishViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DishViewController.swift; sourceTree = "<group>"; };
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
 		26C63CC02A2F97F50095CF47 /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
@@ -215,6 +217,7 @@
 			isa = PBXGroup;
 			children = (
 				2620524A2A382EC900A2DC88 /* DishViewController.swift */,
+				261494EF2A3A598800767D1B /* StepperView.swift */,
 			);
 			path = Dish;
 			sourceTree = "<group>";
@@ -744,6 +747,7 @@
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
+				261494F02A3A598800767D1B /* StepperView.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchBar.swift in Sources */,
