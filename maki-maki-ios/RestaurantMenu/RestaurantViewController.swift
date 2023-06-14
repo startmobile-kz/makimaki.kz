@@ -71,13 +71,12 @@ final class RestaurantViewController: UIViewController {
             )
             
             item.contentInsets.trailing = 14
-            item.contentInsets.bottom = 14
             
             // Group
             let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(1),
-                    heightDimension: .fractionalHeight(0.33)
+                    heightDimension: .absolute(242)
                 ),
               subitems: [item]
             )
@@ -90,6 +89,7 @@ final class RestaurantViewController: UIViewController {
                 bottom: 16,
                 trailing: 0
             )
+            section.interGroupSpacing = 14
             section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
             return section
         }
