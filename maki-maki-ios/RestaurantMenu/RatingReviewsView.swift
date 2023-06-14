@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-final class RatingView: UIView {
+final class RatingReviewsView: UIView {
     
     // MARK: - UI
     private lazy var starImageView: UIImageView = {

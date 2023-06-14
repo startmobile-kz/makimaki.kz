@@ -19,8 +19,8 @@ final class RestaurantHeaderView: UICollectionReusableView {
         return imageView
     }()
     
-    private lazy var ratingView: RatingView = {
-        let view = RatingView()
+    private lazy var ratingView: RatingReviewsView = {
+        let view = RatingReviewsView()
         return view
     }()
     
