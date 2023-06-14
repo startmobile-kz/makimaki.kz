@@ -39,15 +39,6 @@ final class DishViewController: UIViewController {
         return label
     }()
     
-    private lazy var stepper: UIStepper = {
-        let stepper = UIStepper()
-        //        let blueOcean = UIColor(red: 20, green: 80, blue: 95, alpha: 1)
-        //        let stepper = RoundStepper(viewData: .init(color: blueOcean, minimum: 0, maximum: 100, stepValue: 10))
-        //        stepper.translatesAutoresizingMaskIntoConstraints = false
-        //        stepper.addTarget(self, action: #selector(didStepperValueChanged), for: .valueChanged)
-        return stepper
-    }()
-    
     private lazy var addButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = AppColor.accent.uiColor
@@ -76,7 +67,6 @@ final class DishViewController: UIViewController {
             dishImageView,
             productNameLabel,
             descriptionLabel,
-            stepper,
             addButton
         ].forEach { view.addSubview($0) }
     }
@@ -104,19 +94,11 @@ final class DishViewController: UIViewController {
             make.height.equalTo(37) //36
         }
         
-        stepper.snp.makeConstraints { make in
-            make.bottom.equalToSuperview().offset(-29)
-            make.leading.equalToSuperview().offset(16)
-            make.height.equalTo(53)
-            make.width.equalTo(135)
-        }
-        
         addButton.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-29)
-            make.leading.equalTo(stepper.snp.trailing).offset(8)
+            make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
-            
         }
     }
 }
