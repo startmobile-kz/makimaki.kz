@@ -111,6 +111,31 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         cell.set(logo: logo)
         return cell
     }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+
+        var controller: UIViewController = UIViewController()
+        if indexPath.row == 0 {
+            controller = OrdersViewController()
+        }
+
+        if indexPath.row == 1 {
+            controller = EditProfileViewController()
+        }
+
+        if indexPath.row == 2 {
+            controller = FavoritesViewController()
+        }
+
+        if indexPath.row == 3 {
+            controller = OffersViewController()
+        }
+
+//        present(controller, animated: true)
+
+        self.navigationController?.pushViewController(controller, animated: true)
+    }
 }
 
 extension AccountListViewController {
