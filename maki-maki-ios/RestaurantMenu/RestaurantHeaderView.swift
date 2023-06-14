@@ -15,7 +15,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - UI
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "promo_1")
+        imageView.image = AppImage.restaurant_top_image.uiImage
         return imageView
     }()
     

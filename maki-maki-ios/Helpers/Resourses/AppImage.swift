@@ -66,4 +66,5 @@ enum AppImage: String, AppImageProtocol {
     case no_orders = "no_orders"
     case star = "star"
     case dish = "dish"
+    case restaurant_top_image = "restaurant_top_image"
 }
