@@ -102,14 +102,12 @@ final class DishViewController: UIViewController {
             make.top.equalTo(productNameLabel.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(37) //36
+            make.height.equalTo(37)
         }
         
         stepperView.snp.makeConstraints { make in
             make.bottom.equalToSuperview().offset(-29)
             make.leading.equalToSuperview().offset(16)
-            make.height.equalTo(53)
-            make.width.equalTo(135)
         }
         
         addButton.snp.makeConstraints { make in
