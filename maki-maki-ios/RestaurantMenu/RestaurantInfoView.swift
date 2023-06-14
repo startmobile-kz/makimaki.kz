@@ -45,6 +45,26 @@ final class RestaurantInfoView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override func layoutSubviews() {
+        super.layoutSubviews()
+        
+        switch type {
+        case .ratingAndReview:
+            guard let starImageView = starImageView else {
+                return
+            }
+            snp.makeConstraints { make in
+                make.width.equalTo(
+                    characteristicLabel.frame.width + starImageView.frame.width + 5.5 + 28
+                )
+            }
+        case .time, .deliveryCost:
+            snp.makeConstraints { make in
+                make.width.equalTo(characteristicLabel.frame.width + 28)
+            }
+        }
+    }
+    
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = .white
@@ -60,7 +80,7 @@ final class RestaurantInfoView: UIView {
             starImageView = nil
         case .deliveryCost:
             addSubview(characteristicLabel)
-            characteristicLabel.text = "Delivery - Delivery - $8.99"
+            characteristicLabel.text = "Delivery - $8.99"
             starImageView = nil
         }
     }
