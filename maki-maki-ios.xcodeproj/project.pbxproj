@@ -42,6 +42,7 @@
 		6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6810396C2A30CDC400162D74 /* TabBarSettings.swift */; };
 		68374CD92A2B439600B3DC89 /* MainTabbarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68374CD82A2B439600B3DC89 /* MainTabbarController.swift */; };
 		683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */; };
+		683C29A62A39C54D006874A9 /* RestaurantCharacteristic.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */; };
 		685AA9E12A344ADB00D5E82B /* NoOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 685AA9E02A344ADB00D5E82B /* NoOrdersView.swift */; };
 		6866811C2A29D60600BC94E7 /* SectionType.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6866811B2A29D60600BC94E7 /* SectionType.swift */; };
 		687352052A384BFE006052E5 /* RestaurantHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 687352042A384BFE006052E5 /* RestaurantHeaderView.swift */; };
@@ -128,6 +129,7 @@
 		6810396C2A30CDC400162D74 /* TabBarSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSettings.swift; sourceTree = "<group>"; };
 		68374CD82A2B439600B3DC89 /* MainTabbarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabbarController.swift; sourceTree = "<group>"; };
 		683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeliveryHeaderView.swift; sourceTree = "<group>"; };
+		683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCharacteristic.swift; sourceTree = "<group>"; };
 		685AA9E02A344ADB00D5E82B /* NoOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOrdersView.swift; sourceTree = "<group>"; };
 		6866811B2A29D60600BC94E7 /* SectionType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionType.swift; sourceTree = "<group>"; };
 		687352042A384BFE006052E5 /* RestaurantHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantHeaderView.swift; sourceTree = "<group>"; };
@@ -224,6 +226,7 @@
 				687352062A384D08006052E5 /* RestaurantInfoView.swift */,
 				271D74422A38967300774B01 /* SectionDishesType.swift */,
 				279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */,
+				683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */,
 			);
 			path = RestaurantMenu;
 			sourceTree = "<group>";
@@ -753,6 +756,7 @@
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */,
 				F1725D502A2F07920072E258 /* OffersCell.swift in Sources */,
+				683C29A62A39C54D006874A9 /* RestaurantCharacteristic.swift in Sources */,
 				037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */,
 				26E2798A2A2F5DE00071863C /* OrdersModel.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,

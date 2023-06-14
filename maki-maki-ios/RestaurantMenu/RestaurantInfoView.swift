@@ -8,12 +8,6 @@
 import UIKit
 import SnapKit
 
-enum RestaurantsCharacteristic {
-    case ratingAndReview
-    case time
-    case deliveryCost
-}
-
 final class RestaurantInfoView: UIView {
     
     // MARK: - State

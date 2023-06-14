@@ -9,8 +9,8 @@ import UIKit
 import SnapKit
 
 final class RestaurantViewController: UIViewController {
-    // MARK: - Enumeration for dish sections
     
+    // MARK: - Enumeration for dish sections
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
                                                 .breakfast, .burgers,.coldDrinks,
                                                 .frenchFries, .rolls, .sushi,
