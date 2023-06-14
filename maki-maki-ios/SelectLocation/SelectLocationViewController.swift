@@ -31,7 +31,7 @@ final class SelectLocationViewController: UIViewController {
                 cameraCallback: nil)
         
         setupViews()
-        constraints()
+        setupConstraints()
         configureSheet()
     }
     
@@ -41,7 +41,7 @@ final class SelectLocationViewController: UIViewController {
     }
     
     // MARK: - Constraints
-    private func constraints() {
+    private func setupConstraints() {
         yandexMap.snp.makeConstraints { make in
               make.edges.equalToSuperview()
         }

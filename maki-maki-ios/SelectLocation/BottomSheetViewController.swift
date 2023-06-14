@@ -55,7 +55,7 @@ final class BottomSheetViewController: UIViewController {
 
         view.backgroundColor = .systemBackground
         setupViews()
-        constraints()
+        setupConstraints()
     }
     
     // MARK: - Setup Views
@@ -68,8 +68,8 @@ final class BottomSheetViewController: UIViewController {
         view.addSubview(saveAddressButton)
     }
     
-    // MARK: - Constraints
-    private func constraints() {
+    // MARK: - Setup Constraints
+    private func setupConstraints() {
         selectLocationLabel.snp.makeConstraints { make in
             make.top.equalTo(view.snp.top).offset(27)
             make.leading.equalTo(view.snp.leading).offset(16)
