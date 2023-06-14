@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = false
             if isAuthoried {
-                window.rootViewController = Main2TabBarController()
+                window.rootViewController = PaymentsViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: WelcomePageVerOneViewController())
+                    UINavigationController(rootViewController: PaymentsViewController())
             }
             
             self.window = window
