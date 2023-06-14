@@ -37,12 +37,16 @@ final class RestaurantHeaderView: UICollectionReusableView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        backgroundColor = .cyan
         addSubviews([backgroundImageView, ratingView])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview()
+            make.leading.equalTo(-16)
+        }
+        
         ratingView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
             make.leading.equalToSuperview().offset(16)

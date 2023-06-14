@@ -53,7 +53,6 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupViews
     
     private func setupViews() {
-        self.edgesForExtendedLayout = []
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView])
     }
@@ -62,7 +61,7 @@ final class RestaurantViewController: UIViewController {
     
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalToSuperview()
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
