@@ -8,10 +8,19 @@
 import UIKit
 import SnapKit
 
-final class RatingReviewsView: UIView {
+enum RestaurantsCharacteristic {
+    case ratingAndReview
+    case time
+    case deliveryCost
+}
+
+final class RestaurantInfoView: UIView {
+    
+    // MARK: - State
+    private let type: RestaurantsCharacteristic
     
     // MARK: - UI
-    private lazy var starImageView: UIImageView = {
+    private lazy var starImageView: UIImageView? = {
         let imageView = UIImageView()
         imageView.image = AppImage.star.uiImage
         return imageView
@@ -21,13 +30,13 @@ final class RatingReviewsView: UIView {
         let label = UILabel()
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
-        label.text = "4.8"
         return label
     }()
     
     // MARK: - Lifecycle
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: RestaurantsCharacteristic) {
+        self.type = type
+        super.init(frame: .zero)
         setupViews()
         setupConstraints()
     }
@@ -38,23 +47,44 @@ final class RatingReviewsView: UIView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        backgroundColor = AppColor.grey100.uiColor
+        backgroundColor = .white
         layer.cornerRadius = 14
+        
+        switch type {
+        case .ratingAndReview:
+            addSubviews([starImageView ?? UIImageView(), ratingReviewsLabel])
+        case .time:
+            addSubview(ratingReviewsLabel)
+            starImageView = nil
+        case .deliveryCost:
+            addSubview(ratingReviewsLabel)
+            starImageView = nil
+        }
+        
         ratingReviewsLabel.attributedText = makeAttributedString(rating: 4.8, reviews: 420)
-        addSubviews([starImageView, ratingReviewsLabel])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        starImageView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalToSuperview().offset(15.5)
+        if let starImageView = starImageView {
+            starImageView.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.leading.equalToSuperview().offset(15.5)
+            }
+            
+            ratingReviewsLabel.snp.makeConstraints { make in
+                make.centerY.equalToSuperview()
+                make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
+            }
+        } else {
+            ratingReviewsLabel.snp.makeConstraints { make in
+                make.center.equalToSuperview()
+            }
         }
         
-        ratingReviewsLabel.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
-            make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
-        }
+        
+        
+        
     }
     
     private func makeAttributedString(rating: Float, reviews: Int) -> NSMutableAttributedString {
