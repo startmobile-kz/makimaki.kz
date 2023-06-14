@@ -24,6 +24,16 @@ final class RestaurantHeaderView: UICollectionReusableView {
         return view
     }()
     
+    private lazy var timeView: RestaurantInfoView = {
+        let view = RestaurantInfoView(type: .time)
+        return view
+    }()
+    
+    private lazy var deliveryCostView: RestaurantInfoView = {
+        let view = RestaurantInfoView(type: .deliveryCost)
+        return view
+    }()
+    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -37,7 +47,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     
     // MARK: - SetupViews
     private func setupViews() {
-        addSubviews([backgroundImageView, ratingView])
+        addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView])
     }
     
     // MARK: - SetupConstraints
@@ -49,6 +59,16 @@ final class RestaurantHeaderView: UICollectionReusableView {
         
         ratingView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(150)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        timeView.snp.makeConstraints { make in
+            make.centerY.equalTo(ratingView.snp.centerY)
+            make.leading.equalTo(ratingView.snp.trailing).offset(8)
+        }
+        
+        deliveryCostView.snp.makeConstraints { make in
+            make.top.equalTo(ratingView.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
         }
     }
