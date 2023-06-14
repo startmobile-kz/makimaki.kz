@@ -58,55 +58,25 @@ final class PaymentsViewController: UIViewController {
 }
 
 extension PaymentsViewController: UITableViewDelegate, UITableViewDataSource {
-    
-//    func numberOfSections(in tableView: UITableView) -> Int {
-//        return 3
-//    }
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 3
+        return 2
     }
     
-//    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
-//        return 0
-//    }
-//
-//    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-//        let headerView = UIView()
-//        headerView.backgroundColor = UIColor.clear
-//        return headerView
-//    }
-    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if indexPath.row == 2 {
-//            guard let cell = tableView.dequeueReusableCell(withIdentifier: "applePay", for: indexPath)
-//                    as? ApplePayCardTableViewCell else {
-//                fatalError("applePay not found")
-//            }
-//            cell.layer.borderWidth = 1
-//            cell.layer.cornerRadius = 16
-//            cell.layer.borderColor = AppColor.border.cgColor
-//            return cell
-//        }
+        if indexPath.row == 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "applePay", for: indexPath)
+                    as? ApplePayCardTableViewCell else {
+                fatalError("applePay not found")
+            }
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+            return cell
+        }
         
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "paymentsCell", for: indexPath)
                 as? PaymentsTableViewCell else {
             fatalError("paymentsCell not found")
         }
-        //        guard let cell = tableView.dequeueReusableCell(withIdentifier: "paymentsCell", for: indexPath)
-        //            as? PaymentsTableViewCell else {
-        //            fatalError("paymentsCell not found")
-        //        }
-//        cell.layer.borderWidth = 1
-//        cell.layer.cornerRadius = 16
-//        cell.layer.borderColor = AppColor.border.cgColor
-        
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
-    
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //        let footerView = AddNewCardTableViewCell()
-    //        return footerView
-    //    }
-
 }

@@ -60,7 +60,7 @@ final class PaymentsTableViewCell: UITableViewCell {
         super.layoutSubviews()
 
         containerView.layer.cornerRadius = 16
-        containerView.layer.borderColor = AppColor.grey100.uiColor.cgColor
+        containerView.layer.borderColor = AppColor.border.cgColor
         containerView.layer.borderWidth = 1
     }
     

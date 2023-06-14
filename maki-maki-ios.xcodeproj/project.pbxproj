@@ -10,6 +10,8 @@
 		0349DDC72A36FD0700BACD4F /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */; };
 		0349DDC92A3721EC00BACD4F /* PaymentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */; };
 		0349DDCB2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */; };
+		0349DDE02A39F0C800BACD4F /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDDF2A39F0C800BACD4F /* PaymentsViewController.swift */; };
+		0349DDE22A3A777300BACD4F /* PaymentMethodTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE12A3A777300BACD4F /* PaymentMethodTableViewCell.swift */; };
 		037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16702A2F5E3700401843 /* FavoritesViewController.swift */; };
 		037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
@@ -95,10 +97,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0349DDC42A36FC6600BACD4F /* PaymentsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodViewController.swift; sourceTree = "<group>"; };
 		0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentsTableViewCell.swift; sourceTree = "<group>"; };
 		0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplePayCardTableViewCell.swift; sourceTree = "<group>"; };
+		0349DDDF2A39F0C800BACD4F /* PaymentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
+		0349DDE12A3A777300BACD4F /* PaymentMethodTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentMethodTableViewCell.swift; sourceTree = "<group>"; };
 		037F16702A2F5E3700401843 /* FavoritesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesViewController.swift; sourceTree = "<group>"; };
 		037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavoritesTableViewCell.swift; sourceTree = "<group>"; };
 		1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromoBannerCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -200,10 +203,11 @@
 		0349DDC32A36FC3900BACD4F /* Payments */ = {
 			isa = PBXGroup;
 			children = (
-				0349DDC42A36FC6600BACD4F /* PaymentsViewController.swift */,
+				0349DDDF2A39F0C800BACD4F /* PaymentsViewController.swift */,
 				0349DDC62A36FD0700BACD4F /* PaymentMethodViewController.swift */,
 				0349DDC82A3721EC00BACD4F /* PaymentsTableViewCell.swift */,
 				0349DDCA2A37CD9600BACD4F /* ApplePayCardTableViewCell.swift */,
+				0349DDE12A3A777300BACD4F /* PaymentMethodTableViewCell.swift */,
 			);
 			path = Payments;
 			sourceTree = "<group>";
@@ -498,9 +502,6 @@
 			isa = PBXGroup;
 			children = (
 				0349DDC32A36FC3900BACD4F /* Payments */,
-				F1725D712A3027940072E258 /* AccountOffersV2 */,
-				F1725D4C2A2F070E0072E258 /* AccountOffersList */,
-				037F166D2A2F5DC800401843 /* Favorites */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
@@ -782,7 +783,6 @@
 				27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */,
 				27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */,
 				9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */,
-				0349DDC52A36FC6600BACD4F /* PaymentsViewController.swift in Sources */,
 				275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
@@ -794,6 +794,7 @@
 				0349DDC72A36FD0700BACD4F /* PaymentMethodViewController.swift in Sources */,
 				689BC90C2A2F5087008FD14F /* Main2TabBarController.swift in Sources */,
 				27F53B702A2D033400B42737 /* AccountListController.swift in Sources */,
+				0349DDE22A3A777300BACD4F /* PaymentMethodTableViewCell.swift in Sources */,
 				6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */,
@@ -811,6 +812,7 @@
 				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 				F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */,
+				0349DDE02A39F0C800BACD4F /* PaymentsViewController.swift in Sources */,
 				773799382A3645E500E2CF7F /* UserDefaults+Extensions.swift in Sources */,
 				2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */,
 			);
