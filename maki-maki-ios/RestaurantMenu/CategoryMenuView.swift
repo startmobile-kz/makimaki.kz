@@ -10,6 +10,16 @@ import SnapKit
 
 final class CategoryMenuView: UIView {
     
+    // MARK: - UI
+    
+    private let categoryLabel: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.textColor = AppColor.heading.uiColor
+        label.font = AppFont.reqular.s14()
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -27,10 +37,18 @@ final class CategoryMenuView: UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
+        backgroundColor = AppColor.accent.uiColor
+        layer.cornerRadius = 14
+        
+        addSubview(categoryLabel)
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        
+        categoryLabel.snp.makeConstraints { make in
+            make.top.leading.bottom.equalToSuperview()
+        }
     }
 }
