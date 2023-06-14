@@ -17,7 +17,7 @@ final class RatingView: UIView {
         return imageView
     }()
     
-    private lazy var ratingLabel: UILabel = {
+    private lazy var ratingReviewsLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
@@ -39,11 +39,20 @@ final class RatingView: UIView {
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = AppColor.grey100.uiColor
+        addSubviews([starImageView, ratingReviewsLabel])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-
+        starImageView.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(15.5)
+        }
+        
+        ratingReviewsLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
+        }
     }
     
     override var intrinsicContentSize: CGSize {
