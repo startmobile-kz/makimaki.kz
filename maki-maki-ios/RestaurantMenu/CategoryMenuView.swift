@@ -14,6 +14,7 @@ final class CategoryMenuView: UIView {
     
     private let categoryLabel: UILabel = {
         let label = UILabel()
+        label.text = "Most Popular"
         label.textAlignment = .center
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
@@ -24,7 +25,6 @@ final class CategoryMenuView: UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
         setupConstraints()
     }
@@ -32,7 +32,6 @@ final class CategoryMenuView: UIView {
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
     
     // MARK: - SetupViews
     
@@ -48,7 +47,8 @@ final class CategoryMenuView: UIView {
     private func setupConstraints() {
         
         categoryLabel.snp.makeConstraints { make in
-            make.top.leading.bottom.equalToSuperview()
+            make.centerY.equalToSuperview()
+            make.centerX.equalToSuperview()
         }
     }
 }
