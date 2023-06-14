@@ -11,20 +11,16 @@ import SnapKit
 final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI
-    private let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = AppColor.heading.uiColor
-        label.font = AppFont.reqular.s14()
-        return label
+    private lazy var categoryView: CategoryMenuView = {
+        let view = CategoryMenuView()
+        return view
     }()
     
     // MARK: - State
     override var isSelected: Bool {
         didSet {
-            contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
+            categoryView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
             : AppColor.background.uiColor
-            categoryLabel.textColor = self.isSelected ? AppColor.heading.uiColor : AppColor.paragraph.uiColor
         }
     }
     
@@ -41,13 +37,12 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
-        contentView.layer.cornerRadius = 14
-        contentView.addSubview(categoryLabel)
+        addSubview(categoryView)
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        categoryLabel.snp.makeConstraints { make in
+        categoryView.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
             make.width.equalTo(contentView.snp.width)
         }
