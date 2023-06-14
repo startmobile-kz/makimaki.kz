@@ -9,12 +9,19 @@ import UIKit
 import SnapKit
 
 final class RestaurantViewController: UIViewController {
+    // MARK: - Enumeration for dish sections
+    
+    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
+                                                .breakfast, .burgers,.coldDrinks,
+                                                .frenchFries, .rolls, .sushi,
+                                                .salads, .sandwichs]
     
     // MARK: - UI
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
+        
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -24,47 +31,19 @@ final class RestaurantViewController: UIViewController {
             DishesCollectionViewCell.self,
             forCellWithReuseIdentifier: DishesCollectionViewCell.reuseID
         )
+        collectionView.register(
+            DishSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: DishSectionHeaderView.reuseId
+        )
+        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
         return collectionView
     }()
     
-    private func createLayout() -> UICollectionViewCompositionalLayout {
-             return UICollectionViewCompositionalLayout { section, _ in
-                 // Item
-                 let item = NSCollectionLayoutItem(
-                     layoutSize: NSCollectionLayoutSize(
-                         widthDimension: .fractionalWidth(0.5),
-                         heightDimension: .fractionalHeight(1)
-                     )
-                 )
-
-                 item.contentInsets.trailing = 14
-                 item.contentInsets.bottom = 14
-
-                 // Group
-                 let group = NSCollectionLayoutGroup.horizontal(
-                     layoutSize: NSCollectionLayoutSize(
-                         widthDimension: .fractionalWidth(1),
-                         heightDimension: .absolute(242)
-                     ),
-                     subitems: [item]
-                 )
-
-                 // Section
-                 let section = NSCollectionLayoutSection(group: group)
-                 section.contentInsets = NSDirectionalEdgeInsets(
-                     top: 24,
-                     leading: 16,
-                     bottom: 40,
-                     trailing: 0
-                 )
-                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
-                 return section
-             }
-         }
-    
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -72,25 +51,87 @@ final class RestaurantViewController: UIViewController {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         self.edgesForExtendedLayout = []
-        view.backgroundColor = .systemBackground
+        view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView])
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.snp.top)
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
-    
-    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+
+    private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(254)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .top
+        )
+    }
+
+ 
+    // MARK: - Layout for CollectionView
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+            // Item
+            let sectionType = self.sections[sectionIndex]
+            
+            let item = NSCollectionLayoutItem(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(0.5),
+                    heightDimension: .fractionalHeight(1)
+                )
+            )
+            
+            item.contentInsets.trailing = 14
+            
+            // Group
+            let group = NSCollectionLayoutGroup.horizontal(
+                layoutSize: NSCollectionLayoutSize(
+                    widthDimension: .fractionalWidth(1),
+                    heightDimension: .absolute(242)
+                ),
+              subitems: [item]
+            )
+            
+            // Section
+            let section = NSCollectionLayoutSection(group: group)
+            section.contentInsets = NSDirectionalEdgeInsets(
+                top: 4,
+                leading: 16,
+                bottom: 16,
+                trailing: 0
+            )
+            section.interGroupSpacing = 14
+            
+            switch sectionType {
+            case .mostPopular:
+                section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
+            default:
+                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+            }
+            
+            return section
+        }
+    }
+    
+    // MARK: - Layout for SectionHeader of Section
+
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.5),
+                heightDimension: .absolute(36)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
@@ -99,28 +140,54 @@ final class RestaurantViewController: UIViewController {
 }
 
 // MARK: - UICollectionViewDelegate methods
+
 extension RestaurantViewController: UICollectionViewDelegate {
     
 }
 
 // MARK: - UICollectionViewDataSource methods
+
 extension RestaurantViewController: UICollectionViewDataSource {
     
-    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        8
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        sections.count
     }
     
-    func collectionView(
-        _ collectionView: UICollectionView,
-        cellForItemAt indexPath: IndexPath
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        let section = sections[section]
+        switch section {
+        case .mostPopular:
+            return 5
+        case .pizza:
+            return 6
+        case .sushi:
+            return 6
+        case .rolls:
+            return 6
+        case .burgers:
+            return 3
+        case .breakfast:
+            return 4
+        case .sandwichs:
+            return 3
+        case .kebab:
+            return 3
+        case .salads:
+            return 3
+        case .frenchFries:
+            return 3
+        case .coldDrinks:
+            return 3
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: DishesCollectionViewCell.reuseID,
-            for: indexPath
-        ) as? DishesCollectionViewCell else {
+            for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        
         return cell
     }
     
@@ -130,17 +197,59 @@ extension RestaurantViewController: UICollectionViewDataSource {
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            guard let header = collectionView.dequeueReusableSupplementaryView(
-                ofKind: UICollectionView.elementKindSectionHeader,
-                withReuseIdentifier: RestaurantHeaderView.reuseID,
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: DishSectionHeaderView.reuseId,
                 for: indexPath
-            ) as? RestaurantHeaderView else {
-                fatalError("Could not cast to RestaurantHeaderView")
+            ) as? DishSectionHeaderView else {
+                fatalError("Could not cast to DishSectionHeaderView")
             }
-            return header
+            
+            let section = sections[indexPath.section]
+            switch section {
+            case .mostPopular:
+                guard let mainHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: UICollectionView.elementKindSectionHeader,
+                    withReuseIdentifier: RestaurantHeaderView.reuseID,
+                    for: indexPath
+                ) as? RestaurantHeaderView else {
+                    fatalError("Could not cast to RestaurantHeaderView")
+                }
+                return mainHeader
+            case .pizza:
+                sectionHeader.setSectionHeaderTitle(title: "Classic Pizza")
+                
+            case .sushi:
+                sectionHeader.setSectionHeaderTitle(title: "Sushi")
+                
+            case .rolls:
+                sectionHeader.setSectionHeaderTitle(title: "Rolls")
+                
+            case .burgers:
+                sectionHeader.setSectionHeaderTitle(title: "Burgers")
+                
+            case .breakfast:
+                sectionHeader.setSectionHeaderTitle(title: "Breakfast")
+                
+            case .sandwichs:
+                sectionHeader.setSectionHeaderTitle(title: "Sandwichs")
+                
+            case .kebab:
+                sectionHeader.setSectionHeaderTitle(title: "Kebab")
+                
+            case .salads:
+                sectionHeader.setSectionHeaderTitle(title: "Salads")
+                
+            case .frenchFries:
+                sectionHeader.setSectionHeaderTitle(title: "French Fries")
+                
+            case .coldDrinks:
+                sectionHeader.setSectionHeaderTitle(title: "Cold Drinks")
+                
+            }
+            return sectionHeader
         } else {
             return UICollectionReusableView()
         }
-        
     }
 }
