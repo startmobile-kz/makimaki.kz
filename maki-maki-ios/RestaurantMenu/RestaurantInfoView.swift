@@ -26,7 +26,7 @@ final class RestaurantInfoView: UIView {
         return imageView
     }()
     
-    private lazy var ratingReviewsLabel: UILabel = {
+    private lazy var characteristicLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
@@ -52,16 +52,17 @@ final class RestaurantInfoView: UIView {
         
         switch type {
         case .ratingAndReview:
-            addSubviews([starImageView ?? UIImageView(), ratingReviewsLabel])
+            addSubviews([starImageView ?? UIImageView(), characteristicLabel])
+            characteristicLabel.attributedText = makeAttributedStringForRating(rating: 4.8, reviews: 420)
         case .time:
-            addSubview(ratingReviewsLabel)
+            addSubview(characteristicLabel)
+            characteristicLabel.text = "15-20 mins"
             starImageView = nil
         case .deliveryCost:
-            addSubview(ratingReviewsLabel)
+            addSubview(characteristicLabel)
+            characteristicLabel.text = "Delivery - Delivery - $8.99"
             starImageView = nil
         }
-        
-        ratingReviewsLabel.attributedText = makeAttributedString(rating: 4.8, reviews: 420)
     }
     
     // MARK: - SetupConstraints
@@ -72,22 +73,18 @@ final class RestaurantInfoView: UIView {
                 make.leading.equalToSuperview().offset(15.5)
             }
             
-            ratingReviewsLabel.snp.makeConstraints { make in
+            characteristicLabel.snp.makeConstraints { make in
                 make.centerY.equalToSuperview()
                 make.leading.equalTo(starImageView.snp.trailing).offset(5.5)
             }
         } else {
-            ratingReviewsLabel.snp.makeConstraints { make in
+            characteristicLabel.snp.makeConstraints { make in
                 make.center.equalToSuperview()
             }
         }
-        
-        
-        
-        
     }
     
-    private func makeAttributedString(rating: Float, reviews: Int) -> NSMutableAttributedString {
+    private func makeAttributedStringForRating(rating: Float, reviews: Int) -> NSMutableAttributedString {
         let attributes: [NSAttributedString.Key: Any] = [
             .font: AppFont.reqular.s14(),
             .foregroundColor: AppColor.heading.uiColor
