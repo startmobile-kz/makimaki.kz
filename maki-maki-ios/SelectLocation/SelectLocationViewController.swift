@@ -32,7 +32,7 @@ final class SelectLocationViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        configureSheet()
+        setupConfigureSheet()
     }
     
     // MARK: - Setup Views
@@ -48,7 +48,7 @@ final class SelectLocationViewController: UIViewController {
     }
     
     // MARK: - Configure Sheet
-    private func configureSheet() {
+    private func setupConfigureSheet() {
         let viewController = BottomSheetViewController()
         let navigationViewController = UINavigationController(rootViewController: viewController)
         

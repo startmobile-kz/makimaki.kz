@@ -60,12 +60,14 @@ final class BottomSheetViewController: UIViewController {
     
     // MARK: - Setup Views
     private func setupViews() {
-        view.addSubview(selectLocationLabel)
-        view.addSubview(yourLocationLabel)
-        view.addSubview(locationTextField)
-        view.addSubview(saveAsLabel)
-        view.addSubview(saveAsSegmentedController)
-        view.addSubview(saveAddressButton)
+        [selectLocationLabel,
+        yourLocationLabel,
+        locationTextField,
+        saveAsLabel,
+        saveAsSegmentedController,
+        saveAddressButton].forEach {
+        view.addSubview($0)
+        }
     }
     
     // MARK: - Setup Constraints
