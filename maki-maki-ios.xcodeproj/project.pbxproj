@@ -57,6 +57,12 @@
 		68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */; };
 		68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810362A286DB600D29827 /* SectionHeaderView.swift */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
+		7737992B2A3642E900E2CF7F /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992A2A3642E900E2CF7F /* Parser.swift */; };
+		7737992D2A36430C00E2CF7F /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992C2A36430C00E2CF7F /* Server.swift */; };
+		773799302A36433800E2CF7F /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992F2A36433800E2CF7F /* AuthEndpoint.swift */; };
+		773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799322A36439700E2CF7F /* NSError+Extensions.swift */; };
+		773799362A36458C00E2CF7F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799352A36458C00E2CF7F /* StorageManager.swift */; };
+		773799382A3645E500E2CF7F /* UserDefaults+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799372A3645E500E2CF7F /* UserDefaults+Extensions.swift */; };
 		773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737B2A2783A20029AA44 /* UIView+Extensions.swift */; };
 		773A737E2A27840F0029AA44 /* AppImage.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737D2A27840F0029AA44 /* AppImage.swift */; };
 		773A73802A2784160029AA44 /* AppColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773A737F2A2784160029AA44 /* AppColor.swift */; };
@@ -66,7 +72,6 @@
 		773A738B2A278D5E0029AA44 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73882A278D5E0029AA44 /* Inter-Medium.ttf */; };
 		773A738C2A278D5E0029AA44 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A73892A278D5E0029AA44 /* Inter-Regular.ttf */; };
 		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
-		9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
 		9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173462A2E655B00299E56 /* BasketViewController.swift */; };
 		9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */; };
 		9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173482A2E655B00299E56 /* ContainerViewController.swift */; };
@@ -75,7 +80,6 @@
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
-		CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623662A132B1A00C36D03 /* ViewController.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
 		F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4D2A2F072B0072E258 /* OffersViewController.swift */; };
@@ -147,6 +151,12 @@
 		68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		68D810362A286DB600D29827 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7737992A2A3642E900E2CF7F /* Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
+		7737992C2A36430C00E2CF7F /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
+		7737992F2A36433800E2CF7F /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
+		773799322A36439700E2CF7F /* NSError+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extensions.swift"; sourceTree = "<group>"; };
+		773799352A36458C00E2CF7F /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
+		773799372A3645E500E2CF7F /* UserDefaults+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UserDefaults+Extensions.swift"; sourceTree = "<group>"; };
 		773A737B2A2783A20029AA44 /* UIView+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Extensions.swift"; sourceTree = "<group>"; };
 		773A737D2A27840F0029AA44 /* AppImage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppImage.swift; sourceTree = "<group>"; };
 		773A737F2A2784160029AA44 /* AppColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppColor.swift; sourceTree = "<group>"; };
@@ -167,7 +177,6 @@
 		CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "maki-maki-ios.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE9623622A132B1A00C36D03 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CE9623642A132B1A00C36D03 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CE9623662A132B1A00C36D03 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -348,17 +357,54 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
-		7720EEEA2A23806500A01669 /* Module */ = {
+		773799282A36424C00E2CF7F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
-				CE9623662A132B1A00C36D03 /* ViewController.swift */,
+				773799342A36457F00E2CF7F /* Storage */,
+				773799292A3642CA00E2CF7F /* Server */,
 			);
-			path = Module;
+			path = Managers;
+			sourceTree = "<group>";
+		};
+		773799292A3642CA00E2CF7F /* Server */ = {
+			isa = PBXGroup;
+			children = (
+				7737992E2A36432700E2CF7F /* Api */,
+				7737992A2A3642E900E2CF7F /* Parser.swift */,
+				7737992C2A36430C00E2CF7F /* Server.swift */,
+			);
+			path = Server;
+			sourceTree = "<group>";
+		};
+		7737992E2A36432700E2CF7F /* Api */ = {
+			isa = PBXGroup;
+			children = (
+				7737992F2A36433800E2CF7F /* AuthEndpoint.swift */,
+			);
+			path = Api;
+			sourceTree = "<group>";
+		};
+		773799312A36438200E2CF7F /* Foundation+Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				773799322A36439700E2CF7F /* NSError+Extensions.swift */,
+				773799372A3645E500E2CF7F /* UserDefaults+Extensions.swift */,
+			);
+			path = "Foundation+Extensions";
+			sourceTree = "<group>";
+		};
+		773799342A36457F00E2CF7F /* Storage */ = {
+			isa = PBXGroup;
+			children = (
+				773799352A36458C00E2CF7F /* StorageManager.swift */,
+			);
+			path = Storage;
 			sourceTree = "<group>";
 		};
 		773A73762A2783170029AA44 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				773799282A36424C00E2CF7F /* Managers */,
 				773A73782A2783290029AA44 /* Resourses */,
 				773A73772A27831D0029AA44 /* Extensions */,
 			);
@@ -368,7 +414,7 @@
 		773A73772A27831D0029AA44 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
-				9F541B8A2A2DC458004B3155 /* Foundation+Extensions */,
+				773799312A36438200E2CF7F /* Foundation+Extensions */,
 				9F541B892A2DC44A004B3155 /* UIKit+Extensions */,
 			);
 			path = Extensions;
@@ -422,13 +468,6 @@
 			path = "UIKit+Extensions";
 			sourceTree = "<group>";
 		};
-		9F541B8A2A2DC458004B3155 /* Foundation+Extensions */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Foundation+Extensions";
-			sourceTree = "<group>";
-		};
 		9F61734E2A2E656100299E56 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
@@ -471,28 +510,27 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				F1725D712A3027940072E258 /* AccountOffersV2 */,
-				F1725D4C2A2F070E0072E258 /* AccountOffersList */,
-				037F166D2A2F5DC800401843 /* Favorites */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
-				27F521292A309E6A0095A5EB /* Authorization */,
-				9F541B882A2DC3BA004B3155 /* App Settings */,
 				9F541B872A2DC3AD004B3155 /* Resources */,
 				773A73762A2783170029AA44 /* Helpers */,
+				9F541B882A2DC3BA004B3155 /* App Settings */,
+				27F521292A309E6A0095A5EB /* Authorization */,
+				274485FD2A27B3B400F2FFBD /* Registration */,
+				68374CD72A2B437800B3DC89 /* Tabbar */,
+				68C3EC342A27A308009A0E02 /* MainPage */,
+				1D75FE962A2F4C8800D4DBF9 /* Search */,
+				26FC1D542A264B1F003BA971 /* Orders */,
+				2781CD162A27C6AA00964A36 /* AccountCards */,
+				F1725D712A3027940072E258 /* AccountOffersV2 */,
+				F1725D4C2A2F070E0072E258 /* AccountOffersList */,
+				037F166D2A2F5DC800401843 /* Favorites */,
 				9F61734E2A2E656100299E56 /* Basket */,
 				27F53B6E2A2D030C00B42737 /* AccountList */,
-				1D75FE962A2F4C8800D4DBF9 /* Search */,
-				68374CD72A2B437800B3DC89 /* Tabbar */,
-				2781CD162A27C6AA00964A36 /* AccountCards */,
 				27943BE12A308688003F3C7B /* Manage Addresses */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
-				274485FD2A27B3B400F2FFBD /* Registration */,
-				2732B6D62A37249C001F6E66 /* RestaurantMenu */,
-				68C3EC342A27A308009A0E02 /* MainPage */,
-				26FC1D542A264B1F003BA971 /* Orders */,
-				7720EEEA2A23806500A01669 /* Module */,
+        2732B6D62A37249C001F6E66 /* RestaurantMenu */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
@@ -730,23 +768,26 @@
 				26C63CC12A2F97F50095CF47 /* OrdersList.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
-				9F541B8B2A2E0C09004B3155 /* AccountCardsViewController.swift in Sources */,
 				9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */,
-				CE9623672A132B1A00C36D03 /* ViewController.swift in Sources */,
+				773799302A36433800E2CF7F /* AuthEndpoint.swift in Sources */,
 				689BC9082A2F4C8D008FD14F /* TabBar.swift in Sources */,
+				7737992B2A3642E900E2CF7F /* Parser.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
+				7737992D2A36430C00E2CF7F /* Server.swift in Sources */,
 				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
 				B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */,
 				271D74432A38967300774B01 /* SectionDishesType.swift in Sources */,
 				27943BE72A30870D003F3C7B /* ManegAdressesFooterView.swift in Sources */,
 				26E279882A2F4A8B0071863C /* OrdersTableFooterView.swift in Sources */,
 				26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */,
+				773799362A36458C00E2CF7F /* StorageManager.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
 				9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */,
 				687352052A384BFE006052E5 /* RestaurantHeaderView.swift in Sources */,
 				26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */,
 				689BC9022A2F37AE008FD14F /* TabBarItem.swift in Sources */,
 				2789D5F32A2F6A300030A3B8 /* VerificationViewController.swift in Sources */,
+				773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */,
 				26C63CC52A332FA40095CF47 /* NoOrdersViewController.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				27943BE92A308726003F3C7B /* Adress.swift in Sources */,
@@ -784,6 +825,7 @@
 				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 				F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */,
+				773799382A3645E500E2CF7F /* UserDefaults+Extensions.swift in Sources */,
 				2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
