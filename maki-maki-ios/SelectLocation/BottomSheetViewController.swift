@@ -13,7 +13,7 @@ final class BottomSheetViewController: UIViewController {
     // MARK: - UI
     
     lazy var selectLocationLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Select Location"
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.bold.s24()
@@ -21,7 +21,7 @@ final class BottomSheetViewController: UIViewController {
     }()
     
     lazy var yourLocationLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "YOUR LOCATION"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s12()
@@ -31,7 +31,7 @@ final class BottomSheetViewController: UIViewController {
     lazy var locationTextField = OneLineTextField()
     
     lazy var saveAsLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.text = "Save As"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s12()
@@ -47,7 +47,7 @@ final class BottomSheetViewController: UIViewController {
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
         return button
-        }()
+    }()
 
     // MARK: - lifecycle
     override func viewDidLoad() {
