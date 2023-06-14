@@ -13,6 +13,12 @@ final class RestaurantHeaderView: UICollectionReusableView {
     static let reuseID = String(describing: RestaurantHeaderView.self)
     
     // MARK: - UI
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = UIImage(named: "promo_1")
+        return imageView
+    }()
+    
     private lazy var ratingView: RatingView = {
         let view = RatingView()
         return view
@@ -32,7 +38,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = .cyan
-        addSubview(ratingView)
+        addSubviews([backgroundImageView, ratingView])
     }
     
     // MARK: - SetupConstraints
@@ -42,5 +48,4 @@ final class RestaurantHeaderView: UICollectionReusableView {
             make.leading.equalToSuperview().offset(16)
         }
     }
-
 }

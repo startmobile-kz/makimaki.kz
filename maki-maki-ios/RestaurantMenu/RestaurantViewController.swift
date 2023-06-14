@@ -78,7 +78,6 @@ final class RestaurantViewController: UIViewController {
         )
     }
 
- 
     // MARK: - Layout for CollectionView
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
