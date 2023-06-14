@@ -39,6 +39,7 @@ final class RatingView: UIView {
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = AppColor.grey100.uiColor
+        layer.cornerRadius = 14
         addSubviews([starImageView, ratingReviewsLabel])
     }
     
