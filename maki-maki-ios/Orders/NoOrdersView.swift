@@ -1,5 +1,5 @@
 //
-//  NoOrdersViewController.swift
+//  NoOrdersView.swift
 //  maki-maki-ios
 //
 //  Created by siberianarg on 09.06.2023.
