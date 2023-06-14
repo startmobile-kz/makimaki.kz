@@ -25,34 +25,6 @@ final class RatingView: UIView {
         return label
     }()
     
-    private lazy var ratingStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 5.5
-        return stack
-    }()
-    
-    private lazy var dotImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = AppImage.ellipse.uiImage
-        return imageView
-    }()
-    
-    private lazy var reviewsLabel: UILabel = {
-        let label = UILabel()
-        label.font = AppFont.reqular.s14()
-        label.textColor = AppColor.heading.uiColor
-        label.text = "500 Reviews"
-        return label
-    }()
-    
-    private lazy var mainStack: UIStackView = {
-        let stack = UIStackView()
-        stack.axis = .horizontal
-        stack.spacing = 8
-        return stack
-    }()
-    
     // MARK: - Lifecycle
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -67,22 +39,11 @@ final class RatingView: UIView {
     // MARK: - SetupViews
     private func setupViews() {
         backgroundColor = AppColor.grey100.uiColor
-        [starImageView, ratingLabel].forEach { view in
-            ratingStack.addArrangedSubview(view)
-        }
-        
-        [ratingStack, dotImageView, reviewsLabel].forEach { view in
-            mainStack.addArrangedSubview(view)
-        }
-
-        addSubviews([mainStack])
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
-        mainStack.snp.makeConstraints { make in
-            make.center.equalToSuperview()
-        }
+
     }
     
     override var intrinsicContentSize: CGSize {
