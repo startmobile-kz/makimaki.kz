@@ -42,6 +42,7 @@
 		27F53B702A2D033400B42737 /* AccountListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B6F2A2D033400B42737 /* AccountListController.swift */; };
 		27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B712A2D049700B42737 /* AccountListCell.swift */; };
 		27F53B742A2D04A500B42737 /* Logo.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27F53B732A2D04A500B42737 /* Logo.swift */; };
+		27FAB9AE2A3A4C15001B9375 /* CategoryMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 27FAB9AD2A3A4C15001B9375 /* CategoryMenuView.swift */; };
 		280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */; };
 		6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6810396C2A30CDC400162D74 /* TabBarSettings.swift */; };
 		683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */; };
@@ -132,6 +133,7 @@
 		27F53B6F2A2D033400B42737 /* AccountListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListController.swift; sourceTree = "<group>"; };
 		27F53B712A2D049700B42737 /* AccountListCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountListCell.swift; sourceTree = "<group>"; };
 		27F53B732A2D04A500B42737 /* Logo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Logo.swift; sourceTree = "<group>"; };
+		27FAB9AD2A3A4C15001B9375 /* CategoryMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryMenuView.swift; sourceTree = "<group>"; };
 		3877194306F35D65A193A10C /* Pods-maki-maki-ios.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.debug.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.debug.xcconfig"; sourceTree = "<group>"; };
 		3B32FF32626E10EFCB6976BF /* Pods_maki_maki_ios.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_maki_maki_ios.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		6810396C2A30CDC400162D74 /* TabBarSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarSettings.swift; sourceTree = "<group>"; };
@@ -254,6 +256,7 @@
 				271D74422A38967300774B01 /* SectionDishesType.swift */,
 				279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */,
 				683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */,
+				27FAB9AD2A3A4C15001B9375 /* CategoryMenuView.swift */,
 			);
 			path = RestaurantMenu;
 			sourceTree = "<group>";
@@ -745,6 +748,7 @@
 				26E279882A2F4A8B0071863C /* OrdersTableFooterView.swift in Sources */,
 				26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
+				27FAB9AE2A3A4C15001B9375 /* CategoryMenuView.swift in Sources */,
 				9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */,
 				687352052A384BFE006052E5 /* RestaurantHeaderView.swift in Sources */,
 				26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */,
