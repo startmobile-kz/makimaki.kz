@@ -46,6 +46,7 @@ final class RestaurantViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
         setupConstraints()
     }
@@ -65,6 +66,7 @@ final class RestaurantViewController: UIViewController {
             make.leading.trailing.bottom.equalToSuperview()
         }
     }
+    // MARK: - Layout for Main Section Header
 
     private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
