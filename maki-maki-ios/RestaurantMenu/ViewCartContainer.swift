@@ -12,6 +12,22 @@ final class ViewCartConatiner : UIView {
     
     // MARK: - UI
     
+    private lazy var viewCartView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.accent.uiColor
+        view.layer.cornerRadius = 14
+        return view
+    }()
+    
+    private lazy var countButton: UIButton = {
+        let button = UIButton()
+        button.backgroundColor = AppColor.heading.uiColor
+        button.setTitleColor(AppColor.background.uiColor, for: .normal)
+        button.titleLabel?.text = "3"
+        button.titleLabel?.font = AppFont.reqular.s14()
+        return button
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -24,12 +40,14 @@ final class ViewCartConatiner : UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    //MARK: - SetupViews
+    // MARK: - SetupViews
+    
     private func setupViews() {
         
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         
     }
