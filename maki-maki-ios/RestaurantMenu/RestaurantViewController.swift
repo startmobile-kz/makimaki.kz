@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class RestaurantViewController: UIViewController {
+    
     // MARK: - Enumeration for dish sections
     
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
@@ -17,6 +18,7 @@ final class RestaurantViewController: UIViewController {
                                                 .salads, .sandwichs]
     
     // MARK: - UI
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -33,10 +35,16 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var viewCartContainerView: UIView = {
+        let view = ViewCartConatiner()
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
         setupConstraints()
     }
@@ -44,9 +52,8 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupViews
     
     private func setupViews() {
-        self.edgesForExtendedLayout = []
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([collectionView])
+        view.addSubviews([collectionView, viewCartContainerView])
     }
     
     // MARK: - SetupConstraints
@@ -54,7 +61,13 @@ final class RestaurantViewController: UIViewController {
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(viewCartContainerView.snp.top)
+        }
+        
+        viewCartContainerView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(98)
         }
     }
  
