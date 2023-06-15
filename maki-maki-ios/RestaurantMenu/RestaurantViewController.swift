@@ -69,7 +69,7 @@ final class RestaurantViewController: UIViewController {
     
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(viewCartContainerView.snp.top)
         }
