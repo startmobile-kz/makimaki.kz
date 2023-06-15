@@ -72,7 +72,7 @@ final class RestaurantViewController: UIViewController {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(254)
+                heightDimension: .absolute(342)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
