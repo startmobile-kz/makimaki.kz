@@ -46,6 +46,10 @@ final class RestaurantInfoView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        makeAdaptiveSizeForView()
+    }
+    
+    private func makeAdaptiveSizeForView() {
         switch type {
         case .ratingAndReview:
             guard let starImageView = starImageView else {
