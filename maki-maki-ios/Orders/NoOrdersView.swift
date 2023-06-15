@@ -2,7 +2,7 @@
 //  NoOrdersView.swift
 //  maki-maki-ios
 //
-//  Created by Damir Aliyev on 10.06.2023.
+//  Created by siberianarg on 09.06.2023.
 //
 
 import UIKit
@@ -11,6 +11,7 @@ import SnapKit
 final class NoOrdersView: UIView {
     
     // MARK: - UI
+    
     private lazy var noOrdersImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.no_orders.uiImage
@@ -37,8 +38,10 @@ final class NoOrdersView: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }
@@ -47,12 +50,14 @@ final class NoOrdersView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - SetupViews
+    // MARK: - Setup Views
+    
     private func setupViews() {
-        addSubviews([noOrdersImageView, noOrderslabel, proposalLabel])
+        [noOrdersImageView, noOrderslabel, proposalLabel].forEach { addSubview($0) }
     }
     
-    // MARK: - SetupConstraints
+    // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         noOrdersImageView.snp.makeConstraints { make in
             make.top.equalToSuperview()
