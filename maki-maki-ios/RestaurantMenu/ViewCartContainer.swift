@@ -55,6 +55,7 @@ final class ViewCartConatiner : UIView {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }

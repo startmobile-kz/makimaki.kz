@@ -28,6 +28,7 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setConstraints()
     }

@@ -69,8 +69,8 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = AppColor.background.uiColor
         
+        contentView.backgroundColor = AppColor.background.uiColor
         setupViews()
         setupConstraints()
         setupShadows()
