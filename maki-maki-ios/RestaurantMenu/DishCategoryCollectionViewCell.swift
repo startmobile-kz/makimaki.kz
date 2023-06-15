@@ -14,15 +14,6 @@ final class DishCategoryCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: DishCategoryCollectionViewCell.self)
     
-    override var isSelected: Bool {
-        didSet {
-            contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
-            : AppColor.background.uiColor
-            categoryLabel.textColor = self.isSelected ? AppColor.heading.uiColor :
-            AppColor.paragraph.uiColor
-        }
-    }
-    
     // MARK: - UI
     
     public lazy var categoryLabel: UILabel = {
@@ -61,4 +52,12 @@ final class DishCategoryCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    override var isSelected: Bool {
+        didSet {
+            contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
+            : AppColor.background.uiColor
+            categoryLabel.textColor = self.isSelected ? AppColor.heading.uiColor :
+            AppColor.paragraph.uiColor
+        }
+    }
 }

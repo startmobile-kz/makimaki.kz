@@ -38,11 +38,15 @@ final class CategoryMenuView: UIView {
         return collection
     }()
     
+    // MARK: - Setup Collection View
+    
     private func setupCollection() {
         categoryCollectionView.showsHorizontalScrollIndicator = false
         categoryCollectionView.bounces = false
         categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
     }
+    
+    // MARK: - Layout for CollectionView
     
     private func flowLayout() -> UICollectionViewFlowLayout {
         let layout = UICollectionViewFlowLayout()
@@ -84,6 +88,8 @@ final class CategoryMenuView: UIView {
     }
 }
 
+// MARK: - UICollectionViewDataSource methods
+
 extension CategoryMenuView: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -102,13 +108,19 @@ extension CategoryMenuView: UICollectionViewDataSource {
     }
 }
 
+// MARK: - UICollectionViewDelegate methods
+
 extension CategoryMenuView: UICollectionViewDelegate {
+    
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
     }
 }
 
+// MARK: - UICollectionViewDelegateFlowLayout methods
+
 extension CategoryMenuView: UICollectionViewDelegateFlowLayout {
+    
     func collectionView(_ collectionView: UICollectionView,
                         layout collectionViewLayout: UICollectionViewLayout,
                         sizeForItemAt indexPath: IndexPath) -> CGSize {
