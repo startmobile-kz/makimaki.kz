@@ -51,7 +51,6 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - SetupConstraints
-    
     private func setupConstraints() {
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()

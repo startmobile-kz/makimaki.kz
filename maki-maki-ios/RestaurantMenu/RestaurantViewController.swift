@@ -44,6 +44,11 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var viewCartContainerView: UIView = {
+        let view = ViewCartConatiner()
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -57,15 +62,21 @@ final class RestaurantViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([collectionView])
+        view.addSubviews([collectionView, viewCartContainerView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
-            make.top.equalToSuperview()
+            make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(viewCartContainerView.snp.top)
+        }
+        
+        viewCartContainerView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(98)
         }
     }
 
