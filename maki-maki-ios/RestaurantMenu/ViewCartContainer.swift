@@ -28,6 +28,14 @@ final class ViewCartConatiner : UIView {
         return button
     }()
     
+    private lazy var viewCartLabel: UILabel = {
+        let label = UILabel()
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
+        label.text = "VIEW CART"
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
