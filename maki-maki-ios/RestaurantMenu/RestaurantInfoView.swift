@@ -50,6 +50,10 @@ final class RestaurantInfoView: UIView {
     }
     
     private func makeAdaptiveSizeForView() {
+        let spacingBetweenImageViewAndLabel: CGFloat = 5.5
+        let leadingAndTrailingOffsets: CGFloat = 14 * 2
+        let offsetsPlusLabelWidth: CGFloat = characteristicLabel.frame.width + leadingAndTrailingOffsets
+        
         switch type {
         case .ratingAndReview:
             guard let starImageView = starImageView else {
@@ -57,12 +61,12 @@ final class RestaurantInfoView: UIView {
             }
             snp.makeConstraints { make in
                 make.width.equalTo(
-                    characteristicLabel.frame.width + starImageView.frame.width + 5.5 + 28
+                    offsetsPlusLabelWidth + starImageView.frame.width + spacingBetweenImageViewAndLabel
                 )
             }
         case .time, .deliveryCost:
             snp.makeConstraints { make in
-                make.width.equalTo(characteristicLabel.frame.width + 28)
+                make.width.equalTo(offsetsPlusLabelWidth)
             }
         }
     }
