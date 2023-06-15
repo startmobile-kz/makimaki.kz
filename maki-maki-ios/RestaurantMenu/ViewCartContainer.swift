@@ -8,6 +8,29 @@
 import Foundation
 import SnapKit
 
-class ViewCartConatiner : UIView {
+final class ViewCartConatiner : UIView {
     
+    // MARK: - UI
+    
+    // MARK: - Lifecycle
+    
+    override init(frame: CGRect) {
+        super.init(frame: frame)
+        setupViews()
+        setupConstraints()
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
+    //MARK: - SetupViews
+    private func setupViews() {
+        
+    }
+    
+    // MARK: - SetupConstraints
+    private func setupConstraints() {
+        
+    }
 }
