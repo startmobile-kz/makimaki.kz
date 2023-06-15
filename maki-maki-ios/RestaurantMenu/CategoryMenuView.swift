@@ -33,6 +33,10 @@ final class CategoryMenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    override var intrinsicContentSize: CGSize {
+        return CGSize(width: 114, height: 40)
+    }
+    
     // MARK: - SetupViews
     
     private func setupViews() {
