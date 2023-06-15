@@ -12,6 +12,12 @@ final class ViewCartConatiner : UIView {
     
     // MARK: - UI
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.border.uiColor
+        return view
+    }()
+    
     private lazy var viewCartView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.accent.uiColor
@@ -60,12 +66,11 @@ final class ViewCartConatiner : UIView {
     
     private func setupViews() {
         viewCartView.addSubviews([countButton, viewCartLabel, priceLabel])
-        addSubview(viewCartView)
+        addSubview(separatorView, viewCartView)
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
-        
     }
 }
