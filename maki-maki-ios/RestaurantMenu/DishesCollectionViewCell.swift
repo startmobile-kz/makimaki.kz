@@ -14,8 +14,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: DishesCollectionViewCell.self)
     
-    var counter: Int = 0
-    
     // MARK: - UI
     
     private lazy var dishImageView: UIImageView = {
@@ -46,19 +44,23 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var dishCountButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("3", for: .normal)
-        button.setTitleColor(AppColor.heading.uiColor, for: .normal)
-        button.backgroundColor = AppColor.accent.uiColor
-        button.titleLabel?.font = AppFont.reqular.s14()
-        button.layer.cornerRadius = 8
-        button.addTarget(self, action: #selector(counterBtnDidPressed), for: .touchUpInside)
-        return button
+    private lazy var dishCountView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.accent.uiColor
+        view.layer.cornerRadius = 8
+        return view
+    }()
+    
+    private lazy var dishCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "0"
+        label.textColor = AppColor.heading.uiColor
+        label.font = AppFont.reqular.s14()
+        return label
     }()
     
     private lazy var hrstackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [dishPriceLabel, dishCountButton])
+        let stackView = UIStackView(arrangedSubviews: [dishPriceLabel, dishCountView])
         stackView.axis = .horizontal
         stackView.spacing = 77
         stackView.distribution = .equalSpacing
@@ -84,9 +86,8 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     private func setupViews() {
         contentView.backgroundColor = AppColor.background.uiColor
         contentView.layer.cornerRadius = 14
-        [dishImageView, dishNameLabel, hrstackView].forEach {
-            contentView.addSubview($0)
-        }
+        contentView.addSubviews([dishImageView,dishNameLabel,hrstackView])
+        dishCountView.addSubview(dishCountLabel)
     }
     
     // MARK: - Setup Shadows
@@ -120,16 +121,20 @@ final class DishesCollectionViewCell: UICollectionViewCell {
             make.trailing.equalToSuperview().offset(-12)
         }
         
+        dishCountView.snp.makeConstraints { make in
+            make.height.equalTo(25)
+            make.width.equalTo(25)
+        }
+        
+        dishCountLabel.snp.makeConstraints { make in
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+        
         hrstackView.snp.makeConstraints { make in
             make.top.equalTo(dishNameLabel.snp.bottom).offset(8)
             make.leading.trailing.equalTo(dishNameLabel)
         }
     }
     
-    // MARK: - Actions
-    
-    @objc private func counterBtnDidPressed() {
-        counter += 1
-        dishCountButton.setTitle("\(counter)", for: .normal)
-    }
 }
