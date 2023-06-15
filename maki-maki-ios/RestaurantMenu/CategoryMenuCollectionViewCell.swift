@@ -12,13 +12,15 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI
     
-    let categoryLabel: UILabel = {
+    private let categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
         return label
     }()
+    
+    // MARK: - State
     
     override var isSelected: Bool {
         didSet {
@@ -41,11 +43,14 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - SetupViews
+    
     private func setupViews() {
         contentView.layer.cornerRadius = 14
         contentView.addSubview(categoryLabel)
     }
     
+    // MARK: - SetupConstraints
     private func setupConstraints() {
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()

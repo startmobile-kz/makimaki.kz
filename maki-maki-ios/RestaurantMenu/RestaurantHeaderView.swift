@@ -8,11 +8,32 @@
 import UIKit
 import SnapKit
 
-class RestaurantHeaderView: UICollectionReusableView {
+final class RestaurantHeaderView: UICollectionReusableView {
     
     static let reuseID = String(describing: RestaurantHeaderView.self)
     
     // MARK: - UI
+    
+    private lazy var backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = AppImage.restaurant_top_image.uiImage
+        return imageView
+    }()
+    
+    private lazy var ratingView: RestaurantInfoView = {
+        let view = RestaurantInfoView(type: .ratingAndReview)
+        return view
+    }()
+    
+    private lazy var timeView: RestaurantInfoView = {
+        let view = RestaurantInfoView(type: .time)
+        return view
+    }()
+    
+    private lazy var deliveryCostView: RestaurantInfoView = {
+        let view = RestaurantInfoView(type: .deliveryCost)
+        return view
+    }()
     
     // MARK: - Lifecycle
     
@@ -30,12 +51,30 @@ class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - SetupViews
     
     private func setupViews() {
-        backgroundColor = .cyan
+        addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        backgroundImageView.snp.makeConstraints { make in
+            make.top.trailing.bottom.equalToSuperview()
+            make.leading.equalTo(-16)
+        }
         
+        ratingView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(150)
+            make.leading.equalToSuperview().offset(16)
+        }
+        
+        timeView.snp.makeConstraints { make in
+            make.centerY.equalTo(ratingView.snp.centerY)
+            make.leading.equalTo(ratingView.snp.trailing).offset(8)
+        }
+        
+        deliveryCostView.snp.makeConstraints { make in
+            make.top.equalTo(ratingView.snp.bottom).offset(8)
+            make.leading.equalToSuperview().offset(16)
+        }
     }
 }
