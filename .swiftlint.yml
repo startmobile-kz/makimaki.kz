@@ -1,3 +1,4 @@
+warning_threshold: 1
 disabled_rules: # rule identifiers to exclude from running
   - colon
   - comma
