@@ -25,14 +25,16 @@ final class ViewCartConatiner : UIView {
         return view
     }()
     
-    private lazy var countButton: UIButton = {
-        let button = UIButton()
-        button.backgroundColor = AppColor.heading.uiColor
-        button.setTitle("3", for: .normal)
-        button.titleLabel?.font = AppFont.reqular.s14()
-        button.setTitleColor(.white, for: .normal)
-        button.layer.cornerRadius = 8
-        return button
+    private lazy var countLabel: UILabel = {
+        let label = UILabel()
+        label.backgroundColor = AppColor.heading.uiColor
+        label.textColor = AppColor.background.uiColor
+        label.font = AppFont.reqular.s14()
+        label.text = "3"
+        label.textAlignment = .center
+        label.layer.cornerRadius = 8
+        label.clipsToBounds = true
+        return label
     }()
     
     private lazy var viewCartLabel: UILabel = {
@@ -67,7 +69,7 @@ final class ViewCartConatiner : UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
-        viewCartView.addSubviews([countButton, viewCartLabel, priceLabel])
+        viewCartView.addSubviews([countLabel, viewCartLabel, priceLabel])
         addSubviews([separatorView, viewCartView])
     }
     
@@ -86,7 +88,7 @@ final class ViewCartConatiner : UIView {
             make.height.equalTo(53)
         }
         
-        countButton.snp.makeConstraints { make in
+        countLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalToSuperview().offset(14)
             make.width.height.equalTo(25)
