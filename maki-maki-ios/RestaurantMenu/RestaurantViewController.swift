@@ -190,13 +190,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
                 
             case .burgers:
                 sectionHeader.setSectionHeaderTitle(title: "Burgers")
-                
-            case .breakfast:
-                sectionHeader.setSectionHeaderTitle(title: "Breakfast")
-                
-            case .sandwichs:
-                sectionHeader.setSectionHeaderTitle(title: "Sandwichs")
-                
+            
             default :
                 sectionHeader.setSectionHeaderTitle(title: "Default name")
                 

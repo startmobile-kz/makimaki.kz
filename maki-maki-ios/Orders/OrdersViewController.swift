@@ -9,7 +9,7 @@ import UIKit
 
 final class OrdersViewController: UIViewController {
     
-    // MARK: - UI
+    // MARK: - State
     
     lazy var orders: [OrdersModel] = {
         return [
@@ -62,6 +62,8 @@ final class OrdersViewController: UIViewController {
     private var ordersCopy: [OrdersModel] = []
     
     private var sectionIsExpanded: [Bool] = []
+    
+    // MARK: - UI
     
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
@@ -145,7 +147,7 @@ final class OrdersViewController: UIViewController {
     }
 }
 
-// MARK: - UICollectionView Data Source and Delegate methods
+// MARK: - UITableView Data Source and Delegate methods
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func numberOfSections(in tableView: UITableView) -> Int {

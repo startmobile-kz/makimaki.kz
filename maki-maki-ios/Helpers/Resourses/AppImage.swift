@@ -70,4 +70,5 @@ enum AppImage: String, AppImageProtocol {
     case clock = "clock"
     case star = "star"
     case dish = "dish"
+    case pizza_image = "pizza_image"
 }
