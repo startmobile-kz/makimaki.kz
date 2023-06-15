@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = PaymentsViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: PaymentsViewController())
+                    UINavigationController(rootViewController: PaymentMethodViewController())
             }
             
             self.window = window

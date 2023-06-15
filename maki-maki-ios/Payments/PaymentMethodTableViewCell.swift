@@ -93,4 +93,12 @@ class PaymentMethodTableViewCell: UITableViewCell {
             make.size.equalTo(20)
         }
     }
+    
+    func didSelect(value: Bool) {
+        if value {
+            checkButton.backgroundColor = .yellow
+        } else {
+            checkButton.backgroundColor = .red
+        }
+    }
 }

@@ -11,6 +11,8 @@ final class PaymentMethodViewController: UIViewController {
     
     // MARK: - UI
     
+    var selectedCheckBoxIndex: IndexPath?
+    
     private lazy var paymentMethodTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(PaymentMethodTableViewCell.self, forCellReuseIdentifier: "paymentMethod")
@@ -101,6 +103,14 @@ extension PaymentMethodViewController: UITableViewDelegate, UITableViewDataSourc
             fatalError("paymentMethod not found")
         }
         cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
+        if let selectedCheckBoxIndex = selectedCheckBoxIndex {
+            cell.didSelect(value: selectedCheckBoxIndex == indexPath)
+        }
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        selectedCheckBoxIndex = indexPath
+        tableView.reloadData()
     }
 }
