@@ -17,6 +17,7 @@ final class RestaurantViewController: UIViewController {
                                                 .salads, .sandwichs]
     
     // MARK: - UI
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -59,7 +60,13 @@ final class RestaurantViewController: UIViewController {
     private func setupConstraints() {
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(viewCartContainerView.snp.top)
+        }
+        
+        viewCartContainerView.snp.makeConstraints { make in
             make.leading.trailing.bottom.equalToSuperview()
+            make.height.equalTo(98)
         }
     }
  

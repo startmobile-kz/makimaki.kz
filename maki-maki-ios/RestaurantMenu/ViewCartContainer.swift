@@ -28,9 +28,10 @@ final class ViewCartConatiner : UIView {
     private lazy var countButton: UIButton = {
         let button = UIButton()
         button.backgroundColor = AppColor.heading.uiColor
-        button.setTitleColor(AppColor.background.uiColor, for: .normal)
-        button.titleLabel?.text = "3"
+        button.setTitle("3", for: .normal)
         button.titleLabel?.font = AppFont.reqular.s14()
+        button.setTitleColor(.white, for: .normal)
+        button.layer.cornerRadius = 8
         return button
     }()
     
@@ -81,6 +82,7 @@ final class ViewCartConatiner : UIView {
             make.top.equalToSuperview().offset(16)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(53)
         }
         
         countButton.snp.makeConstraints { make in
