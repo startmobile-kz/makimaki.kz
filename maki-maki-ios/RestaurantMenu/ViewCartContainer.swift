@@ -66,11 +66,21 @@ final class ViewCartConatiner : UIView {
     
     private func setupViews() {
         viewCartView.addSubviews([countButton, viewCartLabel, priceLabel])
-        addSubview(separatorView, viewCartView)
+        addSubviews([separatorView, viewCartView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        separatorView.snp.makeConstraints { make in
+            make.top.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
+        }
+        
+        viewCartView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+        }
     }
 }
