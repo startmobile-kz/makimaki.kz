@@ -25,7 +25,7 @@ final class PaymentsViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
+        view.backgroundColor = AppColor.background.uiColor
         
         setupNavigationBar()
         setupViews()
@@ -56,6 +56,8 @@ final class PaymentsViewController: UIViewController {
         }
     }
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension PaymentsViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

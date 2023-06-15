@@ -495,7 +495,6 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				0349DDE62A3AD62500BACD4F /* Payments */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
@@ -516,6 +515,7 @@
 				27F53B6E2A2D030C00B42737 /* AccountList */,
 				27943BE12A308688003F3C7B /* Manage Addresses */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
+				0349DDE62A3AD62500BACD4F /* Payments */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";

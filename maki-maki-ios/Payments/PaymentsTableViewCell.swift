@@ -43,7 +43,7 @@ final class PaymentsTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    // MARK: - Lifecyle
+    // MARK: - Lifecyсle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)

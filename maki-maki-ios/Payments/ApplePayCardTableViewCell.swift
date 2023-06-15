@@ -28,7 +28,7 @@ final class ApplePayCardTableViewCell: UITableViewCell {
         return label
     }()
     
-    // MARK: - Lifecyle
+    // MARK: - Lifecyсle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -76,16 +76,5 @@ final class ApplePayCardTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.leading.equalTo(cardImageView.snp.trailing).offset(16)
         }
-        
-//        addButton.snp.makeConstraints { make in
-//            make.centerY.equalToSuperview()
-//            make.trailing.equalToSuperview().offset(-16)
-//            make.size.equalTo(40)
-//        }
-//        
-//        addButtonImageView.snp.makeConstraints { make in
-//            make.center.equalTo(addButton.snp.center)
-//        }
-        
     }
 }
