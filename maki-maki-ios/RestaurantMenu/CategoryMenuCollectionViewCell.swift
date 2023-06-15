@@ -10,6 +10,8 @@ import SnapKit
 
 final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
+    // MARK: - UI
+    
     let categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -26,11 +28,13 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
         setupViews()
-        setConstraints()
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -42,7 +46,7 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
         contentView.addSubview(categoryLabel)
     }
     
-    private func setConstraints() {
+    private func setupConstraints() {
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()
             make.width.equalTo(contentView.snp.width)

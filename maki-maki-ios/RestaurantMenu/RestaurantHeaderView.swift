@@ -15,6 +15,7 @@ class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - UI
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -27,11 +28,13 @@ class RestaurantHeaderView: UICollectionReusableView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         backgroundColor = .cyan
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         
     }

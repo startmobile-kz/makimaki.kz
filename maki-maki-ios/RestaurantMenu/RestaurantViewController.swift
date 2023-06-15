@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 final class RestaurantViewController: UIViewController {
+    
     // MARK: - Enumeration for dish sections
     
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
@@ -51,7 +52,6 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupViews
     
     private func setupViews() {
-        self.edgesForExtendedLayout = []
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, viewCartContainerView])
     }

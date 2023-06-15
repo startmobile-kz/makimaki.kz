@@ -11,6 +11,7 @@ import SnapKit
 class RatingView: UIView {
     
     // MARK: - UI
+    
     private lazy var starImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.star.uiImage
@@ -54,6 +55,7 @@ class RatingView: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -66,11 +68,13 @@ class RatingView: UIView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         addSubviews([mainStack])
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         mainStack.snp.makeConstraints { make in
             make.center.equalToSuperview()
