@@ -82,5 +82,20 @@ final class ViewCartConatiner : UIView {
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
         }
+        
+        countButton.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.leading.equalToSuperview().offset(14)
+            make.width.height.equalTo(25)
+        }
+        
+        viewCartLabel.snp.makeConstraints { make in
+            make.center.equalToSuperview()
+        }
+        
+        priceLabel.snp.makeConstraints { make in
+            make.centerY.equalToSuperview()
+            make.trailing.equalToSuperview().offset(-16)
+        }
     }
 }
