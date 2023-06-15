@@ -136,18 +136,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
             return 6
         case .burgers:
             return 3
-        case .breakfast:
-            return 4
-        case .sandwichs:
-            return 3
-        case .kebab:
-            return 3
-        case .salads:
-            return 3
-        case .frenchFries:
-            return 3
-        case .coldDrinks:
-            return 3
+        default:
+            return 10
         }
     }
     
@@ -194,17 +184,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
             case .sandwichs:
                 sectionHeader.setSectionHeaderTitle(title: "Sandwichs")
                 
-            case .kebab:
-                sectionHeader.setSectionHeaderTitle(title: "Kebab")
-                
-            case .salads:
-                sectionHeader.setSectionHeaderTitle(title: "Salads")
-                
-            case .frenchFries:
-                sectionHeader.setSectionHeaderTitle(title: "French Fries")
-                
-            case .coldDrinks:
-                sectionHeader.setSectionHeaderTitle(title: "Cold Drinks")
+            default :
+                sectionHeader.setSectionHeaderTitle(title: "Default name")
                 
             }
             return sectionHeader
