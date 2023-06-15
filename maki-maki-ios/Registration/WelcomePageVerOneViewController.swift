@@ -9,9 +9,13 @@ import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
 import InputMask
+import Foundation
 
 final class WelcomePageVerOneViewController: UIViewController {
-    
+    // MARK: - State
+
+    private var urlSession = URLSession.shared
+
     // MARK: - UI Components
     private lazy var makiImage: UIImageView = {
         let imageView = UIImageView()
@@ -149,9 +153,61 @@ final class WelcomePageVerOneViewController: UIViewController {
         }
     }
     // MARK: - Actions
-    
+
+    // swiftlint:disable all
     @objc private func continueButtonDidPress() {
         let controller = VerificationViewController()
+        guard let phoneNumber = phoneNumberTextField.text else {
+            fatalError("Вы не ввели телефон номер")
+        }
+
+        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
+
+
+        // 77082020155
+        var formatedPhoneNumber = phoneNumber
+        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: " ", with: "")
+        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: "+", with: "")
+        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: "(", with: "")
+        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: ")", with: "")
+
+
+//        authorize(phoneNumber: formatedPhoneNumber, deviceID: deviceID)
+
         self.navigationController?.pushViewController(controller, animated: true)
     }
+
+    // MARK: - Network
+
+    private func authorize(phoneNumber: String, deviceID: String) {
+        let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
+
+        guard let url = URL(string: urlString) else {
+            return
+        }
+
+        var request = URLRequest(
+            url: url,
+            cachePolicy: .reloadIgnoringLocalCacheData
+        )
+
+        let body = ["uuid": deviceID, "phone": phoneNumber]
+        let bodyJson = try? JSONSerialization.data(withJSONObject: body)
+
+        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+        request.httpMethod = "POST"
+        request.httpBody = bodyJson
+
+        let task = urlSession.dataTask(
+            with: request,
+            completionHandler: { data, response, error in
+                print(data)
+                print(response)
+                print(error)
+            }
+        )
+
+        task.resume()
+    }
+    // swiftlint:enable all
 }
