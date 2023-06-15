@@ -36,6 +36,14 @@ final class ViewCartConatiner : UIView {
         return label
     }()
     
+    private lazy var priceLabel: UILabel = {
+        let label = UILabel()
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
+        label.text = "$25.98"
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
