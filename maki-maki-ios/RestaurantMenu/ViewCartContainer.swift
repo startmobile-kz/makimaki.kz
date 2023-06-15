@@ -59,7 +59,8 @@ final class ViewCartConatiner : UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
-        
+        viewCartView.addSubviews([countButton, viewCartLabel, priceLabel])
+        addSubview(viewCartView)
     }
     
     // MARK: - SetupConstraints
