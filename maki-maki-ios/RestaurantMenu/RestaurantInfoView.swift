@@ -11,9 +11,11 @@ import SnapKit
 final class RestaurantInfoView: UIView {
     
     // MARK: - State
+    
     private let type: RestaurantsCharacteristic
     
     // MARK: - UI
+    
     private lazy var starImageView: UIImageView? = {
         let imageView = UIImageView()
         imageView.image = AppImage.star.uiImage
@@ -28,9 +30,11 @@ final class RestaurantInfoView: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     init(type: RestaurantsCharacteristic) {
         self.type = type
         super.init(frame: .zero)
+        
         setupViews()
         setupConstraints()
     }
@@ -42,6 +46,14 @@ final class RestaurantInfoView: UIView {
     override func layoutSubviews() {
         super.layoutSubviews()
         
+        makeAdaptiveSizeForView()
+    }
+    
+    private func makeAdaptiveSizeForView() {
+        let spacingBetweenImageViewAndLabel: CGFloat = 5.5
+        let leadingAndTrailingOffsets: CGFloat = 14 * 2
+        let offsetsPlusLabelWidth: CGFloat = characteristicLabel.frame.width + leadingAndTrailingOffsets
+        
         switch type {
         case .ratingAndReview:
             guard let starImageView = starImageView else {
@@ -49,17 +61,18 @@ final class RestaurantInfoView: UIView {
             }
             snp.makeConstraints { make in
                 make.width.equalTo(
-                    characteristicLabel.frame.width + starImageView.frame.width + 5.5 + 28
+                    offsetsPlusLabelWidth + starImageView.frame.width + spacingBetweenImageViewAndLabel
                 )
             }
         case .time, .deliveryCost:
             snp.makeConstraints { make in
-                make.width.equalTo(characteristicLabel.frame.width + 28)
+                make.width.equalTo(offsetsPlusLabelWidth)
             }
         }
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         backgroundColor = .white
         layer.cornerRadius = 14
@@ -80,6 +93,7 @@ final class RestaurantInfoView: UIView {
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         if let starImageView = starImageView {
             starImageView.snp.makeConstraints { make in

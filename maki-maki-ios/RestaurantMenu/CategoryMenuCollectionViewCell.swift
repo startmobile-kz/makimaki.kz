@@ -17,6 +17,7 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - State
+    
     override var isSelected: Bool {
         didSet {
             categoryView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
@@ -25,8 +26,10 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }
@@ -36,6 +39,7 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         addSubview(categoryView)
     }

@@ -13,6 +13,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     static let reuseID = String(describing: RestaurantHeaderView.self)
     
     // MARK: - UI
+    
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.restaurant_top_image.uiImage
@@ -40,8 +41,10 @@ final class RestaurantHeaderView: UICollectionReusableView {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }
@@ -51,11 +54,13 @@ final class RestaurantHeaderView: UICollectionReusableView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView,categoryView])
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         backgroundImageView.snp.makeConstraints { make in
             make.top.trailing.equalToSuperview()
