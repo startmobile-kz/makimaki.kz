@@ -28,7 +28,6 @@
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
 		275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F31242A31CFAB00E94CDC /* SignInViewController.swift */; };
 		275FF01F2A39A03600F0511F /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF01E2A39A03600F0511F /* SelectLocationViewController.swift */; };
-		275FF0212A39A16400F0511F /* BottomSheetViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF0202A39A16400F0511F /* BottomSheetViewController.swift */; };
 		275FF0232A39A19500F0511F /* OneLineTextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF0222A39A19500F0511F /* OneLineTextField + Extension.swift */; };
 		275FF0252A39A1AA00F0511F /* UISegmentedControl + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF0242A39A1AA00F0511F /* UISegmentedControl + Extension.swift */; };
 		2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */; };
@@ -118,7 +117,6 @@
 		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
 		275F31242A31CFAB00E94CDC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		275FF01E2A39A03600F0511F /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
-		275FF0202A39A16400F0511F /* BottomSheetViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BottomSheetViewController.swift; sourceTree = "<group>"; };
 		275FF0222A39A19500F0511F /* OneLineTextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneLineTextField + Extension.swift"; sourceTree = "<group>"; };
 		275FF0242A39A1AA00F0511F /* UISegmentedControl + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UISegmentedControl + Extension.swift"; sourceTree = "<group>"; };
 		2781CD172A27C6AA00964A36 /* AccountCardsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AccountCardsViewController.swift; sourceTree = "<group>"; };
@@ -266,7 +264,6 @@
 			isa = PBXGroup;
 			children = (
 				275FF01E2A39A03600F0511F /* SelectLocationViewController.swift */,
-				275FF0202A39A16400F0511F /* BottomSheetViewController.swift */,
 				275FF0222A39A19500F0511F /* OneLineTextField + Extension.swift */,
 				275FF0242A39A1AA00F0511F /* UISegmentedControl + Extension.swift */,
 			);
@@ -508,7 +505,6 @@
 		CE9623612A132B1A00C36D03 /* maki-maki-ios */ = {
 			isa = PBXGroup;
 			children = (
-				275FF01D2A39A00400F0511F /* SelectLocation */,
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
@@ -528,6 +524,7 @@
 				9F61734E2A2E656100299E56 /* Basket */,
 				27F53B6E2A2D030C00B42737 /* AccountList */,
 				27943BE12A308688003F3C7B /* Manage Addresses */,
+				275FF01D2A39A00400F0511F /* SelectLocation */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
 				262052492A382E3300A2DC88 /* Dish */,
 			);
@@ -800,9 +797,8 @@
 				2789D5F32A2F6A300030A3B8 /* VerificationViewController.swift in Sources */,
 				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
 				773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */,
-				26C63CC52A332FA40095CF47 /* NoOrdersViewController.swift in Sources */,
+				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
-				275FF0212A39A16400F0511F /* BottomSheetViewController.swift in Sources */,
 				27943BE92A308726003F3C7B /* Adress.swift in Sources */,
 				689BC90A2A2F4D1A008FD14F /* TabBarController.swift in Sources */,
 				1D26D70E2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift in Sources */,

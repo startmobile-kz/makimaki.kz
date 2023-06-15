@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-class OneLineTextField: UITextField {
+final class OneLineTextField: UITextField {
     
     convenience init() {
         self.init(frame: .zero)
