@@ -11,12 +11,14 @@ import SnapKit
 final class RestaurantViewController: UIViewController {
     
     // MARK: - Enumeration for dish sections
+    
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
                                                 .breakfast, .burgers,.coldDrinks,
                                                 .frenchFries, .rolls, .sushi,
                                                 .salads, .sandwichs]
     
     // MARK: - UI
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -46,6 +48,7 @@ final class RestaurantViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setupViews()
         setupConstraints()
     }

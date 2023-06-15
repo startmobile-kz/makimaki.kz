@@ -11,6 +11,7 @@ import SnapKit
 final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     // MARK: - UI
+    
     private let categoryLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .center
@@ -20,6 +21,7 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }()
     
     // MARK: - State
+    
     override var isSelected: Bool {
         didSet {
             contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
@@ -29,8 +31,10 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
+        
         setupViews()
         setupConstraints()
     }
@@ -40,12 +44,14 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         contentView.layer.cornerRadius = 14
         contentView.addSubview(categoryLabel)
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         categoryLabel.snp.makeConstraints { make in
             make.top.leading.bottom.equalToSuperview()

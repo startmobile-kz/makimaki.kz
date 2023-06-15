@@ -69,7 +69,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        contentView.backgroundColor = AppColor.background.uiColor
         
         setupViews()
         setupConstraints()
@@ -83,6 +82,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
+        contentView.backgroundColor = AppColor.background.uiColor
         contentView.layer.cornerRadius = 14
         [dishImageView, dishNameLabel, hrstackView].forEach {
             contentView.addSubview($0)

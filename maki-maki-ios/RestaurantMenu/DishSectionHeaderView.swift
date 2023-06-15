@@ -25,6 +25,7 @@ final class DishSectionHeaderView: UICollectionReusableView {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -41,11 +42,13 @@ final class DishSectionHeaderView: UICollectionReusableView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         addSubview(sectionLabel)
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         sectionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()

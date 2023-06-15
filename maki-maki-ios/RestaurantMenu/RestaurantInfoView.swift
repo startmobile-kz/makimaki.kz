@@ -11,9 +11,11 @@ import SnapKit
 final class RestaurantInfoView: UIView {
     
     // MARK: - State
+    
     private let type: RestaurantsCharacteristic
     
     // MARK: - UI
+    
     private lazy var starImageView: UIImageView? = {
         let imageView = UIImageView()
         imageView.image = AppImage.star.uiImage
@@ -28,9 +30,11 @@ final class RestaurantInfoView: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     init(type: RestaurantsCharacteristic) {
         self.type = type
         super.init(frame: .zero)
+        
         setupViews()
         setupConstraints()
     }
@@ -60,6 +64,7 @@ final class RestaurantInfoView: UIView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         backgroundColor = .white
         layer.cornerRadius = 14
@@ -80,6 +85,7 @@ final class RestaurantInfoView: UIView {
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         if let starImageView = starImageView {
             starImageView.snp.makeConstraints { make in
