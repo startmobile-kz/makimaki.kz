@@ -20,6 +20,14 @@ final class RestaurantHeaderView: UICollectionReusableView {
         return imageView
     }()
     
+    private lazy var nameLabel: UILabel = {
+        let label = UILabel()
+        label.font = AppFont.bold.s28()
+        label.textColor = AppColor.background.uiColor
+        label.text = "Smile House Cafe"
+        return label
+    }()
+    
     private lazy var ratingView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .ratingAndReview)
         return view
@@ -56,7 +64,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - SetupViews
     
     private func setupViews() {
-        addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView,categoryView])
+        addSubviews([backgroundImageView, nameLabel,ratingView, timeView, deliveryCostView,categoryView])
     }
     
     // MARK: - SetupConstraints
@@ -66,6 +74,11 @@ final class RestaurantHeaderView: UICollectionReusableView {
             make.top.trailing.equalToSuperview()
             make.leading.equalTo(-16)
             make.height.equalTo(254)
+        }
+        
+        nameLabel.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(100)
+            make.leading.equalToSuperview().offset(16)
         }
         
         ratingView.snp.makeConstraints { make in
