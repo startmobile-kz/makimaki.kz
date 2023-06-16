@@ -20,6 +20,12 @@ final class RestaurantHeaderView: UICollectionReusableView {
         return imageView
     }()
     
+    private lazy var backButton: UIButton = {
+        let button = UIButton()
+        button.setImage(AppImage.arrow_left_white.uiImage, for: .normal)
+        return button
+    }()
+    
     private lazy var searchButton: UIButton = {
         let button = UIButton()
         button.setImage(AppImage.search_white.uiImage, for: .normal)
@@ -78,6 +84,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     private func setupViews() {
         addSubviews(
             [backgroundImageView,
+             backButton,
              likeButton,
              searchButton,
              nameLabel,
@@ -96,6 +103,12 @@ final class RestaurantHeaderView: UICollectionReusableView {
             make.height.equalTo(254)
         }
         
+        backButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(57)
+            make.leading.equalToSuperview().offset(10)
+            make.size.equalTo(22)
+        }
+        
         likeButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(57)
             make.trailing.equalToSuperview().offset(-14)
@@ -105,7 +118,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
         searchButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(57)
             make.trailing.equalToSuperview().offset(-62)
-            make.size.equalTo(24)
+            make.size.equalTo(22)
         }
         
         nameLabel.snp.makeConstraints { make in
