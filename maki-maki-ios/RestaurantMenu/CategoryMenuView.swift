@@ -71,7 +71,7 @@ final class CategoryMenuView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: 64)
+        return CGSize(width: 0, height: 60)
     }
     
     // MARK: - SetupViews

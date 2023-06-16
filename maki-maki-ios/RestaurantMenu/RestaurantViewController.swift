@@ -14,7 +14,7 @@ final class RestaurantViewController: UIViewController {
     
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
-    private let categoriesViewHeight: CGFloat = 40
+    private let categoriesCollectionnViewHeight: CGFloat = 40
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let reinsurance: CGFloat = 2
@@ -84,7 +84,7 @@ final class RestaurantViewController: UIViewController {
     
     private func setupConstraints() {
         categoriesReplacementView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(-40)
+            make.top.equalToSuperview().offset(-60)
             make.leading.trailing.equalToSuperview()
         }
         
@@ -150,7 +150,7 @@ final class RestaurantViewController: UIViewController {
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(
-                top: 0,
+                top: 4,
                 leading: 16,
                 bottom: 16,
                 trailing: 0
@@ -187,15 +187,20 @@ final class RestaurantViewController: UIViewController {
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
         
-        if categoriesReplacementView.frame.maxY > categoriesViewHeight {
+        if categoriesReplacementView.frame.maxY > categoriesCollectionnViewHeight {
             sticked = true
         } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
             if !sticked {
-                categoriesReplacementView.alpha = 1
-                makeNavigationBarVisible()
-                pinCategoriesReplacementViewToTheTop()
-                self.categoriesReplacementView.bringSubviewToFront(self.view)
-                self.view.layoutIfNeeded()
+                UIView.animate(withDuration: 0.1) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.categoriesReplacementView.alpha = 1
+                    self.makeNavigationBarVisible()
+                    self.pinCategoriesReplacementViewToTheTop()
+                    self.categoriesReplacementView.bringSubviewToFront(self.view)
+                    self.view.layoutIfNeeded()
+                }
             }
         }
         
@@ -213,10 +218,10 @@ final class RestaurantViewController: UIViewController {
     
     private func hideCategoriesReplacementView() {
         categoriesReplacementView.snp.remakeConstraints { make in
-            make.top.equalToSuperview().offset(-40)
+            make.top.equalToSuperview().offset(-60)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(64)
+            make.height.equalTo(60)
         }
     }
     
@@ -232,7 +237,7 @@ final class RestaurantViewController: UIViewController {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(64)
+            make.height.equalTo(60)
         }
     }
     
