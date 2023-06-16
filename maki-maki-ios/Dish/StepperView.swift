@@ -10,8 +10,6 @@ import SnapKit
 
 final class StepperView: UIView {
     
-    private var counter: Int
-    
     // MARK: - UI
     
     private lazy var decreaseButton: UIButton = {
