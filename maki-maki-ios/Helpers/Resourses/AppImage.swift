@@ -72,4 +72,9 @@ enum AppImage: String, AppImageProtocol {
     case dish = "dish"
     case restaurant_top_image = "restaurant_top_image"
     case pizza_image = "pizza_image"
+    case add_button = "add_button"
+    case payments_card = "payments_card"
+    case apple_pay = "apple_pay"
+    case checked_button = "checked_button"
+    case unchecked_button = "unchecked_button"
 }
