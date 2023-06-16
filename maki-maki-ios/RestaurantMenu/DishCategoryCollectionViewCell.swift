@@ -1,5 +1,5 @@
 //
-//  CategoryMenuCollectionViewCell.swift
+//  DishCategoryCollectionViewCell.swift
 //  maki-maki-ios
 //
 //  Created by Tami on 12.06.2023.
@@ -8,27 +8,21 @@
 import UIKit
 import SnapKit
 
-final class CategoryMenuCollectionViewCell: UICollectionViewCell {
-    
-    // MARK: - UI
-    
-    private let categoryLabel: UILabel = {
-        let label = UILabel()
-        label.textAlignment = .center
-        label.textColor = AppColor.heading.uiColor
-        label.font = AppFont.reqular.s14()
-        return label
-    }()
+final class DishCategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - State
     
-    override var isSelected: Bool {
-        didSet {
-            contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
-            : AppColor.background.uiColor
-            categoryLabel.textColor = self.isSelected ? AppColor.heading.uiColor : AppColor.paragraph.uiColor
-        }
-    }
+    static let reuseID = String(describing: DishCategoryCollectionViewCell.self)
+    
+    // MARK: - UI
+    
+    public lazy var categoryLabel: UILabel = {
+        let label = UILabel()
+        label.font = AppFont.reqular.s14()
+        label.textAlignment = .center
+        label.textColor = AppColor.heading.uiColor
+        return label
+    }()
     
     // MARK: - Lifecycle
     
@@ -47,14 +41,23 @@ final class CategoryMenuCollectionViewCell: UICollectionViewCell {
     
     private func setupViews() {
         contentView.layer.cornerRadius = 14
-        contentView.addSubview(categoryLabel)
+        addSubview(categoryLabel)
     }
     
     // MARK: - SetupConstraints
     private func setupConstraints() {
         categoryLabel.snp.makeConstraints { make in
-            make.top.leading.bottom.equalToSuperview()
-            make.width.equalTo(contentView.snp.width)
+            make.centerX.equalToSuperview()
+            make.centerY.equalToSuperview()
+        }
+    }
+    
+    override var isSelected: Bool {
+        didSet {
+            contentView.backgroundColor = self.isSelected ? AppColor.accent.uiColor
+            : AppColor.background.uiColor
+            categoryLabel.textColor = self.isSelected ? AppColor.heading.uiColor :
+            AppColor.paragraph.uiColor
         }
     }
 }

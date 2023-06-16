@@ -35,6 +35,11 @@ final class RestaurantHeaderView: UICollectionReusableView {
         return view
     }()
     
+    private lazy var categoryView: CategoryMenuView = {
+        let view = CategoryMenuView()
+        return view
+    }()
+    
     // MARK: - Lifecycle
     
     override init(frame: CGRect) {
@@ -51,15 +56,16 @@ final class RestaurantHeaderView: UICollectionReusableView {
     // MARK: - SetupViews
     
     private func setupViews() {
-        addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView])
+        addSubviews([backgroundImageView, ratingView, timeView, deliveryCostView,categoryView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
         backgroundImageView.snp.makeConstraints { make in
-            make.top.trailing.bottom.equalToSuperview()
+            make.top.trailing.equalToSuperview()
             make.leading.equalTo(-16)
+            make.height.equalTo(254)
         }
         
         ratingView.snp.makeConstraints { make in
@@ -75,6 +81,11 @@ final class RestaurantHeaderView: UICollectionReusableView {
         deliveryCostView.snp.makeConstraints { make in
             make.top.equalTo(ratingView.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(16)
+        }
+        
+        categoryView.snp.makeConstraints { make in
+            make.top.equalTo(backgroundImageView.snp.bottom).offset(24)
+            make.leading.trailing.equalToSuperview()
         }
     }
 }

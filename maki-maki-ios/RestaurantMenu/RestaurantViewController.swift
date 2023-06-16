@@ -79,12 +79,13 @@ final class RestaurantViewController: UIViewController {
             make.height.equalTo(98)
         }
     }
+    // MARK: - Layout for Main Section Header
 
     private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(254)
+                heightDimension: .absolute(342)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .top
