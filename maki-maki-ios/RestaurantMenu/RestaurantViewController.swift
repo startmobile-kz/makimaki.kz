@@ -135,7 +135,7 @@ final class RestaurantViewController: UIViewController {
                     heightDimension: .fractionalHeight(1)
                 )
             )
-            
+
             item.contentInsets.trailing = 14
             
             // Group
@@ -150,7 +150,7 @@ final class RestaurantViewController: UIViewController {
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(
-                top: 4,
+                top: 0,
                 leading: 16,
                 bottom: 16,
                 trailing: 0
@@ -216,7 +216,7 @@ final class RestaurantViewController: UIViewController {
             make.top.equalToSuperview().offset(-40)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(40)
+            make.height.equalTo(64)
         }
     }
     
@@ -232,7 +232,7 @@ final class RestaurantViewController: UIViewController {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
-            make.height.equalTo(40)
+            make.height.equalTo(64)
         }
     }
     

@@ -71,7 +71,7 @@ final class CategoryMenuView: UIView {
     }
     
     override var intrinsicContentSize: CGSize {
-        return CGSize(width: 0, height: 40)
+        return CGSize(width: 0, height: 64)
     }
     
     // MARK: - SetupViews
@@ -85,8 +85,9 @@ final class CategoryMenuView: UIView {
     
     private func setupConstraints() {
         categoryCollectionView.snp.makeConstraints { make in
-            make.top.bottom.equalToSuperview()
+            make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
         }
     }
 }
