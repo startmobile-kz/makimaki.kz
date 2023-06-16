@@ -303,17 +303,11 @@
 		2732B6D62A37249C001F6E66 /* RestaurantMenu */ = {
 			isa = PBXGroup;
 			children = (
+				27E0F2CB2A3CCD1800CA5D69 /* View Cart */,
+				27E0F2CA2A3CCCEE00CA5D69 /* Main Header */,
+				27E0F2C92A3CCCC100CA5D69 /* Dish Menu */,
+				27E0F2C82A3CCCB200CA5D69 /* Category Menu */,
 				27D6199C2A37404400D64E62 /* RestaurantViewController.swift */,
-				687352042A384BFE006052E5 /* RestaurantHeaderView.swift */,
-				687352062A384D08006052E5 /* RestaurantInfoView.swift */,
-				683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */,
-				27A754402A3757A400D81A86 /* DishCategoryCollectionViewCell.swift */,
-				27FAB9AD2A3A4C15001B9375 /* CategoryMenuView.swift */,
-				27A754422A37580500D81A86 /* DishesCollectionViewCell.swift */,
-				279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */,
-				271D74422A38967300774B01 /* SectionDishesType.swift */,
-				27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */,
-				27F537BD2A3B8A630063AB85 /* CategoryItem.swift */,
 			);
 			path = RestaurantMenu;
 			sourceTree = "<group>";
@@ -346,6 +340,44 @@
 				27943BE82A308726003F3C7B /* Adress.swift */,
 			);
 			path = "Manage Addresses";
+			sourceTree = "<group>";
+		};
+		27E0F2C82A3CCCB200CA5D69 /* Category Menu */ = {
+			isa = PBXGroup;
+			children = (
+				27FAB9AD2A3A4C15001B9375 /* CategoryMenuView.swift */,
+				27A754402A3757A400D81A86 /* DishCategoryCollectionViewCell.swift */,
+				27F537BD2A3B8A630063AB85 /* CategoryItem.swift */,
+			);
+			path = "Category Menu";
+			sourceTree = "<group>";
+		};
+		27E0F2C92A3CCCC100CA5D69 /* Dish Menu */ = {
+			isa = PBXGroup;
+			children = (
+				271D74422A38967300774B01 /* SectionDishesType.swift */,
+				279037A32A38CE73008F3CCD /* DishSectionHeaderView.swift */,
+				27A754422A37580500D81A86 /* DishesCollectionViewCell.swift */,
+			);
+			path = "Dish Menu";
+			sourceTree = "<group>";
+		};
+		27E0F2CA2A3CCCEE00CA5D69 /* Main Header */ = {
+			isa = PBXGroup;
+			children = (
+				687352062A384D08006052E5 /* RestaurantInfoView.swift */,
+				683C29A52A39C54D006874A9 /* RestaurantCharacteristic.swift */,
+				687352042A384BFE006052E5 /* RestaurantHeaderView.swift */,
+			);
+			path = "Main Header";
+			sourceTree = "<group>";
+		};
+		27E0F2CB2A3CCD1800CA5D69 /* View Cart */ = {
+			isa = PBXGroup;
+			children = (
+				27D6199A2A373E3F00D64E62 /* ViewCartContainer.swift */,
+			);
+			path = "View Cart";
 			sourceTree = "<group>";
 		};
 		27F521292A309E6A0095A5EB /* Authorization */ = {
