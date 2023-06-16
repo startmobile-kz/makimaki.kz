@@ -14,10 +14,8 @@ final class RestaurantViewController: UIViewController {
     
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
-    private let categoriesCollectionnViewHeight: CGFloat = 40
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
-    private let reinsurance: CGFloat = 2
     
     // MARK: - Enumeration for dish sections
     
@@ -187,9 +185,7 @@ final class RestaurantViewController: UIViewController {
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
         
-        if categoriesReplacementView.frame.maxY > categoriesCollectionnViewHeight {
-            sticked = true
-        } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
+       if scrollView.contentOffset.y > initialHeaderHeight {
             if !sticked {
                 UIView.animate(withDuration: 0.1) { [weak self] in
                     guard let self = self else {
@@ -200,6 +196,7 @@ final class RestaurantViewController: UIViewController {
                     self.pinCategoriesReplacementViewToTheTop()
                     self.categoriesReplacementView.bringSubviewToFront(self.view)
                     self.view.layoutIfNeeded()
+                    sticked = true
                 }
             }
         }
@@ -208,8 +205,8 @@ final class RestaurantViewController: UIViewController {
             if scrollView.contentOffset.y < initialHeaderHeight {
                 self.categoriesReplacementView.alpha = 0
                 self.hideCategoriesReplacementView()
-                self.view.layoutIfNeeded()
                 self.setupNavigationBar()
+                self.view.layoutIfNeeded()
                 sticked = false
             }
         }
@@ -218,7 +215,7 @@ final class RestaurantViewController: UIViewController {
     
     private func hideCategoriesReplacementView() {
         categoriesReplacementView.snp.remakeConstraints { make in
-            make.top.equalToSuperview().offset(-60)
+            make.top.equalToSuperview().offset(-64)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(60)
