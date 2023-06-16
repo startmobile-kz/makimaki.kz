@@ -74,7 +74,6 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupViews
     
     private func setupViews() {
-        title = "Smile House Cafe"
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
     }
