@@ -52,6 +52,7 @@ final class CategoryMenuView: UIView {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 4
+        layout.sectionInset.left = 16
         return layout
     }
     
@@ -76,6 +77,7 @@ final class CategoryMenuView: UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
+        backgroundColor = AppColor.background.uiColor
         addSubview(categoryCollectionView)
     }
     
@@ -83,7 +85,8 @@ final class CategoryMenuView: UIView {
     
     private func setupConstraints() {
         categoryCollectionView.snp.makeConstraints { make in
-            make.edges.equalToSuperview()
+            make.top.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
         }
     }
 }
