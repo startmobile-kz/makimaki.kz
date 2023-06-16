@@ -28,6 +28,11 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - UI
     
+    private lazy var categoriesView: CategoryMenuView = {
+        let view = CategoryMenuView()
+        return view
+    }()
+    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -53,11 +58,6 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var categoriesView: CategoryMenuView = {
-        let view = CategoryMenuView()
-        return view
-    }()
-    
     private lazy var viewCartContainerView: UIView = {
         let view = ViewCartConatiner()
         return view
@@ -70,6 +70,7 @@ final class RestaurantViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupNavigationBar()
     }
     
     // MARK: - SetupViews
@@ -98,6 +99,16 @@ final class RestaurantViewController: UIViewController {
             make.height.equalTo(98)
         }
     }
+    
+    // MARK: - SetupNavigationBar
+    
+    private func setupNavigationBar() {
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    
     // MARK: - Layout for Main Section Header
 
     private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -168,6 +179,68 @@ final class RestaurantViewController: UIViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
         )
+    }
+    
+    // MARK: - ScrollViewDidScroll
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var sticked = false
+        
+        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+        
+        if categoriesView.frame.maxY > replacementViewHeight {
+            sticked = true
+        } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
+            if !sticked {
+                categoriesView.alpha = 1
+                makeNavigationBarVisible()
+                pinReplacementViewToTheTop()
+                self.categoriesView.bringSubviewToFront(self.view)
+                self.view.layoutIfNeeded()
+            }
+        }
+        
+        if isScrollingUp {
+            if scrollView.contentOffset.y < initialHeaderHeight {
+                self.categoriesView.alpha = 0
+                self.hideReplacementView()
+                self.view.layoutIfNeeded()
+                self.setupNavigationBar()
+                sticked = false
+            }
+        }
+        lastContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    private func hideReplacementView() {
+        categoriesView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(-40)
+            make.leading.equalToSuperview().offset(14)
+            make.trailing.equalToSuperview().offset(-14)
+            make.height.equalTo(40)
+        }
+    }
+    
+    private func checkScrollDirection(viewOffsetY: CGFloat) {
+        if lastContentOffsetY > viewOffsetY {
+            isScrollingUp = true
+        } else {
+            isScrollingUp = false
+        }
+    }
+    
+    private func pinReplacementViewToTheTop() {
+        categoriesView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(40)
+        }
+    }
+    
+    private func makeNavigationBarVisible() {
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = .clear
     }
 }
 
