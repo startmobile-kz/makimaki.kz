@@ -44,6 +44,11 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var categoriesView: CategoryMenuView = {
+        let view = CategoryMenuView()
+        return view
+    }()
+    
     private lazy var viewCartContainerView: UIView = {
         let view = ViewCartConatiner()
         return view
@@ -62,7 +67,7 @@ final class RestaurantViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([collectionView, viewCartContainerView])
+        view.addSubviews([collectionView, categoriesView, viewCartContainerView])
     }
     
     // MARK: - SetupConstraints
