@@ -10,6 +10,15 @@ import SnapKit
 
 final class RestaurantViewController: UIViewController {
     
+    // MARK: - Properties
+    
+    private var lastContentOffsetY: CGFloat = 0
+    private var isScrollingUp = false
+    private let replacementViewHeight: CGFloat = 40
+    private let initialHeaderHeight: CGFloat = 318
+    private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private let reinsurance: CGFloat = 2
+    
     // MARK: - Enumeration for dish sections
     
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
