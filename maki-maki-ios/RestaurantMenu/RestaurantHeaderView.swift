@@ -85,7 +85,8 @@ final class RestaurantHeaderView: UICollectionReusableView {
         
         categoryView.snp.makeConstraints { make in
             make.top.equalTo(backgroundImageView.snp.bottom).offset(24)
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(-16)
+            make.trailing.equalToSuperview().offset(-16)
         }
     }
 }

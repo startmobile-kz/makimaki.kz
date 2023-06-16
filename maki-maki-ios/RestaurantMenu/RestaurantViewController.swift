@@ -214,8 +214,8 @@ final class RestaurantViewController: UIViewController {
     private func hideCategoriesReplacementView() {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(-40)
-            make.leading.equalToSuperview().offset(14)
-            make.trailing.equalToSuperview().offset(-14)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(40)
         }
     }
