@@ -14,7 +14,7 @@ final class RestaurantViewController: UIViewController {
     
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
-    private let replacementViewHeight: CGFloat = 40
+    private let categoriesViewHeight: CGFloat = 40
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let reinsurance: CGFloat = 2
@@ -28,7 +28,7 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - UI
     
-    private lazy var categoriesView: CategoryMenuView = {
+    private lazy var categoriesReplacementView: CategoryMenuView = {
         let view = CategoryMenuView()
         return view
     }()
@@ -77,13 +77,13 @@ final class RestaurantViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([collectionView, categoriesView, viewCartContainerView])
+        view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
-        categoriesView.snp.makeConstraints { make in
+        categoriesReplacementView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(-40)
             make.leading.trailing.equalToSuperview()
         }
@@ -187,22 +187,22 @@ final class RestaurantViewController: UIViewController {
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
         
-        if categoriesView.frame.maxY > replacementViewHeight {
+        if categoriesReplacementView.frame.maxY > categoriesViewHeight {
             sticked = true
         } else if scrollView.contentOffset.y > initialHeaderHeight - reinsurance {
             if !sticked {
-                categoriesView.alpha = 1
+                categoriesReplacementView.alpha = 1
                 makeNavigationBarVisible()
-                pinReplacementViewToTheTop()
-                self.categoriesView.bringSubviewToFront(self.view)
+                pinCategoriesReplacementViewToTheTop()
+                self.categoriesReplacementView.bringSubviewToFront(self.view)
                 self.view.layoutIfNeeded()
             }
         }
         
         if isScrollingUp {
             if scrollView.contentOffset.y < initialHeaderHeight {
-                self.categoriesView.alpha = 0
-                self.hideReplacementView()
+                self.categoriesReplacementView.alpha = 0
+                self.hideCategoriesReplacementView()
                 self.view.layoutIfNeeded()
                 self.setupNavigationBar()
                 sticked = false
@@ -211,8 +211,8 @@ final class RestaurantViewController: UIViewController {
         lastContentOffsetY = scrollView.contentOffset.y
     }
     
-    private func hideReplacementView() {
-        categoriesView.snp.remakeConstraints { make in
+    private func hideCategoriesReplacementView() {
+        categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(-40)
             make.leading.equalToSuperview().offset(14)
             make.trailing.equalToSuperview().offset(-14)
@@ -228,8 +228,8 @@ final class RestaurantViewController: UIViewController {
         }
     }
     
-    private func pinReplacementViewToTheTop() {
-        categoriesView.snp.remakeConstraints { make in
+    private func pinCategoriesReplacementViewToTheTop() {
+        categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
