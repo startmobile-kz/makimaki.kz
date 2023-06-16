@@ -45,6 +45,7 @@ final class DishViewController: UIViewController {
         stepper.clipsToBounds = true
         stepper.layer.cornerRadius = 14
         stepper.backgroundColor = AppColor.grey100.uiColor
+        stepper.addTarget(self, action: #selector(stepperChangedValueAction), for: .valueChanged)
         return stepper
     }()
     
@@ -67,7 +68,6 @@ final class DishViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        setupStepper()
     }
     
     // MARK: - Setup Views
@@ -117,10 +117,6 @@ final class DishViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
-    }
-    
-    private func setupStepper() {
-        stepperView.addTarget(self, action: #selector(stepperChangedValueAction), for: .valueChanged)
     }
     
     @objc private func stepperChangedValueAction(sender: StepperView) {
