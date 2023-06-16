@@ -102,16 +102,10 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
-        self.navigationController?.navigationBar.prefersLargeTitles = true
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
-        
-        navigationController?.navigationBar.largeTitleTextAttributes = [
-            .foregroundColor: AppColor.background.uiColor,
-            .font: AppFont.bold.s28()
-        ]
     }
     
     // MARK: - Layout for Main Section Header
