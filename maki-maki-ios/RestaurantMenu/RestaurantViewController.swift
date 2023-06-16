@@ -73,6 +73,11 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        categoriesView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-40)
+            make.leading.trailing.equalToSuperview()
+        }
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
