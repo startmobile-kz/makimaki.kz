@@ -515,6 +515,7 @@
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
+				262052492A382E3300A2DC88 /* Dish */,
 				1D75FE962A2F4C8800D4DBF9 /* Search */,
 				26FC1D542A264B1F003BA971 /* Orders */,
 				2781CD162A27C6AA00964A36 /* AccountCards */,
@@ -525,7 +526,6 @@
 				27F53B6E2A2D030C00B42737 /* AccountList */,
 				27943BE12A308688003F3C7B /* Manage Addresses */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
-				262052492A382E3300A2DC88 /* Dish */,
 				0349DDE62A3AD62500BACD4F /* Payments */,
 			);
 			path = "maki-maki-ios";
@@ -781,7 +781,7 @@
 				2789D5F32A2F6A300030A3B8 /* VerificationViewController.swift in Sources */,
 				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
 				773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */,
-				26C63CC52A332FA40095CF47 /* NoOrdersViewController.swift in Sources */,
+				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				27943BE92A308726003F3C7B /* Adress.swift in Sources */,
 				689BC90A2A2F4D1A008FD14F /* TabBarController.swift in Sources */,
