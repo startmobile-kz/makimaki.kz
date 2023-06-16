@@ -132,6 +132,14 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
             controller = OffersViewController()
         }
 
+        if indexPath.row == 4 {
+            controller = PaymentsViewController()
+        }
+
+        if indexPath.row == 5 {
+            controller = PaymentMethodViewController()
+        }
+
 //        present(controller, animated: true)
 
         self.navigationController?.pushViewController(controller, animated: true)

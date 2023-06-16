@@ -192,7 +192,7 @@ final class MainViewController: UIViewController {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.2),
+                widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(43)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
