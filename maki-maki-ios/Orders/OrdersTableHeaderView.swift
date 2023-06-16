@@ -108,7 +108,6 @@ final class OrdersTableHeaderView: UIView {
         setupConstraints()
         setupGestureRecognizers()
         restoreState(isExpanded: isExpanded)
-        
     }
     
     required init?(coder: NSCoder) {

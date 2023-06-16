@@ -12,6 +12,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - Sections
     let sections: [SectionType] = [.categories, .promos, .restaurants]
+    var selectedCategoryIndexPath: IndexPath?
     
     // MARK: - UI
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
@@ -246,6 +247,9 @@ extension MainViewController: UICollectionViewDataSource {
             ) as? CategoryCollectionViewCell else {
                 fatalError("Could not cast to CategoryCollectionViewCell")
             }
+            if let selectedCategoryIndexPath = selectedCategoryIndexPath {
+                cell.set(value: selectedCategoryIndexPath == indexPath)
+            }
             return cell
         case .promos:
             guard let cell = collectionView.dequeueReusableCell(
@@ -291,6 +295,16 @@ extension MainViewController: UICollectionViewDataSource {
             return sectionHeader
         } else {
             return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case .categories:
+            selectedCategoryIndexPath = indexPath
+            collectionView.reloadData()
+        default:
+            return
         }
     }
 }
