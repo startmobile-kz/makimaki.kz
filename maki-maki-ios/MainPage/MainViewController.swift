@@ -204,9 +204,7 @@ final class MainViewController: UIViewController {
 // MARK: - DeliveryHeaderViewDelegate
 extension MainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
-        // Переходной контроллер еще не готов, так что просто сделал пуш в рандомный
         let controller = ManageAdressesViewController()
-//        controller.hidesBottomBarWhenPushed = true
         self.navigationController?.pushViewController(controller, animated: true)
     }
 }
@@ -293,9 +291,8 @@ extension MainViewController: UICollectionViewDataSource {
                 sectionHeader.setHeaderTitle(title: "Restaurants")
             }
             return sectionHeader
-        } else {
-            return UICollectionReusableView()
         }
+        return UICollectionReusableView()
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {

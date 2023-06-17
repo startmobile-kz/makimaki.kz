@@ -261,13 +261,9 @@
 		26FC1D542A264B1F003BA971 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
-				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
+				9F91135E2A3C8CD900B33B62 /* Models */,
+				9F91135F2A3C8CE900B33B62 /* Views */,
 				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
-				26C63CC42A332FA40095CF47 /* NoOrdersView.swift */,
-				26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */,
-				26E279872A2F4A8B0071863C /* OrdersTableFooterView.swift */,
-				26E279892A2F5DE00071863C /* OrdersModel.swift */,
-				26C63CC02A2F97F50095CF47 /* OrdersList.swift */,
 			);
 			path = Orders;
 			sourceTree = "<group>";
@@ -485,6 +481,26 @@
 				9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */,
 			);
 			path = Basket;
+			sourceTree = "<group>";
+		};
+		9F91135E2A3C8CD900B33B62 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				26E279892A2F5DE00071863C /* OrdersModel.swift */,
+				26C63CC02A2F97F50095CF47 /* OrdersList.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		9F91135F2A3C8CE900B33B62 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
+				26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */,
+				26E279872A2F4A8B0071863C /* OrdersTableFooterView.swift */,
+				26C63CC42A332FA40095CF47 /* NoOrdersView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
