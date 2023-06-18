@@ -197,6 +197,7 @@ final class RestaurantViewController: UIViewController {
     }
     
     // MARK: - ScrollViewDidScroll
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         var sticked = false
         
