@@ -67,6 +67,7 @@ final class RestaurantViewController: UIViewController {
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.bounces = false
         return collectionView
     }()
     
