@@ -115,6 +115,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
+        title = ""
         self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -255,6 +256,8 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func makeNavigationBarVisible() {
+        title = "Smile House Cafe"
+        setupNavBarTitle()
         self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
@@ -264,6 +267,14 @@ final class RestaurantViewController: UIViewController {
             likeBarButtonItem,
             searchBarButtonItem
         ]
+    }
+    
+    private func setupNavBarTitle() {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: AppColor.heading.uiColor,
+            .font: AppFont.semibold.s20()
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
     }
 }
 
