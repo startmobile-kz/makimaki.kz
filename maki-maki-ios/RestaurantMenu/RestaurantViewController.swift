@@ -116,6 +116,7 @@ final class RestaurantViewController: UIViewController {
     
     private func setupNavigationBar() {
         self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
