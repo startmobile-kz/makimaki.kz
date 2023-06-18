@@ -79,5 +79,7 @@ enum AppImage: String, AppImageProtocol {
     case unchecked_button = "unchecked_button"
     case arrow_left_white = "arrow_left_white"
     case search_white = "search_white"
+    case search_black = "search_black"
     case like_white = "like_white"
+    case like_black = "like_black"
 }
