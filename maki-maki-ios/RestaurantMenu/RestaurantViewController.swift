@@ -101,6 +101,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
+        self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
@@ -239,6 +240,7 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func makeNavigationBarVisible() {
+        self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.isTranslucent = false
