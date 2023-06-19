@@ -26,7 +26,7 @@ final class CategoryMenuView: UIView {
         CategoryItem(title: "Cold Drinks", id: .coldDrinks)
     ]
     
-    static let notificationName = Notification.Name("categorieItemSelected")
+    static let notificationName = Notification.Name("categoriesItemSelected")
     
     // MARK: - UI
     

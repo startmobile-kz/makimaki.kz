@@ -56,6 +56,7 @@ final class RestaurantViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupNotificationObservers()
     }
     
     // MARK: - SetupViews
@@ -79,6 +80,18 @@ final class RestaurantViewController: UIViewController {
             make.height.equalTo(98)
         }
     }
+    
+    // MARK: - SetupNotificationObservers
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToSection),
+            name: CategoryMenuView.notificationName,
+            object: nil
+        )
+    }
+    
     // MARK: - Layout for Main Section Header
 
     private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -148,6 +161,17 @@ final class RestaurantViewController: UIViewController {
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
+        )
+    }
+    
+    // MARK: - Actions
+    
+    @objc func scrollToSection(_ notification: Notification) {
+        let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
+        collectionView.scrollToItem(
+            at: IndexPath(row: 0, section: sectionIndex),
+            at: .centeredVertically,
+            animated: true
         )
     }
 }
