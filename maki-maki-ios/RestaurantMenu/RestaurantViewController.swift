@@ -203,7 +203,6 @@ final class RestaurantViewController: UIViewController {
                     guard let self = self else {
                         return
                     }
-                    self.categoriesReplacementView.alpha = 1
                     self.makeNavigationBarVisible()
                     self.pinCategoriesReplacementViewToTheTop()
                     self.categoriesReplacementView.bringSubviewToFront(self.view)
@@ -215,7 +214,6 @@ final class RestaurantViewController: UIViewController {
         
         if isScrollingUp {
             if scrollView.contentOffset.y < initialHeaderHeight {
-                self.categoriesReplacementView.alpha = 0
                 self.hideCategoriesReplacementView()
                 self.setupNavigationBar()
                 self.view.layoutIfNeeded()
