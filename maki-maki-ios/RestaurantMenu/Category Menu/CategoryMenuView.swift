@@ -72,6 +72,10 @@ final class CategoryMenuView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 0, height: 40)
     }
@@ -94,19 +98,19 @@ final class CategoryMenuView: UIView {
         NotificationCenter.default.addObserver(
             self,
             selector: #selector(scrollToCategory),
-            name: Notification.Name("scrolled"),
+            name: RestaurantViewController.notificationName,
             object: nil
         )
     }
     
-    @objc func scrollToCategory() {
+    @objc func scrollToCategory(_ notification: Notification) {
+        let row = notification.userInfo?["section"] as? Int ?? 0
+        print(row)
         categoryCollectionView.scrollToItem(
-            at: IndexPath(row: 0, section: 0),
+            at: IndexPath(row: row, section: 0),
             at: .centeredHorizontally,
             animated: true
         )
-        
-        print("CATEGORY MENU SCROLLED")
     }
 }
 

@@ -19,7 +19,10 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Properties
     
-    let numberOfItemsInSection = [5, 6, 6, 6, 3, 5, 5, 5, 5, 5, 5]
+    private let numberOfItemsInSection = [5, 6, 6, 6, 3, 5, 5, 5, 5, 5, 5]
+    private var currentSection = 0
+    private var heights: [Double] = []
+    static let notificationName = Notification.Name("scrolledToSection")
     
     // MARK: - UI
     
@@ -61,6 +64,7 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNotificationObservers()
+        calculateAllSectionHeights()
     }
     
     deinit {
@@ -175,11 +179,43 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let numOfElementsInFirstSection = ceil(5 / 2)
-        let heightOfSection = 342 + numOfElementsInFirstSection * 242 + numOfElementsInFirstSection * 14 - 100
-        if scrollView.contentOffset.y >= heightOfSection {
-            NotificationCenter.default.post(name: Notification.Name("scrolled"), object: nil)
-            print("Section Finished")
+        let yOffset = scrollView.contentOffset.y
+        let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
+        let heightOfTwoRows: Double = 2 * 242
+        if yOffset >= heights[currentSection] - navBarHeight {
+            currentSection += 1
+            sendNotification(section: currentSection)
+        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfTwoRows {
+            currentSection -= 1
+            sendNotification(section: currentSection)
+        }
+            
+    }
+    
+    private func sendNotification(section: Int) {
+        let userInfo = ["section": section]
+        NotificationCenter.default.post(
+            name: RestaurantViewController.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
+    }
+    
+    private func calculateAllSectionHeights() {
+        let headerHeight: Double = 342
+        let itemHeight: Double = 242
+        let spacingBetweenItems: Double = 14
+        
+        for i in stride(from: 0, to: sections.count, by: 1) {
+            let numOfElementsInSection = ceil(Double(numberOfItemsInSection[i]) / 2) - 1
+            let totalHeightOfItems =
+            numOfElementsInSection * itemHeight + (numOfElementsInSection - 1) * spacingBetweenItems
+            var heightOfSection = headerHeight + totalHeightOfItems - 32
+            
+            if i > 0 {
+                heightOfSection += heights[i - 1]
+            }
+            heights.append(heightOfSection)
         }
     }
     
