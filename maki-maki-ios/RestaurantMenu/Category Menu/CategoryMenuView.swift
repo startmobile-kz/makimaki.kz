@@ -65,6 +65,7 @@ final class CategoryMenuView: UIView {
         setupViews()
         setupConstraints()
         setupCollection()
+        setupNotificationObservers()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -87,6 +88,25 @@ final class CategoryMenuView: UIView {
         categoryCollectionView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToCategory),
+            name: Notification.Name("scrolled"),
+            object: nil
+        )
+    }
+    
+    @objc func scrollToCategory() {
+        categoryCollectionView.scrollToItem(
+            at: IndexPath(row: 0, section: 0),
+            at: .centeredHorizontally,
+            animated: true
+        )
+        
+        print("CATEGORY MENU SCROLLED")
     }
 }
 
