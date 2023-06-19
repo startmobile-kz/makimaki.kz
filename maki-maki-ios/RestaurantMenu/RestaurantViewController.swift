@@ -17,6 +17,10 @@ final class RestaurantViewController: UIViewController {
                                                 .sandwichs, .kebab, .salads,
                                                 .frenchFries, .coldDrinks]
     
+    // MARK: - Properties
+    
+    let numberOfItemsInSection = [5, 6, 6, 6, 3, 5, 5, 5, 5, 5, 5]
+    
     // MARK: - UI
     
     private lazy var collectionView: UICollectionView = {
@@ -168,6 +172,17 @@ final class RestaurantViewController: UIViewController {
         )
     }
     
+    // MARK: - ScrollViewDidScroll
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let numOfElementsInFirstSection = ceil(5 / 2)
+        let heightOfSection = 342 + numOfElementsInFirstSection * 242 + numOfElementsInFirstSection * 14 - 100
+        if scrollView.contentOffset.y >= heightOfSection {
+            NotificationCenter.default.post(name: Notification.Name("scrolled"), object: nil)
+            print("Section Finished")
+        }
+    }
+    
     // MARK: - Actions
     
     @objc func scrollToSection(_ notification: Notification) {
@@ -195,21 +210,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = sections[section]
-        switch section {
-        case .mostPopular:
-            return 5
-        case .pizza:
-            return 6
-        case .sushi:
-            return 6
-        case .rolls:
-            return 6
-        case .burgers:
-            return 3
-        default:
-            return 10
-        }
+        return numberOfItemsInSection[section]
     }
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
@@ -219,6 +220,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
+        
         return cell
     }
     
