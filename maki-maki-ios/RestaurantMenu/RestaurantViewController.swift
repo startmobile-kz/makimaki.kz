@@ -12,10 +12,10 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Enumeration for dish sections
     
-    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
-                                                .breakfast, .burgers,.coldDrinks,
-                                                .frenchFries, .rolls, .sushi,
-                                                .salads, .sandwichs]
+    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .sushi,
+                                                .rolls, .burgers, .breakfast,
+                                                .sandwichs, .kebab, .salads,
+                                                .frenchFries, .coldDrinks]
     
     // MARK: - UI
     
