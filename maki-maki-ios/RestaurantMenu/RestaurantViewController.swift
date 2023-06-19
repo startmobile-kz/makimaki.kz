@@ -38,13 +38,6 @@ final class RestaurantViewController: UIViewController {
         return item
     }()
     
-    private lazy var searchBarButtonItem: UIBarButtonItem = {
-        let searchImage = AppImage.search_black.uiImage
-        let item = UIBarButtonItem(image: searchImage, style: .plain, target: nil, action: nil)
-        item.tintColor = .black
-        return item
-    }()
-    
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
@@ -265,10 +258,7 @@ final class RestaurantViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.view.backgroundColor = .clear
-        navigationItem.rightBarButtonItems = [
-            likeBarButtonItem,
-            searchBarButtonItem
-        ]
+        navigationItem.rightBarButtonItems = [likeBarButtonItem]
     }
     
     private func setupNavBarTitle() {
