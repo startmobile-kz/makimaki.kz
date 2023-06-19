@@ -59,6 +59,10 @@ final class RestaurantViewController: UIViewController {
         setupNotificationObservers()
     }
     
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     // MARK: - SetupViews
     
     private func setupViews() {
