@@ -193,7 +193,7 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func sendNotification(section: Int) {
-        let userInfo = ["section": section]
+        let userInfo = ["categoryIndex": section]
         NotificationCenter.default.post(
             name: RestaurantViewController.notificationName,
             object: nil,

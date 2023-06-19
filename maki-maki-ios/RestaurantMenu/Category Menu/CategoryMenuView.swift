@@ -104,10 +104,10 @@ final class CategoryMenuView: UIView {
     }
     
     @objc func scrollToCategory(_ notification: Notification) {
-        let row = notification.userInfo?["section"] as? Int ?? 0
-        print(row)
+        let categoryIndex = notification.userInfo?["categoryIndex"] as? Int ?? 0
+        print(categoryIndex)
         categoryCollectionView.scrollToItem(
-            at: IndexPath(row: row, section: 0),
+            at: IndexPath(row: categoryIndex, section: 0),
             at: .centeredHorizontally,
             animated: true
         )
