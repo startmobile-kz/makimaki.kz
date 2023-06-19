@@ -26,6 +26,8 @@ final class CategoryMenuView: UIView {
         CategoryItem(title: "Cold Drinks", id: .coldDrinks)
     ]
     
+    static let notificationName = Notification.Name("categorieItemSelected")
+    
     // MARK: - UI
     
     private lazy var categoryCollectionView: UICollectionView = {
@@ -114,6 +116,12 @@ extension CategoryMenuView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        let userInfo = ["sectionIndex": indexPath.row]
+        NotificationCenter.default.post(
+            name: CategoryMenuView.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
     }
 }
 
