@@ -169,6 +169,12 @@ final class WelcomePageVerOneViewController: UIViewController {
         }
 
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
+        
+        let formatedPhoneNumber = phoneNumber
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "+", with: "")
+            .replacingOccurrences(of: "(", with: "")
+            .replacingOccurrences(of: ")", with: "")
 
         self.navigationController?.pushViewController(controller, animated: true)
     }
