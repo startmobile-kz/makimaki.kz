@@ -19,11 +19,18 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Enumeration for dish sections
     
-    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
-                                                .breakfast, .burgers,.coldDrinks,
-                                                .frenchFries, .rolls, .sushi,
-                                                .salads, .sandwichs]
+    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .sushi,
+                                                .rolls, .burgers, .breakfast,
+                                                .sandwichs, .kebab, .salads,
+                                                .frenchFries, .coldDrinks]
     
+    // MARK: - Properties
+    
+    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
+    private var currentSection = 0
+    private var heights: [Double] = []
+    static let notificationName = Notification.Name("scrolledToSection")
+
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
@@ -77,6 +84,12 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
+        setupNotificationObservers()
+        calculateAllSectionHeights()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - SetupViews
@@ -106,6 +119,17 @@ final class RestaurantViewController: UIViewController {
         }
     }
     
+    // MARK: - SetupNotificationObservers
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToSection),
+            name: CategoryMenuView.notificationName,
+            object: nil
+        )
+    }
+
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
@@ -193,6 +217,17 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let yOffset = scrollView.contentOffset.y
+        let heightOfOneRowOfItems: Double = 242
+        let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+        if yOffset >= heights[currentSection] - safeTopInsetHeight {
+            currentSection += 1
+            sendNotification(section: currentSection)
+        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+            currentSection -= 1
+            sendNotification(section: currentSection)
+        }
+        
         var sticked = false
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
@@ -221,6 +256,47 @@ final class RestaurantViewController: UIViewController {
             }
         }
         lastContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    private func sendNotification(section: Int) {
+        let userInfo = ["categoryIndex": section]
+        NotificationCenter.default.post(
+            name: RestaurantViewController.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
+    }
+    
+    private func calculateAllSectionHeights() {
+        let itemHeight: Double = 242
+        let spacingBetweenItems: Double = 14
+        let heightOfBottomInsetOfSections: Double = 16
+        
+        for sectionIndex in 0..<sections.count {
+            let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
+            let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
+            let totalHeightOfItems =
+            numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
+            var neededHeightForChangingSection =
+            totalHeightOfItems + heightOfBottomInsetOfSections + headerHeight
+            
+            if sectionIndex > 0 {
+                neededHeightForChangingSection += heights[sectionIndex - 1]
+            }
+            
+            heights.append(neededHeightForChangingSection)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc func scrollToSection(_ notification: Notification) {
+        let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
+        collectionView.scrollToItem(
+            at: IndexPath(row: 0, section: sectionIndex),
+            at: .centeredVertically,
+            animated: true
+        )
     }
     
     private func hideCategoriesReplacementView() {
@@ -283,21 +359,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = sections[section]
-        switch section {
-        case .mostPopular:
-            return 5
-        case .pizza:
-            return 6
-        case .sushi:
-            return 6
-        case .rolls:
-            return 6
-        case .burgers:
-            return 3
-        default:
-            return 10
-        }
+        return numberOfItemsInSection[section]
     }
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
@@ -307,6 +369,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
+        
         return cell
     }
     

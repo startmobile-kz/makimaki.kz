@@ -26,6 +26,8 @@ final class CategoryMenuView: UIView {
         CategoryItem(title: "Cold Drinks", id: .coldDrinks)
     ]
     
+    static let notificationName = Notification.Name("categoriesItemSelected")
+    
     // MARK: - UI
     
     private lazy var categoryCollectionView: UICollectionView = {
@@ -64,10 +66,15 @@ final class CategoryMenuView: UIView {
         setupViews()
         setupConstraints()
         setupCollection()
+        setupNotificationObservers()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -89,6 +96,30 @@ final class CategoryMenuView: UIView {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToCategory),
+            name: RestaurantViewController.notificationName,
+            object: nil
+        )
+    }
+    
+    @objc func scrollToCategory(_ notification: Notification) {
+        let categoryIndex = notification.userInfo?["categoryIndex"] as? Int ?? 0
+        print(categoryIndex)
+        categoryCollectionView.scrollToItem(
+            at: IndexPath(row: categoryIndex, section: 0),
+            at: .centeredHorizontally,
+            animated: true
+        )
+        categoryCollectionView.selectItem(
+            at: IndexPath(row: categoryIndex, section: 0),
+            animated: true,
+            scrollPosition: .centeredHorizontally
+        )
     }
 }
 
@@ -118,6 +149,12 @@ extension CategoryMenuView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        let userInfo = ["sectionIndex": indexPath.row]
+        NotificationCenter.default.post(
+            name: CategoryMenuView.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
     }
 }
 
