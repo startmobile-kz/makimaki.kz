@@ -27,6 +27,7 @@ PODS:
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
   - PromisesObjC (2.2.0)
+  - SkeletonView (1.30.4)
   - SkyFloatingLabelTextField (3.8.0)
   - SnapKit (5.6.0)
   - SwiftLint (0.52.2)
@@ -37,6 +38,7 @@ DEPENDENCIES:
   - InputMask (= 6.1.0)
   - IQKeyboardManager (= 6.5.0)
   - Moya (= 15.0)
+  - SkeletonView
   - SkyFloatingLabelTextField (= 3.8.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
@@ -51,6 +53,7 @@ SPEC REPOS:
     - IQKeyboardManager
     - Moya
     - PromisesObjC
+    - SkeletonView
     - SkyFloatingLabelTextField
     - SnapKit
     - SwiftLint
@@ -75,10 +78,11 @@ SPEC CHECKSUMS:
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
+  SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: ea3616320667c305af046088f49eba98fd8607a9
+PODFILE CHECKSUM: 283c276ab7c48d4862116c47ba5437c6ade2227f
 
 COCOAPODS: 1.12.1
