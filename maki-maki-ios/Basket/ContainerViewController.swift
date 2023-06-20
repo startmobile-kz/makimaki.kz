@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import ProgressHUD
 
 class ContainerView: UIView {
 
@@ -43,6 +44,7 @@ class ContainerView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(checkoutButtonDidPress), for: .touchUpInside)
         return button
     }()
     
@@ -107,5 +109,12 @@ class ContainerView: UIView {
             make.trailing.equalTo(checkoutButton.snp.trailing).offset(-16)
             make.centerY.equalTo(checkoutButton)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc
+    private func checkoutButtonDidPress() {
+        ProgressHUD.show("Loading..", interaction: false)
     }
 }

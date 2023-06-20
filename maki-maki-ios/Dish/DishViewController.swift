@@ -9,7 +9,9 @@ import UIKit
 import SnapKit
 
 final class DishViewController: UIViewController {
-    
+
+    var dish: DishResponseModel?
+
     // MARK: - UI
     
     private lazy var dishImageView: UIImageView = {
@@ -68,6 +70,7 @@ final class DishViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupData()
     }
     
     // MARK: - Setup Views
@@ -90,6 +93,7 @@ final class DishViewController: UIViewController {
             make.top.equalToSuperview().offset(31)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-30)
+            make.height.equalTo(400)
         }
         
         productNameLabel.snp.makeConstraints { make in
@@ -122,5 +126,16 @@ final class DishViewController: UIViewController {
     @objc private func stepperChangedValueAction(sender: StepperView) {
         print(sender)
         print(sender.currentValue)
+    }
+
+    private func setupData() {
+        guard let dish = dish else {
+            return
+        }
+
+        productNameLabel.text = dish.name
+        descriptionLabel.text = "\(dish.description)"
+        let url = URL(string: dish.image ?? "")
+        dishImageView.kf.setImage(with: url)
     }
 }

@@ -10,7 +10,7 @@ import SnapKit
 
 final class RestaurantViewController: UIViewController {
     
-    private var network = Networking()
+    private var service = DishService()
     // MARK: - Enumeration for dish sections
     
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
@@ -46,7 +46,9 @@ final class RestaurantViewController: UIViewController {
     }()
     
     private lazy var viewCartContainerView: UIView = {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
         let view = ViewCartConatiner()
+        view.addGestureRecognizer(tap)
         return view
     }()
     
@@ -57,7 +59,7 @@ final class RestaurantViewController: UIViewController {
         
         setupViews()
         setupConstraints()
-        network.fetchAPI()
+        service.fetchProducts()
     }
     
     // MARK: - SetupViews
@@ -241,5 +243,22 @@ extension RestaurantViewController: UICollectionViewDataSource {
         } else {
             return UICollectionReusableView()
         }
+    }
+
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dishViewController = DishViewController()
+        dishViewController.dish = service.dishes[Int.random(in: 1...50)]
+        present(dishViewController, animated: true)
+//        basketViewController.selectedDishes = service.dishes
+//        self.navigationController?.pushViewController(basketViewController, animated: true)
+    }
+
+    // MARK: - Actions
+
+    @objc private func openBasket() {
+        let basketViewController = BasketViewController()
+        basketViewController.selectedDishes = service.dishes
+        self.navigationController?.pushViewController(basketViewController, animated: true)
+
     }
 }
