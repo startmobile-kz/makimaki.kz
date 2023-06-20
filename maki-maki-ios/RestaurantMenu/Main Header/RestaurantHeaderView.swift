@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class RestaurantHeaderView: UICollectionReusableView {
     
@@ -17,18 +18,21 @@ final class RestaurantHeaderView: UICollectionReusableView {
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.restaurant_top_image.uiImage
+//        imageView.isSkeletonable = true
         return imageView
     }()
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(AppImage.arrow_left_white.uiImage, for: .normal)
+        button.isSkeletonable = true
         return button
     }()
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
         button.setImage(AppImage.like_white.uiImage, for: .normal)
+        button.isSkeletonable = true
         return button
     }()
     
@@ -37,26 +41,31 @@ final class RestaurantHeaderView: UICollectionReusableView {
         label.font = AppFont.bold.s28()
         label.textColor = AppColor.background.uiColor
         label.text = "Smile House Cafe"
+        label.isSkeletonable = true
         return label
     }()
     
     private lazy var ratingView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .ratingAndReview)
+        view.isSkeletonable = true
         return view
     }()
     
     private lazy var timeView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .time)
+        view.isSkeletonable = true
         return view
     }()
     
     private lazy var deliveryCostView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .deliveryCost)
+        view.isSkeletonable = true
         return view
     }()
     
     private lazy var categoryView: CategoryMenuView = {
         let view = CategoryMenuView()
+        view.isSkeletonable = true
         return view
     }()
     
@@ -85,6 +94,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
              timeView,
              deliveryCostView,categoryView
             ])
+        isSkeletonable = true
     }
     
     // MARK: - SetupConstraints
