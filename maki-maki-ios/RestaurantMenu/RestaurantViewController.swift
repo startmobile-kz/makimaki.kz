@@ -13,12 +13,33 @@ final class RestaurantViewController: UIViewController {
     // MARK: - State
 
     private var service = DishService()
+    // MARK: - Properties
+    
+    private var lastContentOffsetY: CGFloat = 0
+    private var isScrollingUp = false
+    private let initialHeaderHeight: CGFloat = 318
+    private let spacingBetweenHeaderAndSection: CGFloat = 32
+    
+    // MARK: - Enumeration for dish sections
+    
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
                                                 .breakfast, .burgers,.coldDrinks,
                                                 .frenchFries, .rolls, .sushi,
                                                 .salads, .sandwichs]
     
     // MARK: - UI
+    
+    private lazy var categoriesReplacementView: CategoryMenuView = {
+        let view = CategoryMenuView()
+        return view
+    }()
+    
+    private lazy var likeBarButtonItem: UIBarButtonItem = {
+        let likeImage = AppImage.like_black.uiImage
+        let item = UIBarButtonItem(image: likeImage, style: .plain, target: nil, action: nil)
+        item.tintColor = .black
+        return item
+    }()
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
@@ -42,6 +63,7 @@ final class RestaurantViewController: UIViewController {
         
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
+        collectionView.bounces = false
         return collectionView
     }()
     
@@ -59,6 +81,7 @@ final class RestaurantViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupNavigationBar()
         service.fetchProducts()
     }
     
@@ -66,12 +89,17 @@ final class RestaurantViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([collectionView, viewCartContainerView])
+        view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        categoriesReplacementView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-60)
+            make.leading.trailing.equalToSuperview()
+        }
+        
         collectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.trailing.equalToSuperview()
@@ -83,6 +111,19 @@ final class RestaurantViewController: UIViewController {
             make.height.equalTo(98)
         }
     }
+    
+    // MARK: - SetupNavigationBar
+    
+    private func setupNavigationBar() {
+        title = ""
+        self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
+        navigationItem.rightBarButtonItems = []
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
+    }
+    
     // MARK: - Layout for Main Section Header
 
     private func supplementaryMainHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -109,7 +150,7 @@ final class RestaurantViewController: UIViewController {
                     heightDimension: .fractionalHeight(1)
                 )
             )
-            
+
             item.contentInsets.trailing = 14
             
             // Group
@@ -153,6 +194,83 @@ final class RestaurantViewController: UIViewController {
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
         )
+    }
+    
+    // MARK: - ScrollViewDidScroll
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        var sticked = false
+        
+        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+        
+       if scrollView.contentOffset.y > initialHeaderHeight {
+            if !sticked {
+                UIView.animate(withDuration: 0.1) { [weak self] in
+                    guard let self = self else {
+                        return
+                    }
+                    self.makeNavigationBarVisible()
+                    self.pinCategoriesReplacementViewToTheTop()
+                    self.categoriesReplacementView.bringSubviewToFront(self.view)
+                    self.view.layoutIfNeeded()
+                    sticked = true
+                }
+            }
+        }
+        
+        if isScrollingUp {
+            if scrollView.contentOffset.y < initialHeaderHeight {
+                self.hideCategoriesReplacementView()
+                self.setupNavigationBar()
+                self.view.layoutIfNeeded()
+                sticked = false
+            }
+        }
+        lastContentOffsetY = scrollView.contentOffset.y
+    }
+    
+    private func hideCategoriesReplacementView() {
+        categoriesReplacementView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(-64)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func checkScrollDirection(viewOffsetY: CGFloat) {
+        if lastContentOffsetY > viewOffsetY {
+            isScrollingUp = true
+        } else {
+            isScrollingUp = false
+        }
+    }
+    
+    private func pinCategoriesReplacementViewToTheTop() {
+        categoriesReplacementView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
+        }
+    }
+    
+    private func makeNavigationBarVisible() {
+        title = "Smile House Cafe"
+        setupNavBarTitle()
+        self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)
+        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
+        self.navigationController?.navigationBar.shadowImage = nil
+        self.navigationController?.navigationBar.isTranslucent = false
+        self.navigationController?.view.backgroundColor = .clear
+        navigationItem.rightBarButtonItems = [likeBarButtonItem]
+    }
+    
+    private func setupNavBarTitle() {
+        let attributes: [NSAttributedString.Key: Any] = [
+            .foregroundColor: AppColor.heading.uiColor,
+            .font: AppFont.semibold.s20()
+        ]
+        self.navigationController?.navigationBar.titleTextAttributes = attributes
     }
 }
 
