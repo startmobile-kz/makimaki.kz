@@ -7,7 +7,10 @@
 
 import Foundation
 
+// MARK: - Network request for products
+
 class DishService {
+    
     private var urlSession = URLSession.shared
     var dishes: [DishResponseModel] = []
     
@@ -19,10 +22,9 @@ class DishService {
         
         let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
             guard let data = data else {
-                
-                fatalError()
+                fatalError("Data not found")
             }
-
+            
             do {
                 let dishes = try JSONDecoder().decode([DishResponseModel].self, from: data)
                 DispatchQueue.main.async { [weak self] in
