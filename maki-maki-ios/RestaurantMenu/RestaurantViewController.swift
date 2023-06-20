@@ -43,7 +43,7 @@ final class RestaurantViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.isSkeletonable = true
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -367,5 +367,21 @@ extension RestaurantViewController: UICollectionViewDataSource {
         } else {
             return UICollectionReusableView()
         }
+    }
+}
+
+extension RestaurantViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return 5
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        return DishesCollectionViewCell.reuseID
     }
 }
