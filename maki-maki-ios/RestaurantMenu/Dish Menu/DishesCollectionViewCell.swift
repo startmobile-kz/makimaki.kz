@@ -121,6 +121,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(145)
         }
         
         dishNameLabel.snp.makeConstraints { make in
@@ -144,5 +145,4 @@ final class DishesCollectionViewCell: UICollectionViewCell {
             make.leading.trailing.equalTo(dishNameLabel)
         }
     }
-    
 }
