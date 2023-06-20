@@ -8,7 +8,19 @@
 import UIKit
 import SnapKit
 
+protocol DishViewControllerDelegate: AnyObject {
+    func printDishCount(count: Int)
+}
+
 final class DishViewController: UIViewController {
+    
+    // MARK: - ???
+    
+    var count = 0
+    
+    // MARK: - Delegate
+    
+    weak var delegate: DishViewControllerDelegate?
     
     // MARK: - UI
     
@@ -58,6 +70,7 @@ final class DishViewController: UIViewController {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(addButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -119,8 +132,18 @@ final class DishViewController: UIViewController {
         }
     }
     
+    // MARK: - Stepper Value Action
+    
     @objc private func stepperChangedValueAction(sender: StepperView) {
-        print(sender)
-        print(sender.currentValue)
+//        print(sender)
+        self.count = sender.currentValue
+    }
+
+    // MARK: - Button Action
+    
+    @objc private func addButtonDidPressed() {
+        dismiss(animated: true)
+        self.delegate?.printDishCount(count: count)
+        print(count)
     }
 }
