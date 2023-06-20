@@ -81,14 +81,14 @@ final class RestaurantViewController: UIViewController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
             self?.collectionView.stopSkeletonAnimation()
-            self?.collectionView.hideSkeleton()
+            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
             self?.collectionView.reloadData()
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.showAnimatedSkeleton()
+        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - SetupViews
