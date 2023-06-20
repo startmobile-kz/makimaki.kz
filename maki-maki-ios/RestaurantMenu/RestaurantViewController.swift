@@ -10,9 +10,9 @@ import SnapKit
 
 final class RestaurantViewController: UIViewController {
     
+    // MARK: - State
+
     private var service = DishService()
-    // MARK: - Enumeration for dish sections
-    
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
                                                 .breakfast, .burgers,.coldDrinks,
                                                 .frenchFries, .rolls, .sushi,
@@ -159,7 +159,13 @@ final class RestaurantViewController: UIViewController {
 // MARK: - UICollectionViewDelegate methods
 
 extension RestaurantViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dishViewController = DishViewController()
+        dishViewController.dish = service.dishes[Int.random(in: 1...50)]
+        present(dishViewController, animated: true)
+//        basketViewController.selectedDishes = service.dishes
+//        self.navigationController?.pushViewController(basketViewController, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource methods
@@ -243,14 +249,6 @@ extension RestaurantViewController: UICollectionViewDataSource {
         } else {
             return UICollectionReusableView()
         }
-    }
-
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dishViewController = DishViewController()
-        dishViewController.dish = service.dishes[Int.random(in: 1...50)]
-        present(dishViewController, animated: true)
-//        basketViewController.selectedDishes = service.dishes
-//        self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 
     // MARK: - Actions
