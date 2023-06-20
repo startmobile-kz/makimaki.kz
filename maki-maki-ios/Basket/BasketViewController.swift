@@ -92,7 +92,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footerView = DeliveryTableViewCell()
-        footerView.backgroundColor = .white
+        footerView.backgroundColor = AppColor.background.uiColor
         return footerView
     }
     
