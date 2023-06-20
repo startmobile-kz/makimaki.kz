@@ -117,7 +117,7 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
 
         var controller: UIViewController = UIViewController()
         if indexPath.row == 0 {
-            controller = OrdersViewController()
+            controller = DishViewController()
         }
 
         if indexPath.row == 1 {
@@ -140,9 +140,9 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
             controller = PaymentMethodViewController()
         }
 
-//        present(controller, animated: true)
+        present(controller, animated: true)
 
-        self.navigationController?.pushViewController(controller, animated: true)
+//        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
 
