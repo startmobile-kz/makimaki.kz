@@ -115,6 +115,11 @@ final class CategoryMenuView: UIView {
             at: .centeredHorizontally,
             animated: true
         )
+        categoryCollectionView.selectItem(
+            at: IndexPath(row: categoryIndex, section: 0),
+            animated: true,
+            scrollPosition: .centeredHorizontally
+        )
     }
 }
 
