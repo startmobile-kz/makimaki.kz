@@ -10,6 +10,7 @@ import SnapKit
 
 final class RestaurantViewController: UIViewController {
     
+    private var network = Networking()
     // MARK: - Enumeration for dish sections
     
     private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
@@ -56,6 +57,7 @@ final class RestaurantViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        network.fetchAPI()
     }
     
     // MARK: - SetupViews
