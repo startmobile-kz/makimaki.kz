@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class DishesCollectionViewCell: UICollectionViewCell {
     
@@ -22,6 +23,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         imageView.layer.cornerRadius = 8
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -32,6 +34,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         label.font = AppFont.medium.s15()
         label.textAlignment = .left
         label.numberOfLines = 0
+        label.isSkeletonable = true
         return label
     }()
     
@@ -41,6 +44,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s14()
         label.textAlignment = .left
+        label.isSkeletonable = true
         return label
     }()
     
@@ -48,6 +52,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         let view = UIView()
         view.backgroundColor = AppColor.accent.uiColor
         view.layer.cornerRadius = 8
+        view.isSkeletonable = true
         return view
     }()
     
@@ -56,6 +61,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         label.text = "0"
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
+        label.isSkeletonable = true
         return label
     }()
     
@@ -64,6 +70,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         stackView.axis = .horizontal
         stackView.spacing = 77
         stackView.distribution = .equalSpacing
+        stackView.isSkeletonable = true
         return stackView
     }()
     
