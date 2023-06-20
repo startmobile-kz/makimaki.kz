@@ -217,6 +217,7 @@ final class RestaurantViewController: UIViewController {
             if sectionIndex > 0 {
                 neededHeightForChangingSection += heights[sectionIndex - 1]
             }
+            
             heights.append(neededHeightForChangingSection)
         }
     }
