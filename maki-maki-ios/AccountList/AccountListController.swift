@@ -114,35 +114,44 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
-        var controller: UIViewController = UIViewController()
-        if indexPath.row == 0 {
-            controller = DishViewController()
-        }
-
-        if indexPath.row == 1 {
-            controller = EditProfileViewController()
-        }
-
-        if indexPath.row == 2 {
-            controller = FavoritesViewController()
-        }
-
-        if indexPath.row == 3 {
-            controller = OffersViewController()
-        }
-
-        if indexPath.row == 4 {
-            controller = PaymentsViewController()
-        }
-
-        if indexPath.row == 5 {
-            controller = PaymentMethodViewController()
-        }
+        let dish = Dish(name: "Burger", description: "Bahandi", price: 120)
+        let controller = DishViewController()
+        controller.dish = dish
+//        controller.count = 20
+        controller.delegate = self
 
         present(controller, animated: true)
 
+//        var controller: UIViewController = UIViewController()
+//        if indexPath.row == 0 {
+//        }
+
+//        if indexPath.row == 1 {
+//            controller = EditProfileViewController()
+//        }
+//
+//        if indexPath.row == 2 {
+//            controller = FavoritesViewController()
+//        }
+//
+//        if indexPath.row == 3 {
+//            controller = OffersViewController()
+//        }
+//
+//        if indexPath.row == 4 {
+//            controller = PaymentsViewController()
+//        }
+//
+//        if indexPath.row == 5 {
+//            controller = PaymentMethodViewController()
+//        }
 //        self.navigationController?.pushViewController(controller, animated: true)
+    }
+}
+
+extension AccountListViewController: DishViewControllerDelegate {
+    func addToBasket(dish: Dish, count: Int) {
+        print(dish)
     }
 }
 

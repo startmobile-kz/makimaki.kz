@@ -9,14 +9,17 @@ import UIKit
 import SnapKit
 
 protocol DishViewControllerDelegate: AnyObject {
-    func printDishCount(count: Int)
+    func addToBasket(dish: Dish, count: Int)
 }
 
 final class DishViewController: UIViewController {
     
-    // MARK: - ???
-    
+    // MARK: - State
+
+    var dish: Dish?
     var count = 0
+
+//    var dishModel:
     
     // MARK: - Delegate
     
@@ -81,6 +84,7 @@ final class DishViewController: UIViewController {
         
         setupViews()
         setupConstraints()
+        setupData()
     }
     
     // MARK: - Setup Views
@@ -131,6 +135,12 @@ final class DishViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
+
+    // MARK: - Setup Data
+
+    private func setupData() {
+        productNameLabel.text = dish?.name
+    }
     
     // MARK: - Stepper Value Action
     
@@ -142,8 +152,16 @@ final class DishViewController: UIViewController {
     // MARK: - Button Action
     
     @objc private func addButtonDidPressed() {
+//        if count == 0 {
+//            dismiss(animated: true)
+//            return
+//        }
+
+        guard let dish = dish else {
+            return
+        }
+
+        delegate?.addToBasket(dish: dish, count: count)
         dismiss(animated: true)
-        self.delegate?.printDishCount(count: count)
-        print(count)
     }
 }

@@ -74,6 +74,7 @@
 		9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */; };
 		9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173482A2E655B00299E56 /* ContainerViewController.swift */; };
 		9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */; };
+		9FEFBAEB2A41A4610034D509 /* Dish.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FEFBAEA2A41A4610034D509 /* Dish.swift */; };
 		B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
@@ -166,6 +167,7 @@
 		9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryTableViewCell.swift; sourceTree = "<group>"; };
 		9F6173482A2E655B00299E56 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		9FEFBAEA2A41A4610034D509 /* Dish.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Dish.swift; sourceTree = "<group>"; };
 		B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -252,6 +254,7 @@
 		262052492A382E3300A2DC88 /* Dish */ = {
 			isa = PBXGroup;
 			children = (
+				9FEFBAE92A41A4520034D509 /* Model */,
 				2620524A2A382EC900A2DC88 /* DishViewController.swift */,
 				261494EF2A3A598800767D1B /* StepperView.swift */,
 			);
@@ -485,6 +488,14 @@
 				9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */,
 			);
 			path = Basket;
+			sourceTree = "<group>";
+		};
+		9FEFBAE92A41A4520034D509 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				9FEFBAEA2A41A4610034D509 /* Dish.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
@@ -818,6 +829,7 @@
 				689BC90C2A2F5087008FD14F /* Main2TabBarController.swift in Sources */,
 				27F53B702A2D033400B42737 /* AccountListController.swift in Sources */,
 				6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */,
+				9FEFBAEB2A41A4610034D509 /* Dish.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
