@@ -10,6 +10,7 @@ import SnapKit
 import SkyFloatingLabelTextField
 import InputMask
 import Foundation
+import SnackBar_swift
 
 final class WelcomePageVerOneViewController: UIViewController {
     // MARK: - State
@@ -158,23 +159,32 @@ final class WelcomePageVerOneViewController: UIViewController {
     @objc private func continueButtonDidPress() {
         let controller = VerificationViewController()
         guard let phoneNumber = phoneNumberTextField.text else {
-            fatalError("Вы не ввели телефон номер")
+            showSnackBar(message: "Phone number entered incorrectly.")
+            return
+        }
+        
+        if phoneNumber.isEmpty {
+            showSnackBar(message: "Please enter a phone number.")
+            return
         }
 
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
-
-
-        // 77082020155
-        var formatedPhoneNumber = phoneNumber
-        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: " ", with: "")
-        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: "+", with: "")
-        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: "(", with: "")
-        formatedPhoneNumber = formatedPhoneNumber.replacingOccurrences(of: ")", with: "")
-
-
-//        authorize(phoneNumber: formatedPhoneNumber, deviceID: deviceID)
+        
+        let formatedPhoneNumber = phoneNumber
+            .replacingOccurrences(of: " ", with: "")
+            .replacingOccurrences(of: "+", with: "")
+            .replacingOccurrences(of: "(", with: "")
+            .replacingOccurrences(of: ")", with: "")
 
         self.navigationController?.pushViewController(controller, animated: true)
+    }
+    
+    // MARK: - SnackBar
+    
+    private func showSnackBar(message: String) {
+        if let view = self.view {
+            SnackBarController.showSnackBar(in: view, message: message, duration: .lengthLong)
+        }
     }
 
     // MARK: - Network
