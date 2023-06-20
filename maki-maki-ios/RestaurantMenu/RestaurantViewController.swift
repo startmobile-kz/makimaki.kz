@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class RestaurantViewController: UIViewController {
     
@@ -77,6 +78,11 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        collectionView.showAnimatedSkeleton()
     }
     
     // MARK: - SetupViews
