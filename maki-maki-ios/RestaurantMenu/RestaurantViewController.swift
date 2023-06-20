@@ -19,11 +19,11 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Properties
     
-    private let numberOfItemsInSection = [5, 6, 6, 6, 3, 5, 5, 5, 5, 5, 5]
+    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
     private var currentSection = 0
     private var heights: [Double] = []
     static let notificationName = Notification.Name("scrolledToSection")
-    
+
     // MARK: - UI
     
     private lazy var collectionView: UICollectionView = {
@@ -180,16 +180,16 @@ final class RestaurantViewController: UIViewController {
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         let yOffset = scrollView.contentOffset.y
-        let navBarHeight = self.navigationController?.navigationBar.frame.height ?? 0
-        let heightOfTwoRows: Double = 2 * 242
-        if yOffset >= heights[currentSection] - navBarHeight {
+        let heightOfOneRowOfItems: Double = 242
+        let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+        if yOffset >= heights[currentSection] - safeTopInsetHeight {
             currentSection += 1
             sendNotification(section: currentSection)
-        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfTwoRows {
+        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
             currentSection -= 1
             sendNotification(section: currentSection)
         }
-            
+        
     }
     
     private func sendNotification(section: Int) {
@@ -202,20 +202,22 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func calculateAllSectionHeights() {
-        let headerHeight: Double = 342
         let itemHeight: Double = 242
         let spacingBetweenItems: Double = 14
+        let heightOfBottomInsetOfSections: Double = 16
         
-        for i in stride(from: 0, to: sections.count, by: 1) {
-            let numOfElementsInSection = ceil(Double(numberOfItemsInSection[i]) / 2) - 1
+        for sectionIndex in 0..<sections.count {
+            let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
+            let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
             let totalHeightOfItems =
-            numOfElementsInSection * itemHeight + (numOfElementsInSection - 1) * spacingBetweenItems
-            var heightOfSection = headerHeight + totalHeightOfItems - 32
+            numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
+            var neededHeightForChangingSection =
+            totalHeightOfItems + heightOfBottomInsetOfSections + headerHeight
             
-            if i > 0 {
-                heightOfSection += heights[i - 1]
+            if sectionIndex > 0 {
+                neededHeightForChangingSection += heights[sectionIndex - 1]
             }
-            heights.append(heightOfSection)
+            heights.append(neededHeightForChangingSection)
         }
     }
     
