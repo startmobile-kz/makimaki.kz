@@ -15,7 +15,6 @@ final class BasketViewController: UIViewController {
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "basketCell")
-        tableView.register(DeliveryTableViewCell.self, forCellReuseIdentifier: "deliveryCell")
         tableView.rowHeight = 119
         tableView.dataSource = self
         tableView.delegate = self
@@ -77,16 +76,6 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 4 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath)
-                    as? DeliveryTableViewCell else {
-                fatalError("deliveryCell not found")
-            }
-
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            return cell
-        }
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath)
                 as? BasketTableViewCell else {
             fatalError("basketCell not found")
@@ -99,5 +88,15 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 //        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true)
+    }
+
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        let footerView = DeliveryTableViewCell()
+        footerView.backgroundColor = .white
+        return footerView
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return 119
     }
 }
