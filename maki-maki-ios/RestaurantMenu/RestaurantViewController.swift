@@ -370,6 +370,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
 }
 
+// MARK: - SkeletonCollectionViewDataSource
+
 extension RestaurantViewController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(
         _ skeletonView: UICollectionView,

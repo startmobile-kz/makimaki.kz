@@ -25,7 +25,6 @@ final class RestaurantHeaderView: UICollectionReusableView {
     private lazy var backButton: UIButton = {
         let button = UIButton()
         button.setImage(AppImage.arrow_left_white.uiImage, for: .normal)
-        button.isSkeletonable = true
         return button
     }()
     
@@ -33,6 +32,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
         let button = UIButton()
         button.setImage(AppImage.like_white.uiImage, for: .normal)
         button.isSkeletonable = true
+        button.skeletonCornerRadius = 5
         return button
     }()
     
@@ -42,30 +42,37 @@ final class RestaurantHeaderView: UICollectionReusableView {
         label.textColor = AppColor.background.uiColor
         label.text = "Smile House Cafe"
         label.isSkeletonable = true
+        label.lastLineFillPercent = 242
+        label.skeletonTextLineHeight = .relativeToFont
+        label.linesCornerRadius = 14
         return label
     }()
     
     private lazy var ratingView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .ratingAndReview)
         view.isSkeletonable = true
+        view.skeletonCornerRadius = 14
         return view
     }()
     
     private lazy var timeView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .time)
         view.isSkeletonable = true
+        view.skeletonCornerRadius = 14
         return view
     }()
     
     private lazy var deliveryCostView: RestaurantInfoView = {
         let view = RestaurantInfoView(type: .deliveryCost)
         view.isSkeletonable = true
+        view.skeletonCornerRadius = 14
         return view
     }()
     
     private lazy var categoryView: CategoryMenuView = {
         let view = CategoryMenuView()
         view.isSkeletonable = true
+        view.skeletonCornerRadius = 14
         return view
     }()
     
