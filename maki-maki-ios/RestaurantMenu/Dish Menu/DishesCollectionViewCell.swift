@@ -91,6 +91,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
+        isSkeletonable = true
         contentView.backgroundColor = AppColor.background.uiColor
         contentView.layer.cornerRadius = 14
         contentView.addSubviews([dishImageView,dishNameLabel,hrstackView])
