@@ -83,14 +83,18 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        service.fetchProducts { model in
-            self.dishes = model
+        callbackService()
+    }
+    
+    // MARK: - Callback
+    
+    private func callbackService() {
+        service.fetchProducts { dish in
+            self.dishes = dish
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
         }
-        print("count: \(dishes.count)")
-        print("dish: \(service.dishes.count)")
     }
 
     // MARK: - SetupViews
@@ -98,7 +102,6 @@ final class RestaurantViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
-        collectionView.reloadData()
     }
     
     // MARK: - SetupConstraints
@@ -288,7 +291,7 @@ final class RestaurantViewController: UIViewController {
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dishViewController = DishViewController()
-        dishViewController.dish = service.dishes[Int.random(in: 1...50)]
+        dishViewController.dish = dishes[indexPath.row]
         present(dishViewController, animated: true)
 //        basketViewController.selectedDishes = service.dishes
 //        self.navigationController?.pushViewController(basketViewController, animated: true)
@@ -371,7 +374,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
 
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = service.dishes
+        basketViewController.selectedDishes = dishes
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
