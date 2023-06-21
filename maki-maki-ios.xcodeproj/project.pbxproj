@@ -358,15 +358,9 @@
 		68C3EC342A27A308009A0E02 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				68C3EC352A27A31A009A0E02 /* MainViewController.swift */,
-				68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */,
-				68D810362A286DB600D29827 /* SectionHeaderView.swift */,
-				1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */,
-				1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */,
-				683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */,
-				6866811B2A29D60600BC94E7 /* SectionType.swift */,
-				F174F7FF2A42A53000D7B8DC /* CategoryService.swift */,
-				F174F8012A42A54200D7B8DC /* CategoryModel.swift */,
+				F174F8032A42B66F00D7B8DC /* Model */,
+				F174F8042A42B69800D7B8DC /* View */,
+				F174F8052A42B6BD00D7B8DC /* Controller */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -567,6 +561,36 @@
 				F1725D752A30283F0072E258 /* OffersCellV2.swift */,
 			);
 			path = AccountOffersV2;
+			sourceTree = "<group>";
+		};
+		F174F8032A42B66F00D7B8DC /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				6866811B2A29D60600BC94E7 /* SectionType.swift */,
+				F174F7FF2A42A53000D7B8DC /* CategoryService.swift */,
+				F174F8012A42A54200D7B8DC /* CategoryModel.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F174F8042A42B69800D7B8DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */,
+				68D810362A286DB600D29827 /* SectionHeaderView.swift */,
+				1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */,
+				1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */,
+				683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F174F8052A42B6BD00D7B8DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				68C3EC352A27A31A009A0E02 /* MainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		F187EADD2A263EFE00019242 /* EditProfile */ = {
