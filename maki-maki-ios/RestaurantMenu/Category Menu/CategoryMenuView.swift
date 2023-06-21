@@ -109,16 +109,10 @@ final class CategoryMenuView: UIView {
     
     @objc func scrollToCategory(_ notification: Notification) {
         let categoryIndex = notification.userInfo?["categoryIndex"] as? Int ?? 0
-        print(categoryIndex)
-        categoryCollectionView.scrollToItem(
-            at: IndexPath(row: categoryIndex, section: 0),
-            at: .centeredHorizontally,
-            animated: true
-        )
         categoryCollectionView.selectItem(
             at: IndexPath(row: categoryIndex, section: 0),
-            animated: true,
-            scrollPosition: .centeredHorizontally
+                   animated: true,
+                   scrollPosition: .centeredHorizontally
         )
     }
 }
@@ -148,7 +142,6 @@ extension CategoryMenuView: UICollectionViewDataSource {
 extension CategoryMenuView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
         let userInfo = ["sectionIndex": indexPath.row]
         NotificationCenter.default.post(
             name: CategoryMenuView.notificationName,

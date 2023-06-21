@@ -16,6 +16,7 @@ final class RestaurantViewController: UIViewController {
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private var isScrollToSectionCalled = false
     
     // MARK: - Enumeration for dish sections
     
@@ -217,15 +218,19 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        let heightOfOneRowOfItems: Double = 242
-        let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-        if yOffset >= heights[currentSection] - safeTopInsetHeight {
-            currentSection += 1
-            sendNotification(section: currentSection)
-        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
-            currentSection -= 1
-            sendNotification(section: currentSection)
+        if !isScrollToSectionCalled {
+            let yOffset = scrollView.contentOffset.y
+            let heightOfOneRowOfItems: Double = 242
+            let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+            if yOffset >= heights[currentSection] - safeTopInsetHeight {
+                currentSection += 1
+                print("CURRENTSECTION", currentSection)
+                sendNotification(section: currentSection)
+            } else if
+                currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                currentSection -= 1
+                sendNotification(section: currentSection)
+            }
         }
         
         var sticked = false
@@ -292,11 +297,26 @@ final class RestaurantViewController: UIViewController {
     
     @objc func scrollToSection(_ notification: Notification) {
         let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
-        collectionView.scrollToItem(
-            at: IndexPath(row: 0, section: sectionIndex),
-            at: .centeredVertically,
-            animated: true
-        )
+        isScrollToSectionCalled = true
+        print("SECTION INDEX", sectionIndex)
+        if currentSection != sectionIndex {
+            var neededHeight: Double = 0
+            if sectionIndex == 0 {
+                neededHeight = 0
+            } else {
+                neededHeight = heights[sectionIndex - 1]
+            }
+            
+            collectionView.setContentOffset(
+                CGPoint(x: 0, y: neededHeight),
+                animated: true)
+            currentSection = sectionIndex
+            sendNotification(section: sectionIndex)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+            self.isScrollToSectionCalled = false
+        }
     }
     
     private func hideCategoriesReplacementView() {
