@@ -13,6 +13,7 @@ target 'maki-maki-ios' do
   pod 'SkyFloatingLabelTextField', '3.8.0'
   pod 'CHIOTPField', '0.1.0'
   pod 'Moya', '15.0'
+  pod 'SnackBar.swift'
   pod 'Kingfisher', '7.7.0'
   pod 'ProgressHUD'
 

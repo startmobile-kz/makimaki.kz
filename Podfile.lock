@@ -9,7 +9,7 @@ PODS:
   - CHIOTPField/One (0.1.0)
   - CHIOTPField/Three (0.1.0)
   - CHIOTPField/Two (0.1.0)
-  - FirebaseCore (10.11.0):
+  - FirebaseCore (10.12.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
@@ -30,6 +30,8 @@ PODS:
   - ProgressHUD (13.6.2)
   - PromisesObjC (2.2.0)
   - SkyFloatingLabelTextField (3.8.0)
+  - SnackBar.swift (0.1.0):
+    - SnapKit
   - SnapKit (5.6.0)
   - SwiftLint (0.52.2)
 
@@ -42,6 +44,7 @@ DEPENDENCIES:
   - Moya (= 15.0)
   - ProgressHUD
   - SkyFloatingLabelTextField (= 3.8.0)
+  - SnackBar.swift
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
@@ -58,6 +61,7 @@ SPEC REPOS:
     - ProgressHUD
     - PromisesObjC
     - SkyFloatingLabelTextField
+    - SnackBar.swift
     - SnapKit
     - SwiftLint
 
@@ -68,13 +72,13 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseCore:
-    :commit: f2194c8a3c675551746fa4d8b80cd735e8c5f487
+    :commit: 0e4aa6d4bd30898d1b502e7a171a24980d9e9133
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   CHIOTPField: 5df19b433ccfad2a80e944d3abde128a236aaf01
-  FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
+  FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
@@ -84,9 +88,10 @@ SPEC CHECKSUMS:
   ProgressHUD: 355915c8f033e626788fa9b0d99d06e8691595ab
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+  SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: bce353c4a7f16d95daabb7640d3303851417d3d0
+PODFILE CHECKSUM: 04860c991e0a00e54768b81c177fd2ee435deeef
 
 COCOAPODS: 1.12.1
