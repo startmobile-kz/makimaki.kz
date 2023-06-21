@@ -8,10 +8,20 @@
 import UIKit
 import SnapKit
 
+protocol DishViewControllerDelegate: AnyObject {
+    func addToBasket(dish: Dish, count: Int)
+}
+
 final class DishViewController: UIViewController {
+    
+    // MARK: - State
 
     var dish: DishResponseModel?
+    var count = 0
 
+    // MARK: - Delegate
+    
+    weak var delegate: DishViewControllerDelegate?
     // MARK: - UI
     
     private lazy var dishImageView: UIImageView = {
@@ -60,6 +70,7 @@ final class DishViewController: UIViewController {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(addButtonDidPressed), for: .touchUpInside)
         return button
     }()
     
@@ -122,10 +133,34 @@ final class DishViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
+
+    // MARK: - Setup Data
+
+    private func setupData() {
+        productNameLabel.text = dish?.name
+    }
+    
+    // MARK: - Stepper Value Action
     
     @objc private func stepperChangedValueAction(sender: StepperView) {
-        print(sender)
-        print(sender.currentValue)
+//        print(sender)
+        self.count = sender.currentValue
+    }
+
+    // MARK: - Button Action
+    
+    @objc private func addButtonDidPressed() {
+//        if count == 0 {
+//            dismiss(animated: true)
+//            return
+//        }
+
+        guard let dish = dish else {
+            return
+        }
+
+        delegate?.addToBasket(dish: dish, count: count)
+        dismiss(animated: true)
     }
 
     private func setupData() {
