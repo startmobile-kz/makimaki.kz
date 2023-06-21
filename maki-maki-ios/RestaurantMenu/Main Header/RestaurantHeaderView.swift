@@ -71,8 +71,6 @@ final class RestaurantHeaderView: UICollectionReusableView {
     
     private lazy var categoryView: CategoryMenuView = {
         let view = CategoryMenuView()
-        view.isSkeletonable = true
-        view.skeletonCornerRadius = 14
         return view
     }()
     

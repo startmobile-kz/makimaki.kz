@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class DishCategoryCollectionViewCell: UICollectionViewCell {
     
@@ -21,6 +22,7 @@ final class DishCategoryCollectionViewCell: UICollectionViewCell {
         label.font = AppFont.reqular.s14()
         label.textAlignment = .center
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -42,6 +44,7 @@ final class DishCategoryCollectionViewCell: UICollectionViewCell {
     private func setupViews() {
         contentView.layer.cornerRadius = 14
         addSubview(categoryLabel)
+        isSkeletonable = true
     }
     
     // MARK: - SetupConstraints

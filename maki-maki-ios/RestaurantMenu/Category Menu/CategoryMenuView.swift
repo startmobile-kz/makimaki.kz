@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class CategoryMenuView: UIView {
     
@@ -37,6 +38,7 @@ final class CategoryMenuView: UIView {
         collection.register(
             DishCategoryCollectionViewCell.self,
             forCellWithReuseIdentifier: DishCategoryCollectionViewCell.reuseID)
+        collection.isSkeletonable = true
         return collection
     }()
     
@@ -86,6 +88,7 @@ final class CategoryMenuView: UIView {
     private func setupViews() {
         backgroundColor = AppColor.background.uiColor
         addSubview(categoryCollectionView)
+        isSkeletonable = true
     }
     
     // MARK: - SetupConstraints
@@ -171,5 +174,24 @@ extension CategoryMenuView: UICollectionViewDelegateFlowLayout {
         let categoryWidth = listCategory[indexPath.item].title.size(
             withAttributes: categoryAttribuites).width + padding
         return CGSize(width: categoryWidth, height: collectionView.frame.height)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension CategoryMenuView: SkeletonCollectionViewDataSource {
+    
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return 4
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        return DishCategoryCollectionViewCell.reuseID
     }
 }
