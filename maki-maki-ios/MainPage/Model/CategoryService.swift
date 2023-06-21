@@ -8,6 +8,7 @@
 import Foundation
 
 class CategoryService {
+    
     private var urlSession = URLSession.shared
     var category: [CategoryModel] = []
     
@@ -17,15 +18,12 @@ class CategoryService {
         var request = URLRequest(url: url)
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
         
-        let task = urlSession.dataTask(with: request) { data, _, error in
-            guard let data = data, let error = error else {
-                fatalError()
+        let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
+            guard let data = data else {
+                fatalError("Data not found")
             }
             
-            print(error)
-            
             do {
-                print(data)
                 let category = try JSONDecoder().decode([CategoryModel].self, from: data)
                 DispatchQueue.main.async { [weak self] in
                     self?.category = category
@@ -34,6 +32,7 @@ class CategoryService {
                 print("Error:\(error.localizedDescription)")
             }
         }
+        )
         task.resume()
     }
 }
