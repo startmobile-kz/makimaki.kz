@@ -91,4 +91,3 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         categoryNameLabel.text = category.name
     }
 }
-    
