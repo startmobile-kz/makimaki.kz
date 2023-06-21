@@ -11,8 +11,9 @@ import SnapKit
 final class RestaurantViewController: UIViewController {
     
     // MARK: - State
-
     private var service = DishService()
+    public var Dishes: [DishResponseModel] = []
+
     // MARK: - Properties
     
     private var lastContentOffsetY: CGFloat = 0
@@ -83,13 +84,16 @@ final class RestaurantViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         service.fetchProducts()
+        print("count: \(Dishes.count)")
+        print("dish: \(service.dishes.count)")
     }
-    
+
     // MARK: - SetupViews
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
+        collectionView.reloadData()
     }
     
     // MARK: - SetupConstraints
@@ -296,20 +300,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = sections[section]
-        switch section {
-        case .mostPopular:
-            return 5
-        case .pizza:
-            return 6
-        case .sushi:
-            return 6
-        case .rolls:
-            return 6
-        case .burgers:
-            return 3
-        default:
-            return 10
-        }
+        return Dishes.count
     }
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
@@ -319,6 +310,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
+        let dish = Dishes[indexPath.item]
+        cell.setupData(dish: dish)
         return cell
     }
     

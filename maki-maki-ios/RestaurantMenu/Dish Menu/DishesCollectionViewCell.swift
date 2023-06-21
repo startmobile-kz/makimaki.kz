@@ -137,4 +137,8 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    public func setupData(dish: DishResponseModel) {
+        dishNameLabel.text = dish.name
+        dishPriceLabel.text = "\(dish.price)"
+    }
 }
