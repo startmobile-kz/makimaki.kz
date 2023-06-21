@@ -14,4 +14,10 @@ struct DishResponseModel: Decodable {
     let category: Int
     let price: Int
     let image: String?
+    var isSelected: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case id, name, description, category, price, image
+    }
+
 }

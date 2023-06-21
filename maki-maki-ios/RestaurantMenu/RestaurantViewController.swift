@@ -13,6 +13,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - State
     private var service = DishService()
     public var dishes: [DishResponseModel] = []
+    public var selectedDishes: [DishResponseModel] = []
 
     // MARK: - Properties
     
@@ -96,7 +97,7 @@ final class RestaurantViewController: UIViewController {
             }
         }
     }
-
+    
     // MARK: - SetupViews
     
     private func setupViews() {
@@ -290,11 +291,22 @@ final class RestaurantViewController: UIViewController {
 
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        var dish = dishes[indexPath.item]
+        dish.isSelected.toggle()
+
+        if dish.isSelected {
+            if !selectedDishes.contains(where: {$0.id == dish.id}) {
+                selectedDishes.append(dish)
+            }
+        } else {
+            if let index = selectedDishes.firstIndex(where: {$0.id == dish.id}) {
+                selectedDishes.remove(at: index)
+            }
+        }
+
         let dishViewController = DishViewController()
         dishViewController.dish = dishes[indexPath.row]
         present(dishViewController, animated: true)
-//        basketViewController.selectedDishes = service.dishes
-//        self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
 
@@ -374,7 +386,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
 
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = dishes
+        basketViewController.selectedDishes = selectedDishes
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
