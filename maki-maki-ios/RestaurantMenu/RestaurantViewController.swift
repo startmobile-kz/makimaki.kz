@@ -16,6 +16,7 @@ final class RestaurantViewController: UIViewController {
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
     
     // MARK: - Enumeration for dish sections
@@ -222,9 +223,8 @@ final class RestaurantViewController: UIViewController {
             let yOffset = scrollView.contentOffset.y
             let heightOfOneRowOfItems: Double = 242
             let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-            if yOffset >= heights[currentSection] - safeTopInsetHeight {
+            if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
                 currentSection += 1
-                print("CURRENTSECTION", currentSection)
                 sendNotification(section: currentSection)
             } else if
                 currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
@@ -304,7 +304,7 @@ final class RestaurantViewController: UIViewController {
             if sectionIndex == 0 {
                 neededHeight = 0
             } else {
-                neededHeight = heights[sectionIndex - 1]
+                neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
             }
             
             collectionView.setContentOffset(
