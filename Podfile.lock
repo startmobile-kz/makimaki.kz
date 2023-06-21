@@ -29,6 +29,8 @@ PODS:
   - PromisesObjC (2.2.0)
   - SkeletonView (1.30.4)
   - SkyFloatingLabelTextField (3.8.0)
+  - SnackBar.swift (0.1.0):
+    - SnapKit
   - SnapKit (5.6.0)
   - SwiftLint (0.52.2)
 
@@ -40,6 +42,7 @@ DEPENDENCIES:
   - Moya (= 15.0)
   - SkeletonView
   - SkyFloatingLabelTextField (= 3.8.0)
+  - SnackBar.swift
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
 
@@ -55,6 +58,7 @@ SPEC REPOS:
     - PromisesObjC
     - SkeletonView
     - SkyFloatingLabelTextField
+    - SnackBar.swift
     - SnapKit
     - SwiftLint
 
@@ -80,9 +84,10 @@ SPEC CHECKSUMS:
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
+  SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 283c276ab7c48d4862116c47ba5437c6ade2227f
+PODFILE CHECKSUM: c186ad1bb4793fbeb2f91845348e6a9116c27a0e
 
 COCOAPODS: 1.12.1
