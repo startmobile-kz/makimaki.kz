@@ -12,9 +12,9 @@ import Foundation
 class DishService {
     
     private var urlSession = URLSession.shared
-    var dishes: [DishResponseModel] = []
     
     func fetchProducts(completion: @escaping ([DishResponseModel]) -> Void) {
+        
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
@@ -28,6 +28,7 @@ class DishService {
             do {
                 let dishes = try JSONDecoder().decode([DishResponseModel].self, from: data)
                 completion(dishes)
+                
             } catch let error {
                 print("Error:\(error.localizedDescription)")
             }
