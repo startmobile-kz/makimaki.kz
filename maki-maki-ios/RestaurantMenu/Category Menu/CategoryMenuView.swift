@@ -14,7 +14,7 @@ final class CategoryMenuView: UIView {
     // MARK: - State
     
     private var listCategory: [CategoryItem] = [
-        CategoryItem(title: "Most Popular", id: .mostPopular),
+        CategoryItem(title: "Most", id: .mostPopular),
         CategoryItem(title: "Pizza", id: .pizza),
         CategoryItem(title: "Sushi", id: .sushi),
         CategoryItem(title: "Rolls", id: .rolls),
@@ -185,7 +185,7 @@ extension CategoryMenuView: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 4
+        return UICollectionView.automaticNumberOfSkeletonItems
     }
     
     func collectionSkeletonView(

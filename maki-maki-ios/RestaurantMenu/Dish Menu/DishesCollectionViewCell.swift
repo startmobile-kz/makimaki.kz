@@ -61,7 +61,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         label.text = "0"
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
-        label.isSkeletonable = true
         return label
     }()
     
