@@ -237,7 +237,7 @@ final class RestaurantViewController: UIViewController {
         
         checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
         
-       if scrollView.contentOffset.y > initialHeaderHeight {
+        if scrollView.contentOffset.y > initialHeaderHeight {
             if !sticked {
                 UIView.animate(withDuration: 0.1) { [weak self] in
                     guard let self = self else {
@@ -307,6 +307,16 @@ final class RestaurantViewController: UIViewController {
                 neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
             }
             
+//            UIView.animate(withDuration: 0.4) {
+//                self.collectionView.setContentOffset(CGPoint(x: 0, y: neededHeight), animated: false)
+//                self.currentSection = sectionIndex
+//                self.sendNotification(section: sectionIndex)
+//            } completion: { finished in
+//                if finished {
+//                    self.isScrollToSectionCalled = false
+//                }
+//            }
+            
             collectionView.setContentOffset(
                 CGPoint(x: 0, y: neededHeight),
                 animated: true)
@@ -314,7 +324,7 @@ final class RestaurantViewController: UIViewController {
             sendNotification(section: sectionIndex)
         }
         
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.isScrollToSectionCalled = false
         }
     }
