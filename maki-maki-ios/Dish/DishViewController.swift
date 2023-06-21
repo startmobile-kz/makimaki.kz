@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol DishViewControllerDelegate: AnyObject {
-    func addToBasket(dish: Dish, count: Int)
+    func addToBasket(dish: DishResponseModel, count: Int)
 }
 
 final class DishViewController: UIViewController {
@@ -133,12 +133,6 @@ final class DishViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
-
-    // MARK: - Setup Data
-
-    private func setupData() {
-        productNameLabel.text = dish?.name
-    }
     
     // MARK: - Stepper Value Action
     
@@ -162,12 +156,14 @@ final class DishViewController: UIViewController {
         delegate?.addToBasket(dish: dish, count: count)
         dismiss(animated: true)
     }
+    
+    // MARK: - Setup Data
 
     private func setupData() {
         guard let dish = dish else {
             return
         }
-
+        
         productNameLabel.text = dish.name
         descriptionLabel.text = "\(dish.description)"
         let url = URL(string: dish.image ?? "")
