@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class DishesCollectionViewCell: UICollectionViewCell {
     
@@ -18,7 +19,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     private lazy var dishImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = AppImage.dish.uiImage
         imageView.layer.cornerRadius = 8
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
@@ -27,17 +27,16 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     private lazy var dishNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Broiled Salmon Steak"
+        label.numberOfLines = 0
+        label.lineBreakMode = .byWordWrapping
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.medium.s15()
         label.textAlignment = .left
-        label.numberOfLines = 0
         return label
     }()
     
     private lazy var dishPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$8.40"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s14()
         label.textAlignment = .left
@@ -113,6 +112,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
+            make.height.equalTo(145)
         }
         
         dishNameLabel.snp.makeConstraints { make in
@@ -132,13 +132,15 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         }
         
         hrstackView.snp.makeConstraints { make in
-            make.top.equalTo(dishNameLabel.snp.bottom).offset(8)
             make.leading.trailing.equalTo(dishNameLabel)
+            make.bottom.equalToSuperview().offset(-12)
         }
     }
     
     public func setupData(dish: DishResponseModel) {
         dishNameLabel.text = dish.name
-        dishPriceLabel.text = "\(dish.price)"
+        dishPriceLabel.text = "\(dish.price) ₸"
+        let url = URL(string: dish.image ?? " ")
+        dishImageView.kf.setImage(with: url)
     }
 }
