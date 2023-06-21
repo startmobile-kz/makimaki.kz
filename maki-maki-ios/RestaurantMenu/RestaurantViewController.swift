@@ -12,7 +12,7 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - State
     private var service = DishService()
-    public var Dishes: [DishResponseModel] = []
+    public var dishes: [DishResponseModel] = []
 
     // MARK: - Properties
     
@@ -83,8 +83,13 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        service.fetchProducts()
-        print("count: \(Dishes.count)")
+        service.fetchProducts { model in
+            self.dishes = model
+            DispatchQueue.main.async { [weak self] in
+                self?.collectionView.reloadData()
+            }
+        }
+        print("count: \(dishes.count)")
         print("dish: \(service.dishes.count)")
     }
 
@@ -300,7 +305,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         let section = sections[section]
-        return Dishes.count
+        return dishes.count
     }
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
@@ -310,7 +315,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        let dish = Dishes[indexPath.item]
+        let dish = dishes[indexPath.item]
         cell.setupData(dish: dish)
         return cell
     }
@@ -368,6 +373,5 @@ extension RestaurantViewController: UICollectionViewDataSource {
         let basketViewController = BasketViewController()
         basketViewController.selectedDishes = service.dishes
         self.navigationController?.pushViewController(basketViewController, animated: true)
-
     }
 }
