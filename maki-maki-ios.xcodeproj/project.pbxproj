@@ -84,6 +84,8 @@
 		F1725D502A2F07920072E258 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4F2A2F07920072E258 /* OffersCell.swift */; };
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
+		F174F8002A42A53000D7B8DC /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F174F7FF2A42A53000D7B8DC /* CategoryService.swift */; };
+		F174F8022A42A54200D7B8DC /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = F174F8012A42A54200D7B8DC /* CategoryModel.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -180,6 +182,8 @@
 		F1725D4F2A2F07920072E258 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
+		F174F7FF2A42A53000D7B8DC /* CategoryService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		F174F8012A42A54200D7B8DC /* CategoryModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -361,6 +365,8 @@
 				1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */,
 				683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */,
 				6866811B2A29D60600BC94E7 /* SectionType.swift */,
+				F174F7FF2A42A53000D7B8DC /* CategoryService.swift */,
+				F174F8012A42A54200D7B8DC /* CategoryModel.swift */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -808,6 +814,7 @@
 				9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */,
 				275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
+				F174F8022A42A54200D7B8DC /* CategoryModel.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
 				0349DDEC2A3AD64800BACD4F /* PaymentsTableViewCell.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
@@ -826,6 +833,7 @@
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchBar.swift in Sources */,
 				68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */,
+				F174F8002A42A53000D7B8DC /* CategoryService.swift in Sources */,
 				F1725D502A2F07920072E258 /* OffersCell.swift in Sources */,
 				037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */,
 				26E2798A2A2F5DE00071863C /* OrdersModel.swift in Sources */,

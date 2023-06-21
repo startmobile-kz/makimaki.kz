@@ -84,4 +84,11 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
             categoryCellView.backgroundColor = AppColor.background.uiColor
         }
     }
+    
+    // MARK: - Public
+    
+    public func setupData(category: CategoryModel) {
+        categoryNameLabel.text = category.name
+    }
 }
+    

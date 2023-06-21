@@ -10,6 +10,8 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
+    var categories: [CategoryModel] = []
+    
     // MARK: - Sections
     let sections: [SectionType] = [.categories, .promos, .restaurants]
     var selectedCategoryIndexPath: IndexPath?
@@ -249,6 +251,11 @@ extension MainViewController: UICollectionViewDataSource {
             }
             if let selectedCategoryIndexPath = selectedCategoryIndexPath {
                 cell.set(value: selectedCategoryIndexPath == indexPath)
+            }
+            
+            if indexPath.item < categories.count {
+                let category = categories[indexPath.item]
+                cell.setupData(category: category)
             }
             return cell
         case .promos:
