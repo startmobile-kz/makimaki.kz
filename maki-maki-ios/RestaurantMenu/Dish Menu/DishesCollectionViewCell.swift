@@ -135,11 +135,15 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         }
     }
     
+    // swiftlint:disable all
+    
     public func setupData(dish: DishResponseModel) {
         dishNameLabel.text = dish.name
         dishPriceLabel.text = "\(dish.price) ₸"
+        dishCountView.isHidden = dish.count == 0
         dishCountLabel.text = "\(dish.count)"
         let url = URL(string: dish.image ?? " ")
         dishImageView.kf.setImage(with: url)
     }
+    // swiftlint:enable all
 }
