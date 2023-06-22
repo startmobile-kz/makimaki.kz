@@ -1,5 +1,5 @@
 //
-//  SearchBar.swift
+//  SearchContainerView.swift
 //  maki-maki-ios
 //
 //  Created by Almat Alibekov on 12.06.2023.
@@ -8,18 +8,16 @@
 import UIKit
 import SnapKit
 
-protocol SearchBarDelegate: AnyObject {
-    
-    func searchDelegate(word: String)
+protocol SearchContainerViewDelegate: AnyObject {
+    func searchCompleted(word: String)
 }
 
-final class SearchBar: UIView, UITextFieldDelegate {
+final class SearchContainerView: UIView {
     
-    var delegate: SearchBarDelegate?
+    var delegate: SearchContainerViewDelegate?
 
     // MARK: - UI Custom searchBar properties
-    static let reuseID = String(describing: SearchBar.self)
-    
+
     var dataToUseInSearch: String = ""
     
     private lazy var searchIconImageView: UIImageView = {
@@ -76,24 +74,17 @@ final class SearchBar: UIView, UITextFieldDelegate {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
         searchBarTextField.leftView = paddingView
     }
-    
+}
+
+extension SearchContainerView: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        var finalString = ""
-        if range.length > 0 {
-            finalString = "\(textField.text!.dropLast())"
-        } else {
-            
-            finalString = "\(textField.text! + string)"
+
+        if let searchedText = textField.text {
+                delegate?.searchCompleted(word: searchedText)
         }
-        print(finalString)
-        dataToUseInSearch = finalString
-        self.delegate?.searchDelegate(word: finalString)
+
         return true
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField) {
-//        print(dataToUseInSearch)
-//    }
 }

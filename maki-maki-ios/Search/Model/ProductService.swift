@@ -32,6 +32,7 @@ class ProductsService {
                 completion(products)
             } catch let error {
                 print("Error:\(error.localizedDescription)")
+                completion([])
             }
         }
         )

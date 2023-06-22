@@ -8,21 +8,19 @@
 import UIKit
 import SnapKit
 
-final class SearchV1ViewController: UIViewController, SearchBarDelegate {
-    
-    var receivedData = ""
-    
-    func searchDelegate(word: String) {
-        self.receivedData = word
-    }
+final class SearchV1ViewController: UIViewController {
 
     private var service = ProductsService()
     public var products = [ProductModel]()
-    
-    public var filteredProducts = [ProductModel]()
-    
+
+    var filteredProducts = [ProductModel]() {
+        didSet {
+            self.searchTableView.reloadData()
+        }
+    }
+
     // MARK: - UI
-    private lazy var searchBar: SearchBar = SearchBar()
+    private lazy var searchContainerView: SearchContainerView = SearchContainerView()
     
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -43,19 +41,21 @@ final class SearchV1ViewController: UIViewController, SearchBarDelegate {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        callbackService()
+        fetchProducts()
+
+        searchContainerView.delegate = self
     }
     
     // MARK: - Setup Views
     private func setupViews() {
-        view.addSubview(searchBar)
+        view.addSubview(searchContainerView)
         view.addSubview(searchTableView)
         view.backgroundColor = AppColor.background.uiColor
     }
 
     // MARK: - Setup Constraints
     private func setupConstraints() {
-        searchBar.snp.makeConstraints { make in
+        searchContainerView.snp.makeConstraints { make in
             make.leading.equalTo(16)
             make.trailing.equalTo(-16)
             make.top.equalTo(60)
@@ -63,16 +63,17 @@ final class SearchV1ViewController: UIViewController, SearchBarDelegate {
         }
         
         searchTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchBar.snp.bottom).offset(16)
+            make.top.equalTo(searchContainerView.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
             make.height.equalTo(150)
         }
     }
     
-    private func callbackService() {
+    private func fetchProducts() {
         service.fetchProducts { product in
-            self.products = product
             DispatchQueue.main.async { [weak self] in
+                self?.products = product
+                self?.filteredProducts = product
                 self?.searchTableView.reloadData()
             }
         }
@@ -81,7 +82,7 @@ final class SearchV1ViewController: UIViewController, SearchBarDelegate {
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return products.count
+        return filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -91,14 +92,22 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
         ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
-        cell.setupData(dish: products[indexPath.row])
+        cell.setupData(dish: filteredProducts[indexPath.row])
         return cell
     }
-    
-//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
-//        func filterResults() {
-//            filteredProducts = products.filter { $0.name.contains(where: {receivedData.contains($0)})}
-//            print(filteredProducts)
-//        }
-//    }
+
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let controller = DishViewController()
+        present(controller, animated: true)
+    }
+}
+
+// MARK: - SearchContainerViewDelegate
+
+extension SearchV1ViewController: SearchContainerViewDelegate {
+    func searchCompleted(word: String) {
+        filteredProducts = products.filter({ product in
+            product.name.lowercased().contains(word.lowercased())
+        })
+    }
 }
