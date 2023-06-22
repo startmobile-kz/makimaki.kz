@@ -104,7 +104,7 @@ final class DishViewController: UIViewController {
             make.top.equalToSuperview().offset(31)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(400)
+            make.height.equalTo(304)
         }
         
         productNameLabel.snp.makeConstraints { make in
