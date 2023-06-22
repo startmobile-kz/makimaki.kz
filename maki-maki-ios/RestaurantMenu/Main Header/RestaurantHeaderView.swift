@@ -69,7 +69,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     }()
     
     private lazy var categoryView: CategoryMenuView = {
-        let view = CategoryMenuView()
+        let view = CategoryMenuView(type: .collectionHeader)
         return view
     }()
     

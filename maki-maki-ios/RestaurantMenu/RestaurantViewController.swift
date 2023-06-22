@@ -36,7 +36,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
-        let view = CategoryMenuView()
+        let view = CategoryMenuView(type: .stickyHeader)
         view.isSkeletonable = true
         return view
     }()

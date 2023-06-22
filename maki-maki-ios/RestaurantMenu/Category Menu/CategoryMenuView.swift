@@ -17,6 +17,7 @@ enum CategoryMenuViewType {
 final class CategoryMenuView: UIView {
     
     // MARK: - State
+    private let type: CategoryMenuViewType
     
     private var listCategory: [CategoryItem] = [
         CategoryItem(title: "Most popular", id: .mostPopular),
@@ -67,6 +68,7 @@ final class CategoryMenuView: UIView {
     // MARK: - Lifecycle
     
     init(type: CategoryMenuViewType) {
+        self.type = type
         super.init(frame: .zero)
         
         setupViews()
@@ -98,9 +100,11 @@ final class CategoryMenuView: UIView {
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        let leadingOffset = (type == .collectionHeader) ? -16 : 0
+        
         categoryCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.equalToSuperview().offset(-16)
+            make.leading.equalToSuperview().offset(leadingOffset)
             make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
