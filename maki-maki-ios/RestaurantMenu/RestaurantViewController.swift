@@ -94,8 +94,7 @@ final class RestaurantViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        showSkeletonAnimation()
     }
     
     deinit {
@@ -153,6 +152,11 @@ final class RestaurantViewController: UIViewController {
     }
     
     // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
     
     private func hideSkeletons() {
         collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
