@@ -291,10 +291,7 @@ final class RestaurantViewController: UIViewController {
 
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: DishResponseModel) {
-        var updatedDish = dish
-        updatedDish.count = count
-        print("dish id: \(updatedDish.id), updated count \(updatedDish.count)")
-
+        collectionView.reloadData()
     }
 }
 

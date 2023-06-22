@@ -159,7 +159,7 @@ final class DishViewController: UIViewController {
     // MARK: - Button Action
     
     @objc private func addButtonDidPressed() {
-        if var dish = dish {
+        if let dish = dish {
             dish.isSelected = true
             dish.count = count
             delegate?.addToBasket(dish: dish)

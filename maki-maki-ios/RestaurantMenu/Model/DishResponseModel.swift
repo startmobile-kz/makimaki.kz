@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct DishResponseModel: Decodable {
+class DishResponseModel: Decodable {
     let id: Int
     let name: String
     let description: String
@@ -19,5 +19,24 @@ struct DishResponseModel: Decodable {
     
     enum CodingKeys: String, CodingKey {
         case id, name, description, category, price, image
+    }
+    
+    init(id: Int,
+         name: String,
+         description: String,
+         category: Int,
+         price: Int,
+         image: String?,
+         isSelected: Bool,
+         count: Int) {
+        
+        self.id = id
+        self.name = name
+        self.description = description
+        self.category = category
+        self.price = price
+        self.image = image
+        self.isSelected = isSelected
+        self.count = count
     }
 }
