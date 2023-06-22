@@ -52,7 +52,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     private lazy var dishCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "0"
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
         return label
@@ -70,7 +69,6 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        
         setupViews()
         setupConstraints()
         setupShadows()
@@ -140,6 +138,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     public func setupData(dish: DishResponseModel) {
         dishNameLabel.text = dish.name
         dishPriceLabel.text = "\(dish.price) ₸"
+        dishCountLabel.text = "\(dish.count)"
         let url = URL(string: dish.image ?? " ")
         dishImageView.kf.setImage(with: url)
     }

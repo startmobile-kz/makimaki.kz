@@ -285,6 +285,17 @@ final class RestaurantViewController: UIViewController {
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
     }
+    
+}
+
+// MARK: - DishViewControllerDelegate methods
+
+extension RestaurantViewController: DishViewControllerDelegate {
+    func addToBasket(dish: DishResponseModel, count: Int) {
+        var updatedDish = dish
+        updatedDish.count = count
+        print("dish id: \(updatedDish.id), updated count \(updatedDish.count)")
+    }
 }
 
 // MARK: - UICollectionViewDelegate methods
@@ -306,6 +317,7 @@ extension RestaurantViewController: UICollectionViewDelegate {
 
         let dishViewController = DishViewController()
         dishViewController.dish = dishes[indexPath.row]
+        dishViewController.delegate = self
         present(dishViewController, animated: true)
     }
 }
