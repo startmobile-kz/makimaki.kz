@@ -17,6 +17,8 @@ final class RestaurantViewController: UIViewController {
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private let categoryMenuHeight: Double = 60
+    private var isScrollToSectionCalled = false
     private var isLoaded = false
     
     // MARK: - Enumeration for dish sections
@@ -144,7 +146,6 @@ final class RestaurantViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = ""
-        self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -246,11 +247,11 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isLoaded {
+        if isLoaded && !isScrollToSectionCalled {
             let yOffset = scrollView.contentOffset.y
             let heightOfOneRowOfItems: Double = 242
             let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-            if yOffset >= heights[currentSection] - safeTopInsetHeight {
+            if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
                 currentSection += 1
                 sendNotification(section: currentSection)
             } else if
@@ -260,10 +261,9 @@ final class RestaurantViewController: UIViewController {
             }
             
             var sticked = false
-            
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
             
-           if scrollView.contentOffset.y > initialHeaderHeight {
+            if scrollView.contentOffset.y > initialHeaderHeight {
                 if !sticked {
                     UIView.animate(withDuration: 0.1) { [weak self] in
                         guard let self = self else {
@@ -324,11 +324,26 @@ final class RestaurantViewController: UIViewController {
     
     @objc func scrollToSection(_ notification: Notification) {
         let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
-        collectionView.scrollToItem(
-            at: IndexPath(row: 0, section: sectionIndex),
-            at: .centeredVertically,
-            animated: true
-        )
+        isScrollToSectionCalled = true
+        if currentSection != sectionIndex {
+            var neededHeight: Double = 0
+            if sectionIndex == 0 {
+                neededHeight = 0
+            } else {
+                neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
+            }
+            
+            collectionView.setContentOffset(
+                CGPoint(x: 0, y: neededHeight),
+                animated: true
+            )
+            currentSection = sectionIndex
+            sendNotification(section: sectionIndex)
+        }
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.isScrollToSectionCalled = false
+        }
     }
     
     private func hideCategoriesReplacementView() {
@@ -460,7 +475,7 @@ extension RestaurantViewController: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 6
+        return 8
     }
     
     func collectionSkeletonView(
