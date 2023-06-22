@@ -36,6 +36,7 @@ final class RestaurantViewController: UIViewController {
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
         let view = CategoryMenuView()
+        view.isSkeletonable = true
         return view
     }()
     
@@ -109,6 +110,7 @@ final class RestaurantViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
+//        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = fal
     }
     
     // MARK: - SetupConstraints
