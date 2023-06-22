@@ -74,6 +74,14 @@ final class DishViewController: UIViewController {
         return button
     }()
     
+    private lazy var orderPrice: UILabel = {
+        let label = UILabel()
+        label.textAlignment = .center
+        label.font = AppFont.medium.s15()
+        label.textColor = AppColor.heading.uiColor
+        return label
+    }()
+    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -93,7 +101,8 @@ final class DishViewController: UIViewController {
             productNameLabel,
             descriptionLabel,
             stepperView,
-            addButton
+            addButton,
+            orderPrice
         ].forEach { view.addSubview($0) }
     }
     
@@ -104,7 +113,7 @@ final class DishViewController: UIViewController {
             make.top.equalToSuperview().offset(31)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-30)
-            make.height.equalTo(400)
+            make.height.equalTo(304)
         }
         
         productNameLabel.snp.makeConstraints { make in
@@ -132,6 +141,13 @@ final class DishViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
+        
+        orderPrice.snp.makeConstraints { make in
+            make.bottom.equalToSuperview().offset(-29)
+            make.trailing.equalToSuperview().offset(-32)
+            make.height.equalTo(53)
+        }
+        
     }
     
     // MARK: - Stepper Value Action
@@ -160,6 +176,7 @@ final class DishViewController: UIViewController {
         
         productNameLabel.text = dish.name
         descriptionLabel.text = "\(dish.description)"
+        orderPrice.text = "\(dish.price) ₸"
         let url = URL(string: dish.image ?? "")
         dishImageView.kf.setImage(with: url)
     }
