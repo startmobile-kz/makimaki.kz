@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class SearchResultTableViewCell: UITableViewCell {
     
@@ -15,7 +16,7 @@ final class SearchResultTableViewCell: UITableViewCell {
     // MARK: - UI
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = AppImage.cardImage_1.uiImage
+        // imageView.image = AppImage.cardImage_1.uiImage
         imageView.layer.cornerRadius = 8
         return imageView
     }()
@@ -86,7 +87,8 @@ final class SearchResultTableViewCell: UITableViewCell {
     public func setupData(dish: ProductModel) {
         productNameLabel.text = dish.name
         priceLabel.text = "\(dish.price) ₸"
-        // let url = URL(string: dish.image ?? " ")
+        let url = URL(string: dish.image ?? " ")
+        productImageView.kf.setImage(with: url)
     }
     
 }
