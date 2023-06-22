@@ -298,7 +298,6 @@ final class RestaurantViewController: UIViewController {
     @objc func scrollToSection(_ notification: Notification) {
         let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
         isScrollToSectionCalled = true
-        print("SECTION INDEX", sectionIndex)
         if currentSection != sectionIndex {
             var neededHeight: Double = 0
             if sectionIndex == 0 {
@@ -307,19 +306,10 @@ final class RestaurantViewController: UIViewController {
                 neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
             }
             
-//            UIView.animate(withDuration: 0.4) {
-//                self.collectionView.setContentOffset(CGPoint(x: 0, y: neededHeight), animated: false)
-//                self.currentSection = sectionIndex
-//                self.sendNotification(section: sectionIndex)
-//            } completion: { finished in
-//                if finished {
-//                    self.isScrollToSectionCalled = false
-//                }
-//            }
-            
             collectionView.setContentOffset(
                 CGPoint(x: 0, y: neededHeight),
-                animated: true)
+                animated: true
+            )
             currentSection = sectionIndex
             sendNotification(section: sectionIndex)
         }
