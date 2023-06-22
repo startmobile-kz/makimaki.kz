@@ -17,6 +17,7 @@ enum CategoryMenuViewType {
 final class CategoryMenuView: UIView {
     
     // MARK: - State
+    
     private let type: CategoryMenuViewType
     
     private var listCategory: [CategoryItem] = [
