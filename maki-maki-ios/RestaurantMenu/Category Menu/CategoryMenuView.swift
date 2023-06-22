@@ -9,6 +9,11 @@ import UIKit
 import SnapKit
 import SkeletonView
 
+enum CategoryMenuViewType {
+    case collectionHeader
+    case stickyHeader
+}
+
 final class CategoryMenuView: UIView {
     
     // MARK: - State
@@ -61,8 +66,8 @@ final class CategoryMenuView: UIView {
     
     // MARK: - Lifecycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: CategoryMenuViewType) {
+        super.init(frame: .zero)
         
         setupViews()
         setupConstraints()
