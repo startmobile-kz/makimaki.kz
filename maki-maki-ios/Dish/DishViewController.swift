@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol DishViewControllerDelegate: AnyObject {
-    func addToBasket(dish: DishResponseModel, count: Int)
+    func addToBasket(dish: DishResponseModel)
 }
 
 final class DishViewController: UIViewController {
@@ -17,7 +17,7 @@ final class DishViewController: UIViewController {
     // MARK: - State
 
     var dish: DishResponseModel?
-    var count = 0
+    var count = 1
 
     // MARK: - Delegate
     
@@ -137,24 +137,18 @@ final class DishViewController: UIViewController {
     // MARK: - Stepper Value Action
     
     @objc private func stepperChangedValueAction(sender: StepperView) {
-//        print(sender)
         self.count = sender.currentValue
     }
 
     // MARK: - Button Action
     
     @objc private func addButtonDidPressed() {
-//        if count == 0 {
-//            dismiss(animated: true)
-//            return
-//        }
-
-        guard let dish = dish else {
-            return
+        if var dish = dish {
+            dish.isSelected = true
+            dish.count = count
+            delegate?.addToBasket(dish: dish)
+            dismiss(animated: true)
         }
-
-        delegate?.addToBasket(dish: dish, count: count)
-        dismiss(animated: true)
     }
     
     // MARK: - Setup Data

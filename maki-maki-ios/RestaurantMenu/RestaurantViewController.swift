@@ -13,7 +13,6 @@ final class RestaurantViewController: UIViewController {
     // MARK: - State
     private var service = DishService()
     public var dishes: [DishResponseModel] = []
-    public var selectedDishes: [DishResponseModel] = []
 
     // MARK: - Properties
     
@@ -90,8 +89,8 @@ final class RestaurantViewController: UIViewController {
     // MARK: - Callback
     
     private func callbackService() {
-        service.fetchProducts { dish in
-            self.dishes = dish
+        service.fetchProducts { dishes in
+            self.dishes = dishes
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
@@ -291,10 +290,11 @@ final class RestaurantViewController: UIViewController {
 // MARK: - DishViewControllerDelegate methods
 
 extension RestaurantViewController: DishViewControllerDelegate {
-    func addToBasket(dish: DishResponseModel, count: Int) {
+    func addToBasket(dish: DishResponseModel) {
         var updatedDish = dish
         updatedDish.count = count
         print("dish id: \(updatedDish.id), updated count \(updatedDish.count)")
+
     }
 }
 
@@ -302,19 +302,6 @@ extension RestaurantViewController: DishViewControllerDelegate {
 
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        var dish = dishes[indexPath.item]
-        dish.isSelected.toggle()
-
-        if dish.isSelected {
-            if !selectedDishes.contains(where: {$0.id == dish.id}) {
-                selectedDishes.append(dish)
-            }
-        } else {
-            if let index = selectedDishes.firstIndex(where: {$0.id == dish.id}) {
-                selectedDishes.remove(at: index)
-            }
-        }
-
         let dishViewController = DishViewController()
         dishViewController.dish = dishes[indexPath.row]
         dishViewController.delegate = self
@@ -331,7 +318,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let section = sections[section]
+//        let section = sections[section]
         return dishes.count
     }
     
@@ -389,16 +376,20 @@ extension RestaurantViewController: UICollectionViewDataSource {
                 
             }
             return sectionHeader
-        } else {
-            return UICollectionReusableView()
         }
+
+        return UICollectionReusableView()
     }
 
     // MARK: - Actions
 
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = selectedDishes
+
+        basketViewController.selectedDishes = dishes.filter({ dish in
+            return dish.isSelected
+        })
+
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }

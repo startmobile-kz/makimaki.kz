@@ -20,5 +20,4 @@ struct DishResponseModel: Decodable {
     enum CodingKeys: String, CodingKey {
         case id, name, description, category, price, image
     }
-
 }
