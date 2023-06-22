@@ -8,7 +8,18 @@
 import UIKit
 import SnapKit
 
-final class SearchV1ViewController: UIViewController {
+final class SearchV1ViewController: UIViewController, SearchBarDelegate {
+    
+    var receivedData = ""
+    
+    func searchDelegate(word: String) {
+        self.receivedData = word
+    }
+
+    private var service = ProductsService()
+    public var products = [ProductModel]()
+    
+    public var filteredProducts = [ProductModel]()
     
     // MARK: - UI
     private lazy var searchBar: SearchBar = SearchBar()
@@ -32,6 +43,7 @@ final class SearchV1ViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        callbackService()
     }
     
     // MARK: - Setup Views
@@ -56,11 +68,20 @@ final class SearchV1ViewController: UIViewController {
             make.height.equalTo(150)
         }
     }
+    
+    private func callbackService() {
+        service.fetchProducts { product in
+            self.products = product
+            DispatchQueue.main.async { [weak self] in
+                self?.searchTableView.reloadData()
+            }
+        }
+    }
 }
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        6
+        return products.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -70,6 +91,14 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
         ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
+        cell.setupData(dish: products[indexPath.row])
         return cell
     }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField, reason: UITextField.DidEndEditingReason) {
+//        func filterResults() {
+//            filteredProducts = products.filter { $0.name.contains(where: {receivedData.contains($0)})}
+//            print(filteredProducts)
+//        }
+//    }
 }

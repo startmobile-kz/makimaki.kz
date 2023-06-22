@@ -30,7 +30,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     
     private lazy var productNameLabel: UILabel = {
        let label = UILabel()
-        label.text = "Medium Supremo Pizza"
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
         return label
@@ -38,7 +37,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     
     private lazy var priceLabel: UILabel = {
        let label = UILabel()
-        label.text = "14.40$"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         return label
@@ -84,4 +82,11 @@ final class SearchResultTableViewCell: UITableViewCell {
             make.height.equalTo(17)
         }
     }
+    
+    public func setupData(dish: ProductModel) {
+        productNameLabel.text = dish.name
+        priceLabel.text = "\(dish.price) ₸"
+        // let url = URL(string: dish.image ?? " ")
+    }
+    
 }

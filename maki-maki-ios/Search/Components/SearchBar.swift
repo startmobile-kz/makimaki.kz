@@ -8,10 +8,19 @@
 import UIKit
 import SnapKit
 
-final class SearchBar: UIView {
+protocol SearchBarDelegate: AnyObject {
+    
+    func searchDelegate(word: String)
+}
+
+final class SearchBar: UIView, UITextFieldDelegate {
+    
+    var delegate: SearchBarDelegate?
 
     // MARK: - UI Custom searchBar properties
     static let reuseID = String(describing: SearchBar.self)
+    
+    var dataToUseInSearch: String = ""
     
     private lazy var searchIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -28,6 +37,7 @@ final class SearchBar: UIView {
         textField.textColor = AppColor.heading.uiColor
         textField.leftViewMode = UITextField.ViewMode.always
         textField.layer.borderColor = AppColor.border.cgColor
+        textField.delegate = self
         return textField
     }()
     
@@ -66,4 +76,24 @@ final class SearchBar: UIView {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
         searchBarTextField.leftView = paddingView
     }
+    
+    func textField(_ textField: UITextField,
+                   shouldChangeCharactersIn range: NSRange,
+                   replacementString string: String) -> Bool {
+        var finalString = ""
+        if range.length > 0 {
+            finalString = "\(textField.text!.dropLast())"
+        } else {
+            
+            finalString = "\(textField.text! + string)"
+        }
+        print(finalString)
+        dataToUseInSearch = finalString
+        self.delegate?.searchDelegate(word: finalString)
+        return true
+    }
+    
+//    func textFieldDidEndEditing(_ textField: UITextField) {
+//        print(dataToUseInSearch)
+//    }
 }
