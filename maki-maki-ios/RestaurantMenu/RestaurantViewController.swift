@@ -89,14 +89,7 @@ final class RestaurantViewController: UIViewController {
         setupNavigationBar()
         setupNotificationObservers()
         calculateAllSectionHeights()
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.collectionView.stopSkeletonAnimation()
-            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
-            self?.collectionView.reloadData()
-            self?.viewCartContainerView.stopSkeletonAnimation()
-            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
-        }
+        hideSkeletons()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -157,6 +150,19 @@ final class RestaurantViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func hideSkeletons() {
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.collectionView.stopSkeletonAnimation()
+            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+            self?.collectionView.reloadData()
+            self?.viewCartContainerView.stopSkeletonAnimation()
+            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
+        }
     }
     
     // MARK: - Layout for Main Section Header
