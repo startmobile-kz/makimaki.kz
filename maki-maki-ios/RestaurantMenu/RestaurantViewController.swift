@@ -83,12 +83,12 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        callbackService()
+        fetchProducts()
     }
     
     // MARK: - Callback
     
-    private func callbackService() {
+    private func fetchProducts() {
         service.fetchProducts { dishes in
             self.dishes = dishes
             DispatchQueue.main.async { [weak self] in
@@ -291,6 +291,7 @@ final class RestaurantViewController: UIViewController {
 
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: DishResponseModel) {
+        collectionView.reloadData()
         collectionView.reloadData()
     }
 }
