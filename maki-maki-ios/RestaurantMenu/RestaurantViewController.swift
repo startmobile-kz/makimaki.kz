@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class RestaurantViewController: UIViewController {
     
@@ -18,6 +19,7 @@ final class RestaurantViewController: UIViewController {
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
+    private var isLoaded = false
     
     // MARK: - Enumeration for dish sections
     
@@ -36,7 +38,8 @@ final class RestaurantViewController: UIViewController {
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
-        let view = CategoryMenuView()
+        let view = CategoryMenuView(type: .stickyHeader)
+        view.isSkeletonable = true
         return view
     }()
     
@@ -51,7 +54,7 @@ final class RestaurantViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.isSkeletonable = true
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -73,8 +76,9 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var viewCartContainerView: UIView = {
-        let view = ViewCartConatiner()
+    private lazy var viewCartContainerView: ViewCartContainer = {
+        let view = ViewCartContainer()
+        view.isSkeletonable = true
         return view
     }()
     
@@ -88,6 +92,12 @@ final class RestaurantViewController: UIViewController {
         setupNavigationBar()
         setupNotificationObservers()
         calculateAllSectionHeights()
+        hideSkeletons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showSkeletonAnimation()
     }
     
     deinit {
@@ -136,12 +146,30 @@ final class RestaurantViewController: UIViewController {
     
     private func setupNavigationBar() {
         title = ""
-        self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
+    
+    private func hideSkeletons() {
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.isLoaded = true
+            self?.collectionView.stopSkeletonAnimation()
+            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+            self?.collectionView.reloadData()
+            self?.viewCartContainerView.stopSkeletonAnimation()
+            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
+        }
     }
     
     // MARK: - Layout for Main Section Header
@@ -219,7 +247,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if !isScrollToSectionCalled {
+        if isLoaded && !isScrollToSectionCalled {
             let yOffset = scrollView.contentOffset.y
             let heightOfOneRowOfItems: Double = 242
             let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
@@ -231,36 +259,35 @@ final class RestaurantViewController: UIViewController {
                 currentSection -= 1
                 sendNotification(section: currentSection)
             }
-        }
-        
-        var sticked = false
-        
-        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
-        
-        if scrollView.contentOffset.y > initialHeaderHeight {
-            if !sticked {
-                UIView.animate(withDuration: 0.1) { [weak self] in
-                    guard let self = self else {
-                        return
+            
+            var sticked = false
+            checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+            
+            if scrollView.contentOffset.y > initialHeaderHeight {
+                if !sticked {
+                    UIView.animate(withDuration: 0.1) { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.makeNavigationBarVisible()
+                        self.pinCategoriesReplacementViewToTheTop()
+                        self.categoriesReplacementView.bringSubviewToFront(self.view)
+                        self.view.layoutIfNeeded()
+                        sticked = true
                     }
-                    self.makeNavigationBarVisible()
-                    self.pinCategoriesReplacementViewToTheTop()
-                    self.categoriesReplacementView.bringSubviewToFront(self.view)
-                    self.view.layoutIfNeeded()
-                    sticked = true
                 }
             }
-        }
-        
-        if isScrollingUp {
-            if scrollView.contentOffset.y < initialHeaderHeight {
-                self.hideCategoriesReplacementView()
-                self.setupNavigationBar()
-                self.view.layoutIfNeeded()
-                sticked = false
+            
+            if isScrollingUp {
+                if scrollView.contentOffset.y < initialHeaderHeight {
+                    self.hideCategoriesReplacementView()
+                    self.setupNavigationBar()
+                    self.view.layoutIfNeeded()
+                    sticked = false
+                }
             }
+            lastContentOffsetY = scrollView.contentOffset.y
         }
-        lastContentOffsetY = scrollView.contentOffset.y
     }
     
     private func sendNotification(section: Int) {
@@ -438,5 +465,23 @@ extension RestaurantViewController: UICollectionViewDataSource {
         } else {
             return UICollectionReusableView()
         }
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension RestaurantViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return 8
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        return DishesCollectionViewCell.reuseID
     }
 }

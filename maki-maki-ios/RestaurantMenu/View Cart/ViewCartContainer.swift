@@ -7,8 +7,9 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
-final class ViewCartConatiner : UIView {
+final class ViewCartContainer : UIView {
     
     // MARK: - UI
     
@@ -22,6 +23,8 @@ final class ViewCartConatiner : UIView {
         let view = UIView()
         view.backgroundColor = AppColor.accent.uiColor
         view.layer.cornerRadius = 14
+        view.isSkeletonable = true
+        view.skeletonCornerRadius = 14
         return view
     }()
     

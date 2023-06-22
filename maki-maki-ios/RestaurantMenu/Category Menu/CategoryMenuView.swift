@@ -7,13 +7,21 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
+
+enum CategoryMenuViewType {
+    case collectionHeader
+    case stickyHeader
+}
 
 final class CategoryMenuView: UIView {
     
     // MARK: - State
     
+    private let type: CategoryMenuViewType
+    
     private var listCategory: [CategoryItem] = [
-        CategoryItem(title: "Most Popular", id: .mostPopular),
+        CategoryItem(title: "Most popular", id: .mostPopular),
         CategoryItem(title: "Pizza", id: .pizza),
         CategoryItem(title: "Sushi", id: .sushi),
         CategoryItem(title: "Rolls", id: .rolls),
@@ -60,8 +68,9 @@ final class CategoryMenuView: UIView {
     
     // MARK: - Lifecycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: CategoryMenuViewType) {
+        self.type = type
+        super.init(frame: .zero)
         
         setupViews()
         setupConstraints()
@@ -86,14 +95,18 @@ final class CategoryMenuView: UIView {
     private func setupViews() {
         backgroundColor = AppColor.background.uiColor
         addSubview(categoryCollectionView)
+        isSkeletonable = true
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        let leadingOffset = (type == .collectionHeader) ? -16 : 0
+        
         categoryCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(leadingOffset)
+            make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
     }

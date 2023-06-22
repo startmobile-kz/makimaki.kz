@@ -14,6 +14,7 @@ target 'maki-maki-ios' do
   pod 'CHIOTPField', '0.1.0'
   pod 'Moya', '15.0'
   pod 'SnackBar.swift'
+  pod 'SkeletonView'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
