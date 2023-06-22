@@ -73,8 +73,9 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var viewCartContainerView: UIView = {
-        let view = ViewCartConatiner()
+    private lazy var viewCartContainerView: ViewCartContainer = {
+        let view = ViewCartContainer()
+        view.isSkeletonable = true
         return view
     }()
     
@@ -93,12 +94,15 @@ final class RestaurantViewController: UIViewController {
             self?.collectionView.stopSkeletonAnimation()
             self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
             self?.collectionView.reloadData()
+            self?.viewCartContainerView.stopSkeletonAnimation()
+            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
         }
     }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     deinit {
@@ -110,7 +114,6 @@ final class RestaurantViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([collectionView, categoriesReplacementView, viewCartContainerView])
-//        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = fal
     }
     
     // MARK: - SetupConstraints
