@@ -15,10 +15,6 @@ protocol SearchContainerViewDelegate: AnyObject {
 final class SearchContainerView: UIView {
     
     var delegate: SearchContainerViewDelegate?
-
-    // MARK: - UI Custom searchBar properties
-
-    var dataToUseInSearch: String = ""
     
     private lazy var searchIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -82,7 +78,7 @@ extension SearchContainerView: UITextFieldDelegate {
                    replacementString string: String) -> Bool {
 
         if let searchedText = textField.text {
-                delegate?.searchCompleted(word: searchedText)
+            delegate?.searchCompleted(word: searchedText)
         }
 
         return true

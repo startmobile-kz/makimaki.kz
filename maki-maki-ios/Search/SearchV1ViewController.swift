@@ -11,7 +11,7 @@ import SnapKit
 final class SearchV1ViewController: UIViewController {
 
     private var service = ProductsService()
-    public var products = [ProductModel]()
+    private var products = [ProductModel]()
 
     var filteredProducts = [ProductModel]() {
         didSet {
@@ -28,7 +28,6 @@ final class SearchV1ViewController: UIViewController {
                            forCellReuseIdentifier: SearchResultTableViewCell.reuseID)
         tableView.register(RecentSearchesTableViewCell.self,
                            forCellReuseIdentifier: RecentSearchesTableViewCell.reuseID)
-        //  Here need to make logic, when table view decides which cell to display
         tableView.rowHeight = 66
         tableView.dataSource = self
         tableView.delegate = self
@@ -62,18 +61,18 @@ final class SearchV1ViewController: UIViewController {
             make.height.equalTo(48)
         }
         
-        searchTableView.snp.makeConstraints { make in
-            make.top.equalTo(searchContainerView.snp.bottom).offset(16)
-            make.leading.trailing.bottom.equalToSuperview()
-            make.height.equalTo(150)
+        searchTableView.snp.makeConstraints {
+            $0.top.equalTo(searchContainerView.snp.bottom).offset(16)
+            $0.leading.trailing.bottom.equalToSuperview()
+            $0.height.equalTo(150)
         }
     }
     
     private func fetchProducts() {
-        service.fetchProducts { product in
+        service.fetchProducts { products in
             DispatchQueue.main.async { [weak self] in
-                self?.products = product
-                self?.filteredProducts = product
+                self?.products = products
+                self?.filteredProducts = products
                 self?.searchTableView.reloadData()
             }
         }
@@ -106,8 +105,8 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension SearchV1ViewController: SearchContainerViewDelegate {
     func searchCompleted(word: String) {
-        filteredProducts = products.filter({ product in
-            product.name.lowercased().contains(word.lowercased())
-        })
+        filteredProducts = products.filter {
+            $0.name.lowercased().contains(word.lowercased())
+        }
     }
 }
