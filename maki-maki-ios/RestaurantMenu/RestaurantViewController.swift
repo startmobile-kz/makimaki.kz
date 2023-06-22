@@ -17,6 +17,7 @@ final class RestaurantViewController: UIViewController {
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private var isLoaded = false
     
     // MARK: - Enumeration for dish sections
     
@@ -161,6 +162,7 @@ final class RestaurantViewController: UIViewController {
     private func hideSkeletons() {
         collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.isLoaded = true
             self?.collectionView.stopSkeletonAnimation()
             self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
             self?.collectionView.reloadData()
@@ -244,45 +246,48 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let yOffset = scrollView.contentOffset.y
-        let heightOfOneRowOfItems: Double = 242
-        let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-        if yOffset >= heights[currentSection] - safeTopInsetHeight {
-            currentSection += 1
-            sendNotification(section: currentSection)
-        } else if currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
-            currentSection -= 1
-            sendNotification(section: currentSection)
-        }
-        
-        var sticked = false
-        
-        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
-        
-       if scrollView.contentOffset.y > initialHeaderHeight {
-            if !sticked {
-                UIView.animate(withDuration: 0.1) { [weak self] in
-                    guard let self = self else {
-                        return
+        if isLoaded {
+            let yOffset = scrollView.contentOffset.y
+            let heightOfOneRowOfItems: Double = 242
+            let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+            if yOffset >= heights[currentSection] - safeTopInsetHeight {
+                currentSection += 1
+                sendNotification(section: currentSection)
+            } else if
+                currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                currentSection -= 1
+                sendNotification(section: currentSection)
+            }
+            
+            var sticked = false
+            
+            checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+            
+           if scrollView.contentOffset.y > initialHeaderHeight {
+                if !sticked {
+                    UIView.animate(withDuration: 0.1) { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.makeNavigationBarVisible()
+                        self.pinCategoriesReplacementViewToTheTop()
+                        self.categoriesReplacementView.bringSubviewToFront(self.view)
+                        self.view.layoutIfNeeded()
+                        sticked = true
                     }
-                    self.makeNavigationBarVisible()
-                    self.pinCategoriesReplacementViewToTheTop()
-                    self.categoriesReplacementView.bringSubviewToFront(self.view)
-                    self.view.layoutIfNeeded()
-                    sticked = true
                 }
             }
-        }
-        
-        if isScrollingUp {
-            if scrollView.contentOffset.y < initialHeaderHeight {
-                self.hideCategoriesReplacementView()
-                self.setupNavigationBar()
-                self.view.layoutIfNeeded()
-                sticked = false
+            
+            if isScrollingUp {
+                if scrollView.contentOffset.y < initialHeaderHeight {
+                    self.hideCategoriesReplacementView()
+                    self.setupNavigationBar()
+                    self.view.layoutIfNeeded()
+                    sticked = false
+                }
             }
+            lastContentOffsetY = scrollView.contentOffset.y
         }
-        lastContentOffsetY = scrollView.contentOffset.y
     }
     
     private func sendNotification(section: Int) {
@@ -455,7 +460,7 @@ extension RestaurantViewController: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         numberOfItemsInSection section: Int
     ) -> Int {
-        return 5
+        return 6
     }
     
     func collectionSkeletonView(
