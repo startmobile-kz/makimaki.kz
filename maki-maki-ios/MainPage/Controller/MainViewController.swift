@@ -60,12 +60,7 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
-        CategoryService().fetchCategory { categories in
-            self.categories = categories
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
-            }
-        }
+        FetchCategory()
     }
     
     // MARK: - Setup Views
@@ -103,6 +98,17 @@ final class MainViewController: UIViewController {
                 return self?.promoSectionLayout()
             case .restaurants:
                 return self?.restaurantSectionLayout()
+            }
+        }
+    }
+    
+    // MARK: - FetchCategory
+    
+    private func FetchCategory() {
+        CategoryService().fetchCategory { categories in
+            self.categories = categories
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
     }
