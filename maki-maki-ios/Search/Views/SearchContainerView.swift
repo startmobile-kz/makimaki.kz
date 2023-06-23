@@ -85,11 +85,24 @@ extension SearchContainerView: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-
-        if let searchedText = textField.text {
-            delegate?.searchCompleted(word: searchedText)
-            print(searchedText)
-        }
-        return true
+        // Get the current text in the text field
+            if let currentText = textField.text,
+                let textRange = Range(range, in: currentText) {
+                
+                // Create the updated text string
+                let updatedText = currentText.replacingCharacters(in: textRange, with: string)
+                
+                if !updatedText.isEmpty {
+                    delegate?.searchCompleted(word: updatedText)
+                    print("Searched text:", updatedText)
+                } else {
+                    // Handle the case when the text is empty
+                    // This could be the deletion of the last character
+                    delegate?.searchCompleted(word: "")
+                    print("Searched text: (empty)")
+                }
+            }
+            
+            return true
     }
 }
