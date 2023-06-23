@@ -55,7 +55,7 @@ final class DishViewController: UIViewController {
     }()
     
     private lazy var stepperView: StepperView = {
-        let stepper = StepperView()
+        let stepper = StepperView(count: dish?.count ?? 1)
         stepper.contentMode = .scaleAspectFill
         stepper.clipsToBounds = true
         stepper.layer.cornerRadius = 14
