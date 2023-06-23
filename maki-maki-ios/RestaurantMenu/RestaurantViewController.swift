@@ -292,7 +292,6 @@ final class RestaurantViewController: UIViewController {
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: DishResponseModel) {
         collectionView.reloadData()
-        collectionView.reloadData()
     }
 }
 
