@@ -60,6 +60,12 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
+        CategoryService().fetchCategory { categories in
+            self.categories = categories
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
+            }
+        }
     }
     
     // MARK: - Setup Views

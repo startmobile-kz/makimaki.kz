@@ -10,9 +10,8 @@ import Foundation
 class CategoryService {
     
     private var urlSession = URLSession.shared
-    var category: [CategoryModel] = []
     
-    func fetchCategory() {
+    func fetchCategory(completion: @escaping ([CategoryModel]) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/categories"
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
@@ -24,12 +23,11 @@ class CategoryService {
             }
             
             do {
-                let category = try JSONDecoder().decode([CategoryModel].self, from: data)
-                DispatchQueue.main.async { [weak self] in
-                    self?.category = category
-                }
+                let categories = try JSONDecoder().decode([CategoryModel].self, from: data)
+                completion(categories)
             } catch let error {
                 print("Error:\(error.localizedDescription)")
+                completion([])
             }
         }
         )
