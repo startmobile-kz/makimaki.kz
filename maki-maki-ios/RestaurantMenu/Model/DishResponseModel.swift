@@ -15,7 +15,7 @@ class DishResponseModel: Decodable {
     let price: Int
     let image: String?
     var isSelected: Bool = false
-    var count: Int = 1
+    var count: Int = 0
     
     enum CodingKeys: String, CodingKey {
         case id, name, description, category, price, image
