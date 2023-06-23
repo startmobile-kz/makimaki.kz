@@ -17,11 +17,16 @@ final class DishViewController: UIViewController {
     // MARK: - State
 
     var dish: DishResponseModel?
-    var count = 1
+    var count = 1 {
+        didSet {
+            orderPrice.text = "\((dish?.price ?? 0) * count) ₸"
+        }
+    }
 
     // MARK: - Delegate
     
     weak var delegate: DishViewControllerDelegate?
+    
     // MARK: - UI
     
     private lazy var dishImageView: UIImageView = {
@@ -34,7 +39,6 @@ final class DishViewController: UIViewController {
     
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Medium Supremo Pizza"
         label.textAlignment = .left
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.bold.s24()
@@ -43,7 +47,6 @@ final class DishViewController: UIViewController {
     
     private lazy var descriptionLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pepperoni, mushrooms, salami, onions, bell peppers, sausage, and olives."
         label.textAlignment = .left
         label.numberOfLines = 0
         label.textColor = AppColor.paragraph.uiColor
@@ -52,7 +55,7 @@ final class DishViewController: UIViewController {
     }()
     
     private lazy var stepperView: StepperView = {
-        let stepper = StepperView()
+        let stepper = StepperView(count: dish?.count ?? 1)
         stepper.contentMode = .scaleAspectFill
         stepper.clipsToBounds = true
         stepper.layer.cornerRadius = 14
