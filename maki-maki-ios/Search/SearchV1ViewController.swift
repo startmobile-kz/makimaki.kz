@@ -12,7 +12,8 @@ final class SearchV1ViewController: UIViewController {
 
     private var service = ProductsService()
     private var products = [ProductModel]()
-
+    private var searchTextFieldIsTapped = true
+    
     var filteredProducts = [ProductModel]() {
         didSet {
             self.searchTableView.reloadData()
@@ -28,7 +29,6 @@ final class SearchV1ViewController: UIViewController {
                            forCellReuseIdentifier: SearchResultTableViewCell.reuseID)
         tableView.register(RecentSearchesTableViewCell.self,
                            forCellReuseIdentifier: RecentSearchesTableViewCell.reuseID)
-        tableView.rowHeight = 66
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -41,7 +41,7 @@ final class SearchV1ViewController: UIViewController {
         setupViews()
         setupConstraints()
         fetchProducts()
-
+        searchTextFieldIsTapped = false
         searchContainerView.delegate = self
     }
     
@@ -81,18 +81,36 @@ final class SearchV1ViewController: UIViewController {
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredProducts.count
+        
+        if searchTextFieldIsTapped == false {
+            searchTableView.rowHeight = 40
+            return 6
+        } else {
+            searchTableView.rowHeight = 66
+            return filteredProducts.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(
-            withIdentifier: SearchResultTableViewCell.reuseID,
-            for: indexPath
-        ) as? SearchResultTableViewCell else {
-            fatalError("recent not found")
+        
+        if searchTextFieldIsTapped == false {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: RecentSearchesTableViewCell.reuseID,
+                for: indexPath
+            ) as? RecentSearchesTableViewCell else {
+                fatalError("recent not found")
+            }
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(
+                withIdentifier: SearchResultTableViewCell.reuseID,
+                for: indexPath
+            ) as? SearchResultTableViewCell else {
+                fatalError("recent not found")
+            }
+            cell.setupData(dish: filteredProducts[indexPath.row])
+            return cell
         }
-        cell.setupData(dish: filteredProducts[indexPath.row])
-        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
@@ -104,9 +122,21 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
 // MARK: - SearchContainerViewDelegate
 
 extension SearchV1ViewController: SearchContainerViewDelegate {
+    func textFieldIsTapped(state: Bool) {
+        searchTextFieldIsTapped = state
+        searchTableView.reloadData()
+    }
+    
     func searchCompleted(word: String) {
-        filteredProducts = products.filter {
-            $0.name.lowercased().contains(word.lowercased())
+        
+        if word == "" {
+            filteredProducts = products
+            searchTableView.reloadData()
+            print("EMPTY")
+        } else {
+            filteredProducts = products.filter {
+                $0.name.lowercased().contains(word.lowercased())
+            }
         }
     }
 }

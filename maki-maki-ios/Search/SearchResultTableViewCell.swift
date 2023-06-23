@@ -30,14 +30,16 @@ final class SearchResultTableViewCell: UITableViewCell {
     }()
     
     private lazy var productNameLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
-       let label = UILabel()
+        let label = UILabel()
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         return label
