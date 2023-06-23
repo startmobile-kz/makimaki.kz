@@ -17,7 +17,11 @@ final class DishViewController: UIViewController {
     // MARK: - State
 
     var dish: DishResponseModel?
-    var count = 1
+    var count = 1 {
+        didSet {
+            orderPrice.text = "\((dish?.price ?? 0) * count) ₸"
+        }
+    }
 
     // MARK: - Delegate
     
