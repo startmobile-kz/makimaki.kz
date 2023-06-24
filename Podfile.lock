@@ -9,7 +9,7 @@ PODS:
   - CHIOTPField/One (0.1.0)
   - CHIOTPField/Three (0.1.0)
   - CHIOTPField/Two (0.1.0)
-  - FirebaseCore (10.11.0):
+  - FirebaseCore (10.12.0):
     - FirebaseCoreInternal (~> 10.0)
     - GoogleUtilities/Environment (~> 7.8)
     - GoogleUtilities/Logger (~> 7.8)
@@ -22,10 +22,12 @@ PODS:
   - "GoogleUtilities/NSData+zlib (7.11.1)"
   - InputMask (6.1.0)
   - IQKeyboardManager (6.5.0)
+  - Kingfisher (7.7.0)
   - Moya (15.0.0):
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - ProgressHUD (13.6.2)
   - PromisesObjC (2.2.0)
   - SkeletonView (1.30.4)
   - SkyFloatingLabelTextField (3.8.0)
@@ -39,7 +41,9 @@ DEPENDENCIES:
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - InputMask (= 6.1.0)
   - IQKeyboardManager (= 6.5.0)
+  - Kingfisher (= 7.7.0)
   - Moya (= 15.0)
+  - ProgressHUD
   - SkeletonView
   - SkyFloatingLabelTextField (= 3.8.0)
   - SnackBar.swift
@@ -54,7 +58,9 @@ SPEC REPOS:
     - GoogleUtilities
     - InputMask
     - IQKeyboardManager
+    - Kingfisher
     - Moya
+    - ProgressHUD
     - PromisesObjC
     - SkeletonView
     - SkyFloatingLabelTextField
@@ -69,18 +75,20 @@ EXTERNAL SOURCES:
 
 CHECKOUT OPTIONS:
   FirebaseCore:
-    :commit: f2194c8a3c675551746fa4d8b80cd735e8c5f487
+    :commit: 1ef1ea2fb3e70a77c373adbf5fbc0a31c9ee8db7
     :git: https://github.com/firebase/firebase-ios-sdk.git
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
   CHIOTPField: 5df19b433ccfad2a80e944d3abde128a236aaf01
-  FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
+  FirebaseCore: f86a1394906b97ac445ae49c92552a9425831bed
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
   GoogleUtilities: 9aa0ad5a7bc171f8bae016300bfcfa3fb8425749
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
+  Kingfisher: f043ac666dfc96c1f37604f93effb45a7ee3a3e1
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ProgressHUD: 355915c8f033e626788fa9b0d99d06e8691595ab
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SkeletonView: 5a050f6411e697abd4cda0a8d767013399dccd69
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
@@ -88,6 +96,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 47555fe62d79b5b5e467acdacb80926828e46474
+PODFILE CHECKSUM: 7343c5b197fa79187f35f76e28049c767603aa3c
 
 COCOAPODS: 1.12.1

@@ -15,6 +15,8 @@ target 'maki-maki-ios' do
   pod 'Moya', '15.0'
   pod 'SnackBar.swift'
   pod 'SkeletonView'
+  pod 'Kingfisher', '7.7.0'
+  pod 'ProgressHUD'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
