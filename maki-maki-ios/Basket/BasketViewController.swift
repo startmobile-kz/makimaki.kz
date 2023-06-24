@@ -7,14 +7,18 @@
 
 import UIKit
 import SnapKit
+import ProgressHUD
 
 final class BasketViewController: UIViewController {
-    
     // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "basketCell")
+        tableView.register(BasketTableViewCell.self,
+                           forCellReuseIdentifier: BasketTableViewCell.reuseIdentifier)
+        tableView.register(DeliveryFooterView.self,
+                           forHeaderFooterViewReuseIdentifier: DeliveryFooterView.reuseIdentifier)
+
         tableView.rowHeight = 119
         tableView.dataSource = self
         tableView.delegate = self
@@ -34,6 +38,7 @@ final class BasketViewController: UIViewController {
         setupViews()
         setupConstrains()
         setupNavigationBar()
+        configureContainerView()
     }
 
     // MARK: - Setup Navigation Bar
@@ -46,10 +51,16 @@ final class BasketViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
+        let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120)
+        orderTableView.tableFooterView = DeliveryFooterView(frame: footerViewSize)
         
         [orderTableView, checkoutContainerView].forEach {
             view.addSubview($0)
         }
+
+        checkoutContainerView.checkoutButton.addTarget(self,
+                                                       action: #selector(createOrder),
+                                                       for: .touchUpInside)
     }
     
     // MARK: - Setup Constrains
@@ -68,6 +79,33 @@ final class BasketViewController: UIViewController {
         }
     }
 
+    // MARK: - Network
+    @objc
+    private func createOrder() {
+        ProgressHUD.show("Loading...", interaction: false)
+        let service = BasketService()
+        let basket = Basket(full_name: "Разработчик тестирует заказ",
+                            phone: "77082020155",
+                            address: "Разработчик тестирует заказ",
+                            promo_code: "BURGER",
+                            basket: [ "6": 1, "17": 2, "23": 4],
+                            code: "8146",
+                            uuid: "151eb4a0-ff99-4482-90d2-c4e7c77810dc",
+                            comment: "Разработчик тестирует заказ")
+        service.createOrder(with: basket) { isSucess in
+            if isSucess {
+                ProgressHUD.dismiss()
+            } else {
+                ProgressHUD.showFailed("Please retry...")
+            }
+        }
+    }
+
+    private func configureContainerView() {
+//    https://stackoverflow.com/questions/24795130/finding-sum-of-elements-in-swift-array
+//        let totalSum = selectedProucts
+        checkoutContainerView.setup(with: 2300)
+    }
 }
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
@@ -76,17 +114,8 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 4 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath)
-                    as? DeliveryTableViewCell else {
-                fatalError("deliveryCell not found")
-            }
-
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            return cell
-        }
-        
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.reuseIdentifier,
+                                                       for: indexPath)
                 as? BasketTableViewCell else {
             fatalError("basketCell not found")
         }
@@ -96,17 +125,17 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.navigationController?.popViewController(animated: true)
+        //        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
 
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = DeliveryTableViewCell()
-        footerView.backgroundColor = AppColor.background.uiColor
-        return footerView
-    }
+    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+    //        let footerView = DeliveryFooterView()
+    //        footerView.backgroundColor = AppColor.background.uiColor
+    //        return footerView
+    //    }
     
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 119
-    }
+    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+    //        return 119
+    //    }
 }

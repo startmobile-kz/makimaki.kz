@@ -26,6 +26,7 @@ PODS:
     - Moya/Core (= 15.0.0)
   - Moya/Core (15.0.0):
     - Alamofire (~> 5.0)
+  - ProgressHUD (13.6.2)
   - PromisesObjC (2.2.0)
   - SkyFloatingLabelTextField (3.8.0)
   - SnackBar.swift (0.1.0):
@@ -39,6 +40,7 @@ DEPENDENCIES:
   - InputMask (= 6.1.0)
   - IQKeyboardManager (= 6.5.0)
   - Moya (= 15.0)
+  - ProgressHUD (= 13.6.2)
   - SkyFloatingLabelTextField (= 3.8.0)
   - SnackBar.swift
   - SnapKit (= 5.6.0)
@@ -53,6 +55,7 @@ SPEC REPOS:
     - InputMask
     - IQKeyboardManager
     - Moya
+    - ProgressHUD
     - PromisesObjC
     - SkyFloatingLabelTextField
     - SnackBar.swift
@@ -78,12 +81,13 @@ SPEC CHECKSUMS:
   InputMask: 71d291dc54d2deaeac6512afb6ec2304228c0bb7
   IQKeyboardManager: 700e5155d6a292383b54e8678aec769e14fc78fc
   Moya: 138f0573e53411fb3dc17016add0b748dfbd78ee
+  ProgressHUD: 355915c8f033e626788fa9b0d99d06e8691595ab
   PromisesObjC: 09985d6d70fbe7878040aa746d78236e6946d2ef
   SkyFloatingLabelTextField: 5a338412114808e961fe2d14ea2c5452c8b6e4aa
   SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: c186ad1bb4793fbeb2f91845348e6a9116c27a0e
+PODFILE CHECKSUM: aefc4b37a4a51e5bf6adf17d0e2ab2ff2f247e20
 
 COCOAPODS: 1.12.1

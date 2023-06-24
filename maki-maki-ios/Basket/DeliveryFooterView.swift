@@ -1,5 +1,5 @@
 //
-//  DeliveryTableViewCell.swift
+//  DeliveryFooterView.swift
 //  maki-maki-ios
 //
 //  Created by Александр Козлов on 01.06.2023.
@@ -8,8 +8,10 @@
 import UIKit
 import SnapKit
 
-final class DeliveryTableViewCell: UITableViewCell {
-    
+final class DeliveryFooterView: UITableViewHeaderFooterView {
+
+    public static let reuseIdentifier = String(describing: DeliveryFooterView.self)
+
     // MARK: - UI
     
     private lazy var courierBackgroundImageView: UIImageView = {
@@ -42,12 +44,13 @@ final class DeliveryTableViewCell: UITableViewCell {
     }()
 
     // MARK: - LifeCycle
-    
-    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
-        super.init(style: style, reuseIdentifier: reuseIdentifier)
-        
+
+    override init(reuseIdentifier: String?) {
+        super.init(reuseIdentifier: reuseIdentifier)
+
         setupViews()
         setupConstaints()
+
     }
     
     required init?(coder: NSCoder) {

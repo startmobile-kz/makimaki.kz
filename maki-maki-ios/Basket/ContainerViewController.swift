@@ -34,7 +34,7 @@ class ContainerView: UIView {
         return label
     }()
     
-    private lazy var checkoutButton: UIButton = {
+    public lazy var checkoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
@@ -107,5 +107,12 @@ class ContainerView: UIView {
             make.trailing.equalTo(checkoutButton.snp.trailing).offset(-16)
             make.centerY.equalTo(checkoutButton)
         }
+    }
+
+    // MARK: - Public
+
+    public func setup(with totalSum: Int) {
+        priceLabel.text = "\(totalSum)"
+        checkoutPriceLabel.text = "\(totalSum)"
     }
 }

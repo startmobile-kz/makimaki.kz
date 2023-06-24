@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 final class BasketTableViewCell: UITableViewCell {
+    
+    public static let reuseIdentifier = String(describing: BasketTableViewCell.self)
+
     // MARK: - UI
     
     private lazy var productImageView: UIImageView = {
