@@ -7,13 +7,21 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
+
+enum CategoryMenuViewType {
+    case collectionHeader
+    case stickyHeader
+}
 
 final class CategoryMenuView: UIView {
     
     // MARK: - State
     
+    private let type: CategoryMenuViewType
+    
     private var listCategory: [CategoryItem] = [
-        CategoryItem(title: "Most Popular", id: .mostPopular),
+        CategoryItem(title: "Most popular", id: .mostPopular),
         CategoryItem(title: "Pizza", id: .pizza),
         CategoryItem(title: "Sushi", id: .sushi),
         CategoryItem(title: "Rolls", id: .rolls),
@@ -25,6 +33,8 @@ final class CategoryMenuView: UIView {
         CategoryItem(title: "French Fries", id: .frenchFries),
         CategoryItem(title: "Cold Drinks", id: .coldDrinks)
     ]
+    
+    static let notificationName = Notification.Name("categoriesItemSelected")
     
     // MARK: - UI
     
@@ -58,16 +68,22 @@ final class CategoryMenuView: UIView {
     
     // MARK: - Lifecycle
     
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+    init(type: CategoryMenuViewType) {
+        self.type = type
+        super.init(frame: .zero)
         
         setupViews()
         setupConstraints()
         setupCollection()
+        setupNotificationObservers()
     }
     
     required init?(coder aDecoder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     override var intrinsicContentSize: CGSize {
@@ -79,16 +95,38 @@ final class CategoryMenuView: UIView {
     private func setupViews() {
         backgroundColor = AppColor.background.uiColor
         addSubview(categoryCollectionView)
+        isSkeletonable = true
     }
     
     // MARK: - SetupConstraints
     
     private func setupConstraints() {
+        let leadingOffset = (type == .collectionHeader) ? -16 : 0
+        
         categoryCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
-            make.leading.trailing.equalToSuperview()
+            make.leading.equalToSuperview().offset(leadingOffset)
+            make.trailing.equalToSuperview()
             make.height.equalTo(40)
         }
+    }
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToCategory),
+            name: RestaurantViewController.notificationName,
+            object: nil
+        )
+    }
+    
+    @objc func scrollToCategory(_ notification: Notification) {
+        let categoryIndex = notification.userInfo?["categoryIndex"] as? Int ?? 0
+        categoryCollectionView.selectItem(
+            at: IndexPath(row: categoryIndex, section: 0),
+                   animated: true,
+                   scrollPosition: .centeredHorizontally
+        )
     }
 }
 
@@ -117,7 +155,12 @@ extension CategoryMenuView: UICollectionViewDataSource {
 extension CategoryMenuView: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        collectionView.scrollToItem(at: indexPath, at: .centeredHorizontally, animated: true)
+        let userInfo = ["sectionIndex": indexPath.row]
+        NotificationCenter.default.post(
+            name: CategoryMenuView.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
     }
 }
 
