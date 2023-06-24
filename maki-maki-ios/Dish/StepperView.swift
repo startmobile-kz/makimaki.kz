@@ -50,14 +50,6 @@ final class StepperView: UIControl {
     
     // MARK: - Lifecycle
     
-    init(count: Int) {
-        super.init(frame: .zero)
-        currentStepValueLabel.text = String(count)
-        currentValue = count
-        setupViews()
-        setupConstraints()
-    }
-    
     override init(frame: CGRect) {
         super.init(frame: frame)
         

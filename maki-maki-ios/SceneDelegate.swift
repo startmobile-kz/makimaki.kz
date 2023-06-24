@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = Main2TabBarController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: RestaurantViewController())
+                    UINavigationController(rootViewController: WelcomePageVerOneViewController())
             }
             
             self.window = window
