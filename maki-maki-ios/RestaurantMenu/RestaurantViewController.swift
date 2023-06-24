@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 import SkeletonView
 
+// swiftlint:disable all
 final class RestaurantViewController: UIViewController {
     
     // MARK: - State
@@ -24,6 +25,10 @@ final class RestaurantViewController: UIViewController {
     private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
     private var isLoaded = false
+    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
+    private var currentSection = 0
+    private var heights: [Double] = []
+    static let notificationName = Notification.Name("scrolledToSection")
     
     // MARK: - Enumeration for dish sections
     
@@ -32,13 +37,6 @@ final class RestaurantViewController: UIViewController {
                                                 .sandwichs, .kebab, .salads,
                                                 .frenchFries, .coldDrinks]
     
-    // MARK: - Properties
-    
-    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
-    private var currentSection = 0
-    private var heights: [Double] = []
-    static let notificationName = Notification.Name("scrolledToSection")
-
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
@@ -73,7 +71,6 @@ final class RestaurantViewController: UIViewController {
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
             withReuseIdentifier: DishSectionHeaderView.reuseId
         )
-        
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.bounces = false
@@ -81,12 +78,12 @@ final class RestaurantViewController: UIViewController {
     }()
     
     private lazy var viewCartContainerView: UIView = {
+        let view = ViewCartContainer()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
-        let view = ViewCartConatiner()
         view.addGestureRecognizer(tap)
         view.isSkeletonable = true
         return view
-    }
+    }()
 
     // MARK: - Lifecycle
     
@@ -209,16 +206,13 @@ final class RestaurantViewController: UIViewController {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
             // Item
             let sectionType = self.sections[sectionIndex]
-            
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
                     heightDimension: .fractionalHeight(1)
                 )
             )
-
             item.contentInsets.trailing = 14
-            
             // Group
             let group = NSCollectionLayoutGroup.horizontal(
                 layoutSize: NSCollectionLayoutSize(
@@ -227,7 +221,6 @@ final class RestaurantViewController: UIViewController {
                 ),
               subitems: [item]
             )
-            
             // Section
             let section = NSCollectionLayoutSection(group: group)
             section.contentInsets = NSDirectionalEdgeInsets(
@@ -237,14 +230,12 @@ final class RestaurantViewController: UIViewController {
                 trailing: 0
             )
             section.interGroupSpacing = 14
-            
             switch sectionType {
             case .mostPopular:
                 section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
             default:
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
             }
-            
             return section
         }
     }
@@ -280,7 +271,6 @@ final class RestaurantViewController: UIViewController {
             
             var sticked = false
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
-            
             if scrollView.contentOffset.y > initialHeaderHeight {
                 if !sticked {
                     UIView.animate(withDuration: 0.1) { [weak self] in
@@ -295,7 +285,6 @@ final class RestaurantViewController: UIViewController {
                     }
                 }
             }
-            
             if isScrollingUp {
                 if scrollView.contentOffset.y < initialHeaderHeight {
                     self.hideCategoriesReplacementView()
@@ -321,7 +310,6 @@ final class RestaurantViewController: UIViewController {
         let itemHeight: Double = 242
         let spacingBetweenItems: Double = 14
         let heightOfBottomInsetOfSections: Double = 16
-        
         for sectionIndex in 0..<sections.count {
             let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
             let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
@@ -333,7 +321,6 @@ final class RestaurantViewController: UIViewController {
             if sectionIndex > 0 {
                 neededHeightForChangingSection += heights[sectionIndex - 1]
             }
-            
             heights.append(neededHeightForChangingSection)
         }
     }
@@ -350,7 +337,6 @@ final class RestaurantViewController: UIViewController {
             } else {
                 neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
             }
-            
             collectionView.setContentOffset(
                 CGPoint(x: 0, y: neededHeight),
                 animated: true
@@ -358,10 +344,17 @@ final class RestaurantViewController: UIViewController {
             currentSection = sectionIndex
             sendNotification(section: sectionIndex)
         }
-        
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.isScrollToSectionCalled = false
         }
+    }
+    
+    @objc private func openBasket() {
+        let basketViewController = BasketViewController()
+        basketViewController.selectedDishes = dishes.filter({ dish in
+            return dish.isSelected
+        })
+        self.navigationController?.pushViewController(basketViewController, animated: true)
     }
     
     private func hideCategoriesReplacementView() {
@@ -409,7 +402,7 @@ final class RestaurantViewController: UIViewController {
     }
     
 }
-
+// swiftlint:enable all
 // MARK: - DishViewControllerDelegate methods
 
 extension RestaurantViewController: DishViewControllerDelegate {
@@ -441,8 +434,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
         return dishes.count
     }
     
-    func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
-    ) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView,
+                        cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: DishesCollectionViewCell.reuseID,
             for: indexPath) as? DishesCollectionViewCell else {
@@ -455,8 +448,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     
     func collectionView(
         _ collectionView: UICollectionView,
-        viewForSupplementaryElementOfKind kind: String,
-        at indexPath: IndexPath
+        viewForSupplementaryElementOfKind kind: String,at indexPath: IndexPath
     ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
@@ -466,7 +458,6 @@ extension RestaurantViewController: UICollectionViewDataSource {
             ) as? DishSectionHeaderView else {
                 fatalError("Could not cast to DishSectionHeaderView")
             }
-            
             let section = sections[indexPath.section]
             switch section {
             case .mostPopular:
@@ -480,49 +471,26 @@ extension RestaurantViewController: UICollectionViewDataSource {
                 return mainHeader
             case .pizza:
                 sectionHeader.setSectionHeaderTitle(title: "Classic Pizza")
-                
             case .sushi:
                 sectionHeader.setSectionHeaderTitle(title: "Sushi")
-                
             case .rolls:
                 sectionHeader.setSectionHeaderTitle(title: "Rolls")
-                
             case .burgers:
                 sectionHeader.setSectionHeaderTitle(title: "Burgers")
-            
             default :
                 sectionHeader.setSectionHeaderTitle(title: "Default name")
-                
             }
             return sectionHeader
         }
-
         return UICollectionReusableView()
     }
-
-    // MARK: - Actions
-
-    @objc private func openBasket() {
-        let basketViewController = BasketViewController()
-
-        basketViewController.selectedDishes = dishes.filter({ dish in
-            return dish.isSelected
-        })
-
-        self.navigationController?.pushViewController(basketViewController, animated: true)
-    }
 }
-
 // MARK: - SkeletonCollectionViewDataSource
-
 extension RestaurantViewController: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(
-        _ skeletonView: UICollectionView,
-        numberOfItemsInSection section: Int
-    ) -> Int {
+    func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
+    -> Int {
         return 8
     }
-    
     func collectionSkeletonView(
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
