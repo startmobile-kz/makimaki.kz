@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+// MARK: - Search Container View protocol
 protocol SearchContainerViewDelegate: AnyObject {
     func textFieldIsTapped(state: Bool)
     func searchCompleted(word: String)
@@ -34,6 +35,7 @@ final class SearchContainerView: UIView {
         textField.layer.borderColor = AppColor.border.cgColor
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
+        textField.returnKeyType = .done
         textField.addTarget(self, action: #selector(textFieldTapped), for: .touchDown)
         return textField
     }()
@@ -75,6 +77,7 @@ final class SearchContainerView: UIView {
     }
 }
 
+// MARK: - Search Container View delegate methods
 extension SearchContainerView: UITextFieldDelegate {
     
     @objc func textFieldTapped() {
@@ -104,5 +107,10 @@ extension SearchContainerView: UITextFieldDelegate {
             }
             
             return true
+    }
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        textField.resignFirstResponder()
+        return true
     }
 }

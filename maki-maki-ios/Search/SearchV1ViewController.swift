@@ -10,6 +10,7 @@ import SnapKit
 
 final class SearchV1ViewController: UIViewController {
 
+    // MARK: - Properties
     private var service = ProductsService()
     private var products = [ProductModel]()
     private var searchTextFieldIsTapped = true
@@ -120,7 +121,6 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - SearchContainerViewDelegate
-
 extension SearchV1ViewController: SearchContainerViewDelegate {
     func textFieldIsTapped(state: Bool) {
         searchTextFieldIsTapped = state
@@ -128,11 +128,9 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     }
     
     func searchCompleted(word: String) {
-        
-        if word == "" {
+        if word.isEmpty {
             filteredProducts = products
             searchTableView.reloadData()
-            print("EMPTY")
         } else {
             filteredProducts = products.filter {
                 $0.name.lowercased().contains(word.lowercased())
