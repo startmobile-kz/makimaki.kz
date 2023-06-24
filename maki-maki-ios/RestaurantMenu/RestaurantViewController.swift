@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class RestaurantViewController: UIViewController {
     
@@ -20,18 +21,29 @@ final class RestaurantViewController: UIViewController {
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
+    private let categoryMenuHeight: Double = 60
+    private var isScrollToSectionCalled = false
+    private var isLoaded = false
     
     // MARK: - Enumeration for dish sections
     
-    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .kebab,
-                                                .breakfast, .burgers,.coldDrinks,
-                                                .frenchFries, .rolls, .sushi,
-                                                .salads, .sandwichs]
+    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .sushi,
+                                                .rolls, .burgers, .breakfast,
+                                                .sandwichs, .kebab, .salads,
+                                                .frenchFries, .coldDrinks]
     
+    // MARK: - Properties
+    
+    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
+    private var currentSection = 0
+    private var heights: [Double] = []
+    static let notificationName = Notification.Name("scrolledToSection")
+
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
-        let view = CategoryMenuView()
+        let view = CategoryMenuView(type: .stickyHeader)
+        view.isSkeletonable = true
         return view
     }()
     
@@ -46,7 +58,7 @@ final class RestaurantViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.isSkeletonable = true
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -68,9 +80,10 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var viewCartContainerView: UIView = {
+    private lazy var viewCartContainerView: ViewCartContainer = {
+        let view = ViewCartContainer()
+        view.isSkeletonable = true
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
-        let view = ViewCartConatiner()
         view.addGestureRecognizer(tap)
         return view
     }()
@@ -83,9 +96,19 @@ final class RestaurantViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        fetchProducts()
+        setupNotificationObservers()
+        calculateAllSectionHeights()
+        hideSkeletons()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showSkeletonAnimation()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+        fetchProducts()
     // MARK: - Callback
     
     private func fetchProducts() {
@@ -124,16 +147,45 @@ final class RestaurantViewController: UIViewController {
         }
     }
     
+    // MARK: - SetupNotificationObservers
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToSection),
+            name: CategoryMenuView.notificationName,
+            object: nil
+        )
+    }
+
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
         title = ""
-        self.navigationController?.navigationBar.topItem?.setHidesBackButton(true, animated: true)
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
         self.navigationController?.navigationBar.isTranslucent = true
         self.navigationController?.view.backgroundColor = .clear
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
+    
+    private func hideSkeletons() {
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.isLoaded = true
+            self?.collectionView.stopSkeletonAnimation()
+            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+            self?.collectionView.reloadData()
+            self?.viewCartContainerView.stopSkeletonAnimation()
+            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
+        }
     }
     
     // MARK: - Layout for Main Section Header
@@ -211,34 +263,103 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        var sticked = false
-        
-        checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
-        
-       if scrollView.contentOffset.y > initialHeaderHeight {
-            if !sticked {
-                UIView.animate(withDuration: 0.1) { [weak self] in
-                    guard let self = self else {
-                        return
+        if isLoaded && !isScrollToSectionCalled {
+            let yOffset = scrollView.contentOffset.y
+            let heightOfOneRowOfItems: Double = 242
+            let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+            if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
+                currentSection += 1
+                sendNotification(section: currentSection)
+            } else if
+                currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                currentSection -= 1
+                sendNotification(section: currentSection)
+            }
+            
+            var sticked = false
+            checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+            
+            if scrollView.contentOffset.y > initialHeaderHeight {
+                if !sticked {
+                    UIView.animate(withDuration: 0.1) { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.makeNavigationBarVisible()
+                        self.pinCategoriesReplacementViewToTheTop()
+                        self.categoriesReplacementView.bringSubviewToFront(self.view)
+                        self.view.layoutIfNeeded()
+                        sticked = true
                     }
-                    self.makeNavigationBarVisible()
-                    self.pinCategoriesReplacementViewToTheTop()
-                    self.categoriesReplacementView.bringSubviewToFront(self.view)
-                    self.view.layoutIfNeeded()
-                    sticked = true
                 }
             }
+            
+            if isScrollingUp {
+                if scrollView.contentOffset.y < initialHeaderHeight {
+                    self.hideCategoriesReplacementView()
+                    self.setupNavigationBar()
+                    self.view.layoutIfNeeded()
+                    sticked = false
+                }
+            }
+            lastContentOffsetY = scrollView.contentOffset.y
+        }
+    }
+    
+    private func sendNotification(section: Int) {
+        let userInfo = ["categoryIndex": section]
+        NotificationCenter.default.post(
+            name: RestaurantViewController.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
+    }
+    
+    private func calculateAllSectionHeights() {
+        let itemHeight: Double = 242
+        let spacingBetweenItems: Double = 14
+        let heightOfBottomInsetOfSections: Double = 16
+        
+        for sectionIndex in 0..<sections.count {
+            let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
+            let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
+            let totalHeightOfItems =
+            numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
+            var neededHeightForChangingSection =
+            totalHeightOfItems + heightOfBottomInsetOfSections + headerHeight
+            
+            if sectionIndex > 0 {
+                neededHeightForChangingSection += heights[sectionIndex - 1]
+            }
+            
+            heights.append(neededHeightForChangingSection)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc func scrollToSection(_ notification: Notification) {
+        let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
+        isScrollToSectionCalled = true
+        if currentSection != sectionIndex {
+            var neededHeight: Double = 0
+            if sectionIndex == 0 {
+                neededHeight = 0
+            } else {
+                neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
+            }
+            
+            collectionView.setContentOffset(
+                CGPoint(x: 0, y: neededHeight),
+                animated: true
+            )
+            currentSection = sectionIndex
+            sendNotification(section: sectionIndex)
         }
         
-        if isScrollingUp {
-            if scrollView.contentOffset.y < initialHeaderHeight {
-                self.hideCategoriesReplacementView()
-                self.setupNavigationBar()
-                self.view.layoutIfNeeded()
-                sticked = false
-            }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.isScrollToSectionCalled = false
         }
-        lastContentOffsetY = scrollView.contentOffset.y
     }
     
     private func hideCategoriesReplacementView() {
@@ -315,6 +436,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return numberOfItemsInSection[section]
 //        let section = sections[section]
         return dishes.count
     }
@@ -326,6 +448,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? DishesCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
+        
         let dish = dishes[indexPath.item]
         cell.setupData(dish: dish)
         return cell
@@ -388,5 +511,23 @@ extension RestaurantViewController: UICollectionViewDataSource {
         })
 
         self.navigationController?.pushViewController(basketViewController, animated: true)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension RestaurantViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        numberOfItemsInSection section: Int
+    ) -> Int {
+        return 8
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        return DishesCollectionViewCell.reuseID
     }
 }
