@@ -60,7 +60,7 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
-        FetchCategory()
+        fetchCategories()
     }
     
     // MARK: - Setup Views
@@ -102,10 +102,10 @@ final class MainViewController: UIViewController {
         }
     }
     
-    // MARK: - FetchCategory
+    // MARK: - fetchCategories
     
-    private func FetchCategory() {
-        CategoryService().fetchCategory { categories in
+    private func fetchCategories() {
+        CategoryService().fetchCategories { categories in
             self.categories = categories
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
