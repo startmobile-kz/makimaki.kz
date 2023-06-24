@@ -7,7 +7,6 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
 final class BasketTableViewCell: UITableViewCell {
     // MARK: - UI
@@ -91,14 +90,5 @@ final class BasketTableViewCell: UITableViewCell {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
         }
-    }
-
-    // MARK: - Public
-
-    public func setupData(dish: DishResponseModel) {
-        productNameLabel.text = dish.name
-        priceOrderLabel.text = "\(dish.price)"
-        let url = URL(string: dish.image ?? "")
-        productImageView.kf.setImage(with: url)
     }
 }

@@ -11,10 +11,6 @@ import SkeletonView
 
 final class RestaurantViewController: UIViewController {
     
-    // MARK: - State
-    private var service = DishService()
-    public var dishes: [DishResponseModel] = []
-
     // MARK: - Properties
     
     private var lastContentOffsetY: CGFloat = 0
@@ -83,8 +79,6 @@ final class RestaurantViewController: UIViewController {
     private lazy var viewCartContainerView: ViewCartContainer = {
         let view = ViewCartContainer()
         view.isSkeletonable = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
-        view.addGestureRecognizer(tap)
         return view
     }()
     
@@ -108,16 +102,6 @@ final class RestaurantViewController: UIViewController {
     
     deinit {
         NotificationCenter.default.removeObserver(self)
-        fetchProducts()
-    // MARK: - Callback
-    
-    private func fetchProducts() {
-        service.fetchProducts { dishes in
-            self.dishes = dishes
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
-            }
-        }
     }
     
     // MARK: - SetupViews
@@ -405,26 +389,12 @@ final class RestaurantViewController: UIViewController {
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
     }
-    
-}
-
-// MARK: - DishViewControllerDelegate methods
-
-extension RestaurantViewController: DishViewControllerDelegate {
-    func addToBasket(dish: DishResponseModel) {
-        collectionView.reloadData()
-    }
 }
 
 // MARK: - UICollectionViewDelegate methods
 
 extension RestaurantViewController: UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        let dishViewController = DishViewController()
-        dishViewController.dish = dishes[indexPath.row]
-        dishViewController.delegate = self
-        present(dishViewController, animated: true)
-    }
+    
 }
 
 // MARK: - UICollectionViewDataSource methods
@@ -437,8 +407,6 @@ extension RestaurantViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return numberOfItemsInSection[section]
-//        let section = sections[section]
-        return dishes.count
     }
     
     func collectionView(_ collectionView: UICollectionView,cellForItemAt indexPath: IndexPath
@@ -449,8 +417,6 @@ extension RestaurantViewController: UICollectionViewDataSource {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
         
-        let dish = dishes[indexPath.item]
-        cell.setupData(dish: dish)
         return cell
     }
     
@@ -496,21 +462,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
                 
             }
             return sectionHeader
+        } else {
+            return UICollectionReusableView()
         }
-
-        return UICollectionReusableView()
-    }
-
-    // MARK: - Actions
-
-    @objc private func openBasket() {
-        let basketViewController = BasketViewController()
-
-        basketViewController.selectedDishes = dishes.filter({ dish in
-            return dish.isSelected
-        })
-
-        self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
 
