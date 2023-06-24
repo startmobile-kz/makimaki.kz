@@ -105,7 +105,7 @@ final class MainViewController: UIViewController {
     // MARK: - fetchCategories
     
     private func fetchCategories() {
-        CategoryService().fetchCategories { categories in
+        CategoryService().fetchCategory { categories in
             self.categories = categories
             DispatchQueue.main.async {
                 self.collectionView.reloadData()

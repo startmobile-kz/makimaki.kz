@@ -2,7 +2,7 @@
 //  SnackBarController.swift
 //  maki-maki-ios
 //
-//  Created by Ravil on 19.06.2023.
+//  Created by Islam Temirbek on 24.06.2023.
 //
 
 import UIKit
@@ -16,7 +16,7 @@ final class SnackBarController: SnackBar {
         style.textColor = AppColor.heading.uiColor
         return style
     }
-    
+
     static func showSnackBar(in view: UIView, message: String, duration: Duration) {
         let snackBar = SnackBarController.make(in: view, message: message, duration: duration)
         snackBar.show()
