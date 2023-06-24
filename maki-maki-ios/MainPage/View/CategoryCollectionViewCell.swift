@@ -35,6 +35,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         label.text = "Burgers"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.paragraph.uiColor
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -72,6 +73,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         categoryNameLabel.snp.makeConstraints { make in
             make.top.equalTo(categoryCellView.snp.bottom).offset(5)
             make.centerX.equalTo(contentView)
+            make.width.equalTo(65)
         }
     }
     
