@@ -108,4 +108,6 @@ class ContainerView: UIView {
             make.centerY.equalTo(checkoutButton)
         }
     }
+    
+    // MARK: - Action
 }
