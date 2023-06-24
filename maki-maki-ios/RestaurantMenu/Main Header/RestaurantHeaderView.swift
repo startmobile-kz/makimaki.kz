@@ -11,6 +11,8 @@ import SkeletonView
 
 final class RestaurantHeaderView: UICollectionReusableView {
     
+    // MARK: - State
+    
     static let reuseID = String(describing: RestaurantHeaderView.self)
     
     // MARK: - UI

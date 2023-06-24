@@ -10,7 +10,7 @@ import SnapKit
 
 final class DishSectionHeaderView: UICollectionReusableView {
     
-    // MARK: - Reusable Id for cell
+    // MARK: - State
     
     static let reuseId = String(describing: DishSectionHeaderView.self)
     
@@ -54,5 +54,4 @@ final class DishSectionHeaderView: UICollectionReusableView {
             make.leading.equalToSuperview()
         }
     }
-    
 }

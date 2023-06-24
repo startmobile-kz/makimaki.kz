@@ -13,6 +13,7 @@ import SkeletonView
 final class DishesCollectionViewCell: UICollectionViewCell {
     
     // MARK: - State
+    
     static let reuseID = String(describing: DishesCollectionViewCell.self)
     
     // MARK: - UI
