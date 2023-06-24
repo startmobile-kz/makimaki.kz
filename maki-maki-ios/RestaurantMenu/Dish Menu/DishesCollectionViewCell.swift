@@ -11,8 +11,7 @@ import Kingfisher
 
 final class DishesCollectionViewCell: UICollectionViewCell {
     
-    // MARK: - Reusable Id for cell
-    
+    // MARK: - State
     static let reuseID = String(describing: DishesCollectionViewCell.self)
     
     // MARK: - UI
