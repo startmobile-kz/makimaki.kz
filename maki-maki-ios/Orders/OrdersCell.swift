@@ -12,7 +12,7 @@ final class OrdersCell: UITableViewCell {
     
     // MARK: - UI
     
-    static let reuseID = "orders_cell"
+    static let reuseID = String(describing: OrdersCell.self)
     
     private lazy var orderCountLabel: UILabel = {
         let label = UILabel()
