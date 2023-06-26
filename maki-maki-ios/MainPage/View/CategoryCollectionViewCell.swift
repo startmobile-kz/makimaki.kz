@@ -89,7 +89,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - Public
     
-    public func setupData(category: CategoryModel) {
+    public func setupData(category: Category) {
         categoryNameLabel.text = category.name
     }
 }
