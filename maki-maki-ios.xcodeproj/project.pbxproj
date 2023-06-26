@@ -74,6 +74,9 @@
 		9F61734B2A2E655B00299E56 /* DeliveryTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */; };
 		9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173482A2E655B00299E56 /* ContainerViewController.swift */; };
 		9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */; };
+		9FFEE49A2A46F7F80071AE0D /* CategoryModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE4982A46F7F80071AE0D /* CategoryModel.swift */; };
+		9FFEE49B2A46F7F80071AE0D /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE4992A46F7F80071AE0D /* CategoryService.swift */; };
+		9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */; };
 		B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
@@ -84,7 +87,6 @@
 		F1725D502A2F07920072E258 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4F2A2F07920072E258 /* OffersCell.swift */; };
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
-		F174F7FE2A4075AF00D7B8DC /* SnackBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F174F7FD2A4075AF00D7B8DC /* SnackBarController.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -167,6 +169,9 @@
 		9F6173472A2E655B00299E56 /* DeliveryTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DeliveryTableViewCell.swift; sourceTree = "<group>"; };
 		9F6173482A2E655B00299E56 /* ContainerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ContainerViewController.swift; sourceTree = "<group>"; };
 		9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasketTableViewCell.swift; sourceTree = "<group>"; };
+		9FFEE4982A46F7F80071AE0D /* CategoryModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryModel.swift; sourceTree = "<group>"; };
+		9FFEE4992A46F7F80071AE0D /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
+		9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarController.swift; sourceTree = "<group>"; };
 		B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -181,7 +186,6 @@
 		F1725D4F2A2F07920072E258 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
-		F174F7FD2A4075AF00D7B8DC /* SnackBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarController.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -356,13 +360,9 @@
 		68C3EC342A27A308009A0E02 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				68C3EC352A27A31A009A0E02 /* MainViewController.swift */,
-				68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */,
-				68D810362A286DB600D29827 /* SectionHeaderView.swift */,
-				1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */,
-				1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */,
-				683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */,
-				6866811B2A29D60600BC94E7 /* SectionType.swift */,
+				F174F8032A42B66F00D7B8DC /* Model */,
+				F174F8042A42B69800D7B8DC /* View */,
+				F174F8052A42B6BD00D7B8DC /* Controller */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
@@ -414,6 +414,7 @@
 		773A73762A2783170029AA44 /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				9FFEE49E2A46F8BF0071AE0D /* UI */,
 				773799282A36424C00E2CF7F /* Managers */,
 				773A73782A2783290029AA44 /* Resourses */,
 				773A73772A27831D0029AA44 /* Extensions */,
@@ -489,6 +490,14 @@
 			path = Basket;
 			sourceTree = "<group>";
 		};
+		9FFEE49E2A46F8BF0071AE0D /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */,
+			);
+			path = UI;
+			sourceTree = "<group>";
+		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
 			isa = PBXGroup;
 			children = (
@@ -523,11 +532,10 @@
 				CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */,
 				CE9623622A132B1A00C36D03 /* AppDelegate.swift */,
 				CE9623642A132B1A00C36D03 /* SceneDelegate.swift */,
-				F174F7FC2A40759000D7B8DC /* SnackBarApp */,
+				27F521292A309E6A0095A5EB /* Authorization */,
 				9F541B872A2DC3AD004B3155 /* Resources */,
 				773A73762A2783170029AA44 /* Helpers */,
 				9F541B882A2DC3BA004B3155 /* App Settings */,
-				27F521292A309E6A0095A5EB /* Authorization */,
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
@@ -566,12 +574,34 @@
 			path = AccountOffersV2;
 			sourceTree = "<group>";
 		};
-		F174F7FC2A40759000D7B8DC /* SnackBarApp */ = {
+		F174F8032A42B66F00D7B8DC /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F174F7FD2A4075AF00D7B8DC /* SnackBarController.swift */,
+				9FFEE4982A46F7F80071AE0D /* CategoryModel.swift */,
+				9FFEE4992A46F7F80071AE0D /* CategoryService.swift */,
+				6866811B2A29D60600BC94E7 /* SectionType.swift */,
 			);
-			path = SnackBarApp;
+			path = Model;
+			sourceTree = "<group>";
+		};
+		F174F8042A42B69800D7B8DC /* View */ = {
+			isa = PBXGroup;
+			children = (
+				68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */,
+				68D810362A286DB600D29827 /* SectionHeaderView.swift */,
+				1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */,
+				1D7564C82A28A44D00D31E19 /* CategoryCollectionViewCell.swift */,
+				683AF7BC2A290625006469AD /* DeliveryHeaderView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F174F8052A42B6BD00D7B8DC /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				68C3EC352A27A31A009A0E02 /* MainViewController.swift */,
+			);
+			path = Controller;
 			sourceTree = "<group>";
 		};
 		F187EADD2A263EFE00019242 /* EditProfile */ = {
@@ -816,11 +846,11 @@
 				27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */,
 				27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */,
 				2620524B2A382EC900A2DC88 /* DishViewController.swift in Sources */,
-				F174F7FE2A4075AF00D7B8DC /* SnackBarController.swift in Sources */,
 				9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */,
 				275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */,
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
+				9FFEE49B2A46F7F80071AE0D /* CategoryService.swift in Sources */,
 				0349DDEC2A3AD64800BACD4F /* PaymentsTableViewCell.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
 				F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */,
@@ -832,6 +862,7 @@
 				6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */,
+				9FFEE49A2A46F7F80071AE0D /* CategoryModel.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
 				261494F02A3A598800767D1B /* StepperView.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
@@ -845,6 +876,7 @@
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
+				9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */,
 				F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */,
 				773799382A3645E500E2CF7F /* UserDefaults+Extensions.swift in Sources */,
 				2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */,
