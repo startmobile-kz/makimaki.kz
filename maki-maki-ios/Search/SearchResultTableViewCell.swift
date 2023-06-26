@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import Kingfisher
 
 final class SearchResultTableViewCell: UITableViewCell {
     
@@ -15,7 +16,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     // MARK: - UI
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = AppImage.cardImage_1.uiImage
         imageView.layer.cornerRadius = 8
         return imageView
     }()
@@ -29,22 +29,23 @@ final class SearchResultTableViewCell: UITableViewCell {
     }()
     
     private lazy var productNameLabel: UILabel = {
-       let label = UILabel()
-        label.text = "Medium Supremo Pizza"
+        let label = UILabel()
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
+        label.lineBreakMode = .byWordWrapping
+        label.numberOfLines = 0
         return label
     }()
     
     private lazy var priceLabel: UILabel = {
-       let label = UILabel()
-        label.text = "14.40$"
+        let label = UILabel()
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         return label
     }()
     
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -56,11 +57,13 @@ final class SearchResultTableViewCell: UITableViewCell {
     }
     
     // MARK: - Setup Views
+    
     private func setupViews() {
         contentView.addSubviews([productImageView, infoStackView])
     }
     
     // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         productImageView.snp.makeConstraints { make in
             make.top.equalTo(8)
@@ -84,4 +87,12 @@ final class SearchResultTableViewCell: UITableViewCell {
             make.height.equalTo(17)
         }
     }
+    
+    public func setupData(dish: Product) {
+        productNameLabel.text = dish.name
+        priceLabel.text = "\(dish.price) ₸"
+        let url = URL(string: dish.image ?? " ")
+        productImageView.kf.setImage(with: url)
+    }
+    
 }
