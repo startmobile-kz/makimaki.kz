@@ -16,6 +16,7 @@ final class RestaurantViewController: UIViewController {
     
     private var service = RestaurantProductService()
     public var products: [RestaurantProduct] = []
+    private var categoriesAndNames: [Int: String] = [:]
 
     // MARK: - Properties
     
@@ -97,10 +98,27 @@ final class RestaurantViewController: UIViewController {
         setupNotificationObservers()
         calculateAllSectionHeights()
 //        hideSkeletons()
+        fetchCategories()
         fetchProducts()
     }
     
     // MARK: - Callback
+    
+    private func fetchCategories() {
+        service.fetchCategories { [weak self] result in
+            switch result {
+            case .success(data: let categories):
+                guard let categories = categories else {
+                    return
+                }
+                for category in categories {
+                    self?.categoriesAndNames[category.id] = category.name
+                }
+            case .error(message: let message):
+                print(message)
+            }
+        }
+    }
     
     private func fetchProducts() {
         
@@ -121,7 +139,7 @@ final class RestaurantViewController: UIViewController {
             }
             self?.hideSkeletons()
         }
-//        
+//
 //        service.fetchProducts { dishes in
 //            self.products = dishes
 //            DispatchQueue.main.async { [weak self] in
