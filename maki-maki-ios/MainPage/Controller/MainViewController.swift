@@ -240,7 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[section]
         switch section {
         case .categories:
-            return 8
+            return categories.count
         case .promos:
             return 30
         case .restaurants:
