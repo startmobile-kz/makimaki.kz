@@ -10,9 +10,11 @@ import SnapKit
 
 final class OrdersCell: UITableViewCell {
     
-    // MARK: - UI
+    // MARK: - State
     
     static let reuseID = String(describing: OrdersCell.self)
+    
+    // MARK: - UI
     
     private lazy var orderCountLabel: UILabel = {
         let label = UILabel()
@@ -57,6 +59,8 @@ final class OrdersCell: UITableViewCell {
         contentView.backgroundColor = AppColor.background.uiColor
         [orderCountLabel, orderListLabel, costOrderLabel].forEach { contentView.addSubview($0) }
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         orderCountLabel.snp.makeConstraints { make in
