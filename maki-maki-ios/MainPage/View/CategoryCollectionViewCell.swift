@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class CategoryCollectionViewCell: UICollectionViewCell {
     
@@ -27,6 +28,8 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         
         let image = UIImageView()
         image.image = AppImage.burger.uiImage
+        image.isSkeletonable = true
+        image.showSkeleton() 
         return image
     }()
     
@@ -53,6 +56,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        isSkeletonable = true
         categoryCellView.addSubview(categoryImage)
         let subviews = [categoryCellView, categoryNameLabel]
         subviews.forEach({contentView.addSubview($0)})
