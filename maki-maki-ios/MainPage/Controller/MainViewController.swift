@@ -105,7 +105,7 @@ final class MainViewController: UIViewController {
     // MARK: - fetchCategories
     
     private func fetchCategories() {
-        CategoryService().fetchCategory { categories in
+        CategoryService().fetchCategories { categories in
             self.categories = categories
             DispatchQueue.main.async {
                 self.collectionView.reloadData()
@@ -240,7 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[section]
         switch section {
         case .categories:
-            return 24
+            return 8
         case .promos:
             return 30
         case .restaurants:

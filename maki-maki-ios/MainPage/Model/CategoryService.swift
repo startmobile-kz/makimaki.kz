@@ -11,7 +11,7 @@ class CategoryService {
     
     private var urlSession = URLSession.shared
     
-    func fetchCategory(completion: @escaping ([Category]) -> Void) {
+    func fetchCategories(completion: @escaping ([Category]) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/categories"
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
