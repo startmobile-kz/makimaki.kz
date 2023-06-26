@@ -29,7 +29,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     private lazy var dishNameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.medium.s15()
