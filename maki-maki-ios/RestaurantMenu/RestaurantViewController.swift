@@ -96,19 +96,38 @@ final class RestaurantViewController: UIViewController {
         setupNavigationBar()
         setupNotificationObservers()
         calculateAllSectionHeights()
-        hideSkeletons()
+//        hideSkeletons()
         fetchProducts()
     }
     
     // MARK: - Callback
     
     private func fetchProducts() {
-        service.fetchProducts { dishes in
-            self.products = dishes
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
+        
+        service.fetchProductsWithAlamofire { [weak self] result in
+            switch result {
+            case .success(data: let products):
+                guard let products = products else {
+                    return
+                }
+                
+                self?.products = products
+                
+                DispatchQueue.main.async {
+                    self?.collectionView.reloadData()
+                }
+            case .error(message: let message):
+                print(message)
             }
+            self?.hideSkeletons()
         }
+//        
+//        service.fetchProducts { dishes in
+//            self.products = dishes
+//            DispatchQueue.main.async { [weak self] in
+//                self?.collectionView.reloadData()
+//            }
+//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
