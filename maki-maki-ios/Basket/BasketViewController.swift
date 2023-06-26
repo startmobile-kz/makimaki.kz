@@ -51,16 +51,12 @@ final class BasketViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
-        let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 120)
+        let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 119)
         orderTableView.tableFooterView = DeliveryFooterView(frame: footerViewSize)
         
         [orderTableView, checkoutContainerView].forEach {
             view.addSubview($0)
         }
-
-        checkoutContainerView.checkoutButton.addTarget(self,
-                                                       action: #selector(createOrder),
-                                                       for: .touchUpInside)
     }
     
     // MARK: - Setup Constrains
@@ -84,14 +80,14 @@ final class BasketViewController: UIViewController {
     private func createOrder() {
         ProgressHUD.show("Loading...", interaction: false)
         let service = BasketService()
-        let basket = Basket(full_name: "Разработчик тестирует заказ",
+        let basket = Basket(uuid: "151eb4a0-ff99-4482-90d2-c4e7c77810dc",
+                            fullName: "Разработчик тестирует заказ",
                             phone: "77082020155",
                             address: "Разработчик тестирует заказ",
-                            promo_code: "BURGER",
+                            promoCode: "BURGER",
+                            comment: "Разработчик тестирует заказ",
                             basket: [ "6": 1, "17": 2, "23": 4],
-                            code: "8146",
-                            uuid: "151eb4a0-ff99-4482-90d2-c4e7c77810dc",
-                            comment: "Разработчик тестирует заказ")
+                            code: "8146")
         service.createOrder(with: basket) { isSucess in
             if isSucess {
                 ProgressHUD.dismiss()
@@ -128,14 +124,14 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
         //        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true)
     }
+}
 
-    //    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-    //        let footerView = DeliveryFooterView()
-    //        footerView.backgroundColor = AppColor.background.uiColor
-    //        return footerView
-    //    }
+// MARK: - Checkout Delegate
+
+extension BasketViewController: CheckoutButtonDelegate {
+    func checkoutPressed() {
+        createOrder()
+    }
     
-    //    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-    //        return 119
-    //    }
+    
 }

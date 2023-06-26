@@ -17,7 +17,14 @@ class BasketService {
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
 
-        let body = ["uuid": basket.uuid, "phone": basket.phone]
+        let body = ["uuid": basket.uuid,
+                    "full_name": basket.fullName,
+                    "phone": basket.phone,
+                    "address": basket.address,
+                    "promoCode": basket.promoCode,
+                    "comment": basket.comment,
+                    //"basket": basket.basket,
+                    "code": basket.code]
         let bodyJson = try? JSONSerialization.data(withJSONObject: body)
 
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")

@@ -8,7 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol CheckoutButtonDelegate {
+    func checkoutPressed()
+}
+
 class ContainerView: UIView {
+    
+    var delegate: CheckoutButtonDelegate?
 
     // MARK: - UI
     
@@ -34,7 +40,7 @@ class ContainerView: UIView {
         return label
     }()
     
-    public lazy var checkoutButton: UIButton = {
+    private lazy var checkoutButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
@@ -43,6 +49,7 @@ class ContainerView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        self.delegate?.checkoutPressed()
         return button
     }()
     
