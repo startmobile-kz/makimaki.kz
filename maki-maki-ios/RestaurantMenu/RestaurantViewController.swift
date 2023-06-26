@@ -14,8 +14,8 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - State
     
-    private var service = DishService()
-    public var dishes: [DishResponseModel] = []
+    private var service = RestaurantProductService()
+    public var products: [RestaurantProduct] = []
 
     // MARK: - Properties
     
@@ -33,7 +33,7 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Enumeration for dish sections
     
-    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .sushi,
+    private let sections: [SectionProductsType] = [.mostPopular, .pizza, .sushi,
                                                 .rolls, .burgers, .breakfast,
                                                 .sandwichs, .kebab, .salads,
                                                 .frenchFries, .coldDrinks]
@@ -64,13 +64,13 @@ final class RestaurantViewController: UIViewController {
             withReuseIdentifier: RestaurantHeaderView.reuseID
         )
         collectionView.register(
-            DishesCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishesCollectionViewCell.reuseID
+            ProductCollectionViewCell.self,
+            forCellWithReuseIdentifier: ProductCollectionViewCell.reuseID
         )
         collectionView.register(
-            DishSectionHeaderView.self,
+            ProductSectionHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: DishSectionHeaderView.reuseId
+            withReuseIdentifier: ProductSectionHeaderView.reuseId
         )
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -104,7 +104,7 @@ final class RestaurantViewController: UIViewController {
     
     private func fetchProducts() {
         service.fetchProducts { dishes in
-            self.dishes = dishes
+            self.products = dishes
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
@@ -356,7 +356,7 @@ final class RestaurantViewController: UIViewController {
     
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = dishes.filter({ dish in
+        basketViewController.selectedDishes = products.filter({ dish in
             return dish.isSelected
         })
         self.navigationController?.pushViewController(basketViewController, animated: true)
@@ -411,7 +411,7 @@ final class RestaurantViewController: UIViewController {
 // MARK: - DishViewControllerDelegate methods
 
 extension RestaurantViewController: DishViewControllerDelegate {
-    func addToBasket(dish: DishResponseModel) {
+    func addToBasket(dish: RestaurantProduct) {
         collectionView.reloadData()
     }
 }
@@ -421,7 +421,7 @@ extension RestaurantViewController: DishViewControllerDelegate {
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dishViewController = DishViewController()
-        dishViewController.dish = dishes[indexPath.row]
+        dishViewController.dish = products[indexPath.row]
         dishViewController.delegate = self
         present(dishViewController, animated: true)
     }
@@ -436,18 +436,18 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes.count
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: DishesCollectionViewCell.reuseID,
-            for: indexPath) as? DishesCollectionViewCell else {
+            withReuseIdentifier: ProductCollectionViewCell.reuseID,
+            for: indexPath) as? ProductCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        let dish = dishes[indexPath.item]
-        cell.setupData(dish: dish)
+        let product = products[indexPath.item]
+        cell.setupData(product: product)
         return cell
     }
     
@@ -458,9 +458,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: DishSectionHeaderView.reuseId,
+                withReuseIdentifier: ProductSectionHeaderView.reuseId,
                 for: indexPath
-            ) as? DishSectionHeaderView else {
+            ) as? ProductSectionHeaderView else {
                 fatalError("Could not cast to DishSectionHeaderView")
             }
             let section = sections[indexPath.section]
@@ -502,7 +502,7 @@ extension RestaurantViewController: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
     ) -> SkeletonView.ReusableCellIdentifier {
-        return DishesCollectionViewCell.reuseID
+        return ProductCollectionViewCell.reuseID
     }
 }
 // swiftlint:enable all

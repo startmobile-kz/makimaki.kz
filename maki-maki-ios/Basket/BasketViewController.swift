@@ -12,7 +12,7 @@ final class BasketViewController: UIViewController {
     
     // MARK: - State
     
-    public var selectedDishes: [DishResponseModel] = []
+    public var selectedDishes: [RestaurantProduct] = []
     
     // MARK: - UI
     

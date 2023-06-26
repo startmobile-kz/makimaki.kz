@@ -95,7 +95,7 @@ final class BasketTableViewCell: UITableViewCell {
     
     // MARK: - Public
     
-    public func setupData(dish: DishResponseModel) {
+    public func setupData(dish: RestaurantProduct) {
         productNameLabel.text = dish.name
         priceOrderLabel.text = "\(dish.price)"
         let url = URL(string: dish.image ?? "")
