@@ -19,7 +19,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
     
     private lazy var backgroundImageView: UIImageView = {
         let imageView = UIImageView()
-//        imageView.image = AppImage.restaurant_top_image.uiImage
+        imageView.image = AppImage.restaurant_top_image.uiImage
         return imageView
     }()
     
