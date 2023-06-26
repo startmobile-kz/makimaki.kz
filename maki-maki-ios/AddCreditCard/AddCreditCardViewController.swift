@@ -165,7 +165,8 @@ final class AddCreditCardViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
-        setupConstraints()
+        setupConstraints1()
+        setupConstraints2()
     }
     
     // MARK: - Setup Views
@@ -185,7 +186,7 @@ final class AddCreditCardViewController: UIViewController {
     
     // MARK: - Setup Constraints
     
-    private func setupConstraints() {
+    private func setupConstraints1() {
         creditCardImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(122)
             make.height.equalTo(190)
@@ -193,7 +194,7 @@ final class AddCreditCardViewController: UIViewController {
             make.leading.equalToSuperview().offset(38)
             make.trailing.equalToSuperview().inset(37)
         }
-    
+        
         cardNumberLabel.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(77)
             make.left.equalToSuperview().offset(25)
@@ -228,6 +229,8 @@ final class AddCreditCardViewController: UIViewController {
             make.top.equalTo(validThruLabel.snp.bottom).offset(6)
             make.right.equalToSuperview().offset(-24)
         }
+    }
+    private func setupConstraints2() {
         
         cardHolderNameTextfield.snp.makeConstraints { make in
             make.height.equalTo(60)
@@ -268,6 +271,7 @@ extension AddCreditCardViewController: UITextFieldDelegate {
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
         cardHolderNameLabel.text = textField.text
+        dateOfExpireLabel.text = dateOfExpireTextField.text
         cardNumberLabel.text =
         cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d+)",
         with: "$1 $2 $3 $4",
