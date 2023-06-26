@@ -6,12 +6,38 @@
 //
 
 import Foundation
+import Alamofire
 
 // MARK: - Network request for products
+
+enum NetworkErrors: Error {
+    case badUrl
+    case serverError
+}
 
 class RestaurantProductService {
     
     private var urlSession = URLSession.shared
+    
+    func fetchProductsWithAlamofire(completion: @escaping (Result<[RestaurantProduct]>) -> Void) {
+        let urlString = "https://app.makimaki.kz/api/v1/client/products"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.error(message: "Invalid URL."))
+            return
+        }
+        
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: [RestaurantProduct].self) { data in
+                switch data.result {
+                case .success(let products):
+                    completion(.success(data: products))
+                case .failure(let error):
+                    completion(.error(message: error.localizedDescription))
+                }
+            }
+    }
     
     func fetchProducts(completion: @escaping ([RestaurantProduct]) -> Void) {
         
