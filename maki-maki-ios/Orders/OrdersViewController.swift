@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OrdersViewController: UIViewController, ReorderCellDelegate {
+final class OrdersViewController: UIViewController {
     
     // MARK: - State
     
@@ -88,7 +88,7 @@ final class OrdersViewController: UIViewController, ReorderCellDelegate {
     
     private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
-        //        view.isHidden = true
+//        view.isHidden = true
         return view
     }()
     
@@ -162,13 +162,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if indexPath.row == orders[0].ordersList.count - 1 {
+        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReorderCell.reuseID,
                                                            for: indexPath) as? ReorderCell else {
                 fatalError("reorder_cell not found")
             }
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
             cell.delegate = self
             return cell
         }
@@ -177,12 +175,16 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("orders_cell is not registered")
         }
         cell.setup(model: orders[indexPath.section].ordersList[indexPath.row])
-        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+            return 83
+        } else {
+            return UITableView.automaticDimension
+        }
+        
     }
     
     // MARK: - Header of Section
@@ -200,21 +202,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
-    }
-    
-    // MARK: - Footer of Section
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = OrdersTableFooterView(frame: CGRect(x:0,
-                                                             y: 0,
-                                                             width: UIScreen.main.bounds.width,
-                                                             height:83))
-        footerView.delegate = self
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 83
     }
 }
 
@@ -239,7 +226,7 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
 
 // MARK: - Navigation Action
 
-extension OrdersViewController: OrdersTableFooterViewDelegate {
+extension OrdersViewController: ReorderCellDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
     }
