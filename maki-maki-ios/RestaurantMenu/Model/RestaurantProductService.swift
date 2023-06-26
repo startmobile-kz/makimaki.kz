@@ -19,6 +19,26 @@ class RestaurantProductService {
     
     private var urlSession = URLSession.shared
     
+    func fetchCategories(completion: @escaping (Result<[Category]>) -> Void) {
+        let urlString = "https://app.makimaki.kz/api/v1/client/categories"
+        
+        guard let url = URL(string: urlString) else {
+            completion(.error(message: "Invalid URL."))
+            return
+        }
+        
+        AF.request(url)
+            .validate()
+            .responseDecodable(of: [Category].self) { data in
+                switch data.result {
+                case .success(let categories):
+                    completion(.success(data: categories))
+                case .failure(let error):
+                    completion(.error(message: error.localizedDescription))
+                }
+            }
+    }
+    
     func fetchProductsWithAlamofire(completion: @escaping (Result<[RestaurantProduct]>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         
