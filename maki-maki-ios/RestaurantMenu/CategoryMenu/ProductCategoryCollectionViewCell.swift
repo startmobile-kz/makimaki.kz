@@ -9,11 +9,11 @@ import UIKit
 import SnapKit
 import SkeletonView
 
-final class DishCategoryCollectionViewCell: UICollectionViewCell {
+final class ProductCategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - State
     
-    static let reuseID = String(describing: DishCategoryCollectionViewCell.self)
+    static let reuseID = String(describing: ProductCategoryCollectionViewCell.self)
     
     // MARK: - UI
     
