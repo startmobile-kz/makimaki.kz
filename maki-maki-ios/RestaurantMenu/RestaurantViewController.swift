@@ -13,6 +13,7 @@ import SkeletonView
 final class RestaurantViewController: UIViewController {
     
     // MARK: - State
+    
     private var service = DishService()
     public var dishes: [DishResponseModel] = []
 
@@ -406,6 +407,7 @@ final class RestaurantViewController: UIViewController {
     }
     
 }
+
 // MARK: - DishViewControllerDelegate methods
 
 extension RestaurantViewController: DishViewControllerDelegate {
@@ -488,7 +490,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
         return UICollectionReusableView()
     }
 }
+
 // MARK: - SkeletonCollectionViewDataSource
+
 extension RestaurantViewController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
     -> Int {
