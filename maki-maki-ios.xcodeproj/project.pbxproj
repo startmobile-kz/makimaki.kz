@@ -538,19 +538,11 @@
 		9F2380422A49C6AA0029A5DD /* Main Header */ = {
 			isa = PBXGroup;
 			children = (
+				9F2380462A49C6AA0029A5DD /* RestaurantInfoView.swift */,
 				9F2380432A49C6AA0029A5DD /* RestaurantCharacteristic.swift */,
 				9F2380442A49C6AA0029A5DD /* RestaurantHeaderView.swift */,
-				9F2380452A49C6AA0029A5DD /* Category Menu */,
-				9F2380462A49C6AA0029A5DD /* RestaurantInfoView.swift */,
 			);
 			path = "Main Header";
-			sourceTree = "<group>";
-		};
-		9F2380452A49C6AA0029A5DD /* Category Menu */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = "Category Menu";
 			sourceTree = "<group>";
 		};
 		9F2380482A49C6AA0029A5DD /* Dish Menu */ = {
@@ -996,7 +988,7 @@
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
-				1D67E3C82A370BDD00C9E19B /* SearchBar.swift in Sources */,
+				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
 				9F23804D2A49C6AA0029A5DD /* DishCategoryCollectionViewCell.swift in Sources */,
 				9F23804F2A49C6AA0029A5DD /* ViewCartContainer.swift in Sources */,
 				68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */,
