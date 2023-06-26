@@ -106,11 +106,13 @@ final class RestaurantViewController: UIViewController {
     
     private func fetchCategoriesWithProducts() {
         fetchCategories { [weak self] in
-            self?.fetchProducts()
-            DispatchQueue.main.async {
-//                self?.isLoaded = true
-                self?.hideSkeletons()
-                self?.collectionView.reloadData()
+            self?.fetchProducts {
+                DispatchQueue.main.async {
+    //                self?.isLoaded = true
+                    self?.hideSkeletons()
+                    self?.calculateAllSectionHeights()
+                    self?.collectionView.reloadData()
+                }
             }
         }
     }
@@ -125,6 +127,7 @@ final class RestaurantViewController: UIViewController {
                 for category in categories {
                     self?.categoriesAndNames[category.id] = category.name
                 }
+                print(self?.categoriesAndNames)
             case .error(message: let message):
                 print(message)
             }
@@ -132,7 +135,7 @@ final class RestaurantViewController: UIViewController {
         }
     }
     
-    private func fetchProducts() {
+    private func fetchProducts(completion: @escaping () -> Void) {
         service.fetchProductsWithAlamofire { [weak self] result in
             switch result {
             case .success(data: let products):
@@ -148,10 +151,11 @@ final class RestaurantViewController: UIViewController {
                         self?.productsByCategoryMap[product.category] = [product]
                     }
                 }
-                print(self?.productsByCategoryMap, "MAP")
+//                print(self?.productsByCategoryMap, "MAP")
             case .error(message: let message):
                 print(message)
             }
+            completion()
         }
     }
     
@@ -356,12 +360,14 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func calculateAllSectionHeights() {
+        heights = []
         let itemHeight: Double = 242
         let spacingBetweenItems: Double = 14
         let heightOfBottomInsetOfSections: Double = 16
         for sectionIndex in 0..<sections.count {
             let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
-            let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
+            let numOfProducts = productsByCategoryMap[sectionIndex + 1]?.count ?? 0
+            let numfOfRowsInSection = ceil(Double(numOfProducts) / 2)
             let totalHeightOfItems =
             numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
             var neededHeightForChangingSection =
@@ -372,6 +378,7 @@ final class RestaurantViewController: UIViewController {
             }
             heights.append(neededHeightForChangingSection)
         }
+        print(heights)
     }
     
     // MARK: - Actions
@@ -476,7 +483,8 @@ extension RestaurantViewController: UICollectionViewDelegate {
 extension RestaurantViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        categoriesAndNames.count
+        print("count", categoriesAndNames.count)
+        return categoriesAndNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -490,7 +498,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? ProductCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        let product = products[indexPath.item]
+        guard let product = productsByCategoryMap[indexPath.section + 1]?[indexPath.row] else {
+            return UICollectionViewCell()
+        }
         cell.setupData(product: product)
         return cell
     }
