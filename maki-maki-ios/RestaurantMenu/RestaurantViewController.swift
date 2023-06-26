@@ -158,7 +158,7 @@ final class RestaurantViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         if !isLoaded {
-            showSkeletonAnimation()
+//            showSkeletonAnimation()
         }
     }
     
@@ -476,11 +476,11 @@ extension RestaurantViewController: UICollectionViewDelegate {
 extension RestaurantViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        categoriesAndNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return productsByCategoryMap[section + 1]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -507,9 +507,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
             ) as? ProductSectionHeaderView else {
                 fatalError("Could not cast to DishSectionHeaderView")
             }
-            let section = sections[indexPath.section]
-            switch section {
-            case .mostPopular:
+            let sectionID = indexPath.section + 1
+            switch sectionID {
+            case 1:
                 guard let mainHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: UICollectionView.elementKindSectionHeader,
                     withReuseIdentifier: RestaurantHeaderView.reuseID,
@@ -518,16 +518,8 @@ extension RestaurantViewController: UICollectionViewDataSource {
                     fatalError("Could not cast to RestaurantHeaderView")
                 }
                 return mainHeader
-            case .pizza:
-                sectionHeader.setSectionHeaderTitle(title: "Classic Pizza")
-            case .sushi:
-                sectionHeader.setSectionHeaderTitle(title: "Sushi")
-            case .rolls:
-                sectionHeader.setSectionHeaderTitle(title: "Rolls")
-            case .burgers:
-                sectionHeader.setSectionHeaderTitle(title: "Burgers")
             default :
-                sectionHeader.setSectionHeaderTitle(title: "Default name")
+                sectionHeader.setSectionHeaderTitle(title: categoriesAndNames[sectionID] ?? "")
             }
             return sectionHeader
         }
