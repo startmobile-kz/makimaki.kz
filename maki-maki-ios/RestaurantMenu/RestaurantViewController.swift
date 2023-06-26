@@ -17,6 +17,7 @@ final class RestaurantViewController: UIViewController {
     private var service = RestaurantProductService()
     public var products: [RestaurantProduct] = []
     private var categoriesAndNames: [Int: String] = [:]
+    private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
 
     // MARK: - Properties
     
@@ -98,13 +99,18 @@ final class RestaurantViewController: UIViewController {
         setupNotificationObservers()
         calculateAllSectionHeights()
 //        hideSkeletons()
-        fetchCategories()
-        fetchProducts()
+        fetchCategoriesWithProducts()
     }
     
     // MARK: - Callback
     
-    private func fetchCategories() {
+    private func fetchCategoriesWithProducts() {
+        fetchCategories { [weak self] in
+            self?.fetchProducts()
+        }
+    }
+    
+    private func fetchCategories(completion: @escaping () -> Void) {
         service.fetchCategories { [weak self] result in
             switch result {
             case .success(data: let categories):
@@ -117,35 +123,32 @@ final class RestaurantViewController: UIViewController {
             case .error(message: let message):
                 print(message)
             }
+            completion()
         }
     }
     
     private func fetchProducts() {
-        
         service.fetchProductsWithAlamofire { [weak self] result in
             switch result {
             case .success(data: let products):
                 guard let products = products else {
                     return
                 }
-                
                 self?.products = products
                 
-                DispatchQueue.main.async {
-                    self?.collectionView.reloadData()
+                for product in products {
+                    if self?.productsByCategoryMap[product.category] != nil {
+                        self?.productsByCategoryMap[product.category]?.append(product)
+                    } else {
+                        self?.productsByCategoryMap[product.category] = [product]
+                    }
                 }
+                print(self?.productsByCategoryMap, "MAP")
             case .error(message: let message):
                 print(message)
             }
             self?.hideSkeletons()
         }
-//
-//        service.fetchProducts { dishes in
-//            self.products = dishes
-//            DispatchQueue.main.async { [weak self] in
-//                self?.collectionView.reloadData()
-//            }
-//        }
     }
     
     override func viewDidAppear(_ animated: Bool) {
