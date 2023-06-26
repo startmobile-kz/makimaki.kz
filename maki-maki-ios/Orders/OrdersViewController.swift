@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class OrdersViewController: UIViewController {
+final class OrdersViewController: UIViewController, ReorderCellDelegate {
     
     // MARK: - State
     
@@ -68,6 +68,7 @@ final class OrdersViewController: UIViewController {
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
+        tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
         tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
@@ -87,7 +88,7 @@ final class OrdersViewController: UIViewController {
     
     private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
-//        view.isHidden = true
+        //        view.isHidden = true
         return view
     }()
     
@@ -95,11 +96,11 @@ final class OrdersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         setupNavigationBar()
-        setupData()
         setupViews()
         setupConstraints()
+        setupData()
         showNoOrdersViewIfNeeded()
     }
     
@@ -110,11 +111,13 @@ final class OrdersViewController: UIViewController {
         sectionIsExpanded = Array(repeating: true, count: orders.count)
     }
     
-    // MARK: - Setup Views
+    // MARK: - Setup Navigation Bar
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Orders"
     }
+    
+    // MARK: - Setup Views
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
@@ -159,11 +162,22 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if indexPath.row == orders[0].ordersList.count - 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReorderCell.reuseID,
+                                                           for: indexPath) as? ReorderCell else {
+                fatalError("reorder_cell not found")
+            }
+            cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
+            cell.delegate = self
+            return cell
+        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrdersCell.reuseID,
                                                        for: indexPath) as? OrdersCell else {
             fatalError("orders_cell is not registered")
         }
         cell.setup(model: orders[indexPath.section].ordersList[indexPath.row])
+        cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
         return cell
     }
     
@@ -202,7 +216,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
         return 83
     }
-
 }
 
 // MARK: - Collapse Animation
