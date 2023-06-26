@@ -1,5 +1,5 @@
 //
-//  OrdersModel.swift
+//  Orders.swift
 //  maki-maki-ios
 //
 //  Created by siberianarg on 06.06.2023.
@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrdersModel {
+struct Orders {
     let cafeName: String
     let status: String
     let time: String

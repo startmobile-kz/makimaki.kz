@@ -11,24 +11,24 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - State
     
-    lazy var orders: [OrdersModel] = {
+    lazy var orders: [Orders] = {
         return [
-            OrdersModel(cafeName: "Bellissimo Pizza",
+            Orders(cafeName: "Bellissimo Pizza",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ",
                         price: "$43.95",
                         ordersList: self.firstOrder),
-            OrdersModel(cafeName: "Capital One Cafe",
+            Orders(cafeName: "Capital One Cafe",
                         status: "Cancelled",
                         time: "24 May 2020, 04:50 PM  ",
                         price: "$5.48",
                         ordersList: self.secondOrder),
-            OrdersModel(cafeName: "Street Cafe",
+            Orders(cafeName: "Street Cafe",
                         status: "Delivered",
                         time: "18 May 2020, 02:37 PM  ",
                         price: "$18.30",
                         ordersList: self.thirdOrder),
-            OrdersModel(cafeName: "Smile House Cafe",
+            Orders(cafeName: "Smile House Cafe",
                         status: "Delivered",
                         time: "18 May 2020, 02:08 PM  ",
                         price: "$14.00",
@@ -59,7 +59,7 @@ final class OrdersViewController: UIViewController {
         OrdersList(count: 333, positionName: " x Medium Supremo Pizza", price: "$14.40")
     ]
     
-    private var ordersCopy: [OrdersModel] = []
+    private var ordersCopy: [Orders] = []
     
     private var sectionIsExpanded: [Bool] = []
     
