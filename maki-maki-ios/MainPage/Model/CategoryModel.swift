@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct CategoryModel: Decodable {
+struct Category: Decodable {
     let id: Int
     let code: String
     let name: String

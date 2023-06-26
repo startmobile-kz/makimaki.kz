@@ -10,7 +10,7 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
-    var categories: [CategoryModel] = []
+    var categories: [Category] = []
     
     // MARK: - Sections
     let sections: [SectionType] = [.categories, .promos, .restaurants]

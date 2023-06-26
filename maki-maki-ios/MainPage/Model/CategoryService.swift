@@ -11,7 +11,7 @@ class CategoryService {
     
     private var urlSession = URLSession.shared
     
-    func fetchCategory(completion: @escaping ([CategoryModel]) -> Void) {
+    func fetchCategory(completion: @escaping ([Category]) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/categories"
         guard let url = URL(string: urlString) else { return }
         var request = URLRequest(url: url)
@@ -23,7 +23,7 @@ class CategoryService {
             }
             
             do {
-                let categories = try JSONDecoder().decode([CategoryModel].self, from: data)
+                let categories = try JSONDecoder().decode([Category].self, from: data)
                 completion(categories)
             } catch let error {
                 print("Error:\(error.localizedDescription)")
