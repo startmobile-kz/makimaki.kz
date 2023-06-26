@@ -9,6 +9,7 @@ import UIKit
 import SnapKit
 
 // MARK: - Search Container View protocol
+
 protocol SearchContainerViewDelegate: AnyObject {
     func textFieldIsTapped(state: Bool)
     func searchCompleted(word: String)
@@ -53,12 +54,14 @@ final class SearchContainerView: UIView {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         searchBarTextField.addSubview(searchIconImageView)
         self.addSubview(searchBarTextField)
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         searchBarTextField.snp.makeConstraints { make in
             make.leading.trailing.bottom.top.equalToSuperview()
@@ -71,6 +74,7 @@ final class SearchContainerView: UIView {
     }
     
     // MARK: - Search textfield frame setup
+    
     private func setupSearchTextfieldFrame() {
         let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: 48, height: self.frame.height))
         searchBarTextField.leftView = paddingView
@@ -78,6 +82,7 @@ final class SearchContainerView: UIView {
 }
 
 // MARK: - Search Container View delegate methods
+
 extension SearchContainerView: UITextFieldDelegate {
     
     @objc func textFieldTapped() {
@@ -88,25 +93,18 @@ extension SearchContainerView: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        // Get the current text in the text field
-            if let currentText = textField.text,
-                let textRange = Range(range, in: currentText) {
-                
-                // Create the updated text string
-                let updatedText = currentText.replacingCharacters(in: textRange, with: string)
-                
-                if !updatedText.isEmpty {
-                    delegate?.searchCompleted(word: updatedText)
-                    print("Searched text:", updatedText)
-                } else {
-                    // Handle the case when the text is empty
-                    // This could be the deletion of the last character
-                    delegate?.searchCompleted(word: "")
-                    print("Searched text: (empty)")
-                }
+        if let currentText = textField.text,
+           let textRange = Range(range, in: currentText) {
+            let updatedText = currentText.replacingCharacters(in: textRange, with: string)
+            if !updatedText.isEmpty {
+                delegate?.searchCompleted(word: updatedText)
+                print("Searched text:", updatedText)
+            } else {
+                delegate?.searchCompleted(word: "")
+                print("Searched text: (empty)")
             }
-            
-            return true
+        }
+        return true
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {

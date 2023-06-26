@@ -11,6 +11,7 @@ import SnapKit
 final class SearchV1ViewController: UIViewController {
 
     // MARK: - Properties
+    
     private var service = ProductsService()
     private var products = [ProductModel]()
     private var searchTextFieldIsTapped = true
@@ -22,6 +23,7 @@ final class SearchV1ViewController: UIViewController {
     }
 
     // MARK: - UI
+    
     private lazy var searchContainerView: SearchContainerView = SearchContainerView()
     
     private lazy var searchTableView: UITableView = {
@@ -37,6 +39,7 @@ final class SearchV1ViewController: UIViewController {
     }()
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         setupViews()
@@ -47,6 +50,7 @@ final class SearchV1ViewController: UIViewController {
     }
     
     // MARK: - Setup Views
+    
     private func setupViews() {
         view.addSubview(searchContainerView)
         view.addSubview(searchTableView)
@@ -54,6 +58,7 @@ final class SearchV1ViewController: UIViewController {
     }
 
     // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         searchContainerView.snp.makeConstraints { make in
             make.leading.equalTo(16)
@@ -121,6 +126,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
 }
 
 // MARK: - SearchContainerViewDelegate
+
 extension SearchV1ViewController: SearchContainerViewDelegate {
     func textFieldIsTapped(state: Bool) {
         searchTextFieldIsTapped = state

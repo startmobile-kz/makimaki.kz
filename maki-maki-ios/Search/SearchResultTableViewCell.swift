@@ -16,7 +16,6 @@ final class SearchResultTableViewCell: UITableViewCell {
     // MARK: - UI
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
-        // imageView.image = AppImage.cardImage_1.uiImage
         imageView.layer.cornerRadius = 8
         return imageView
     }()
@@ -46,6 +45,7 @@ final class SearchResultTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -57,11 +57,13 @@ final class SearchResultTableViewCell: UITableViewCell {
     }
     
     // MARK: - Setup Views
+    
     private func setupViews() {
         contentView.addSubviews([productImageView, infoStackView])
     }
     
     // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         productImageView.snp.makeConstraints { make in
             make.top.equalTo(8)
