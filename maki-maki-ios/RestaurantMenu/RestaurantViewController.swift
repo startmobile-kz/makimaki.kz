@@ -355,9 +355,9 @@ final class RestaurantViewController: UIViewController {
     
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-//        basketViewController.selectedDishes = dishes.filter({ dish in
-//            return dish.isSelected
-//        })
+        basketViewController.selectedDishes = dishes.filter({ dish in
+            return dish.isSelected
+        })
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
     
@@ -408,21 +408,21 @@ final class RestaurantViewController: UIViewController {
 }
 // MARK: - DishViewControllerDelegate methods
 
-//extension RestaurantViewController: DishViewControllerDelegate {
-//    func addToBasket(dish: DishResponseModel) {
-//        collectionView.reloadData()
-//    }
-//}
+extension RestaurantViewController: DishViewControllerDelegate {
+    func addToBasket(dish: DishResponseModel) {
+        collectionView.reloadData()
+    }
+}
 
 // MARK: - UICollectionViewDelegate methods
 
 extension RestaurantViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let dishViewController = DishViewController()
-//        dishViewController.dish = dishes[indexPath.row]
-//        dishViewController.delegate = self
-//        present(dishViewController, animated: true)
-//    }
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dishViewController = DishViewController()
+        dishViewController.dish = dishes[indexPath.row]
+        dishViewController.delegate = self
+        present(dishViewController, animated: true)
+    }
 }
 
 // MARK: - UICollectionViewDataSource methods

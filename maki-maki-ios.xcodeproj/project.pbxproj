@@ -498,11 +498,11 @@
 		9F2380382A49C6AA0029A5DD /* RestaurantMenu */ = {
 			isa = PBXGroup;
 			children = (
+				9F2380472A49C6AA0029A5DD /* RestaurantViewController.swift */,
 				9F2380392A49C6AA0029A5DD /* Category Menu */,
 				9F23803D2A49C6AA0029A5DD /* View Cart */,
 				9F23803F2A49C6AA0029A5DD /* Model */,
 				9F2380422A49C6AA0029A5DD /* Main Header */,
-				9F2380472A49C6AA0029A5DD /* RestaurantViewController.swift */,
 				9F2380482A49C6AA0029A5DD /* Dish Menu */,
 			);
 			path = RestaurantMenu;
