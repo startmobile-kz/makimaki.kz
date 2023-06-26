@@ -107,6 +107,11 @@ final class RestaurantViewController: UIViewController {
     private func fetchCategoriesWithProducts() {
         fetchCategories { [weak self] in
             self?.fetchProducts()
+            DispatchQueue.main.async {
+//                self?.isLoaded = true
+                self?.hideSkeletons()
+                self?.collectionView.reloadData()
+            }
         }
     }
     
@@ -147,7 +152,6 @@ final class RestaurantViewController: UIViewController {
             case .error(message: let message):
                 print(message)
             }
-            self?.hideSkeletons()
         }
     }
     
