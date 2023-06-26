@@ -499,31 +499,31 @@
 			isa = PBXGroup;
 			children = (
 				9F2380472A49C6AA0029A5DD /* RestaurantViewController.swift */,
-				9F2380392A49C6AA0029A5DD /* Category Menu */,
-				9F23803D2A49C6AA0029A5DD /* View Cart */,
+				9F2380392A49C6AA0029A5DD /* CategoryMenu */,
+				9F23803D2A49C6AA0029A5DD /* ViewCart */,
 				9F23803F2A49C6AA0029A5DD /* Model */,
-				9F2380422A49C6AA0029A5DD /* Main Header */,
+				9F2380422A49C6AA0029A5DD /* MainHeader */,
 				9F2380482A49C6AA0029A5DD /* Dish Menu */,
 			);
 			path = RestaurantMenu;
 			sourceTree = "<group>";
 		};
-		9F2380392A49C6AA0029A5DD /* Category Menu */ = {
+		9F2380392A49C6AA0029A5DD /* CategoryMenu */ = {
 			isa = PBXGroup;
 			children = (
 				9F23803A2A49C6AA0029A5DD /* CategoryMenuView.swift */,
 				9F23803B2A49C6AA0029A5DD /* DishCategoryCollectionViewCell.swift */,
 				9F23803C2A49C6AA0029A5DD /* CategoryItem.swift */,
 			);
-			path = "Category Menu";
+			path = CategoryMenu;
 			sourceTree = "<group>";
 		};
-		9F23803D2A49C6AA0029A5DD /* View Cart */ = {
+		9F23803D2A49C6AA0029A5DD /* ViewCart */ = {
 			isa = PBXGroup;
 			children = (
 				9F23803E2A49C6AA0029A5DD /* ViewCartContainer.swift */,
 			);
-			path = "View Cart";
+			path = ViewCart;
 			sourceTree = "<group>";
 		};
 		9F23803F2A49C6AA0029A5DD /* Model */ = {
@@ -535,14 +535,14 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		9F2380422A49C6AA0029A5DD /* Main Header */ = {
+		9F2380422A49C6AA0029A5DD /* MainHeader */ = {
 			isa = PBXGroup;
 			children = (
 				9F2380462A49C6AA0029A5DD /* RestaurantInfoView.swift */,
 				9F2380432A49C6AA0029A5DD /* RestaurantCharacteristic.swift */,
 				9F2380442A49C6AA0029A5DD /* RestaurantHeaderView.swift */,
 			);
-			path = "Main Header";
+			path = MainHeader;
 			sourceTree = "<group>";
 		};
 		9F2380482A49C6AA0029A5DD /* Dish Menu */ = {
