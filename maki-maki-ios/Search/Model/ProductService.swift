@@ -13,7 +13,7 @@ class ProductsService {
     
     private var urlSession = URLSession.shared
     
-    func fetchProducts(completion: @escaping ([ProductModel]) -> Void) {
+    func fetchProducts(completion: @escaping ([Product]) -> Void) {
         
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         
@@ -28,8 +28,8 @@ class ProductsService {
                 fatalError("Data not found")
             }
             do {
-                let products = try JSONDecoder().decode([ProductModel].self, from: data)
-                completion(products)
+                let product = try JSONDecoder().decode([Product].self, from: data)
+                completion(product)
             } catch let error {
                 print("Error:\(error.localizedDescription)")
                 completion([])

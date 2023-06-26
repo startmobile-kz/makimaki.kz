@@ -87,7 +87,6 @@ extension SearchContainerView: UITextFieldDelegate {
     
     @objc func textFieldTapped() {
         delegate?.textFieldIsTapped(state: true)
-        print("tap")
     }
     
     func textField(_ textField: UITextField,
@@ -98,10 +97,8 @@ extension SearchContainerView: UITextFieldDelegate {
             let updatedText = currentText.replacingCharacters(in: textRange, with: string)
             if !updatedText.isEmpty {
                 delegate?.searchCompleted(word: updatedText)
-                print("Searched text:", updatedText)
             } else {
                 delegate?.searchCompleted(word: "")
-                print("Searched text: (empty)")
             }
         }
         return true

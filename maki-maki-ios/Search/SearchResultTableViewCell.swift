@@ -88,7 +88,7 @@ final class SearchResultTableViewCell: UITableViewCell {
         }
     }
     
-    public func setupData(dish: ProductModel) {
+    public func setupData(dish: Product) {
         productNameLabel.text = dish.name
         priceLabel.text = "\(dish.price) ₸"
         let url = URL(string: dish.image ?? " ")

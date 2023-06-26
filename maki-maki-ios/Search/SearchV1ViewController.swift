@@ -13,10 +13,10 @@ final class SearchV1ViewController: UIViewController {
     // MARK: - Properties
     
     private var service = ProductsService()
-    private var products = [ProductModel]()
+    private var products = [Product]()
     private var searchTextFieldIsTapped = true
     
-    var filteredProducts = [ProductModel]() {
+    var filteredProducts = [Product]() {
         didSet {
             self.searchTableView.reloadData()
         }
@@ -87,19 +87,16 @@ final class SearchV1ViewController: UIViewController {
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        if searchTextFieldIsTapped == false {
+        if !searchTextFieldIsTapped {
             searchTableView.rowHeight = 40
             return 6
-        } else {
-            searchTableView.rowHeight = 66
-            return filteredProducts.count
         }
+        searchTableView.rowHeight = 66
+        return filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        
-        if searchTextFieldIsTapped == false {
+        if !searchTextFieldIsTapped {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: RecentSearchesTableViewCell.reuseID,
                 for: indexPath
@@ -107,16 +104,15 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
                 fatalError("recent not found")
             }
             return cell
-        } else {
-            guard let cell = tableView.dequeueReusableCell(
-                withIdentifier: SearchResultTableViewCell.reuseID,
-                for: indexPath
-            ) as? SearchResultTableViewCell else {
-                fatalError("recent not found")
-            }
-            cell.setupData(dish: filteredProducts[indexPath.row])
-            return cell
         }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: SearchResultTableViewCell.reuseID,
+            for: indexPath
+        ) as? SearchResultTableViewCell else {
+            fatalError("recent not found")
+        }
+        cell.setupData(dish: filteredProducts[indexPath.row])
+        return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
