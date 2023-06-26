@@ -46,7 +46,7 @@ final class RestaurantViewController: UIViewController {
     }()
     
     private lazy var likeBarButtonItem: UIBarButtonItem = {
-//        let likeImage = AppImage.like_black.uiImage
+        let likeImage = AppImage.like_black.uiImage
         let item = UIBarButtonItem(image: .none, style: .plain, target: nil, action: nil)
         item.tintColor = .black
         return item

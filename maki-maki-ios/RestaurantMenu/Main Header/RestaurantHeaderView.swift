@@ -25,13 +25,13 @@ final class RestaurantHeaderView: UICollectionReusableView {
     
     private lazy var backButton: UIButton = {
         let button = UIButton()
-//        button.setImage(AppImage.arrow_left_white.uiImage, for: .normal)
+        button.setImage(AppImage.arrow_left_white.uiImage, for: .normal)
         return button
     }()
     
     private lazy var likeButton: UIButton = {
         let button = UIButton()
-//        button.setImage(AppImage.like_white.uiImage, for: .normal)
+        button.setImage(AppImage.like_white.uiImage, for: .normal)
         button.isSkeletonable = true
         button.skeletonCornerRadius = 5
         return button
