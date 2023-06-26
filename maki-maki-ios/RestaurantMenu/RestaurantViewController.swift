@@ -112,7 +112,9 @@ final class RestaurantViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showSkeletonAnimation()
+        if !isLoaded {
+            showSkeletonAnimation()
+        }
     }
     
     deinit {
