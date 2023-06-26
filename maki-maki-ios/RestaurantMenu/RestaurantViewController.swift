@@ -54,7 +54,7 @@ final class RestaurantViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-//        collectionView.delegate = self
+        collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isSkeletonable = true
         collectionView.register(
@@ -256,17 +256,19 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isLoaded && !isScrollToSectionCalled {
-            let yOffset = scrollView.contentOffset.y
-            let heightOfOneRowOfItems: Double = 242
-            let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-            if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
-                currentSection += 1
-                sendNotification(section: currentSection)
-            } else if
-                currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
-                currentSection -= 1
-                sendNotification(section: currentSection)
+        if isLoaded {
+            if !isScrollToSectionCalled {
+                let yOffset = scrollView.contentOffset.y
+                let heightOfOneRowOfItems: Double = 242
+                let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+                if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
+                    currentSection += 1
+                    sendNotification(section: currentSection)
+                } else if
+                    currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                    currentSection -= 1
+                    sendNotification(section: currentSection)
+                }
             }
             
             var sticked = false
@@ -412,15 +414,15 @@ final class RestaurantViewController: UIViewController {
 
 // MARK: - UICollectionViewDelegate methods
 
-//extension RestaurantViewController: UICollectionViewDelegate {
+extension RestaurantViewController: UICollectionViewDelegate {
 //    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 //        let dishViewController = DishViewController()
 //        dishViewController.dish = dishes[indexPath.row]
 //        dishViewController.delegate = self
 //        present(dishViewController, animated: true)
 //    }
-//}
-// swiftlint:enable all
+}
+
 // MARK: - UICollectionViewDataSource methods
 
 extension RestaurantViewController: UICollectionViewDataSource {
@@ -497,3 +499,4 @@ extension RestaurantViewController: SkeletonCollectionViewDataSource {
         return DishesCollectionViewCell.reuseID
     }
 }
+// swiftlint:enable all
