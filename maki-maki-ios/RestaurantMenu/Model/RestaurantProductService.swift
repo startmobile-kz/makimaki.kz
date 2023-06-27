@@ -10,11 +10,6 @@ import Alamofire
 
 // MARK: - Network request for products
 
-enum NetworkErrors: Error {
-    case badUrl
-    case serverError
-}
-
 class RestaurantProductService {
     
     private var urlSession = URLSession.shared
