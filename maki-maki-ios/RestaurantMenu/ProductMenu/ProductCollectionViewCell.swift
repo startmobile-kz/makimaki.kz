@@ -150,7 +150,14 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         productCountView.isHidden = product.count == 0
         productCountLabel.text = "\(product.count)"
         let url = URL(string: product.image ?? " ")
-        productImageView.kf.setImage(with: url)
+        productImageView.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .processor(DownsamplingImageProcessor(size: productImageView.frame.size)),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
+            ])
     }
     // swiftlint:enable all
 }

@@ -419,7 +419,7 @@ extension RestaurantViewController: DishViewControllerDelegate {
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let dishViewController = DishViewController()
-        dishViewController.dish = products[indexPath.row]
+        dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
         dishViewController.delegate = self
         present(dishViewController, animated: true)
     }
@@ -481,6 +481,7 @@ extension RestaurantViewController: UICollectionViewDataSource {
         }
         return UICollectionReusableView()
     }
+
 }
 
 // MARK: - SkeletonCollectionViewDataSource
