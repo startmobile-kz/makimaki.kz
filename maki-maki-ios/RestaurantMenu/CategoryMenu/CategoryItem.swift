@@ -9,5 +9,5 @@ import Foundation
 
 struct CategoryItem {
     var title: String 
-    var id: SectionDishesType
+    var id: SectionProductsType
 }

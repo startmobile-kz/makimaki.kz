@@ -7,7 +7,7 @@
 
 import Foundation
 
-class DishResponseModel: Decodable {
+class RestaurantProduct: Decodable {
     let id: Int
     let name: String
     let description: String

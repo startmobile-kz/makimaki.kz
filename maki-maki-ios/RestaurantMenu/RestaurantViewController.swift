@@ -13,8 +13,9 @@ import SkeletonView
 final class RestaurantViewController: UIViewController {
     
     // MARK: - State
-    private var service = DishService()
-    public var dishes: [DishResponseModel] = []
+    
+    private var service = RestaurantProductService()
+    public var products: [RestaurantProduct] = []
 
     // MARK: - Properties
     
@@ -32,7 +33,7 @@ final class RestaurantViewController: UIViewController {
     
     // MARK: - Enumeration for dish sections
     
-    private let sections: [SectionDishesType] = [.mostPopular, .pizza, .sushi,
+    private let sections: [SectionProductsType] = [.mostPopular, .pizza, .sushi,
                                                 .rolls, .burgers, .breakfast,
                                                 .sandwichs, .kebab, .salads,
                                                 .frenchFries, .coldDrinks]
@@ -46,7 +47,7 @@ final class RestaurantViewController: UIViewController {
     }()
     
     private lazy var likeBarButtonItem: UIBarButtonItem = {
-//        let likeImage = AppImage.like_black.uiImage
+        let likeImage = AppImage.like_black.uiImage
         let item = UIBarButtonItem(image: .none, style: .plain, target: nil, action: nil)
         item.tintColor = .black
         return item
@@ -54,7 +55,7 @@ final class RestaurantViewController: UIViewController {
     
     private lazy var collectionView: UICollectionView = {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
-//        collectionView.delegate = self
+        collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.isSkeletonable = true
         collectionView.register(
@@ -63,13 +64,13 @@ final class RestaurantViewController: UIViewController {
             withReuseIdentifier: RestaurantHeaderView.reuseID
         )
         collectionView.register(
-            DishesCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishesCollectionViewCell.reuseID
+            ProductCollectionViewCell.self,
+            forCellWithReuseIdentifier: ProductCollectionViewCell.reuseID
         )
         collectionView.register(
-            DishSectionHeaderView.self,
+            ProductSectionHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
-            withReuseIdentifier: DishSectionHeaderView.reuseId
+            withReuseIdentifier: ProductSectionHeaderView.reuseId
         )
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
@@ -103,7 +104,7 @@ final class RestaurantViewController: UIViewController {
     
     private func fetchProducts() {
         service.fetchProducts { dishes in
-            self.dishes = dishes
+            self.products = dishes
             DispatchQueue.main.async { [weak self] in
                 self?.collectionView.reloadData()
             }
@@ -112,7 +113,9 @@ final class RestaurantViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
-        showSkeletonAnimation()
+        if !isLoaded {
+            showSkeletonAnimation()
+        }
     }
     
     deinit {
@@ -256,17 +259,19 @@ final class RestaurantViewController: UIViewController {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isLoaded && !isScrollToSectionCalled {
-            let yOffset = scrollView.contentOffset.y
-            let heightOfOneRowOfItems: Double = 242
-            let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-            if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
-                currentSection += 1
-                sendNotification(section: currentSection)
-            } else if
-                currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
-                currentSection -= 1
-                sendNotification(section: currentSection)
+        if isLoaded {
+            if !isScrollToSectionCalled {
+                let yOffset = scrollView.contentOffset.y
+                let heightOfOneRowOfItems: Double = 242
+                let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+                if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
+                    currentSection += 1
+                    sendNotification(section: currentSection)
+                } else if
+                    currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                    currentSection -= 1
+                    sendNotification(section: currentSection)
+                }
             }
             
             var sticked = false
@@ -351,9 +356,9 @@ final class RestaurantViewController: UIViewController {
     
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-//        basketViewController.selectedDishes = dishes.filter({ dish in
-//            return dish.isSelected
-//        })
+        basketViewController.selectedDishes = products.filter({ dish in
+            return dish.isSelected
+        })
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
     
@@ -402,25 +407,26 @@ final class RestaurantViewController: UIViewController {
     }
     
 }
+
 // MARK: - DishViewControllerDelegate methods
 
-//extension RestaurantViewController: DishViewControllerDelegate {
-//    func addToBasket(dish: DishResponseModel) {
-//        collectionView.reloadData()
-//    }
-//}
+extension RestaurantViewController: DishViewControllerDelegate {
+    func addToBasket(dish: RestaurantProduct) {
+        collectionView.reloadData()
+    }
+}
 
 // MARK: - UICollectionViewDelegate methods
 
-//extension RestaurantViewController: UICollectionViewDelegate {
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        let dishViewController = DishViewController()
-//        dishViewController.dish = dishes[indexPath.row]
-//        dishViewController.delegate = self
-//        present(dishViewController, animated: true)
-//    }
-//}
-// swiftlint:enable all
+extension RestaurantViewController: UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let dishViewController = DishViewController()
+        dishViewController.dish = products[indexPath.row]
+        dishViewController.delegate = self
+        present(dishViewController, animated: true)
+    }
+}
+
 // MARK: - UICollectionViewDataSource methods
 
 extension RestaurantViewController: UICollectionViewDataSource {
@@ -430,18 +436,18 @@ extension RestaurantViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return dishes.count
+        return products.count
     }
     
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: DishesCollectionViewCell.reuseID,
-            for: indexPath) as? DishesCollectionViewCell else {
+            withReuseIdentifier: ProductCollectionViewCell.reuseID,
+            for: indexPath) as? ProductCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        let dish = dishes[indexPath.item]
-        cell.setupData(dish: dish)
+        let product = products[indexPath.item]
+        cell.setupData(product: product)
         return cell
     }
     
@@ -452,9 +458,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
                 ofKind: kind,
-                withReuseIdentifier: DishSectionHeaderView.reuseId,
+                withReuseIdentifier: ProductSectionHeaderView.reuseId,
                 for: indexPath
-            ) as? DishSectionHeaderView else {
+            ) as? ProductSectionHeaderView else {
                 fatalError("Could not cast to DishSectionHeaderView")
             }
             let section = sections[indexPath.section]
@@ -484,7 +490,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
         return UICollectionReusableView()
     }
 }
+
 // MARK: - SkeletonCollectionViewDataSource
+
 extension RestaurantViewController: SkeletonCollectionViewDataSource {
     func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
     -> Int {
@@ -494,6 +502,7 @@ extension RestaurantViewController: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
     ) -> SkeletonView.ReusableCellIdentifier {
-        return DishesCollectionViewCell.reuseID
+        return ProductCollectionViewCell.reuseID
     }
 }
+// swiftlint:enable all

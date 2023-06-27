@@ -43,8 +43,8 @@ final class CategoryMenuView: UIView {
         collection.dataSource = self
         collection.delegate = self
         collection.register(
-            DishCategoryCollectionViewCell.self,
-            forCellWithReuseIdentifier: DishCategoryCollectionViewCell.reuseID)
+            ProductCategoryCollectionViewCell.self,
+            forCellWithReuseIdentifier: ProductCategoryCollectionViewCell.reuseID)
         return collection
     }()
     
@@ -141,8 +141,8 @@ extension CategoryMenuView: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView,
                         cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
-            withReuseIdentifier: DishCategoryCollectionViewCell.reuseID,
-            for: indexPath) as? DishCategoryCollectionViewCell else {
+            withReuseIdentifier: ProductCategoryCollectionViewCell.reuseID,
+            for: indexPath) as? ProductCategoryCollectionViewCell else {
             fatalError("Couldn't cast to DishCategoryCollectionViewCell")
         }
         cell.categoryLabel.text = listCategory[indexPath.item].title

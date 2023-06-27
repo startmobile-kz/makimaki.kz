@@ -10,15 +10,15 @@ import SnapKit
 import Kingfisher
 import SkeletonView
 
-final class DishesCollectionViewCell: UICollectionViewCell {
+final class ProductCollectionViewCell: UICollectionViewCell {
     
     // MARK: - State
     
-    static let reuseID = String(describing: DishesCollectionViewCell.self)
+    static let reuseID = String(describing: ProductCollectionViewCell.self)
     
     // MARK: - UI
     
-    private lazy var dishImageView: UIImageView = {
+    private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.layer.cornerRadius = 8
         imageView.contentMode = .scaleAspectFill
@@ -27,9 +27,9 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         return imageView
     }()
     
-    private lazy var dishNameLabel: UILabel = {
+    private lazy var productNameLabel: UILabel = {
         let label = UILabel()
-        label.numberOfLines = 0
+        label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.medium.s15()
@@ -38,7 +38,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var dishPriceLabel: UILabel = {
+    private lazy var productPriceLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s14()
@@ -47,7 +47,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         return label
     }()
     
-    private lazy var dishCountView: UIView = {
+    private lazy var productCountView: UIView = {
         let view = UIView()
         view.backgroundColor = AppColor.accent.uiColor
         view.layer.cornerRadius = 8
@@ -55,7 +55,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         return view
     }()
     
-    private lazy var dishCountLabel: UILabel = {
+    private lazy var productCountLabel: UILabel = {
         let label = UILabel()
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.reqular.s14()
@@ -63,7 +63,7 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var hrstackView: UIStackView = {
-        let stackView = UIStackView(arrangedSubviews: [dishPriceLabel, dishCountView])
+        let stackView = UIStackView(arrangedSubviews: [productPriceLabel, productCountView])
         stackView.axis = .horizontal
         stackView.spacing = 77
         stackView.distribution = .equalSpacing
@@ -90,8 +90,8 @@ final class DishesCollectionViewCell: UICollectionViewCell {
         isSkeletonable = true
         contentView.backgroundColor = AppColor.background.uiColor
         contentView.layer.cornerRadius = 14
-        contentView.addSubviews([dishImageView,dishNameLabel,hrstackView])
-        dishCountView.addSubview(dishCountLabel)
+        contentView.addSubviews([productImageView,productNameLabel,hrstackView])
+        productCountView.addSubview(productCountLabel)
     }
     
     // MARK: - Setup Shadows
@@ -113,44 +113,44 @@ final class DishesCollectionViewCell: UICollectionViewCell {
     
     private func setupConstraints() {
         
-        dishImageView.snp.makeConstraints { make in
+        productImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(8)
             make.leading.equalToSuperview().offset(8)
             make.trailing.equalToSuperview().offset(-8)
             make.height.equalTo(145)
         }
         
-        dishNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(dishImageView.snp.bottom).offset(8)
+        productNameLabel.snp.makeConstraints { make in
+            make.top.equalTo(productImageView.snp.bottom).offset(8)
             make.leading.equalToSuperview().offset(12)
             make.trailing.equalToSuperview().offset(-12)
         }
         
-        dishCountView.snp.makeConstraints { make in
+        productCountView.snp.makeConstraints { make in
             make.height.equalTo(25)
             make.width.equalTo(25)
         }
         
-        dishCountLabel.snp.makeConstraints { make in
+        productCountLabel.snp.makeConstraints { make in
             make.centerX.equalToSuperview()
             make.centerY.equalToSuperview()
         }
         
         hrstackView.snp.makeConstraints { make in
-            make.leading.trailing.equalTo(dishNameLabel)
+            make.leading.trailing.equalTo(productNameLabel)
             make.bottom.equalToSuperview().offset(-12)
         }
     }
     
     // swiftlint:disable all
     
-    public func setupData(dish: DishResponseModel) {
-        dishNameLabel.text = dish.name
-        dishPriceLabel.text = "\(dish.price) ₸"
-        dishCountView.isHidden = dish.count == 0
-        dishCountLabel.text = "\(dish.count)"
-        let url = URL(string: dish.image ?? " ")
-        dishImageView.kf.setImage(with: url)
+    public func setupData(product: RestaurantProduct) {
+        productNameLabel.text = product.name
+        productPriceLabel.text = "\(product.price) ₸"
+        productCountView.isHidden = product.count == 0
+        productCountLabel.text = "\(product.count)"
+        let url = URL(string: product.image ?? " ")
+        productImageView.kf.setImage(with: url)
     }
     // swiftlint:enable all
 }
