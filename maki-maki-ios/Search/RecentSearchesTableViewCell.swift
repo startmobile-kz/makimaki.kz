@@ -22,7 +22,6 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private lazy var recentSearchLabel: UILabel = {
         let label = UILabel()
-        // label.text = "Pizza"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label

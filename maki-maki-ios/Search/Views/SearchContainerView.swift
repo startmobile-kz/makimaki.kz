@@ -19,7 +19,7 @@ protocol SearchContainerViewDelegate: AnyObject {
 
 final class SearchContainerView: UIView {
     
-    private lazy var searchVC: SearchV1ViewController = SearchV1ViewController()
+    private lazy var searchViewController: SearchV1ViewController = SearchV1ViewController()
     
     var delegate: SearchContainerViewDelegate?
     
@@ -49,7 +49,7 @@ final class SearchContainerView: UIView {
         setupViews()
         setupConstraints()
         setupSearchTextfieldFrame()
-        searchVC.delegate = self
+        searchViewController.delegate = self
         
     }
     
@@ -106,7 +106,6 @@ extension SearchContainerView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        print("END END HHHHEEEEY I PRESSED RETURN BUTTON")
         if let text = textField.text {
             delegate?.returnButtonTapped(lastWord: text)
         }
@@ -115,12 +114,11 @@ extension SearchContainerView: UITextFieldDelegate {
     
     func textFieldShouldClear(_ textField: UITextField) -> Bool {
         delegate?.clearButtonTapped(isTapped: true)
-        print("clear")
         return true
     }
 }
 
-extension SearchContainerView: SearchVCDelegate {
+extension SearchContainerView: SearchViewControllerDelegate {
     func recentSearchTapped(word: String) {
         searchBarTextField.text = word
     }
