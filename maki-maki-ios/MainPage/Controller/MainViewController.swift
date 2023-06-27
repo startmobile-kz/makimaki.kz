@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class MainViewController: UIViewController {
     
@@ -33,6 +34,7 @@ final class MainViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
+        collectionView.isSkeletonable = true
         collectionView.register(
             SectionHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -61,12 +63,31 @@ final class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         fetchCategories()
+        showSkeletonAnimation()
+        hideSkeletons()
     }
     
     // MARK: - Setup Views
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([deliveryHeaderView, separatorView, collectionView])
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.prepareSkeleton { _ in
+            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        }
+    }
+    
+    private func hideSkeletons() {
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
+        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
+            self?.collectionView.stopSkeletonAnimation()
+            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+            self?.collectionView.reloadData()
+        }
     }
     
     // MARK: - Setup Constraints
@@ -324,6 +345,25 @@ extension MainViewController: UICollectionViewDataSource {
             collectionView.reloadData()
         default:
             return
+        }
+    }
+}
+// MARK: - SkeletonCollectionViewDataSource
+extension MainViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
+    -> Int {
+        return 8
+    }
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        if indexPath.section == 0 {
+            return CategoryCollectionViewCell.reuseID
+        } else if indexPath.section == 1 {
+            return PromoBannerCollectionViewCell.reuseID
+        } else {
+            return RestaurantCollectionViewCell.reuseID
         }
     }
 }

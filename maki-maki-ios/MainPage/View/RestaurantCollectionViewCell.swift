@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class RestaurantCollectionViewCell: UICollectionViewCell {
     
@@ -16,6 +17,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "restaurant_1")
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -24,6 +26,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "Taqueria Los Coyotes"
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -31,6 +34,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
         imageView.tintColor = AppColor.heading.uiColor
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -38,6 +42,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.spacing = 8
         stack.axis = .horizontal
+        stack.isSkeletonable = true
         return stack
     }()
     
@@ -46,6 +51,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "5.0"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -54,6 +60,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "•"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.grey300.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -62,6 +69,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "15-20 mins"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -70,6 +78,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "•"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.grey300.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -78,6 +87,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "$$"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -86,6 +96,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         uiView.layer.cornerRadius = 16
         uiView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
         uiView.backgroundColor = AppColor.accent.uiColor
+        uiView.isSkeletonable = true
         return uiView
     }()
     
@@ -94,6 +105,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         label.text = "Delivery Type"
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -110,6 +122,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        isSkeletonable = true
         restaurantImageView.addSubview(restaurantDeliveryTypeView)
         restaurantDeliveryTypeView.addSubview(deliveryTypeLabel)
         let subviews = [restaurantImageView, restaurantNameLabel, starImageView, infoStackView]
