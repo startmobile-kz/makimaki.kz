@@ -144,11 +144,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].ordersList.count
+        return orders[section].ordersList.count + 1
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+        if indexPath.row == orders[indexPath.section].ordersList.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReorderCell.reuseID,
                                                            for: indexPath) as? ReorderCell else {
                 fatalError("reorder_cell not found")
@@ -165,12 +165,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+        if indexPath.row == orders[indexPath.section].ordersList.count {
             return 83
         } else {
-            return UITableView.automaticDimension
+            return 36
         }
-        
     }
     
     // MARK: - Header of Section
@@ -188,6 +187,14 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
+    }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+       
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
     }
 }
 
