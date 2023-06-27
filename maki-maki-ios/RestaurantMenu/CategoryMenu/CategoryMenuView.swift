@@ -20,18 +20,7 @@ final class CategoryMenuView: UIView {
     
     private let type: CategoryMenuViewType
     
-    private var listCategory: [Category] = [
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza"),
-        Category(id: 1, code: "Pizza", name: "Pizza")
-    ]
+    private var listCategory: [Category] = []
     
     static let notificationName = Notification.Name("categoriesItemSelected")
     

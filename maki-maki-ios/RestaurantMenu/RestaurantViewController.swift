@@ -18,9 +18,6 @@ final class RestaurantViewController: UIViewController {
     public var products: [RestaurantProduct] = []
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
-
-    // MARK: - Properties
-    
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
@@ -37,13 +34,6 @@ final class RestaurantViewController: UIViewController {
             collectionView.reloadData()
         }
     }
-    
-    // MARK: - Enumeration for dish sections
-    
-    private let sections: [SectionProductsType] = [.mostPopular, .pizza, .sushi,
-                                                .rolls, .burgers, .breakfast,
-                                                .sandwichs, .kebab, .salads,
-                                                .frenchFries, .coldDrinks]
     
     // MARK: - UI
     
@@ -212,7 +202,6 @@ final class RestaurantViewController: UIViewController {
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { sectionIndex, _ in
             // Item
-            let sectionType = self.sections[sectionIndex]
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
@@ -237,8 +226,8 @@ final class RestaurantViewController: UIViewController {
                 trailing: 0
             )
             section.interGroupSpacing = 14
-            switch sectionType {
-            case .mostPopular:
+            switch sectionIndex {
+            case 0:
                 section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
             default:
                 section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
@@ -320,7 +309,7 @@ final class RestaurantViewController: UIViewController {
         let itemHeight: Double = 242
         let spacingBetweenItems: Double = 14
         let heightOfBottomInsetOfSections: Double = 16
-        for sectionIndex in 0..<sections.count {
+        for sectionIndex in 0..<categoriesAndNames.count {
             let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
             let numOfProducts = productsByCategoryMap[sectionIndex + 1]?.count ?? 0
             let numfOfRowsInSection = ceil(Double(numOfProducts) / 2)
@@ -334,7 +323,6 @@ final class RestaurantViewController: UIViewController {
             }
             heights.append(neededHeightForChangingSection)
         }
-        print(heights)
     }
     
     // MARK: - Actions
@@ -439,7 +427,6 @@ extension RestaurantViewController: UICollectionViewDelegate {
 extension RestaurantViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        print("count", categoriesAndNames.count)
         return categoriesAndNames.count
     }
     
