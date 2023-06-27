@@ -6,31 +6,16 @@
 //
 
 import Foundation
+import Alamofire
 
 class CategoryService {
-    
-    private var urlSession = URLSession.shared
-    
-    func fetchCategories(completion: @escaping ([Category]) -> Void) {
+
+    func fetchCategories(completion: @escaping (Result<[Category], AFError>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/categories"
         guard let url = URL(string: urlString) else { return }
-        var request = URLRequest(url: url)
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
-            guard let data = data else {
-                fatalError("Data not found")
-            }
-            
-            do {
-                let categories = try JSONDecoder().decode([Category].self, from: data)
-                completion(categories)
-            } catch let error {
-                print("Error:\(error.localizedDescription)")
-                completion([])
-            }
+
+        AF.request(url, method: .get).responseDecodable(of: [Category].self) { data in
+            completion(data.result)
         }
-        )
-        task.resume()
     }
 }

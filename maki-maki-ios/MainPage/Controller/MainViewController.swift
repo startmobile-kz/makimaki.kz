@@ -105,10 +105,15 @@ final class MainViewController: UIViewController {
     // MARK: - fetchCategories
     
     private func fetchCategories() {
-        CategoryService().fetchCategories { categories in
-            self.categories = categories
-            DispatchQueue.main.async {
-                self.collectionView.reloadData()
+        CategoryService().fetchCategories { result in
+            switch result {
+            case .success(let categories):
+                self.categories = categories
+                DispatchQueue.main.async {
+                    self.collectionView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }
@@ -322,6 +327,9 @@ extension MainViewController: UICollectionViewDataSource {
         case .categories:
             selectedCategoryIndexPath = indexPath
             collectionView.reloadData()
+        case .restaurants:
+            let controller = RestaurantViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
         default:
             return
         }
