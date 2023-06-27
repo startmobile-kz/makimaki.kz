@@ -42,7 +42,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.spacing = 8
         stack.axis = .horizontal
-        stack.isSkeletonable = true
         return stack
     }()
     
@@ -96,7 +95,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         uiView.layer.cornerRadius = 16
         uiView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
         uiView.backgroundColor = AppColor.accent.uiColor
-        uiView.isSkeletonable = true
         return uiView
     }()
     

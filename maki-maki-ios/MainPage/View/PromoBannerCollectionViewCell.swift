@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
@@ -16,6 +17,7 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     private lazy var promoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "promo_1")
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -32,6 +34,7 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        isSkeletonable = true
         let subviews = [promoImageView]
         subviews.forEach({contentView.addSubview($0)})
     }
