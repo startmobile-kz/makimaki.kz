@@ -128,7 +128,9 @@ final class CategoryMenuView: UIView {
                 guard let categories = categories else {
                     return
                 }
-                self?.listCategory = categories
+                self?.listCategory = categories.sorted(by: {
+                    $0.id < $1.id
+                })
                 DispatchQueue.main.async {
                     self?.categoryCollectionView.reloadData()
                     self?.categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
