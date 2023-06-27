@@ -174,6 +174,7 @@ final class AddCreditCardViewController: UIViewController {
         textField.keyboardType = .default
         textField.rightViewMode = .always
         textField.autocorrectionType = .no
+        textField.delegate = self
         return textField
     }()
     
@@ -287,12 +288,15 @@ extension AddCreditCardViewController: UITextFieldDelegate {
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
-        cardHolderNameLabel.text = textField.text
+        cardHolderNameLabel.text = cardHolderNameTextfield.text
         dateOfExpireLabel.text = dateOfExpireTextField.text
         cardNumberLabel.text =
         cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d+)",
-        with: "$1 $2 $3 $4",
-        options: .regularExpression, range: nil)
+                                                       with: "$1 $2 $3 $4",
+                                                       options: .regularExpression, range: nil)
+        if cvcTextField.text?.count == 3 {
+            return false
+        }
         return true
     }
 }
