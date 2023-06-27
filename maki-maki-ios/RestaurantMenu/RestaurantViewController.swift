@@ -99,64 +99,9 @@ final class RestaurantViewController: UIViewController {
         setupNotificationObservers()
 //        calculateAllSectionHeights()
 //        hideSkeletons()
-        fetchCategoriesWithProducts()
     }
     
     // MARK: - Callback
-    
-    private func fetchCategoriesWithProducts() {
-        fetchCategories { [weak self] in
-            self?.fetchProducts {
-                DispatchQueue.main.async {
-                    self?.isLoaded = true
-                    self?.hideSkeletons()
-                    self?.calculateAllSectionHeights()
-                    self?.collectionView.reloadData()
-                }
-            }
-        }
-    }
-    
-    private func fetchCategories(completion: @escaping () -> Void) {
-        service.fetchCategories { [weak self] result in
-            switch result {
-            case .success(data: let categories):
-                guard let categories = categories else {
-                    return
-                }
-                for category in categories {
-                    self?.categoriesAndNames[category.id] = category.name
-                }
-                print(self?.categoriesAndNames)
-            case .error(message: let message):
-                print(message)
-            }
-            completion()
-        }
-    }
-    
-    private func fetchProducts(completion: @escaping () -> Void) {
-        service.fetchProductsWithAlamofire { [weak self] result in
-            switch result {
-            case .success(data: let products):
-                guard let products = products else {
-                    return
-                }
-                self?.products = products
-                
-                for product in products {
-                    if self?.productsByCategoryMap[product.category] != nil {
-                        self?.productsByCategoryMap[product.category]?.append(product)
-                    } else {
-                        self?.productsByCategoryMap[product.category] = [product]
-                    }
-                }
-            case .error(message: let message):
-                print(message)
-            }
-            completion()
-        }
-    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
