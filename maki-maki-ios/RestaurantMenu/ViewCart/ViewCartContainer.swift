@@ -112,5 +112,8 @@ final class ViewCartContainer : UIView {
         let totalPrice = product.reduce(0) { partialResult, product in
             return partialResult + (product.count * product.price)
         }
+        countLabel.isHidden = false
+        countLabel.text = "\(product.count)"
+        priceLabel.text =  "\(totalPrice) ₸"
     }
 }
