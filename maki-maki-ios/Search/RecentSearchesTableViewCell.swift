@@ -22,7 +22,6 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private lazy var recentSearchLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pizza"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label
@@ -71,5 +70,9 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         recentSearchLabel.snp.makeConstraints { make in
             make.height.equalTo(18)
         }
+    }
+    
+    public func setupData(history: History) {
+        recentSearchLabel.text = history.name
     }
 }
