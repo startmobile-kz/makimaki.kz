@@ -27,11 +27,17 @@ final class RestaurantViewController: UIViewController {
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
-    private var isLoaded = false
     private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
     private var currentSection = 0
     private var heights: [Double] = []
     static let notificationName = Notification.Name("scrolledToSection")
+    private var isLoaded = false {
+        didSet {
+            hideSkeletons()
+            calculateAllSectionHeights()
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: - Enumeration for dish sections
     
@@ -112,9 +118,6 @@ final class RestaurantViewController: UIViewController {
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
                 self?.isLoaded = true
-                self?.calculateAllSectionHeights()
-                self?.hideSkeletons()
-                self?.collectionView.reloadData()
             case .error(message: let message):
                 print(message)
             }
