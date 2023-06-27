@@ -97,11 +97,29 @@ final class RestaurantViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         setupNotificationObservers()
-//        calculateAllSectionHeights()
-//        hideSkeletons()
+        fetchCategoriesWithProducts()
     }
     
     // MARK: - Callback
+    
+    private func fetchCategoriesWithProducts() {
+        service.fetchCategoriesWithProducts { [weak self] result in
+            switch result {
+            case .success(data: let groupedProducts):
+                guard let groupedProducts = groupedProducts else {
+                    return
+                }
+                self?.categoriesAndNames = groupedProducts.categoriesAndNames
+                self?.productsByCategoryMap = groupedProducts.dividedProducts
+                self?.isLoaded = true
+                self?.calculateAllSectionHeights()
+                self?.hideSkeletons()
+                self?.collectionView.reloadData()
+            case .error(message: let message):
+                print(message)
+            }
+        }
+    }
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)

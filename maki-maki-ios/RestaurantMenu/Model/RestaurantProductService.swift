@@ -19,7 +19,7 @@ class RestaurantProductService {
     
     private var urlSession = URLSession.shared
     
-    func fetchCategoriesWithProduct(
+    func fetchCategoriesWithProducts(
         completion: @escaping (Result<GroupedProducts>) -> Void
     ) {
         var categoriesAndNames: [Int: String] = [:]
