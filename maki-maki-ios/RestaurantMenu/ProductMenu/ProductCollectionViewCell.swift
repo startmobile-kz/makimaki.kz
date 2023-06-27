@@ -151,5 +151,7 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         productCountLabel.text = "\(product.count)"
         let url = URL(string: product.image ?? " ")
         let placeholderImage = AppImage.burger.uiImage
+        productImageView.kf.setImage(with: url, placeholder: placeholderImage, options: [.keepCurrentImageWhileLoading])
+        }
     }
     // swiftlint:enable all
