@@ -15,12 +15,15 @@ final class SearchV1ViewController: UIViewController {
     private var service = ProductsService()
     private var products = [Product]()
     private var searchTextFieldIsTapped = true
+    private var clearButtonTapped = true
     
     var filteredProducts = [Product]() {
         didSet {
             self.searchTableView.reloadData()
         }
     }
+    
+    var searchHistory = [History]()
 
     // MARK: - UI
     
@@ -89,7 +92,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if !searchTextFieldIsTapped {
             searchTableView.rowHeight = 40
-            return 6
+            return searchHistory.count
         }
         searchTableView.rowHeight = 66
         return filteredProducts.count
@@ -103,6 +106,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
             }
+            cell.setupData(history: searchHistory[indexPath.row])
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(
@@ -116,14 +120,27 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = DishViewController()
-        present(controller, animated: true)
+        
+        
     }
 }
 
 // MARK: - SearchContainerViewDelegate
 
 extension SearchV1ViewController: SearchContainerViewDelegate {
+    func clearButtonTapped(isTapped: Bool) {
+        clearButtonTapped = isTapped
+        filteredProducts = products
+        searchTextFieldIsTapped = !isTapped
+        searchTableView.reloadData()
+    }
+    
+    func returnButtonTapped(lastWord: String) {
+        let historyToAdd = History(name: lastWord)
+        searchHistory.append(historyToAdd)
+        print(searchHistory)
+    }
+    
     func textFieldIsTapped(state: Bool) {
         searchTextFieldIsTapped = state
         searchTableView.reloadData()
