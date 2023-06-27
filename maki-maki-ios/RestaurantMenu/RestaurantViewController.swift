@@ -50,7 +50,6 @@ final class RestaurantViewController: UIViewController {
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
         let view = CategoryMenuView(type: .stickyHeader)
-        view.isSkeletonable = true
         return view
     }()
     
@@ -65,7 +64,6 @@ final class RestaurantViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isSkeletonable = true
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -83,6 +81,8 @@ final class RestaurantViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.bounces = false
+        collectionView.isSkeletonable = true
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         return collectionView
     }()
     
@@ -103,6 +103,7 @@ final class RestaurantViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         setupNotificationObservers()
+        showSkeletonAnimation()
         fetchCategoriesWithProducts()
     }
     
@@ -121,13 +122,6 @@ final class RestaurantViewController: UIViewController {
             case .error(message: let message):
                 print(message)
             }
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !isLoaded {
-            showSkeletonAnimation()
         }
     }
     
@@ -187,16 +181,18 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupSkeletons
     
     private func showSkeletonAnimation() {
-        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        collectionView.prepareSkeleton { _ in
+            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        }
+        
+        self.viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     private func hideSkeletons() {
-            self.collectionView.stopSkeletonAnimation()
-            self.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
-            self.collectionView.reloadData()
-            self.viewCartContainerView.stopSkeletonAnimation()
-            self.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.stopSkeletonAnimation()
+        viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Layout for Main Section Header
