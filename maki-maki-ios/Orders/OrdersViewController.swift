@@ -11,24 +11,24 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - State
     
-    lazy var orders: [OrdersModel] = {
+    lazy var orders: [Order] = {
         return [
-            OrdersModel(cafeName: "Bellissimo Pizza",
+            Order(cafeName: "Bellissimo Pizza",
                         status: "Delivered",
                         time: "31 May 2020, 07:55 PM  ",
                         price: "$43.95",
                         ordersList: self.firstOrder),
-            OrdersModel(cafeName: "Capital One Cafe",
+            Order(cafeName: "Capital One Cafe",
                         status: "Cancelled",
                         time: "24 May 2020, 04:50 PM  ",
                         price: "$5.48",
                         ordersList: self.secondOrder),
-            OrdersModel(cafeName: "Street Cafe",
+            Order(cafeName: "Street Cafe",
                         status: "Delivered",
                         time: "18 May 2020, 02:37 PM  ",
                         price: "$18.30",
                         ordersList: self.thirdOrder),
-            OrdersModel(cafeName: "Smile House Cafe",
+            Order(cafeName: "Smile House Cafe",
                         status: "Delivered",
                         time: "18 May 2020, 02:08 PM  ",
                         price: "$14.00",
@@ -59,7 +59,7 @@ final class OrdersViewController: UIViewController {
         OrdersList(count: 333, positionName: " x Medium Supremo Pizza", price: "$14.40")
     ]
     
-    private var ordersCopy: [OrdersModel] = []
+    private var ordersCopy: [Order] = []
     
     private var sectionIsExpanded: [Bool] = []
     
@@ -68,21 +68,13 @@ final class OrdersViewController: UIViewController {
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
+        tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
         tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundView = noOrdersView
         return tableView
-    }()
-    
-    private lazy var ordersLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Orders"
-        label.textColor = AppColor.heading.uiColor
-        label.font = AppFont.bold.s32()
-        label.isHidden = true
-        return label
     }()
     
     private lazy var noOrdersView: NoOrdersView = {
@@ -95,11 +87,11 @@ final class OrdersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-    
+        
         setupNavigationBar()
-        setupData()
         setupViews()
         setupConstraints()
+        setupData()
         showNoOrdersViewIfNeeded()
     }
     
@@ -110,15 +102,17 @@ final class OrdersViewController: UIViewController {
         sectionIsExpanded = Array(repeating: true, count: orders.count)
     }
     
-    // MARK: - Setup Views
+    // MARK: - Setup Navigation Bar
     
     private func setupNavigationBar() {
         self.navigationItem.title = "Orders"
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([ordersTableView, ordersLabel])
+        view.addSubviews([ordersTableView])
     }
     
     // MARK: - Setup Constraints
@@ -126,11 +120,6 @@ final class OrdersViewController: UIViewController {
     private func setupConstraints() {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-        
-        ordersLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21.4)
-            make.leading.equalToSuperview().offset(16)
         }
         
         noOrdersView.snp.makeConstraints { make in
@@ -159,6 +148,14 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: ReorderCell.reuseID,
+                                                           for: indexPath) as? ReorderCell else {
+                fatalError("reorder_cell not found")
+            }
+            cell.delegate = self
+            return cell
+        }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrdersCell.reuseID,
                                                        for: indexPath) as? OrdersCell else {
             fatalError("orders_cell is not registered")
@@ -167,12 +164,13 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        print(indexPath)
-        let controller = BasketViewController()
-        controller.modalPresentationStyle = .fullScreen
-        present(controller, animated: true)
-//        self.navigationController?.pushViewController(controller, animated: true)
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+            return 83
+        } else {
+            return UITableView.automaticDimension
+        }
+        
     }
     
     // MARK: - Header of Section
@@ -191,22 +189,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
     }
-    
-    // MARK: - Footer of Section
-    
-    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footerView = OrdersTableFooterView(frame: CGRect(x:0,
-                                                             y: 0,
-                                                             width: UIScreen.main.bounds.width,
-                                                             height:83))
-        footerView.delegate = self
-        return footerView
-    }
-    
-    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
-        return 83
-    }
-
 }
 
 // MARK: - Collapse Animation
@@ -230,7 +212,7 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
 
 // MARK: - Navigation Action
 
-extension OrdersViewController: OrdersTableFooterViewDelegate {
+extension OrdersViewController: ReorderCellDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
     }
