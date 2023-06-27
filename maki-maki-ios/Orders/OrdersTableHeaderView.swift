@@ -169,7 +169,7 @@ final class OrdersTableHeaderView: UIView {
         }
     }
     
-    public func setUp(model: Orders, section: Int) {
+    public func setUp(model: Order, section: Int) {
         self.section = section
         cafeNameLabel.text = model.cafeName
         orderStatusLabel.text = model.status
