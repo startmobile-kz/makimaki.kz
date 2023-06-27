@@ -77,15 +77,6 @@ final class OrdersViewController: UIViewController {
         return tableView
     }()
     
-    private lazy var ordersLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Orders"
-        label.textColor = AppColor.heading.uiColor
-        label.font = AppFont.bold.s32()
-        label.isHidden = true
-        return label
-    }()
-    
     private lazy var noOrdersView: NoOrdersView = {
         let view = NoOrdersView()
 //        view.isHidden = true
@@ -121,7 +112,7 @@ final class OrdersViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([ordersTableView, ordersLabel])
+        view.addSubviews([ordersTableView])
     }
     
     // MARK: - Setup Constraints
@@ -129,11 +120,6 @@ final class OrdersViewController: UIViewController {
     private func setupConstraints() {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
-        }
-        
-        ordersLabel.snp.makeConstraints { make in
-            make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(21.4)
-            make.leading.equalToSuperview().offset(16)
         }
         
         noOrdersView.snp.makeConstraints { make in
