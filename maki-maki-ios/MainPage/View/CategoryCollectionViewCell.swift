@@ -29,7 +29,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         let image = UIImageView()
         image.image = AppImage.burger.uiImage
         image.isSkeletonable = true
-        image.showSkeleton() 
         return image
     }()
     
@@ -40,6 +39,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         label.textColor = AppColor.paragraph.uiColor
         label.numberOfLines = 0
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
