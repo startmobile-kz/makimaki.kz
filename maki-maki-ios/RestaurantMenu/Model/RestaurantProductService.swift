@@ -20,7 +20,7 @@ class RestaurantProductService {
     private var urlSession = URLSession.shared
     
     func fetchCategoriesWithProduct(
-        completion: @escaping ([Int: String], [[Int: [RestaurantProduct]]]) -> Void
+        completion: @escaping (Result<GroupedProducts>) -> Void
     ) {
         var categoriesAndNames: [Int: String] = [:]
         var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
@@ -29,6 +29,7 @@ class RestaurantProductService {
             switch result {
             case .success(data: let categories):
                 guard let categories = categories else {
+                    completion(.error(message: "Incorrect categories data."))
                     return
                 }
                 for category in categories {
@@ -39,6 +40,7 @@ class RestaurantProductService {
                     switch result {
                     case .success(data: let products):
                         guard let products = products else {
+                            completion(.error(message: "Incorrect products data."))
                             return
                         }
                         for product in products {
@@ -48,13 +50,18 @@ class RestaurantProductService {
                                 productsByCategoryMap[product.category]?.append(product)
                             }
                         }
+                        let groupedProducts = GroupedProducts(
+                            categoriesAndNames: categoriesAndNames,
+                            dividedProducts: productsByCategoryMap
+                        )
+                        completion(.success(data: groupedProducts))
                     case .error(message: let message):
-                        print(message)
+                        completion(.error(message: message))
                     }
                 })
                 
             case .error(message: let message):
-                print(message)
+                completion(.error(message: message))
             }
         }
     }

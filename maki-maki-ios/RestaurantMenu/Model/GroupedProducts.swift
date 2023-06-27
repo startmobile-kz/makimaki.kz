@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct GroupedProducts {
+struct GroupedProducts: Codable {
     let categoriesAndNames: [Int: String]
     let dividedProducts: [Int: [RestaurantProduct]]
 }
