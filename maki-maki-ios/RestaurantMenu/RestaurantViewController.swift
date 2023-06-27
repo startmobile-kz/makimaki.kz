@@ -27,7 +27,6 @@ final class RestaurantViewController: UIViewController {
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
-    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
     private var currentSection = 0
     private var heights: [Double] = []
     static let notificationName = Notification.Name("scrolledToSection")

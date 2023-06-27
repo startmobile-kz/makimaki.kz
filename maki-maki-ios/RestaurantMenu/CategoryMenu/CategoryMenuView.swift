@@ -102,11 +102,12 @@ final class CategoryMenuView: UIView {
     
     private func setupConstraints() {
         let leadingOffset = (type == .collectionHeader) ? -16 : 0
+        let trailingOffset = (type == .collectionHeader) ? 0 : -16
         
         categoryCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(leadingOffset)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(trailingOffset)
             make.height.equalTo(40)
         }
     }
