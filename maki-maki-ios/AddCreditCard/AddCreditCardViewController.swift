@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 import SkyFloatingLabelTextField
+import InputMask
 
 final class AddCreditCardViewController: UIViewController {
     
@@ -21,7 +22,7 @@ final class AddCreditCardViewController: UIViewController {
     
     private lazy var mastercardImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "mastercard logo")
+        imageView.image = UIImage(named: "mastercard")
         return imageView
     }()
     
@@ -85,7 +86,7 @@ final class AddCreditCardViewController: UIViewController {
     lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         let imageView = UIImageView()
-        let image = UIImage(named: "Camera")
+        let image = UIImage(named: "camera")
         textField.font = AppFont.reqular.s15()
         textField.title = "CARD NUMBER"
         textField.placeholder = "CARD NUMBER"
@@ -102,10 +103,51 @@ final class AddCreditCardViewController: UIViewController {
         return textField
     }()
     
+    private lazy var textFieldsContainer: UIStackView = {
+        let vrStackView = UIStackView(arrangedSubviews: [cardHolderNameTextfield, cardNumberTextfield])
+        vrStackView.axis = .vertical
+        vrStackView.spacing = 23.5
+        vrStackView.distribution = .fillEqually
+        return vrStackView
+    }()
+    
+    private lazy var textFieldsContainer2: UIStackView = {
+        let vrStackView = UIStackView(arrangedSubviews: [dateOfExpireTextField, cvcTextField])
+        vrStackView.axis = .horizontal
+        vrStackView.spacing = 23.5
+        return vrStackView
+    }()
+    
+    private lazy var saveButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("SAVE", for: .normal)
+        button.titleLabel?.font = AppFont.medium.s15()
+        button.setTitleColor(AppColor.heading.uiColor, for: .normal)
+        button.backgroundColor = AppColor.accent.uiColor
+        button.layer.cornerRadius = 14
+        return button
+    }()
+    
+    // MARK: - MaskedTextField Listener
+    
+    private lazy var listener: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, isFilled in
+            let updatedText = textField.text ?? ""
+            if isFilled {
+                print("Text field is filled: \(updatedText)")
+            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "[00]{/}[00]"
+        return listener
+    }()
+    
     private lazy var dateOfExpireTextField: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         textField.font = AppFont.reqular.s15()
         textField.placeholder = "MM/YY"
+        textField.delegate = listener
         textField.lineColor = AppColor.border.uiColor
         textField.textColor = AppColor.heading.uiColor
         textField.selectedLineColor = AppColor.grey300.uiColor
@@ -133,31 +175,6 @@ final class AddCreditCardViewController: UIViewController {
         textField.rightViewMode = .always
         textField.autocorrectionType = .no
         return textField
-    }()
-    
-    private lazy var textFieldsContainer: UIStackView = {
-        let vrStackView = UIStackView(arrangedSubviews: [cardHolderNameTextfield, cardNumberTextfield])
-        vrStackView.axis = .vertical
-        vrStackView.spacing = 23.5
-        vrStackView.distribution = .fillEqually
-        return vrStackView
-    }()
-    
-    private lazy var textFieldsContainer2: UIStackView = {
-        let vrStackView = UIStackView(arrangedSubviews: [dateOfExpireTextField, cvcTextField])
-        vrStackView.axis = .horizontal
-        vrStackView.spacing = 23.5
-        return vrStackView
-    }()
-    
-    private lazy var saveButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.setTitle("SAVE", for: .normal)
-        button.titleLabel?.font = AppFont.medium.s15()
-        button.setTitleColor(AppColor.heading.uiColor, for: .normal)
-        button.backgroundColor = AppColor.accent.uiColor
-        button.layer.cornerRadius = 14
-        return button
     }()
     
     // MARK: - LifeCycle
