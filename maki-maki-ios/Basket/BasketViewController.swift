@@ -11,6 +11,10 @@ import ProgressHUD
 
 final class BasketViewController: UIViewController {
     
+    // MARK: - State
+    
+    public var selectedDishes: [RestaurantProduct] = []
+    
     // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
@@ -108,7 +112,7 @@ final class BasketViewController: UIViewController {
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return selectedDishes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -117,7 +121,8 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
                 as? BasketTableViewCell else {
             fatalError("basketCell not found")
         }
-
+        let dish = selectedDishes[indexPath.row]
+        cell.setupData(dish: dish)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }

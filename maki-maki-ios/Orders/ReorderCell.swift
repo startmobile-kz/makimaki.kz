@@ -1,22 +1,26 @@
 //
-//  OrdersTableFooterView.swift
+//  ReorderCell.swift
 //  maki-maki-ios
 //
-//  Created by siberianarg on 06.06.2023.
+//  Created by siberianarg on 27.06.2023.
 //
 
 import UIKit
 import SnapKit
 
-protocol OrdersTableFooterViewDelegate: AnyObject {
+protocol ReorderCellDelegate: AnyObject {
     func onReorderButtonPressed()
 }
 
-final class OrdersTableFooterView: UIView {
+final class ReorderCell: UITableViewCell {
+    
+    // MARK: - State
+    
+    static let reuseID = String(describing: ReorderCell.self)
     
     // MARK: - Delegate
     
-    weak var delegate: OrdersTableFooterViewDelegate?
+    weak var delegate: ReorderCellDelegate?
     
     // MARK: - UI
     
@@ -32,9 +36,10 @@ final class OrdersTableFooterView: UIView {
     }()
     
     // MARK: - Lifecycle
-    
-    override init(frame: CGRect) {
-        super.init(frame: frame)
+
+    override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
+        super.init(style: style, reuseIdentifier: reuseIdentifier)
+        
         setupViews()
         setupConstraints()
     }
@@ -46,8 +51,8 @@ final class OrdersTableFooterView: UIView {
     // MARK: - Setup Views
     
     private func setupViews() {
-        backgroundColor = AppColor.background.uiColor
-        addSubview(reorderButton)
+        contentView.backgroundColor = AppColor.background.uiColor
+        contentView.addSubview(reorderButton)
     }
     
     // MARK: - Setup Constraints

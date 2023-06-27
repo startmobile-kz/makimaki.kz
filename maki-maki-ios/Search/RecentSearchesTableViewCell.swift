@@ -13,6 +13,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     static let reuseID = String(describing: RecentSearchesTableViewCell.self)
     
     // MARK: - UI
+    
     private lazy var clockImage: UIImageView = {
         let image = UIImageView()
         image.image = AppImage.clock.uiImage
@@ -36,6 +37,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -47,11 +49,13 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     }
     
     // MARK: - Setup Views
+    
     private func setupViews() {
         contentView.addSubview(recentInfoStackView)
     }
     
     // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         recentInfoStackView.snp.makeConstraints { make in
             make.top.equalTo(13)
