@@ -18,7 +18,7 @@ final class RestaurantInfoView: UIView {
     
     private lazy var starImageView: UIImageView? = {
         let imageView = UIImageView()
-//        imageView.image = AppImage.star.uiImage
+        imageView.image = AppImage.star.uiImage
         return imageView
     }()
     

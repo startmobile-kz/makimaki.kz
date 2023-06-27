@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum SectionDishesType {
+enum SectionProductsType {
     case mostPopular
     case pizza
     case sushi

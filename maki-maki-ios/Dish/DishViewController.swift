@@ -9,14 +9,14 @@ import UIKit
 import SnapKit
 
 protocol DishViewControllerDelegate: AnyObject {
-    func addToBasket(dish: DishResponseModel)
+    func addToBasket(dish: RestaurantProduct)
 }
 
 final class DishViewController: UIViewController {
     
     // MARK: - State
 
-    var dish: DishResponseModel?
+    var dish: RestaurantProduct?
     var count = 1 {
         didSet {
             orderPrice.text = "\((dish?.price ?? 0) * count) ₸"

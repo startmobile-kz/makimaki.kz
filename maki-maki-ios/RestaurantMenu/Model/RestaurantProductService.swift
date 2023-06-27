@@ -9,11 +9,11 @@ import Foundation
 
 // MARK: - Network request for products
 
-class DishService {
+class RestaurantProductService {
     
     private var urlSession = URLSession.shared
     
-    func fetchProducts(completion: @escaping ([DishResponseModel]) -> Void) {
+    func fetchProducts(completion: @escaping ([RestaurantProduct]) -> Void) {
         
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         guard let url = URL(string: urlString) else { return }
@@ -26,7 +26,7 @@ class DishService {
             }
             
             do {
-                let dishes = try JSONDecoder().decode([DishResponseModel].self, from: data)
+                let dishes = try JSONDecoder().decode([RestaurantProduct].self, from: data)
                 completion(dishes)
                 
             } catch let error {

@@ -8,11 +8,11 @@
 import UIKit
 import SnapKit
 
-final class DishSectionHeaderView: UICollectionReusableView {
+final class ProductSectionHeaderView: UICollectionReusableView {
     
     // MARK: - State
     
-    static let reuseId = String(describing: DishSectionHeaderView.self)
+    static let reuseId = String(describing: ProductSectionHeaderView.self)
     
     // MARK: - UI
     
