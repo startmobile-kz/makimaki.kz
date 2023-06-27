@@ -23,8 +23,8 @@ class BasketService {
                     "address": basket.address,
                     "promoCode": basket.promoCode,
                     "comment": basket.comment,
-                    //"basket": basket.basket,
-                    "code": basket.code]
+                    "basket": basket.basket,
+                    "code": basket.code] as [String : Any]
         let bodyJson = try? JSONSerialization.data(withJSONObject: body)
 
         request.setValue("Application/json", forHTTPHeaderField: "Content-Type")

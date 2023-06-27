@@ -10,6 +10,7 @@ import SnapKit
 import ProgressHUD
 
 final class BasketViewController: UIViewController {
+    
     // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
@@ -76,6 +77,7 @@ final class BasketViewController: UIViewController {
     }
 
     // MARK: - Network
+    
     @objc
     private func createOrder() {
         ProgressHUD.show("Loading...", interaction: false)
@@ -131,7 +133,6 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 extension BasketViewController: CheckoutButtonDelegate {
     func checkoutPressed() {
         createOrder()
+        print("done")
     }
-    
-    
 }

@@ -8,7 +8,7 @@
 import UIKit
 import SnapKit
 
-protocol CheckoutButtonDelegate {
+protocol CheckoutButtonDelegate: AnyObject {
     func checkoutPressed()
 }
 
