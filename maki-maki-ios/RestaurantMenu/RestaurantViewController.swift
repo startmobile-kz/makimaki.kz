@@ -200,7 +200,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - Layout for CollectionView
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             // Item
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
@@ -226,12 +226,15 @@ final class RestaurantViewController: UIViewController {
                 trailing: 0
             )
             section.interGroupSpacing = 14
-            switch sectionIndex {
-            case 0:
-                section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
-            default:
-                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+            if let self = self {
+                switch sectionIndex {
+                case 0:
+                    section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
+                default:
+                    section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                }
             }
+            
             return section
         }
     }
