@@ -19,6 +19,46 @@ class RestaurantProductService {
     
     private var urlSession = URLSession.shared
     
+    func fetchCategoriesWithProduct(
+        completion: @escaping ([Int: String], [[Int: [RestaurantProduct]]]) -> Void
+    ) {
+        var categoriesAndNames: [Int: String] = [:]
+        var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
+        
+        fetchCategories { [weak self] result in
+            switch result {
+            case .success(data: let categories):
+                guard let categories = categories else {
+                    return
+                }
+                for category in categories {
+                    categoriesAndNames[category.id] = category.name
+                }
+                
+                self?.fetchProductsWithAlamofire(completion: { result in
+                    switch result {
+                    case .success(data: let products):
+                        guard let products = products else {
+                            return
+                        }
+                        for product in products {
+                            if productsByCategoryMap[product.category] == nil {
+                                productsByCategoryMap[product.category] = [product]
+                            } else {
+                                productsByCategoryMap[product.category]?.append(product)
+                            }
+                        }
+                    case .error(message: let message):
+                        print(message)
+                    }
+                })
+                
+            case .error(message: let message):
+                print(message)
+            }
+        }
+    }
+    
     func fetchCategories(completion: @escaping (Result<[Category]>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/categories"
         
