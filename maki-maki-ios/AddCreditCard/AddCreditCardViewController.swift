@@ -37,7 +37,7 @@ final class AddCreditCardViewController: UIViewController {
     private lazy var cardNumberLabel: UILabel = {
         let label = UILabel()
         label.font = AppFont.reqular.s18()
-        label.text = "5555555555555555"
+        label.text = "0000 0000 0000 0000"
         label.textColor = AppColor.background.uiColor
         return label
     }()
