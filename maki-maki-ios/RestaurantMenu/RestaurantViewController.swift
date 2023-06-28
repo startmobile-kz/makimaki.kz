@@ -415,6 +415,10 @@ extension RestaurantViewController: DishViewControllerDelegate {
 
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isLoaded {
+            return
+        }
+        
         let dishViewController = DishViewController()
         dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
         dishViewController.delegate = self
