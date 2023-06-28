@@ -23,7 +23,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 window.rootViewController = RestaurantViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: RestaurantViewController())
+                    UINavigationController(rootViewController: OrdersViewController())
             }
             
             self.window = window

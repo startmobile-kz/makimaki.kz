@@ -11,11 +11,15 @@ import SnapKit
 // MARK: - Search Container View protocol
 
 protocol SearchContainerViewDelegate: AnyObject {
-    func textFieldIsTapped(state: Bool)
     func searchCompleted(word: String)
+    func returnButtonTapped(lastWord: String)
+    func clearButtonTapped(isTapped: Bool)
+    func textFieldIsEmpty(state: Bool)
 }
 
 final class SearchContainerView: UIView {
+    
+    private lazy var searchViewController: SearchV1ViewController = SearchV1ViewController()
     
     var delegate: SearchContainerViewDelegate?
     
@@ -36,8 +40,6 @@ final class SearchContainerView: UIView {
         textField.layer.borderColor = AppColor.border.cgColor
         textField.delegate = self
         textField.clearButtonMode = .whileEditing
-        textField.returnKeyType = .done
-        textField.addTarget(self, action: #selector(textFieldTapped), for: .touchDown)
         return textField
     }()
     
@@ -47,6 +49,8 @@ final class SearchContainerView: UIView {
         setupViews()
         setupConstraints()
         setupSearchTextfieldFrame()
+        searchViewController.delegate = self
+        
     }
     
     required init?(coder: NSCoder) {
@@ -84,11 +88,7 @@ final class SearchContainerView: UIView {
 // MARK: - Search Container View delegate methods
 
 extension SearchContainerView: UITextFieldDelegate {
-    
-    @objc func textFieldTapped() {
-        delegate?.textFieldIsTapped(state: true)
-    }
-    
+        
     func textField(_ textField: UITextField,
                    shouldChangeCharactersIn range: NSRange,
                    replacementString string: String) -> Bool {
@@ -97,6 +97,7 @@ extension SearchContainerView: UITextFieldDelegate {
             let updatedText = currentText.replacingCharacters(in: textRange, with: string)
             if !updatedText.isEmpty {
                 delegate?.searchCompleted(word: updatedText)
+                delegate?.textFieldIsEmpty(state: false)
             } else {
                 delegate?.searchCompleted(word: "")
             }
@@ -105,7 +106,20 @@ extension SearchContainerView: UITextFieldDelegate {
     }
     
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-        textField.resignFirstResponder()
+        if let text = textField.text {
+            delegate?.returnButtonTapped(lastWord: text)
+        }
         return true
+    }
+    
+    func textFieldShouldClear(_ textField: UITextField) -> Bool {
+        delegate?.clearButtonTapped(isTapped: true)
+        return true
+    }
+}
+
+extension SearchContainerView: SearchViewControllerDelegate {
+    func recentSearchTapped(word: String) {
+        searchBarTextField.text = word
     }
 }
