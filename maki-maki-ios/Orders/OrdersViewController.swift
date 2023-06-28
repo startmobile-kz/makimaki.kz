@@ -63,6 +63,8 @@ final class OrdersViewController: UIViewController {
     
     private var sectionIsExpanded: [Bool] = []
     
+    private var isReorderCellExpanded: [Bool] = []
+    
     // MARK: - UI
     
     private lazy var ordersTableView: UITableView = {
@@ -99,6 +101,7 @@ final class OrdersViewController: UIViewController {
     private func setupData() {
         ordersCopy = orders
         sectionIsExpanded = Array(repeating: true, count: orders.count)
+        isReorderCellExpanded = Array(repeating: true, count: orders.count)
     }
     
     // MARK: - Setup Navigation Bar
@@ -144,7 +147,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].ordersList.count + 1
+        if sectionIsExpanded[section] {
+            return orders[section].ordersList.count + (isReorderCellExpanded[section] ? 1 : 0)
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -154,6 +161,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                 fatalError("reorder_cell not found")
             }
             cell.delegate = self
+            cell.isHidden = !isReorderCellExpanded[indexPath.section]
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrdersCell.reuseID,
@@ -202,17 +210,19 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
-        var indexPathes: [IndexPath] = []
-        for row in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
-            indexPathes.append(IndexPath(row: row, section: section))
-        }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
+        isReorderCellExpanded[section] = isExpanded
+        
+        ordersTableView.reloadData()
         if !isExpanded {
-            self.orders[section].ordersList = []
-            ordersTableView.deleteRows(at: indexPathes, with: .fade)
+            orders[section].ordersList = []
+            ordersTableView.reloadData()
         } else {
             orders[section].ordersList = ordersCopy[section].ordersList
-            ordersTableView.insertRows(at: indexPathes, with: .fade)
+            let indexPaths = (0..<orders[section].ordersList.count).map {
+                IndexPath(row: $0, section: section)
+            }
+            ordersTableView.insertRows(at: indexPaths, with: .fade)
         }
     }
 }
