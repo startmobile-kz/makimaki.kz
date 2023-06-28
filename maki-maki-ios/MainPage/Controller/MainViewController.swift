@@ -69,6 +69,7 @@ final class MainViewController: UIViewController {
     
     // MARK: - Setup Views
     private func setupViews() {
+        view.isSkeletonable = true
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([deliveryHeaderView, separatorView, collectionView])
     }
