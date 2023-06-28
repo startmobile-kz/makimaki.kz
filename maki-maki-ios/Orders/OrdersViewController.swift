@@ -14,25 +14,25 @@ final class OrdersViewController: UIViewController {
     lazy var orders: [Order] = {
         return [
             Order(cafeName: "Bellissimo Pizza",
-                        status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
-                        ordersList: self.firstOrder),
+                  status: "Delivered",
+                  time: "31 May 2020, 07:55 PM  ",
+                  price: "$43.95",
+                  ordersList: self.firstOrder),
             Order(cafeName: "Capital One Cafe",
-                        status: "Cancelled",
-                        time: "24 May 2020, 04:50 PM  ",
-                        price: "$5.48",
-                        ordersList: self.secondOrder),
+                  status: "Cancelled",
+                  time: "24 May 2020, 04:50 PM  ",
+                  price: "$5.48",
+                  ordersList: self.secondOrder),
             Order(cafeName: "Street Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:37 PM  ",
-                        price: "$18.30",
-                        ordersList: self.thirdOrder),
+                  status: "Delivered",
+                  time: "18 May 2020, 02:37 PM  ",
+                  price: "$18.30",
+                  ordersList: self.thirdOrder),
             Order(cafeName: "Smile House Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:08 PM  ",
-                        price: "$14.00",
-                        ordersList: self.fouthOrder)
+                  status: "Delivered",
+                  time: "18 May 2020, 02:08 PM  ",
+                  price: "$14.00",
+                  ordersList: self.fouthOrder)
         ]
     }()
     
@@ -212,8 +212,8 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         sectionIsExpanded[section] = !sectionIsExpanded[section]
         isReorderCellExpanded[section] = isExpanded
-        
         ordersTableView.reloadData()
+        
         if !isExpanded {
             orders[section].ordersList = []
             ordersTableView.reloadData()
