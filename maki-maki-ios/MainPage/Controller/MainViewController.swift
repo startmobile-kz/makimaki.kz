@@ -248,7 +248,23 @@ extension MainViewController: DeliveryHeaderViewDelegate {
 
 // MARK: - UICollectionView Delegate methods
 extension MainViewController: UICollectionViewDelegate {
-    
+    func collectionView(_ collectionView: UICollectionView,
+                        willDisplay cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if cell is PromoBannerCollectionViewCell || cell is
+            CategoryCollectionViewCell || cell is RestaurantCollectionViewCell {
+            cell.showAnimatedGradientSkeleton()
+        }
+    }
+
+    func collectionView(_ collectionView: UICollectionView,
+                        didEndDisplaying cell: UICollectionViewCell,
+                        forItemAt indexPath: IndexPath) {
+        if cell is PromoBannerCollectionViewCell || cell is
+            CategoryCollectionViewCell || cell is RestaurantCollectionViewCell {
+            cell.hideSkeleton()
+        }
+    }
 }
 
 // MARK: - UICollectionView Data Source methods

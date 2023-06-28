@@ -135,6 +135,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
             priceLabel
         ]
         arrangedSubviews.forEach({infoStackView.addArrangedSubview($0)})
+        hideSkeleton()
     }
     
     // MARK: - SetupConstraints

@@ -96,5 +96,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     public func setupData(category: Category) {
         categoryNameLabel.text = category.name
+        hideSkeleton()
     }
 }
