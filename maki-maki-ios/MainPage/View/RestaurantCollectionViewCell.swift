@@ -17,7 +17,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "restaurant_1")
-        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -34,7 +33,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
         imageView.tintColor = AppColor.heading.uiColor
-        imageView.isSkeletonable = true
         return imageView
     }()
     

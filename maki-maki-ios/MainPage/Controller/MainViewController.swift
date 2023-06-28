@@ -63,8 +63,16 @@ final class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         fetchCategories()
-        showSkeletonAnimation()
         hideSkeletons()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        showSkeletonAnimation()
+    }
+    
+    deinit {
+        NotificationCenter.default.removeObserver(self)
     }
     
     // MARK: - Setup Views

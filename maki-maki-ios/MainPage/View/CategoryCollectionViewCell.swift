@@ -21,6 +21,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 20
         button.layer.borderWidth = 0.4
+        button.isSkeletonable = true
         return button
     }()
     
@@ -28,7 +29,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         
         let image = UIImageView()
         image.image = AppImage.burger.uiImage
-        image.isSkeletonable = true
         return image
     }()
     
