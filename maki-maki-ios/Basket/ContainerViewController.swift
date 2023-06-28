@@ -49,7 +49,7 @@ class ContainerView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
-        self.delegate?.checkoutPressed()
+        button.addTarget(self, action: #selector(checkoutPressed), for: .touchUpInside)
         return button
     }()
     
@@ -121,5 +121,11 @@ class ContainerView: UIView {
     public func setup(with totalSum: Int) {
         priceLabel.text = "\(totalSum)"
         checkoutPriceLabel.text = "\(totalSum)"
+    }
+    
+    // MARK: - Action
+    
+    @objc func checkoutPressed() {
+        self.delegate?.checkoutPressed()
     }
 }

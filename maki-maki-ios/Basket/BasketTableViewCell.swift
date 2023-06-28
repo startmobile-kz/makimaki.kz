@@ -22,7 +22,7 @@ final class BasketTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var quantiiyLabel: UILabel = {
+    private lazy var quantitiyLabel: UILabel = {
         let label = UILabel()
         label.text = "1  x"
         label.font = AppFont.medium.s15()
@@ -65,7 +65,7 @@ final class BasketTableViewCell: UITableViewCell {
     
     private func setupViews() {
         contentView.addSubview(productImageView)
-        contentView.addSubview(quantiiyLabel)
+        contentView.addSubview(quantitiyLabel)
         contentView.addSubview(productNameLabel)
         contentView.addSubview(priceOrderLabel)
     }
@@ -79,14 +79,14 @@ final class BasketTableViewCell: UITableViewCell {
             make.leading.equalTo(16)
         }
         
-        quantiiyLabel.snp.makeConstraints { make in
+        quantitiyLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(productImageView.snp.trailing).offset(16)
         }
         
         productNameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(quantiiyLabel.snp.trailing).offset(10)
+            make.leading.equalTo(quantitiyLabel.snp.trailing).offset(10)
             make.width.equalTo(101)
         }
         
@@ -101,6 +101,7 @@ final class BasketTableViewCell: UITableViewCell {
     public func setupData(dish: RestaurantProduct) {
         productNameLabel.text = dish.name
         priceOrderLabel.text = "\(dish.price)"
+        quantitiyLabel.text = "\(dish.count) X"
         let url = URL(string: dish.image ?? "")
         productImageView.kf.setImage(with: url)
     }

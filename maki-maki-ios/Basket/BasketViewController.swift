@@ -32,6 +32,7 @@ final class BasketViewController: UIViewController {
     
     private lazy var checkoutContainerView: ContainerView = {
         let view = ContainerView()
+        view.delegate = self
         return view
     }()
     
@@ -105,7 +106,7 @@ final class BasketViewController: UIViewController {
 
     private func configureContainerView() {
 //    https://stackoverflow.com/questions/24795130/finding-sum-of-elements-in-swift-array
-//        let totalSum = selectedProucts
+//        let totalSum = selectedDishes.reduce(0, +)
         checkoutContainerView.setup(with: 2300)
     }
 }
