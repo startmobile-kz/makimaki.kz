@@ -63,16 +63,8 @@ final class MainViewController: UIViewController {
         setupViews()
         setupConstraints()
         fetchCategories()
-        hideSkeletons()
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
         showSkeletonAnimation()
-    }
-    
-    deinit {
-        NotificationCenter.default.removeObserver(self)
+        hideSkeletons()
     }
     
     // MARK: - Setup Views
@@ -358,10 +350,6 @@ extension MainViewController: UICollectionViewDataSource {
 }
 // MARK: - SkeletonCollectionViewDataSource
 extension MainViewController: SkeletonCollectionViewDataSource {
-    func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
-    -> Int {
-        return 8
-    }
     func collectionSkeletonView(
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
@@ -369,7 +357,7 @@ extension MainViewController: SkeletonCollectionViewDataSource {
         if indexPath.section == 0 {
             return CategoryCollectionViewCell.reuseID
         } else if indexPath.section == 1 {
-            return PromoBannerCollectionViewCell.reuseID
+            return PromoBannerCollectionViewCell.reuseID // Исправлено здесь
         } else {
             return RestaurantCollectionViewCell.reuseID
         }

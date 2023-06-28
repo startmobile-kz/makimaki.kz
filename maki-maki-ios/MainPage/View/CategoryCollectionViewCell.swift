@@ -29,6 +29,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         
         let image = UIImageView()
         image.image = AppImage.burger.uiImage
+        image.isSkeletonable = true
         return image
     }()
     

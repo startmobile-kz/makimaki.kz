@@ -17,6 +17,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "restaurant_1")
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -33,6 +34,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "star")
         imageView.tintColor = AppColor.heading.uiColor
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -40,6 +42,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         let stack = UIStackView()
         stack.spacing = 8
         stack.axis = .horizontal
+        stack.isSkeletonable = true
         return stack
     }()
     
@@ -93,6 +96,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         uiView.layer.cornerRadius = 16
         uiView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
         uiView.backgroundColor = AppColor.accent.uiColor
+        uiView.isSkeletonable = true
         return uiView
     }()
     
