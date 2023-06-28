@@ -69,7 +69,6 @@ final class OrdersViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
-        tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -139,6 +138,7 @@ final class OrdersViewController: UIViewController {
 // MARK: - UITableView Data Source and Delegate methods
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return orders.count
     }
@@ -203,8 +203,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
-        for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
-            indexPathes.append(IndexPath(row: i, section: section))
+        for row in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
+            indexPathes.append(IndexPath(row: row, section: section))
         }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
         if !isExpanded {
