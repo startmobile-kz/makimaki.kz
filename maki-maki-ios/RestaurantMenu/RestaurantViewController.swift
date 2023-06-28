@@ -101,15 +101,12 @@ final class RestaurantViewController: UIViewController {
     private func fetchCategoriesWithProducts() {
         service.fetchCategoriesWithProducts { [weak self] result in
             switch result {
-            case .success(data: let groupedProducts):
-                guard let groupedProducts = groupedProducts else {
-                    return
-                }
+            case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
                 self?.isLoaded = true
-            case .error(message: let message):
-                print(message)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }

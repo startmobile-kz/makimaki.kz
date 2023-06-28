@@ -113,10 +113,7 @@ final class CategoryMenuView: UIView {
     private func fetchCategoriesName() {
         RestaurantProductService().fetchCategories { [weak self] result in
             switch result {
-            case .success(data: let categories):
-                guard let categories = categories else {
-                    return
-                }
+            case .success(let categories):
                 self?.listCategory = categories.sorted(by: {
                     $0.id < $1.id
                 })
@@ -124,8 +121,8 @@ final class CategoryMenuView: UIView {
                     self?.categoryCollectionView.reloadData()
                     self?.categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
                 }
-            case .error(message: let message):
-                print(message)
+            case .failure(let error):
+                print(error.localizedDescription)
             }
         }
     }
