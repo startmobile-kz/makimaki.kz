@@ -60,7 +60,6 @@
 		68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */; };
 		68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810362A286DB600D29827 /* SectionHeaderView.swift */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
-		7737992D2A36430C00E2CF7F /* Server.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992C2A36430C00E2CF7F /* Server.swift */; };
 		773799302A36433800E2CF7F /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992F2A36433800E2CF7F /* AuthEndpoint.swift */; };
 		773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799322A36439700E2CF7F /* NSError+Extensions.swift */; };
 		773799362A36458C00E2CF7F /* StorageManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799352A36458C00E2CF7F /* StorageManager.swift */; };
@@ -171,7 +170,6 @@
 		68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		68D810362A286DB600D29827 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		7737992C2A36430C00E2CF7F /* Server.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Server.swift; sourceTree = "<group>"; };
 		7737992F2A36433800E2CF7F /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		773799322A36439700E2CF7F /* NSError+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extensions.swift"; sourceTree = "<group>"; };
 		773799352A36458C00E2CF7F /* StorageManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StorageManager.swift; sourceTree = "<group>"; };
@@ -425,7 +423,6 @@
 			isa = PBXGroup;
 			children = (
 				7737992E2A36432700E2CF7F /* Api */,
-				7737992C2A36430C00E2CF7F /* Server.swift */,
 			);
 			path = Server;
 			sourceTree = "<group>";
@@ -934,7 +931,6 @@
 				689BC9082A2F4C8D008FD14F /* TabBar.swift in Sources */,
 				9F2380582A49C6AA0029A5DD /* SectionProductsType.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
-				7737992D2A36430C00E2CF7F /* Server.swift in Sources */,
 				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
 				0349DDEA2A3AD64800BACD4F /* PaymentsViewController.swift in Sources */,
 				B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */,
