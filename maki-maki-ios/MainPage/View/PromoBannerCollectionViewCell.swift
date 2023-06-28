@@ -34,6 +34,7 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        contentView.isSkeletonable = true
         isSkeletonable = true
         let subviews = [promoImageView]
         subviews.forEach({contentView.addSubview($0)})

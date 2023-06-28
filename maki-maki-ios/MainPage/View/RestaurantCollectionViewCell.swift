@@ -122,6 +122,7 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        contentView.isSkeletonable = true
         isSkeletonable = true
         restaurantImageView.addSubview(restaurantDeliveryTypeView)
         restaurantDeliveryTypeView.addSubview(deliveryTypeLabel)

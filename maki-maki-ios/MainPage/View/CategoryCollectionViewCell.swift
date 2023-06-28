@@ -57,6 +57,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
+        contentView.isSkeletonable = true
         isSkeletonable = true
         categoryCellView.addSubview(categoryImage)
         let subviews = [categoryCellView, categoryNameLabel]
