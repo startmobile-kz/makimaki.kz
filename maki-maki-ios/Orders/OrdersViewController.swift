@@ -144,7 +144,12 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].ordersList.count + 1
+        let isExpanded = sectionIsExpanded[section]
+        if isExpanded {
+            return orders[section].ordersList.count + 1
+        } else {
+            return orders[section].ordersList.count
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -203,7 +208,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
-        for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
+        for i in stride(from: 0, to: ordersCopy[section].ordersList.count + 1, by: 1) {
             indexPathes.append(IndexPath(row: i, section: section))
         }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
