@@ -10,7 +10,7 @@ import SnapKit
 import Kingfisher
 
 final class BasketTableViewCell: UITableViewCell {
-    
+
     public static let reuseIdentifier = String(describing: BasketTableViewCell.self)
 
     // MARK: - UI
@@ -99,10 +99,10 @@ final class BasketTableViewCell: UITableViewCell {
     // MARK: - Public
     
     public func setupData(dish: RestaurantProduct) {
-        productNameLabel.text = dish.name
-        priceOrderLabel.text = "\(dish.price)"
-        quantitiyLabel.text = "\(dish.count) X"
         let url = URL(string: dish.image ?? "")
         productImageView.kf.setImage(with: url)
+        quantitiyLabel.text = "\(dish.count) X"
+        productNameLabel.text = dish.name
+        priceOrderLabel.text = "\(dish.count * dish.price)"
     }
 }

@@ -41,7 +41,6 @@ class BasketService {
             if let data = data, let dataString = String(data: data, encoding: .utf8) {
                 print("\(dataString)")
                 if dataString.contains("Неверный код") {
-                    print(body) //
                     completion(false)
                 } else {
                     completion(true)

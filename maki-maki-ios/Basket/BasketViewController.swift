@@ -105,9 +105,10 @@ final class BasketViewController: UIViewController {
     }
 
     private func configureContainerView() {
-//    https://stackoverflow.com/questions/24795130/finding-sum-of-elements-in-swift-array
-//        let totalSum = selectedDishes.reduce(0, +)
-        checkoutContainerView.setup(with: 2300)
+        let totalPrice = selectedDishes.reduce(0) { partialResult, product in
+            return partialResult + (product.count * product.price)
+        }
+        checkoutContainerView.setup(with: totalPrice)
     }
 }
 

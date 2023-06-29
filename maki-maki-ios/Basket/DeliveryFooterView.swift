@@ -37,7 +37,7 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
     
     private lazy var deliveryPriceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$3.40"
+        label.text = "500"
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.paragraph.uiColor
         return label
