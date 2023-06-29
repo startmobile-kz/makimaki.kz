@@ -41,7 +41,7 @@ final class RestaurantHeaderView: UICollectionReusableView {
         let label = UILabel()
         label.font = AppFont.bold.s28()
         label.textColor = AppColor.background.uiColor
-        label.text = "Smile House Cafe"
+        label.text = "Maki Maki"
         label.isSkeletonable = true
         label.lastLineFillPercent = 242
         label.skeletonTextLineHeight = .relativeToFont

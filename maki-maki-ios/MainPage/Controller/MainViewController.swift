@@ -322,6 +322,9 @@ extension MainViewController: UICollectionViewDataSource {
         case .categories:
             selectedCategoryIndexPath = indexPath
             collectionView.reloadData()
+        case .restaurants:
+            let controller = RestaurantViewController()
+            self.navigationController?.pushViewController(controller, animated: true)
         default:
             return
         }

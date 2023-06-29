@@ -383,7 +383,7 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func makeNavigationBarVisible() {
-        title = "Smile House Cafe"
+        title = "Maki Maki"
         setupNavBarTitle()
         self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)
         self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
