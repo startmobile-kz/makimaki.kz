@@ -27,7 +27,7 @@ class RestaurantProductService {
                     categoriesAndNames[category.id] = category.name
                 }
                 
-                self?.fetchProductsWithAlamofire(completion: { result in
+                self?.fetchProducts(completion: { result in
                     switch result {
                     case .success(let products):
                         for product in products {
@@ -68,7 +68,7 @@ class RestaurantProductService {
             }
     }
     
-    func fetchProductsWithAlamofire(completion: @escaping (Result<[RestaurantProduct], AFError>) -> Void) {
+    func fetchProducts(completion: @escaping (Result<[RestaurantProduct], AFError>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         
         guard let url = URL(string: urlString) else {
@@ -81,5 +81,5 @@ class RestaurantProductService {
             .responseDecodable(of: [RestaurantProduct].self) { data in
                 completion(data.result)
             }
-    }    
+    }
 }
