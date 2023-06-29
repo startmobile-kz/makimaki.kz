@@ -14,7 +14,13 @@ protocol SearchViewControllerDelegate: AnyObject {
     func recentSearchTapped(word: String)
 }
 
-final class SearchV1ViewController: UIViewController {
+final class SearchV1ViewController: UIViewController, DishViewControllerDelegate {
+    
+    // MARK: - Add to basket delegate
+    
+    func addToBasket(dish: RestaurantProduct) {
+        // Here need to implement logic of adding to basket VC
+    }
     
     var delegate: SearchViewControllerDelegate?
     
@@ -134,8 +140,10 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             searchCompleted(word: searchHistory[indexPath.row].name)
             searchTableView.reloadData()
         } else {
-            let controller = DishViewController()
-            present(controller, animated: true)
+            let dishViewController = DishViewController()
+            dishViewController.product = filteredProducts[indexPath.row]
+            dishViewController.delegate = self
+            present(dishViewController, animated: true)
         }
     }
 }
