@@ -26,9 +26,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     }()
     
     private lazy var categoryImage: UIImageView = {
-        
         let image = UIImageView()
-        image.image = AppImage.burger.uiImage
         image.isSkeletonable = true
         return image
     }()
@@ -54,6 +52,14 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
+    
+    override func prepareForReuse() {
+            super.prepareForReuse()
+        
+        categoryImage.image = nil
+        categoryNameLabel.text = nil
+            
+        }
     
     // MARK: - SetupViews
     private func setupViews() {

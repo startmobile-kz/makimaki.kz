@@ -62,9 +62,9 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
-        fetchCategories()
-        showSkeletonAnimation()
-        hideSkeletons()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4, execute: { [weak self] in
+            self?.fetchCategories()
+        })
     }
     
     // MARK: - Setup Views
@@ -75,21 +75,6 @@ final class MainViewController: UIViewController {
     }
     
     // MARK: - SetupSkeletons
-    
-    private func showSkeletonAnimation() {
-        collectionView.prepareSkeleton { _ in
-            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        }
-    }
-    
-    private func hideSkeletons() {
-        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.collectionView.stopSkeletonAnimation()
-            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
-            self?.collectionView.reloadData()
-        }
-    }
     
     // MARK: - Setup Constraints
     private func setupConstraints() {
@@ -263,7 +248,7 @@ extension MainViewController: UICollectionViewDelegate {
                         forItemAt indexPath: IndexPath) {
         if cell is PromoBannerCollectionViewCell || cell is
             CategoryCollectionViewCell || cell is RestaurantCollectionViewCell {
-            cell.hideSkeleton()
+            cell.stopSkeletonAnimation()
         }
     }
 }
@@ -367,6 +352,19 @@ extension MainViewController: UICollectionViewDataSource {
 }
 // MARK: - SkeletonCollectionViewDataSource
 extension MainViewController: SkeletonCollectionViewDataSource {
+    private func collectionSkeletonView(_ skeletonView: UITableView,
+                                        numberOfItemsInSection section: Int) -> Int {
+        let section = sections[section]
+        switch section {
+        case .categories:
+            return 20
+        case .promos:
+            return 30
+        case .restaurants:
+            return 100
+        }
+    }
+    
     func collectionSkeletonView(
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
@@ -374,7 +372,7 @@ extension MainViewController: SkeletonCollectionViewDataSource {
         if indexPath.section == 0 {
             return CategoryCollectionViewCell.reuseID
         } else if indexPath.section == 1 {
-            return PromoBannerCollectionViewCell.reuseID // Исправлено здесь
+            return PromoBannerCollectionViewCell.reuseID
         } else {
             return RestaurantCollectionViewCell.reuseID
         }

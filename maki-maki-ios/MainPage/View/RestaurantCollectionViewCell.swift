@@ -16,7 +16,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
     // MARK: - UI
     private lazy var restaurantImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "restaurant_1")
         imageView.isSkeletonable = true
         return imageView
     }()
@@ -96,7 +95,6 @@ final class RestaurantCollectionViewCell: UICollectionViewCell {
         uiView.layer.cornerRadius = 16
         uiView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMaxYCorner]
         uiView.backgroundColor = AppColor.accent.uiColor
-        uiView.isSkeletonable = true
         return uiView
     }()
     
