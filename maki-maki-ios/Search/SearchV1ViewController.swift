@@ -8,19 +8,36 @@
 import UIKit
 import SnapKit
 
-final class SearchV1ViewController: UIViewController {
+// MARK: - Search Container View protocol
 
+protocol SearchViewControllerDelegate: AnyObject {
+    func recentSearchTapped(word: String)
+}
+
+final class SearchV1ViewController: UIViewController, DishViewControllerDelegate {
+    
+    // MARK: - Add to basket delegate
+    
+    func addToBasket(dish: RestaurantProduct) {
+        // Here need to implement logic of adding to basket VC
+    }
+    
+    var delegate: SearchViewControllerDelegate?
+    
     // MARK: - Properties
     
     private var service = ProductsService()
     private var products = [Product]()
-    private var searchTextFieldIsTapped = true
+    private var isSearchTextFieldEmpty = true
+    private var clearButtonTapped = true
     
     var filteredProducts = [Product]() {
         didSet {
             self.searchTableView.reloadData()
         }
     }
+    
+    var searchHistory = [History]()
 
     // MARK: - UI
     
@@ -45,7 +62,6 @@ final class SearchV1ViewController: UIViewController {
         setupViews()
         setupConstraints()
         fetchProducts()
-        searchTextFieldIsTapped = false
         searchContainerView.delegate = self
     }
     
@@ -87,22 +103,23 @@ final class SearchV1ViewController: UIViewController {
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !searchTextFieldIsTapped {
+        if isSearchTextFieldEmpty {
             searchTableView.rowHeight = 40
-            return 6
+            return searchHistory.count
         }
         searchTableView.rowHeight = 66
         return filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !searchTextFieldIsTapped {
+        if isSearchTextFieldEmpty {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: RecentSearchesTableViewCell.reuseID,
                 for: indexPath
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
             }
+            cell.setupData(history: searchHistory[indexPath.row])
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(
@@ -116,22 +133,45 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let controller = DishViewController()
-        present(controller, animated: true)
+        if isSearchTextFieldEmpty {
+            delegate?.recentSearchTapped(word: searchHistory[indexPath.row].name)
+            searchContainerView.recentSearchTapped(word: searchHistory[indexPath.row].name)
+            isSearchTextFieldEmpty = false
+            searchCompleted(word: searchHistory[indexPath.row].name)
+            searchTableView.reloadData()
+        } else {
+            let dishViewController = DishViewController()
+            dishViewController.product = filteredProducts[indexPath.row]
+            dishViewController.delegate = self
+            present(dishViewController, animated: true)
+        }
     }
 }
 
 // MARK: - SearchContainerViewDelegate
 
 extension SearchV1ViewController: SearchContainerViewDelegate {
-    func textFieldIsTapped(state: Bool) {
-        searchTextFieldIsTapped = state
+    func textFieldIsEmpty(state: Bool) {
+        isSearchTextFieldEmpty = state
         searchTableView.reloadData()
     }
     
+    func clearButtonTapped(isTapped: Bool) {
+        clearButtonTapped = isTapped
+        filteredProducts = products
+        isSearchTextFieldEmpty = true
+        searchTableView.reloadData()
+    }
+    
+    func returnButtonTapped(lastWord: String) {
+        let historyToAdd = History(name: lastWord)
+        searchHistory.append(historyToAdd)
+    }
+        
     func searchCompleted(word: String) {
         if word.isEmpty {
             filteredProducts = products
+            isSearchTextFieldEmpty = true
             searchTableView.reloadData()
         } else {
             filteredProducts = products.filter {

@@ -14,25 +14,25 @@ final class OrdersViewController: UIViewController {
     lazy var orders: [Order] = {
         return [
             Order(cafeName: "Bellissimo Pizza",
-                        status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
-                        ordersList: self.firstOrder),
+                  status: "Delivered",
+                  time: "31 May 2020, 07:55 PM  ",
+                  price: "$43.95",
+                  ordersList: self.firstOrder),
             Order(cafeName: "Capital One Cafe",
-                        status: "Cancelled",
-                        time: "24 May 2020, 04:50 PM  ",
-                        price: "$5.48",
-                        ordersList: self.secondOrder),
+                  status: "Cancelled",
+                  time: "24 May 2020, 04:50 PM  ",
+                  price: "$5.48",
+                  ordersList: self.secondOrder),
             Order(cafeName: "Street Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:37 PM  ",
-                        price: "$18.30",
-                        ordersList: self.thirdOrder),
+                  status: "Delivered",
+                  time: "18 May 2020, 02:37 PM  ",
+                  price: "$18.30",
+                  ordersList: self.thirdOrder),
             Order(cafeName: "Smile House Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:08 PM  ",
-                        price: "$14.00",
-                        ordersList: self.fouthOrder)
+                  status: "Delivered",
+                  time: "18 May 2020, 02:08 PM  ",
+                  price: "$14.00",
+                  ordersList: self.fouthOrder)
         ]
     }()
     
@@ -63,13 +63,14 @@ final class OrdersViewController: UIViewController {
     
     private var sectionIsExpanded: [Bool] = []
     
+    private var isReorderCellExpanded: [Bool] = []
+    
     // MARK: - UI
     
     private lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
-        tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -100,6 +101,7 @@ final class OrdersViewController: UIViewController {
     private func setupData() {
         ordersCopy = orders
         sectionIsExpanded = Array(repeating: true, count: orders.count)
+        isReorderCellExpanded = Array(repeating: true, count: orders.count)
     }
     
     // MARK: - Setup Navigation Bar
@@ -139,21 +141,27 @@ final class OrdersViewController: UIViewController {
 // MARK: - UITableView Data Source and Delegate methods
 
 extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func numberOfSections(in tableView: UITableView) -> Int {
         return orders.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].ordersList.count
+        if sectionIsExpanded[section] {
+            return orders[section].ordersList.count + (isReorderCellExpanded[section] ? 1 : 0)
+        } else {
+            return 0
+        }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+        if indexPath.row == orders[indexPath.section].ordersList.count {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: ReorderCell.reuseID,
                                                            for: indexPath) as? ReorderCell else {
                 fatalError("reorder_cell not found")
             }
             cell.delegate = self
+            cell.isHidden = !isReorderCellExpanded[indexPath.section]
             return cell
         }
         guard let cell = tableView.dequeueReusableCell(withIdentifier: OrdersCell.reuseID,
@@ -165,12 +173,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        if indexPath.row == orders[indexPath.section].ordersList.count - 1 {
+        if indexPath.row == orders[indexPath.section].ordersList.count {
             return 83
         } else {
-            return UITableView.automaticDimension
+            return 36
         }
-        
     }
     
     // MARK: - Header of Section
@@ -189,23 +196,33 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
     }
+    
+    func tableView(_ tableView: UITableView, heightForFooterInSection section: Int) -> CGFloat {
+        return .leastNormalMagnitude
+    }
+       
+    func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
+        return nil
+    }
 }
 
 // MARK: - Collapse Animation
 
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
-        var indexPathes: [IndexPath] = []
-        for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
-            indexPathes.append(IndexPath(row: i, section: section))
-        }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
+        isReorderCellExpanded[section] = isExpanded
+        ordersTableView.reloadData()
+        
         if !isExpanded {
-            self.orders[section].ordersList = []
-            ordersTableView.deleteRows(at: indexPathes, with: .fade)
+            orders[section].ordersList = []
+            ordersTableView.reloadData()
         } else {
             orders[section].ordersList = ordersCopy[section].ordersList
-            ordersTableView.insertRows(at: indexPathes, with: .fade)
+            let indexPaths = (0..<orders[section].ordersList.count).map {
+                IndexPath(row: $0, section: section)
+            }
+            ordersTableView.insertRows(at: indexPaths, with: .fade)
         }
     }
 }
