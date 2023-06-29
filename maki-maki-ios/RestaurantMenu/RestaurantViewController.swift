@@ -75,7 +75,7 @@ final class RestaurantViewController: UIViewController {
         return collectionView
     }()
     
-    private lazy var viewCartContainerView: UIView = {
+    private lazy var viewCartContainerView: ViewCartContainer = {
         let view = ViewCartContainer()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
         view.addGestureRecognizer(tap)
@@ -408,6 +408,9 @@ final class RestaurantViewController: UIViewController {
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: RestaurantProduct) {
         collectionView.reloadData()
+        viewCartContainerView.setupData(product: products.filter({ product in
+            return product.isSelected
+        }))
     }
 }
 
