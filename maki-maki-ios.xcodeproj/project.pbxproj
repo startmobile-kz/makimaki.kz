@@ -95,6 +95,7 @@
 		9FFEE49B2A46F7F80071AE0D /* CategoryService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE4992A46F7F80071AE0D /* CategoryService.swift */; };
 		9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */; };
 		B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */; };
+		B423AD5F2A45680700B3AB7C /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
@@ -206,6 +207,7 @@
 		9FFEE4992A46F7F80071AE0D /* CategoryService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryService.swift; sourceTree = "<group>"; };
 		9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarController.swift; sourceTree = "<group>"; };
 		B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
+		B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewController.swift; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = maki_maki_iosTests.swift; sourceTree = "<group>"; };
@@ -601,6 +603,14 @@
 				9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */,
 			);
 			path = UI;
+            sourceTree = "<group>";
+		};
+        B423AD5D2A4567BB00B3AB7C /* AddCreditCard */ = {
+			isa = PBXGroup;
+			children = (
+				B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */,
+			);
+			path = AddCreditCard;
 			sourceTree = "<group>";
 		};
 		CE15DD342A136D3A006F9968 /* maki-maki-iosTests */ = {
@@ -657,6 +667,7 @@
 				27943BE12A308688003F3C7B /* Manage Addresses */,
 				F187EADD2A263EFE00019242 /* EditProfile */,
 				0349DDE62A3AD62500BACD4F /* Payments */,
+				B423AD5D2A4567BB00B3AB7C /* AddCreditCard */,
 				0349DDF22A3BABEA00BACD4F /* Payment Method */,
 			);
 			path = "maki-maki-ios";
@@ -961,6 +972,7 @@
 				689BC90A2A2F4D1A008FD14F /* TabBarController.swift in Sources */,
 				1D26D70E2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift in Sources */,
 				9F2380552A49C6AA0029A5DD /* RestaurantViewController.swift in Sources */,
+				B423AD5F2A45680700B3AB7C /* AddCreditCardViewController.swift in Sources */,
 				27F53B722A2D049700B42737 /* AccountListCell.swift in Sources */,
 				27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */,
 				2620524B2A382EC900A2DC88 /* DishViewController.swift in Sources */,
