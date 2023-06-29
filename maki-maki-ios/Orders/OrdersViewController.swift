@@ -60,9 +60,7 @@ final class OrdersViewController: UIViewController {
     ]
     
     private var ordersCopy: [Order] = []
-    
     private var sectionIsExpanded: [Bool] = []
-    
     private var isReorderCellExpanded: [Bool] = []
     
     // MARK: - UI
@@ -123,7 +121,6 @@ final class OrdersViewController: UIViewController {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         noOrdersView.snp.makeConstraints { make in
             make.center.equalTo(view.snp.center)
         }
@@ -149,9 +146,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if sectionIsExpanded[section] {
             return orders[section].ordersList.count + (isReorderCellExpanded[section] ? 1 : 0)
-        } else {
-            return 0
         }
+        return 0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -175,9 +171,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == orders[indexPath.section].ordersList.count {
             return 83
-        } else {
-            return 36
         }
+        return 36
     }
     
     // MARK: - Header of Section
