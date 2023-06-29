@@ -10,6 +10,10 @@ import SnapKit
 
 final class BasketViewController: UIViewController {
     
+    // MARK: - State
+    
+    public var selectedDishes: [RestaurantProduct] = []
+    
     // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
@@ -68,30 +72,20 @@ final class BasketViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
-
 }
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return selectedDishes.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == 4 {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "deliveryCell", for: indexPath)
-                    as? DeliveryTableViewCell else {
-                fatalError("deliveryCell not found")
-            }
-
-            cell.separatorInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: .greatestFiniteMagnitude)
-            return cell
-        }
-        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath)
                 as? BasketTableViewCell else {
             fatalError("basketCell not found")
         }
-
+        let dish = selectedDishes[indexPath.row]
+        cell.setupData(dish: dish)
         cell.separatorInset = UIEdgeInsets(top: 0, left: 15, bottom: 0, right: 0)
         return cell
     }

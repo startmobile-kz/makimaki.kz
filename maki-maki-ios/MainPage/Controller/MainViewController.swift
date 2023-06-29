@@ -10,6 +10,8 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
+    var categories: [Category] = []
+    
     // MARK: - Sections
     let sections: [SectionType] = [.categories, .promos, .restaurants]
     var selectedCategoryIndexPath: IndexPath?
@@ -58,6 +60,7 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
+        fetchCategories()
     }
     
     // MARK: - Setup Views
@@ -95,6 +98,17 @@ final class MainViewController: UIViewController {
                 return self?.promoSectionLayout()
             case .restaurants:
                 return self?.restaurantSectionLayout()
+            }
+        }
+    }
+    
+    // MARK: - fetchCategories
+    
+    private func fetchCategories() {
+        CategoryService().fetchCategories { categories in
+            self.categories = categories
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
     }
@@ -226,7 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[section]
         switch section {
         case .categories:
-            return 24
+            return categories.count
         case .promos:
             return 30
         case .restaurants:
@@ -249,6 +263,11 @@ extension MainViewController: UICollectionViewDataSource {
             }
             if let selectedCategoryIndexPath = selectedCategoryIndexPath {
                 cell.set(value: selectedCategoryIndexPath == indexPath)
+            }
+            
+            if indexPath.item < categories.count {
+                let category = categories[indexPath.item]
+                cell.setupData(category: category)
             }
             return cell
         case .promos:
