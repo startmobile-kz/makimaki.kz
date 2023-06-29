@@ -20,19 +20,7 @@ final class CategoryMenuView: UIView {
     
     private let type: CategoryMenuViewType
     
-    private var listCategory: [CategoryItem] = [
-        CategoryItem(title: "Most popular", id: .mostPopular),
-        CategoryItem(title: "Pizza", id: .pizza),
-        CategoryItem(title: "Sushi", id: .sushi),
-        CategoryItem(title: "Rolls", id: .rolls),
-        CategoryItem(title: "Burgers", id: .burgers),
-        CategoryItem(title: "Breakfast", id: .breakfast),
-        CategoryItem(title: "Sandwichs", id: .sandwichs),
-        CategoryItem(title: "Kebab", id: .kebab),
-        CategoryItem(title: "Salads", id: .salads),
-        CategoryItem(title: "French Fries", id: .frenchFries),
-        CategoryItem(title: "Cold Drinks", id: .coldDrinks)
-    ]
+    private var listCategory: [Category] = []
     
     static let notificationName = Notification.Name("categoriesItemSelected")
     
@@ -76,6 +64,7 @@ final class CategoryMenuView: UIView {
         setupConstraints()
         setupCollection()
         setupNotificationObservers()
+        fetchCategoriesName()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -102,11 +91,12 @@ final class CategoryMenuView: UIView {
     
     private func setupConstraints() {
         let leadingOffset = (type == .collectionHeader) ? -16 : 0
+        let trailingOffset = (type == .collectionHeader) ? 0 : -16
         
         categoryCollectionView.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(leadingOffset)
-            make.trailing.equalToSuperview()
+            make.trailing.equalToSuperview().offset(trailingOffset)
             make.height.equalTo(40)
         }
     }
@@ -118,6 +108,23 @@ final class CategoryMenuView: UIView {
             name: RestaurantViewController.notificationName,
             object: nil
         )
+    }
+    
+    private func fetchCategoriesName() {
+        RestaurantProductService().fetchCategories { [weak self] result in
+            switch result {
+            case .success(let categories):
+                self?.listCategory = categories.sorted(by: {
+                    $0.id < $1.id
+                })
+                DispatchQueue.main.async {
+                    self?.categoryCollectionView.reloadData()
+                    self?.categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
+                }
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
     }
     
     @objc func scrollToCategory(_ notification: Notification) {
@@ -145,7 +152,7 @@ extension CategoryMenuView: UICollectionViewDataSource {
             for: indexPath) as? ProductCategoryCollectionViewCell else {
             fatalError("Couldn't cast to DishCategoryCollectionViewCell")
         }
-        cell.categoryLabel.text = listCategory[indexPath.item].title
+        cell.categoryLabel.text = listCategory[indexPath.item].name
         return cell
     }
 }
@@ -174,7 +181,7 @@ extension CategoryMenuView: UICollectionViewDelegateFlowLayout {
         let padding: CGFloat = 28.0
         let categoryFont = AppFont.reqular.s14()
         let categoryAttribuites = [NSAttributedString.Key.font: categoryFont as Any]
-        let categoryWidth = listCategory[indexPath.item].title.size(
+        let categoryWidth = listCategory[indexPath.item].name.size(
             withAttributes: categoryAttribuites).width + padding
         return CGSize(width: categoryWidth, height: collectionView.frame.height)
     }

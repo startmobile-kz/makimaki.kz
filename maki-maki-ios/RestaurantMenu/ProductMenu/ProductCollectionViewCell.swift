@@ -149,8 +149,17 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         productPriceLabel.text = "\(product.price) ₸"
         productCountView.isHidden = product.count == 0
         productCountLabel.text = "\(product.count)"
-        let url = URL(string: product.image ?? " ")
-        productImageView.kf.setImage(with: url)
+        
+        let urlString = (product.image ?? " ").addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? " "
+        let url = URL(string: urlString)
+        productImageView.kf.setImage(
+            with: url,
+            placeholder: nil,
+            options: [
+                .processor(DownsamplingImageProcessor(size: CGSize(width: 149, height: 145))),
+                .scaleFactor(UIScreen.main.scale),
+                .cacheOriginalImage
+            ])
     }
     // swiftlint:enable all
 }
