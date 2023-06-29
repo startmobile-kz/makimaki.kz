@@ -154,11 +154,12 @@ final class ProductCollectionViewCell: UICollectionViewCell {
         let url = URL(string: urlString)
         productImageView.kf.setImage(
             with: url,
-            placeholder: nil,
+            placeholder: AppImage.placeholder.uiImage,
             options: [
                 .processor(DownsamplingImageProcessor(size: CGSize(width: 149, height: 145))),
                 .scaleFactor(UIScreen.main.scale),
                 .cacheOriginalImage
             ])
     }
+}
     // swiftlint:enable all
