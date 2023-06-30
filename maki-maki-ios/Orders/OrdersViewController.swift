@@ -203,8 +203,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
-        for i in stride(from: 0, to: ordersCopy[section].ordersList.count + 1, by: 1) {
-            indexPathes.append(IndexPath(row: i, section: section))
+        for row in stride(from: 0, to: ordersCopy[section].ordersList.count + 1, by: 1) {
+            indexPathes.append(IndexPath(row: row, section: section))
         }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
         if !isExpanded {
