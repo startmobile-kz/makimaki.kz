@@ -24,6 +24,23 @@ class SecondMainViewController: UIViewController {
         return view
     }()
     
+    private lazy var collectionView: UICollectionView = {
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.register(
+            SectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: SectionHeaderView.reuseID
+        )
+        collectionView.register(
+            PromoBannerCollectionViewCell.self,
+            forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
+        )
+        collectionView.showsVerticalScrollIndicator = false
+        return collectionView
+    }()
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -52,6 +69,20 @@ class SecondMainViewController: UIViewController {
             make.top.equalTo(deliveryHeaderView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
+        }
+    }
+    
+    private func createLayout() -> UICollectionViewCompositionalLayout {
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
+            let section = self?.sections[sectionIndex] ?? .promos
+            switch section {
+            case .categories:
+                return self?.categorieSectionLayout()
+            case .promos:
+                return self?.promoSectionLayout()
+            case .restaurants:
+                return self?.restaurantSectionLayout()
+            }
         }
     }
 }
