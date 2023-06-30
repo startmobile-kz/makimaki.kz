@@ -182,5 +182,10 @@ final class EditProfileViewController: UIViewController {
 
     @objc func saveButtonDidPress() {
         self.navigationController?.popViewController(animated: true)
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set("Ravil", forKey: "name")
+        userDefaults.set("star.toni@mail.ru", forKey: "email")
+        userDefaults.set("+77711946922", forKey: "phone")
     }
 }
