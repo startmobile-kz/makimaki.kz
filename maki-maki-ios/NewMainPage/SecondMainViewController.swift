@@ -186,6 +186,11 @@ extension SecondMainViewController: UICollectionViewDelegate {
 // MARK: - UICollectionView DataSource methods
 
 extension SecondMainViewController: UICollectionViewDataSource {
+    
+    func numberOfSections(in collectionView: UICollectionView) -> Int {
+        return sections.count
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         5
     }
