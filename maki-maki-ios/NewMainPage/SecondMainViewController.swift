@@ -13,6 +13,8 @@ class SecondMainViewController: UIViewController {
     // MARK: - State
     
     private let sections: [NewMainPageSectionTypes] = [.promos, .products]
+    private var categoriesAndNames: [Int: String] = [:]
+    private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
     
     // MARK: - UI
     
@@ -43,6 +45,11 @@ class SecondMainViewController: UIViewController {
             withReuseIdentifier: СategoriesHeaderView.reuseID
         )
         collectionView.register(
+            ProductSectionHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: ProductSectionHeaderView.reuseId
+        )
+        collectionView.register(
             PromoBannerCollectionViewCell.self,
             forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
         )
@@ -60,6 +67,7 @@ class SecondMainViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        fetchCategoriesWithProducts()
     }
     
     // MARK: - SetupView
@@ -92,11 +100,11 @@ class SecondMainViewController: UIViewController {
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
-            let section = self?.sections[sectionIndex] ?? .promos
-            switch section {
-            case .promos:
+            
+            switch sectionIndex {
+            case 0:
                 return self?.promosSectionLayout()
-            case .products:
+            default:
                 return self?.productsSectionLayout()
             }
         }
@@ -185,6 +193,21 @@ class SecondMainViewController: UIViewController {
             alignment: .topLeading
         )
     }
+    
+    // MARK: Fetching data
+    
+    private func fetchCategoriesWithProducts() {
+        RestaurantProductService().fetchCategoriesWithProducts { [weak self] result in
+            switch result {
+            case .success(let groupedProducts):
+                self?.categoriesAndNames = groupedProducts.categoriesAndNames
+                self?.productsByCategoryMap = groupedProducts.dividedProducts
+                self?.collectionView.reloadData()
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+        }
+    }
 }
 
 extension SecondMainViewController: DeliveryHeaderViewDelegate {
@@ -204,11 +227,21 @@ extension SecondMainViewController: UICollectionViewDelegate {
 extension SecondMainViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count
+        return sections.count + 8
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        5
+//        let sectionType = sections[section]
+        
+        switch section {
+        case 0:
+            return 5
+        case 1:
+            print("PRODUCTS", productsByCategoryMap[section + 1]?.count)
+            return productsByCategoryMap[section + 1]?.count ?? 0
+        default:
+            return productsByCategoryMap[section + 1]?.count ?? 0
+        }
     }
     
     func collectionView(
@@ -231,6 +264,11 @@ extension SecondMainViewController: UICollectionViewDataSource {
                 for: indexPath) as? ProductCollectionViewCell else {
                 fatalError("Could not cast to DishesCollectionViewCell")
             }
+            guard let product = productsByCategoryMap[indexPath.section + 1]?[indexPath.row] else {
+                return UICollectionViewCell()
+            }
+            print(product.name)
+            cell.setupData(product: product)
             return cell
         }
     }
@@ -241,9 +279,9 @@ extension SecondMainViewController: UICollectionViewDataSource {
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            let section = sections[indexPath.section]
+            let section = indexPath.section
             switch section {
-            case .promos:
+            case 0:
                 guard let promoSectionHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
                     withReuseIdentifier: SectionHeaderView.reuseID,
@@ -253,13 +291,22 @@ extension SecondMainViewController: UICollectionViewDataSource {
                 }
                 promoSectionHeader.setHeaderTitle(title: "Promo")
                 return promoSectionHeader
-            case .products:
+            case 1:
                 guard let productsSectionHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
                     withReuseIdentifier: СategoriesHeaderView.reuseID,
                     for: indexPath
                 ) as? СategoriesHeaderView else {
                     fatalError("Could not cast to CategoriesHeaderView")
+                }
+                return productsSectionHeader
+            default:
+                guard let productsSectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: ProductSectionHeaderView.reuseId,
+                    for: indexPath
+                ) as? ProductSectionHeaderView else {
+                    fatalError("Could not cast to ProductSectionHeaderView")
                 }
                 return productsSectionHeader
             }
