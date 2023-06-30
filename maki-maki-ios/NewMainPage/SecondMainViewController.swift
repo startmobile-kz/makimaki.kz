@@ -10,6 +10,10 @@ import SnapKit
 
 class SecondMainViewController: UIViewController {
     
+    // MARK: - State
+    
+    let sections: [NewMainPageSectionTypes] = [.promos, .products]
+    
     // MARK: - UI
     
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
@@ -76,11 +80,9 @@ class SecondMainViewController: UIViewController {
         return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             let section = self?.sections[sectionIndex] ?? .promos
             switch section {
-            case .categories:
-                return self?.categorieSectionLayout()
             case .promos:
                 return self?.promoSectionLayout()
-            case .restaurants:
+            case .products:
                 return self?.restaurantSectionLayout()
             }
         }
