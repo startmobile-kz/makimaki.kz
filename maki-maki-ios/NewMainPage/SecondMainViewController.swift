@@ -187,4 +187,30 @@ extension SecondMainViewController: UICollectionViewDataSource {
     ) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
+    
+    func collectionView(
+        _ collectionView: UICollectionView,
+        viewForSupplementaryElementOfKind kind: String,
+        at indexPath: IndexPath
+    ) -> UICollectionReusableView {
+        if kind == UICollectionView.elementKindSectionHeader {
+            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
+                ofKind: kind,
+                withReuseIdentifier: SectionHeaderView.reuseID,
+                for: indexPath
+            ) as? SectionHeaderView else {
+                fatalError("Could not cast to SectionHeaderView")
+            }
+            let section = sections[indexPath.section]
+            switch section {
+            case .promos:
+                sectionHeader.setHeaderTitle(title: "Promo")
+            case .products:
+                sectionHeader.setHeaderTitle(title: "Restaurants")
+            }
+            return sectionHeader
+        } else {
+            return UICollectionReusableView()
+        }
+    }
 }
