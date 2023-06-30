@@ -111,10 +111,6 @@ final class RestaurantViewController: UIViewController {
         }
     }
     
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
     // MARK: - SetupViews
     
     private func setupViews() {
@@ -156,7 +152,6 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupNavigationBar
     
     private func setupNavigationBar() {
-        title = ""
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
         self.navigationController?.navigationBar.shadowImage = UIImage()
@@ -367,11 +362,7 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func checkScrollDirection(viewOffsetY: CGFloat) {
-        if lastContentOffsetY > viewOffsetY {
-            isScrollingUp = true
-        } else {
-            isScrollingUp = false
-        }
+        isScrollingUp = lastContentOffsetY > viewOffsetY : true ? false
     }
     
     private func pinCategoriesReplacementViewToTheTop() {

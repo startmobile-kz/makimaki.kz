@@ -153,10 +153,14 @@ final class VerificationViewController: UIViewController {
     }
     // MARK: - Actions
     @objc private func verifyButtonDidPressed() {
+        let userdefaults = UserDefaults.standard
+        userdefaults.set(true, forKey: "is_authoried")
+        userdefaults.set("Islam", forKey: "name")
+        userdefaults.set(26, forKey: "age")
+
         let controller = Main2TabBarController()
         controller.navigationItem.hidesBackButton = true
         self.navigationController?.pushViewController(controller, animated: true)
-//        self.navigationController?.popViewController(animated: true)
     }
     
     @objc private func updateTime() {

@@ -32,6 +32,7 @@ class AccountListViewController: UIViewController {
         button.backgroundColor = AppColor.grey100.uiColor
         button.tintColor = AppColor.heading.uiColor
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(signOutButtonDidPress), for: .touchUpInside)
         return button
     }()
     
@@ -90,6 +91,14 @@ class AccountListViewController: UIViewController {
             make.bottom.equalTo(-118)
             make.height.equalTo(53)
         }
+    }
+
+    // MARK: - Actions
+
+    @objc private func signOutButtonDidPress() {
+        let userDefaults = UserDefaults.standard
+        userDefaults.removeObject(forKey: "is_authoried")
+        userDefaults.synchronize()
     }
 }
 
