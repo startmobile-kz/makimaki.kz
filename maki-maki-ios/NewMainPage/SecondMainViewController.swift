@@ -185,7 +185,25 @@ extension SecondMainViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        return UICollectionViewCell()
+        let section = sections[indexPath.section]
+        switch section {
+        case .promos:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
+                for: indexPath
+            ) as? PromoBannerCollectionViewCell else {
+                fatalError("Could not cast to PromoBannerCollectionViewCell")
+            }
+            return cell
+        case .products:
+            guard let cell = collectionView.dequeueReusableCell(
+                withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
+                for: indexPath
+            ) as? RestaurantCollectionViewCell else {
+                fatalError("Could not cast to RestaurantCollectionViewCell")
+            }
+            return cell
+        }
     }
     
     func collectionView(
