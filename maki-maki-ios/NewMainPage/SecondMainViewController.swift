@@ -238,7 +238,7 @@ extension SecondMainViewController: UICollectionViewDataSource {
         case 0:
             return 5
         default:
-            return productsByCategoryMap[section + 1]?.count ?? 0
+            return productsByCategoryMap[section]?.count ?? 0
         }
     }
     
@@ -262,9 +262,10 @@ extension SecondMainViewController: UICollectionViewDataSource {
                 for: indexPath) as? ProductCollectionViewCell else {
                 fatalError("Could not cast to DishesCollectionViewCell")
             }
-            guard let product = productsByCategoryMap[indexPath.section + 1]?[indexPath.row] else {
+            guard let product = productsByCategoryMap[indexPath.section]?[indexPath.row] else {
                 return UICollectionViewCell()
             }
+            print(product.name)
             cell.setupData(product: product)
             return cell
         }
