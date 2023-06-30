@@ -15,7 +15,7 @@ final class RestaurantViewController: UIViewController {
     // MARK: - State
     
     private var service = RestaurantProductService()
-    public var products: [RestaurantProduct] = []
+    public var selectedProducts: [RestaurantProduct] = []
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
     private var lastContentOffsetY: CGFloat = 0
@@ -351,9 +351,7 @@ final class RestaurantViewController: UIViewController {
     
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = products.filter({ dish in
-            return dish.isSelected
-        })
+        basketViewController.selectedDishes = selectedProducts
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
     
@@ -408,9 +406,15 @@ final class RestaurantViewController: UIViewController {
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: RestaurantProduct) {
         collectionView.reloadData()
-        viewCartContainerView.setupData(product: products.filter({ product in
-            return product.isSelected
-        }))
+         
+        productsByCategoryMap.values.forEach { products in
+            print(products.description)
+            selectedProducts.append(contentsOf: products.filter({ product in
+                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
+            }))
+        }
+        
+        viewCartContainerView.setupData(products: selectedProducts)
     }
 }
 
