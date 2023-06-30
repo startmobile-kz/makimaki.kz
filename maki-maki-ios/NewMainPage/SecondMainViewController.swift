@@ -81,14 +81,16 @@ class SecondMainViewController: UIViewController {
             let section = self?.sections[sectionIndex] ?? .promos
             switch section {
             case .promos:
-                return self?.promoSectionLayout()
+                return self?.promosSectionLayout()
             case .products:
-                return self?.restaurantSectionLayout()
+                return self?.productsSectionLayout()
             }
         }
     }
     
-    private func promoSectionLayout() -> NSCollectionLayoutSection {
+    // MARK: - Section Layouts
+    
+    private func promosSectionLayout() -> NSCollectionLayoutSection {
         // Item
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -116,6 +118,36 @@ class SecondMainViewController: UIViewController {
         section.orthogonalScrollingBehavior = .continuous
         return section
     }
+    
+    private func productsSectionLayout() -> NSCollectionLayoutSection {
+        // Item
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.5),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        item.contentInsets.trailing = 14
+        // Group
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(242)
+            ),
+          subitems: [item]
+        )
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 4,
+            leading: 16,
+            bottom: 16,
+            trailing: 0
+        )
+        section.interGroupSpacing = 14
+        
+        return section
+    }
 }
 
 extension SecondMainViewController: DeliveryHeaderViewDelegate {
@@ -137,9 +169,10 @@ extension SecondMainViewController: UICollectionViewDataSource {
         5
     }
     
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+    func collectionView(
+        _ collectionView: UICollectionView,
+        cellForItemAt indexPath: IndexPath
+    ) -> UICollectionViewCell {
         return UICollectionViewCell()
     }
 }
-
-
