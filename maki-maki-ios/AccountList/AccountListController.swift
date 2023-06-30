@@ -60,7 +60,7 @@ class AccountListViewController: UIViewController {
     
     // MARK: - setupName
     
-    func setupName() {
+    private func setupName() {
         if let name = UserDefaults.standard.string(forKey: "name") {
             nameLabel?.text = name
         } else {
@@ -69,7 +69,7 @@ class AccountListViewController: UIViewController {
     }
     
     // MARK: - Set UI
-    func setupViews() {
+    private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
 
         view.addSubview(profileImage)
@@ -79,7 +79,7 @@ class AccountListViewController: UIViewController {
     }
     
     // MARK: - Setup Constraints
-    func setupConstraints() {
+    private func setupConstraints() {
         profileImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.size.equalTo(48)
