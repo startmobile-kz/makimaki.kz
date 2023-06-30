@@ -67,6 +67,7 @@ final class EditProfileViewController: UIViewController {
         textField.lineHeight = 0.5
         textField.autocorrectionType = .no
         textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -186,6 +187,6 @@ final class EditProfileViewController: UIViewController {
         let userDefaults = UserDefaults.standard
         userDefaults.set("Ravil", forKey: "name")
         userDefaults.set("star.toni@mail.ru", forKey: "email")
-        userDefaults.set("+77711946922", forKey: "phone")
+        userDefaults.set("+7 (771) 194 69 22", forKey: "phone")
     }
 }
