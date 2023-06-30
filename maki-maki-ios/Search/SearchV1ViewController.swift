@@ -43,6 +43,11 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
     
     private lazy var searchContainerView: SearchContainerView = SearchContainerView()
     
+//    private lazy var sectionHeaderView: RecentHeaderView = {
+//        let view = RecentHeaderView()
+//        return view
+//    }()
+    
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(SearchResultTableViewCell.self,
@@ -63,6 +68,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         setupConstraints()
         fetchProducts()
         searchContainerView.delegate = self
+
     }
     
     // MARK: - Setup Views
@@ -84,7 +90,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         }
         
         searchTableView.snp.makeConstraints {
-            $0.top.equalTo(searchContainerView.snp.bottom).offset(16)
+            $0.top.equalTo(searchContainerView.snp.bottom).offset(24)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(150)
         }
@@ -112,6 +118,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if isSearchTextFieldEmpty {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: RecentSearchesTableViewCell.reuseID,
@@ -145,6 +152,21 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             dishViewController.delegate = self
             present(dishViewController, animated: true)
         }
+    }
+    
+//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+//        if isSearchTextFieldEmpty {
+//            return "Recent Searches"
+//        }
+//        return ""
+//    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if isSearchTextFieldEmpty {
+            let header = RecentHeaderView()
+            return header
+        }
+        return nil
     }
 }
 
