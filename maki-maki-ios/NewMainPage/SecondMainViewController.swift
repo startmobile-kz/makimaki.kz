@@ -41,6 +41,10 @@ class SecondMainViewController: UIViewController {
             PromoBannerCollectionViewCell.self,
             forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
         )
+        collectionView.register(
+            ProductCollectionViewCell.self,
+            forCellWithReuseIdentifier: ProductCollectionViewCell.reuseID
+        )
         collectionView.showsVerticalScrollIndicator = false
         return collectionView
     }()
@@ -202,10 +206,9 @@ extension SecondMainViewController: UICollectionViewDataSource {
             return cell
         case .products:
             guard let cell = collectionView.dequeueReusableCell(
-                withReuseIdentifier: RestaurantCollectionViewCell.reuseID,
-                for: indexPath
-            ) as? RestaurantCollectionViewCell else {
-                fatalError("Could not cast to RestaurantCollectionViewCell")
+                withReuseIdentifier: ProductCollectionViewCell.reuseID,
+                for: indexPath) as? ProductCollectionViewCell else {
+                fatalError("Could not cast to DishesCollectionViewCell")
             }
             return cell
         }
