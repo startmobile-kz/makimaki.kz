@@ -94,3 +94,23 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
         print("Tapped")
     }
 }
+
+// MARK: - UICollectionView Delegate methods
+
+extension SecondMainViewController: UICollectionViewDelegate {
+    
+}
+
+// MARK: - UICollectionView DataSource methods
+
+extension SecondMainViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        5
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        return UICollectionViewCell()
+    }
+}
+
+
