@@ -27,7 +27,7 @@ class RestaurantProductService {
                     categoriesAndNames[category.id] = category.name
                 }
                 
-                self?.fetchProductsWithAlamofire(completion: { result in
+                self?.fetchProducts(completion: { result in
                     switch result {
                     case .success(let products):
                         for product in products {
@@ -68,7 +68,7 @@ class RestaurantProductService {
             }
     }
     
-    func fetchProductsWithAlamofire(completion: @escaping (Result<[RestaurantProduct], AFError>) -> Void) {
+    func fetchProducts(completion: @escaping (Result<[RestaurantProduct], AFError>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         
         guard let url = URL(string: urlString) else {
@@ -81,29 +81,5 @@ class RestaurantProductService {
             .responseDecodable(of: [RestaurantProduct].self) { data in
                 completion(data.result)
             }
-    }
-    
-    func fetchProducts(completion: @escaping ([RestaurantProduct]) -> Void) {
-        
-        let urlString = "https://app.makimaki.kz/api/v1/client/products"
-        guard let url = URL(string: urlString) else { return }
-        var request = URLRequest(url: url)
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
-            guard let data = data else {
-                fatalError("Data not found")
-            }
-            
-            do {
-                let dishes = try JSONDecoder().decode([RestaurantProduct].self, from: data)
-                completion(dishes)
-                
-            } catch let error {
-                print("Error:\(error.localizedDescription)")
-            }
-        }
-        )
-        task.resume()
     }
 }

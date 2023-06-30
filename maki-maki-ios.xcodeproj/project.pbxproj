@@ -77,7 +77,6 @@
 		773A738E2A278DAA0029AA44 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */; };
 		9F23804C2A49C6AA0029A5DD /* CategoryMenuView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23803A2A49C6AA0029A5DD /* CategoryMenuView.swift */; };
 		9F23804D2A49C6AA0029A5DD /* ProductCategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23803B2A49C6AA0029A5DD /* ProductCategoryCollectionViewCell.swift */; };
-		9F23804E2A49C6AA0029A5DD /* CategoryItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23803C2A49C6AA0029A5DD /* CategoryItem.swift */; };
 		9F23804F2A49C6AA0029A5DD /* ViewCartContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F23803E2A49C6AA0029A5DD /* ViewCartContainer.swift */; };
 		9F2380502A49C6AA0029A5DD /* RestaurantProductService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2380402A49C6AA0029A5DD /* RestaurantProductService.swift */; };
 		9F2380512A49C6AA0029A5DD /* RestaurantProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9F2380412A49C6AA0029A5DD /* RestaurantProduct.swift */; };
@@ -190,7 +189,6 @@
 		773A738D2A278DAA0029AA44 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		9F23803A2A49C6AA0029A5DD /* CategoryMenuView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryMenuView.swift; sourceTree = "<group>"; };
 		9F23803B2A49C6AA0029A5DD /* ProductCategoryCollectionViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProductCategoryCollectionViewCell.swift; sourceTree = "<group>"; };
-		9F23803C2A49C6AA0029A5DD /* CategoryItem.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CategoryItem.swift; sourceTree = "<group>"; };
 		9F23803E2A49C6AA0029A5DD /* ViewCartContainer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ViewCartContainer.swift; sourceTree = "<group>"; };
 		9F2380402A49C6AA0029A5DD /* RestaurantProductService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantProductService.swift; sourceTree = "<group>"; };
 		9F2380412A49C6AA0029A5DD /* RestaurantProduct.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RestaurantProduct.swift; sourceTree = "<group>"; };
@@ -238,7 +236,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				1D1C64022A448A4200DA83CF /* Kingfisher in Frameworks */,
 				280DA853EE7FE0FEE888F4BB /* Pods_maki_maki_ios.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -527,7 +524,6 @@
 			children = (
 				9F23803A2A49C6AA0029A5DD /* CategoryMenuView.swift */,
 				9F23803B2A49C6AA0029A5DD /* ProductCategoryCollectionViewCell.swift */,
-				9F23803C2A49C6AA0029A5DD /* CategoryItem.swift */,
 			);
 			path = CategoryMenu;
 			sourceTree = "<group>";
@@ -614,9 +610,9 @@
 				9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */,
 			);
 			path = UI;
-            sourceTree = "<group>";
+			sourceTree = "<group>";
 		};
-        B423AD5D2A4567BB00B3AB7C /* AddCreditCard */ = {
+		B423AD5D2A4567BB00B3AB7C /* AddCreditCard */ = {
 			isa = PBXGroup;
 			children = (
 				B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */,
@@ -779,7 +775,6 @@
 			);
 			name = "maki-maki-ios";
 			packageProductDependencies = (
-				1D1C64012A448A4200DA83CF /* Kingfisher */,
 			);
 			productName = "maki-maki-ios";
 			productReference = CE96235F2A132B1A00C36D03 /* maki-maki-ios.app */;
@@ -814,7 +809,6 @@
 			);
 			mainGroup = CE9623562A132B1A00C36D03;
 			packageReferences = (
-				1D1C64002A448A4200DA83CF /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = CE9623602A132B1A00C36D03 /* Products */;
 			projectDirPath = "";
@@ -996,7 +990,6 @@
 				773A73822A27841E0029AA44 /* AppFont.swift in Sources */,
 				27943BE52A3086E9003F3C7B /* ManageAddressesCell.swift in Sources */,
 				9FFEE49B2A46F7F80071AE0D /* CategoryService.swift in Sources */,
-				9F23804E2A49C6AA0029A5DD /* CategoryItem.swift in Sources */,
 				0349DDEC2A3AD64800BACD4F /* PaymentsTableViewCell.swift in Sources */,
 				274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */,
 				F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */,
@@ -1321,25 +1314,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-
-/* Begin XCRemoteSwiftPackageReference section */
-		1D1C64002A448A4200DA83CF /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 7.7.0;
-			};
-		};
-/* End XCRemoteSwiftPackageReference section */
-
-/* Begin XCSwiftPackageProductDependency section */
-		1D1C64012A448A4200DA83CF /* Kingfisher */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = 1D1C64002A448A4200DA83CF /* XCRemoteSwiftPackageReference "Kingfisher" */;
-			productName = Kingfisher;
-		};
-/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CE9623572A132B1A00C36D03 /* Project object */;
 }
