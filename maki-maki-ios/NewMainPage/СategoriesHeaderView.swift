@@ -45,10 +45,9 @@ final class СategoriesHeaderView: UICollectionReusableView {
     
     private func setupConstraints() {
         categoryView.snp.makeConstraints { make in
-            make.top.equalTo(backgroundImageView.snp.bottom).offset(24)
+            make.top.equalToSuperview()
             make.leading.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
         }
     }
 }
-

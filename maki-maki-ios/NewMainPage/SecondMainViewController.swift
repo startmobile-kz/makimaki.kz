@@ -38,6 +38,11 @@ class SecondMainViewController: UIViewController {
             withReuseIdentifier: SectionHeaderView.reuseID
         )
         collectionView.register(
+            СategoriesHeaderView.self,
+            forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
+            withReuseIdentifier: СategoriesHeaderView.reuseID
+        )
+        collectionView.register(
             PromoBannerCollectionViewCell.self,
             forCellWithReuseIdentifier: PromoBannerCollectionViewCell.reuseID
         )
@@ -125,7 +130,7 @@ class SecondMainViewController: UIViewController {
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [supplementaryHeaderItem()]
+        section.boundarySupplementaryItems = [supplementaryPromosHeaderItem()]
         return section
     }
     
@@ -155,15 +160,26 @@ class SecondMainViewController: UIViewController {
             trailing: 0
         )
         section.interGroupSpacing = 14
-        
+        section.boundarySupplementaryItems = [supplementaryProductsHeaderItem()]
         return section
     }
     
-    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+    private func supplementaryPromosHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
                 widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(43)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+    }
+    
+    private func supplementaryProductsHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(60)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
             alignment: .topLeading
@@ -225,21 +241,28 @@ extension SecondMainViewController: UICollectionViewDataSource {
         at indexPath: IndexPath
     ) -> UICollectionReusableView {
         if kind == UICollectionView.elementKindSectionHeader {
-            guard let sectionHeader = collectionView.dequeueReusableSupplementaryView(
-                ofKind: kind,
-                withReuseIdentifier: SectionHeaderView.reuseID,
-                for: indexPath
-            ) as? SectionHeaderView else {
-                fatalError("Could not cast to SectionHeaderView")
-            }
             let section = sections[indexPath.section]
             switch section {
             case .promos:
-                sectionHeader.setHeaderTitle(title: "Promo")
+                guard let promoSectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: SectionHeaderView.reuseID,
+                    for: indexPath
+                ) as? SectionHeaderView else {
+                    fatalError("Could not cast to SectionHeaderView")
+                }
+                promoSectionHeader.setHeaderTitle(title: "Promo")
+                return promoSectionHeader
             case .products:
-                sectionHeader.setHeaderTitle(title: "Restaurants")
+                guard let productsSectionHeader = collectionView.dequeueReusableSupplementaryView(
+                    ofKind: kind,
+                    withReuseIdentifier: СategoriesHeaderView.reuseID,
+                    for: indexPath
+                ) as? СategoriesHeaderView else {
+                    fatalError("Could not cast to CategoriesHeaderView")
+                }
+                return productsSectionHeader
             }
-            return sectionHeader
         } else {
             return UICollectionReusableView()
         }
