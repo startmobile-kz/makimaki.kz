@@ -12,7 +12,7 @@ final class StepperView: UIControl {
     
     var currentValue = 1 {
         didSet {
-            currentValue = currentValue > 0 ? currentValue : 0
+            currentValue = currentValue > 0 ? currentValue : 1
             currentStepValueLabel.text = "\(currentValue)"
         }
     }
@@ -52,8 +52,8 @@ final class StepperView: UIControl {
     
     init(count: Int) {
         super.init(frame: .zero)
-        currentStepValueLabel.text = String(count)
-        currentValue = count
+        currentStepValueLabel.text = String(currentValue)
+        setCurrentValue(amount: count)
         setupViews()
         setupConstraints()
     }
@@ -109,6 +109,12 @@ final class StepperView: UIControl {
             break
         }
         sendActions(for: .valueChanged)
+    }
+    
+    private func setCurrentValue(amount: Int) {
+        if amount != 0 {
+            currentValue = amount
+        }
     }
     
     // MARK: - Intrinsic Stepper Size
