@@ -400,6 +400,13 @@
 			path = Tabbar;
 			sourceTree = "<group>";
 		};
+		6838C4062A4EB47E008BA320 /* NewMainPage */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = NewMainPage;
+			sourceTree = "<group>";
+		};
 		68C3EC342A27A308009A0E02 /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,6 +655,7 @@
 				274485FD2A27B3B400F2FFBD /* Registration */,
 				68374CD72A2B437800B3DC89 /* Tabbar */,
 				68C3EC342A27A308009A0E02 /* MainPage */,
+				6838C4062A4EB47E008BA320 /* NewMainPage */,
 				9F2380382A49C6AA0029A5DD /* RestaurantMenu */,
 				262052492A382E3300A2DC88 /* Dish */,
 				1D75FE962A2F4C8800D4DBF9 /* Search */,
