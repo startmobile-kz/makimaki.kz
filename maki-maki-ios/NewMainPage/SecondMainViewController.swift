@@ -135,7 +135,7 @@ class SecondMainViewController: UIViewController {
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 0,
             leading: 16,
-            bottom: 40,
+            bottom: 20,
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
@@ -306,6 +306,7 @@ extension SecondMainViewController: UICollectionViewDataSource {
                 ) as? ProductSectionHeaderView else {
                     fatalError("Could not cast to ProductSectionHeaderView")
                 }
+                productsSectionHeader.setSectionHeaderTitle(title: categoriesAndNames[section] ?? "")
                 return productsSectionHeader
             }
         } else {
