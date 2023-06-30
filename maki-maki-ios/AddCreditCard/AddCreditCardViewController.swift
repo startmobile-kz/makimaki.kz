@@ -83,10 +83,11 @@ final class AddCreditCardViewController: UIViewController {
         return textField
     }()
     
-    lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
+    private lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         let imageView = UIImageView()
         let image = UIImage(named: "camera")
+        let firstDigit = String((cardHolderNameTextfield.text?.prefix(1))!)
         textField.font = AppFont.reqular.s15()
         textField.title = "CARD NUMBER"
         textField.placeholder = "CARD NUMBER"
@@ -100,6 +101,9 @@ final class AddCreditCardViewController: UIViewController {
         textField.autocorrectionType = .no
         imageView.image = image
         textField.rightView = imageView
+        let text = textField.text ?? ""
+        let integer = Int(text) ?? 0
+        print("Integer", integer)
         return textField
     }()
     
@@ -248,8 +252,8 @@ final class AddCreditCardViewController: UIViewController {
             make.right.equalToSuperview().offset(-24)
         }
     }
+    
     private func setupConstraints2() {
-        
         cardHolderNameTextfield.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
@@ -272,7 +276,6 @@ final class AddCreditCardViewController: UIViewController {
         textFieldsContainer2.snp.makeConstraints { make in
             make.top.equalTo(textFieldsContainer.snp.bottom).offset(37.5)
             make.leading.trailing.equalToSuperview().inset(16)
-            
         }
         
         saveButton.snp.makeConstraints { make in
@@ -294,6 +297,10 @@ extension AddCreditCardViewController: UITextFieldDelegate {
         cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d+)",
                                                        with: "$1 $2 $3 $4",
                                                        options: .regularExpression, range: nil)
+        let integer = cardNumberTextfield
+        if integer.text?.first == "4" {
+            mastercardImageView.image = UIImage(named: "visa")
+        }
         if cvcTextField.text?.count == 3 {
             return false
         }

@@ -1,5 +1,6 @@
 PODS:
   - Alamofire (5.7.1)
+  - CardIO (5.4.1)
   - CHIOTPField (0.1.0):
     - CHIOTPField/Four (= 0.1.0)
     - CHIOTPField/One (= 0.1.0)
@@ -37,6 +38,7 @@ PODS:
   - SwiftLint (0.52.2)
 
 DEPENDENCIES:
+  - CardIO
   - CHIOTPField (= 0.1.0)
   - FirebaseCore (from `https://github.com/firebase/firebase-ios-sdk.git`, branch `master`)
   - InputMask (= 6.1.0)
@@ -53,6 +55,7 @@ DEPENDENCIES:
 SPEC REPOS:
   trunk:
     - Alamofire
+    - CardIO
     - CHIOTPField
     - FirebaseCoreInternal
     - GoogleUtilities
@@ -80,6 +83,7 @@ CHECKOUT OPTIONS:
 
 SPEC CHECKSUMS:
   Alamofire: 0123a34370cb170936ae79a8df46cc62b2edeb88
+  CardIO: 56983b39b62f495fc6dae9ad7cf875143df06443
   CHIOTPField: 5df19b433ccfad2a80e944d3abde128a236aaf01
   FirebaseCore: 62fd4d549f5e3f3bd52b7998721c5fa0557fb355
   FirebaseCoreInternal: 971029061d326000d65bfdc21f5502c75c8b0893
@@ -96,6 +100,6 @@ SPEC CHECKSUMS:
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
 
-PODFILE CHECKSUM: 0a97b2c4caba20dac17aaac831cd023fb99b508b
+PODFILE CHECKSUM: 56e20f9eed5ec7f1136d20af066f50ce7ff97ee6
 
 COCOAPODS: 1.12.1
