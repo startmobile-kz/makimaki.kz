@@ -12,6 +12,7 @@ class SecondMainViewController: UIViewController {
     
     // MARK: - State
     
+    private var service = RestaurantProductService()
     private let sections: [NewMainPageSectionTypes] = [.promos, .products]
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
@@ -197,7 +198,7 @@ class SecondMainViewController: UIViewController {
     // MARK: Fetching data
     
     private func fetchCategoriesWithProducts() {
-        RestaurantProductService().fetchCategoriesWithProducts { [weak self] result in
+        service.fetchCategoriesWithProducts { [weak self] result in
             switch result {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
@@ -236,9 +237,6 @@ extension SecondMainViewController: UICollectionViewDataSource {
         switch section {
         case 0:
             return 5
-        case 1:
-            print("PRODUCTS", productsByCategoryMap[section + 1]?.count)
-            return productsByCategoryMap[section + 1]?.count ?? 0
         default:
             return productsByCategoryMap[section + 1]?.count ?? 0
         }
@@ -248,9 +246,9 @@ extension SecondMainViewController: UICollectionViewDataSource {
         _ collectionView: UICollectionView,
         cellForItemAt indexPath: IndexPath
     ) -> UICollectionViewCell {
-        let section = sections[indexPath.section]
+        let section = indexPath.section
         switch section {
-        case .promos:
+        case 0:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: PromoBannerCollectionViewCell.reuseID,
                 for: indexPath
@@ -258,7 +256,7 @@ extension SecondMainViewController: UICollectionViewDataSource {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
             return cell
-        case .products:
+        default:
             guard let cell = collectionView.dequeueReusableCell(
                 withReuseIdentifier: ProductCollectionViewCell.reuseID,
                 for: indexPath) as? ProductCollectionViewCell else {
@@ -267,7 +265,6 @@ extension SecondMainViewController: UICollectionViewDataSource {
             guard let product = productsByCategoryMap[indexPath.section + 1]?[indexPath.row] else {
                 return UICollectionViewCell()
             }
-            print(product.name)
             cell.setupData(product: product)
             return cell
         }
