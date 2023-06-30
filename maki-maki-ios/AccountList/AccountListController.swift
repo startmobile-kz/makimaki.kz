@@ -19,9 +19,9 @@ class AccountListViewController: UIViewController {
         return imageView
     }()
     
-    private lazy var nameLabel: UILabel = {
+    private lazy var nameLabel: UILabel? = {
         let label = UILabel()
-        label.text = "Islam Temirbek"
+        label.text = UserDefaults.standard.string(forKey: "name")
         label.font = AppFont.bold.s24()
         return label
     }()
@@ -54,6 +54,18 @@ class AccountListViewController: UIViewController {
         setupConstraints()
 
         logos = fetchData()
+        setupName()
+        
+    }
+    
+    // MARK: - setupName
+    
+    func setupName() {
+        if let name = UserDefaults.standard.string(forKey: "name") {
+            nameLabel?.text = name
+        } else {
+            nameLabel?.text = ""
+        }
     }
     
     // MARK: - Set UI
@@ -61,7 +73,7 @@ class AccountListViewController: UIViewController {
         view.backgroundColor = AppColor.background.uiColor
 
         view.addSubview(profileImage)
-        view.addSubview(nameLabel)
+        view.addSubview(nameLabel!)
         view.addSubview(tableView)
         view.addSubview(signOutButton)
     }
@@ -74,7 +86,7 @@ class AccountListViewController: UIViewController {
             make.leading.equalToSuperview().offset(16)
         }
 
-        nameLabel.snp.makeConstraints { make in
+        nameLabel!.snp.makeConstraints { make in
             make.centerY.equalTo(profileImage.snp.centerY)
             make.leading.equalTo(profileImage.snp.trailing).offset(16)
         }
