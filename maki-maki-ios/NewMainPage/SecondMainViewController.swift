@@ -12,7 +12,7 @@ class SecondMainViewController: UIViewController {
     
     // MARK: - State
     
-    let sections: [NewMainPageSectionTypes] = [.promos, .products]
+    private let sections: [NewMainPageSectionTypes] = [.promos, .products]
     
     // MARK: - UI
     
@@ -86,6 +86,35 @@ class SecondMainViewController: UIViewController {
                 return self?.restaurantSectionLayout()
             }
         }
+    }
+    
+    private func promoSectionLayout() -> NSCollectionLayoutSection {
+        // Item
+        let item = NSCollectionLayoutItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .fractionalHeight(1)
+            )
+        )
+        // Group
+        let group = NSCollectionLayoutGroup.horizontal(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .absolute(300),
+                heightDimension: .absolute(160)
+            ),
+            subitems: [item]
+        )
+        // Section
+        let section = NSCollectionLayoutSection(group: group)
+        section.interGroupSpacing = 10
+        section.contentInsets = NSDirectionalEdgeInsets(
+            top: 0,
+            leading: 16,
+            bottom: 40,
+            trailing: 16
+        )
+        section.orthogonalScrollingBehavior = .continuous
+        return section
     }
 }
 
