@@ -166,7 +166,12 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             let header = RecentHeaderView()
             return header
         }
+
         return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return isSearchTextFieldEmpty ? 18 : 0
     }
 }
 
