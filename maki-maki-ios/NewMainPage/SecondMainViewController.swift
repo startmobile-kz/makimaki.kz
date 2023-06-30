@@ -116,6 +116,7 @@ class SecondMainViewController: UIViewController {
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
+        section.boundarySupplementaryItems = [supplementaryHeaderItem()]
         return section
     }
     
@@ -147,6 +148,17 @@ class SecondMainViewController: UIViewController {
         section.interGroupSpacing = 14
         
         return section
+    }
+    
+    private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(1),
+                heightDimension: .absolute(43)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
     }
 }
 
