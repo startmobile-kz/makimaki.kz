@@ -18,6 +18,12 @@ class SecondMainViewController: UIViewController {
         return view
     }()
     
+    private lazy var separatorView: UIView = {
+        let view = UIView()
+        view.backgroundColor = AppColor.border.uiColor
+        return view
+    }()
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -30,7 +36,7 @@ class SecondMainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([deliveryHeaderView])
+        view.addSubviews([deliveryHeaderView, separatorView])
     }
     
     // MARK: - SetupLayout
@@ -40,6 +46,12 @@ class SecondMainViewController: UIViewController {
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview()
+        }
+        
+        separatorView.snp.makeConstraints { make in
+            make.top.equalTo(deliveryHeaderView.snp.bottom).offset(20)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(0.5)
         }
     }
 }
