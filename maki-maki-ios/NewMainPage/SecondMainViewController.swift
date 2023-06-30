@@ -57,7 +57,7 @@ class SecondMainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([deliveryHeaderView, separatorView])
+        view.addSubviews([deliveryHeaderView, separatorView, collectionView])
     }
     
     // MARK: - SetupLayout
@@ -73,6 +73,11 @@ class SecondMainViewController: UIViewController {
             make.top.equalTo(deliveryHeaderView.snp.bottom).offset(20)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(0.5)
+        }
+        
+        collectionView.snp.makeConstraints { make in
+            make.top.equalTo(separatorView.snp.bottom).priority(250)
+            make.leading.trailing.bottom.equalToSuperview()
         }
     }
     
