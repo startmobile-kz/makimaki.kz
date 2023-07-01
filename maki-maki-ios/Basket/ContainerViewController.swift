@@ -119,8 +119,8 @@ class ContainerView: UIView {
     // MARK: - Public
 
     public func setup(with totalSum: Int) {
-        priceLabel.text = "\(totalSum)"
-        checkoutPriceLabel.text = "\(totalSum)"
+        priceLabel.text = "\(totalSum) ₸"
+        checkoutPriceLabel.text = "\(totalSum) ₸"
     }
     
     // MARK: - Action

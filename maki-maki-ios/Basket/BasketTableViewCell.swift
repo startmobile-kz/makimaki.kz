@@ -103,6 +103,6 @@ final class BasketTableViewCell: UITableViewCell {
         productImageView.kf.setImage(with: url)
         quantitiyLabel.text = "\(dish.count) X"
         productNameLabel.text = dish.name
-        priceOrderLabel.text = "\(dish.count * dish.price)"
+        priceOrderLabel.text = "\(dish.count * dish.price) ₸"
     }
 }
