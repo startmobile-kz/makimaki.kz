@@ -8,7 +8,13 @@
 import UIKit
 import SnapKit
 
+protocol CheckoutButtonDelegate: AnyObject {
+    func checkoutPressed()
+}
+
 class ContainerView: UIView {
+    
+    var delegate: CheckoutButtonDelegate?
 
     // MARK: - UI
     
@@ -43,6 +49,7 @@ class ContainerView: UIView {
         button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(checkoutPressed), for: .touchUpInside)
         return button
     }()
     
@@ -107,5 +114,18 @@ class ContainerView: UIView {
             make.trailing.equalTo(checkoutButton.snp.trailing).offset(-16)
             make.centerY.equalTo(checkoutButton)
         }
+    }
+
+    // MARK: - Public
+
+    public func setup(with totalSum: Int) {
+        priceLabel.text = "\(totalSum) ₸"
+        checkoutPriceLabel.text = "\(totalSum) ₸"
+    }
+    
+    // MARK: - Action
+    
+    @objc func checkoutPressed() {
+        self.delegate?.checkoutPressed()
     }
 }

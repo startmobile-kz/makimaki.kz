@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = false
             if isAuthoried {
-                window.rootViewController = SelectLocationViewController()
+                window.rootViewController = RestaurantViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: SelectLocationViewController())
+                    UINavigationController(rootViewController: RestaurantViewController())
             }
             
             self.window = window

@@ -13,6 +13,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     static let reuseID = String(describing: RecentSearchesTableViewCell.self)
     
     // MARK: - UI
+    
     private lazy var clockImage: UIImageView = {
         let image = UIImageView()
         image.image = AppImage.clock.uiImage
@@ -21,7 +22,6 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private lazy var recentSearchLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pizza"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label
@@ -36,6 +36,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     }()
     
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -47,11 +48,13 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     }
     
     // MARK: - Setup Views
+    
     private func setupViews() {
         contentView.addSubview(recentInfoStackView)
     }
     
     // MARK: - Setup Constraints
+    
     private func setupConstraints() {
         recentInfoStackView.snp.makeConstraints { make in
             make.top.equalTo(13)
@@ -67,5 +70,9 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         recentSearchLabel.snp.makeConstraints { make in
             make.height.equalTo(18)
         }
+    }
+    
+    public func setupData(history: History) {
+        recentSearchLabel.text = history.name
     }
 }

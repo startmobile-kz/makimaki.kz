@@ -12,26 +12,22 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: CategoryCollectionViewCell.self)
     
-    override var isSelected: Bool {
-        didSet {
-            if self.isSelected {
-                categoryButton.backgroundColor = AppColor.accent.uiColor
-            } else {
-                categoryButton.backgroundColor = AppColor.background.uiColor
-            }
-        }
-    }
-    
     // MARK: - UI
-    private lazy var categoryButton: UIButton = {
-        let button = UIButton()
-        button.setImage(UIImage(named: "burger"), for: .normal)
+    
+    private lazy var categoryCellView: UIView = {
+        let button = UIView()
         button.backgroundColor = AppColor.background.uiColor
         button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 20
         button.layer.borderWidth = 0.4
-        button.addTarget(self, action: #selector(categoryButtonTapped), for: .touchUpInside)
         return button
+    }()
+    
+    private lazy var categoryImage: UIImageView = {
+        
+        let image = UIImageView()
+        image.image = AppImage.burger.uiImage
+        return image
     }()
     
     private lazy var categoryNameLabel: UILabel = {
@@ -39,6 +35,7 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         label.text = "Burgers"
         label.font = AppFont.reqular.s12()
         label.textColor = AppColor.paragraph.uiColor
+        label.numberOfLines = 0
         label.textAlignment = .center
         return label
     }()
@@ -48,7 +45,6 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
-        isSelected = false
     }
     
     required init?(coder: NSCoder) {
@@ -57,25 +53,43 @@ final class CategoryCollectionViewCell: UICollectionViewCell {
     
     // MARK: - SetupViews
     private func setupViews() {
-        let subviews = [categoryButton, categoryNameLabel]
+        categoryCellView.addSubview(categoryImage)
+        let subviews = [categoryCellView, categoryNameLabel]
         subviews.forEach({contentView.addSubview($0)})
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
-        categoryButton.snp.makeConstraints { make in
-            make.top.leading.equalToSuperview()
+        categoryCellView.snp.makeConstraints { make in
+            make.top.equalToSuperview()
+            make.centerX.equalToSuperview()
             make.width.height.equalTo(70)
         }
+        categoryImage.snp.makeConstraints { make in
+            make.centerX.centerY.equalToSuperview()
+            
+        }
         categoryNameLabel.snp.makeConstraints { make in
-            make.top.equalTo(categoryButton.snp.bottom).offset(5)
-            make.leading.equalTo(categoryButton.snp.leading)
+            make.top.equalTo(categoryCellView.snp.bottom).offset(5)
             make.centerX.equalTo(contentView)
+            make.width.equalTo(65)
         }
     }
     
-    // MARK: - Button actions
-    @objc func categoryButtonTapped() {
-        isSelected.toggle()
+    // MARK: Did set function
+    
+    func set(value: Bool) {
+        if value {
+            categoryCellView.backgroundColor = AppColor.accent.uiColor
+        } else {
+            categoryCellView.backgroundColor = AppColor.background.uiColor
+        }
+    }
+    
+    // MARK: - Public
+    
+    public func setupData(category: Category) {
+        categoryNameLabel.text = category.name
     }
 }

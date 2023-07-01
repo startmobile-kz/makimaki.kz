@@ -10,8 +10,11 @@ import SnapKit
 
 final class MainViewController: UIViewController {
     
+    var categories: [Category] = []
+    
     // MARK: - Sections
     let sections: [SectionType] = [.categories, .promos, .restaurants]
+    var selectedCategoryIndexPath: IndexPath?
     
     // MARK: - UI
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
@@ -57,6 +60,7 @@ final class MainViewController: UIViewController {
 
         setupViews()
         setupConstraints()
+        fetchCategories()
     }
     
     // MARK: - Setup Views
@@ -94,6 +98,17 @@ final class MainViewController: UIViewController {
                 return self?.promoSectionLayout()
             case .restaurants:
                 return self?.restaurantSectionLayout()
+            }
+        }
+    }
+    
+    // MARK: - fetchCategories
+    
+    private func fetchCategories() {
+        CategoryService().fetchCategories { categories in
+            self.categories = categories
+            DispatchQueue.main.async {
+                self.collectionView.reloadData()
             }
         }
     }
@@ -191,7 +206,7 @@ final class MainViewController: UIViewController {
     private func supplementaryHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
         return NSCollectionLayoutBoundarySupplementaryItem(
             layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(0.2),
+                widthDimension: .fractionalWidth(1),
                 heightDimension: .absolute(43)
             ),
             elementKind: UICollectionView.elementKindSectionHeader,
@@ -225,7 +240,7 @@ extension MainViewController: UICollectionViewDataSource {
         let section = sections[section]
         switch section {
         case .categories:
-            return 24
+            return categories.count
         case .promos:
             return 30
         case .restaurants:
@@ -245,6 +260,14 @@ extension MainViewController: UICollectionViewDataSource {
                 for: indexPath
             ) as? CategoryCollectionViewCell else {
                 fatalError("Could not cast to CategoryCollectionViewCell")
+            }
+            if let selectedCategoryIndexPath = selectedCategoryIndexPath {
+                cell.set(value: selectedCategoryIndexPath == indexPath)
+            }
+            
+            if indexPath.item < categories.count {
+                let category = categories[indexPath.item]
+                cell.setupData(category: category)
             }
             return cell
         case .promos:
@@ -291,6 +314,16 @@ extension MainViewController: UICollectionViewDataSource {
             return sectionHeader
         } else {
             return UICollectionReusableView()
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch sections[indexPath.section] {
+        case .categories:
+            selectedCategoryIndexPath = indexPath
+            collectionView.reloadData()
+        default:
+            return
         }
     }
 }

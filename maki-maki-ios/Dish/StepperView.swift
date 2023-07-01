@@ -8,7 +8,14 @@
 import UIKit
 import SnapKit
 
-final class StepperView: UIView {
+final class StepperView: UIControl {
+    
+    var currentValue = 1 {
+        didSet {
+            currentValue = currentValue > 0 ? currentValue : 1
+            currentStepValueLabel.text = "\(currentValue)"
+        }
+    }
     
     // MARK: - UI
     
@@ -18,28 +25,38 @@ final class StepperView: UIView {
         button.contentHorizontalAlignment = .center
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(buttonDidPressed), for: .touchUpInside)
         return button
     }()
     
-    private lazy var countlabel: UILabel = {
+    private lazy var currentStepValueLabel: UILabel = {
         let label = UILabel()
-        label.text = "1"
+        label.text = "\(currentValue)"
         label.textAlignment = .center
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.medium.s15()
         return label
     }()
     
-    private lazy var upButton: UIButton = {
+    private lazy var increaseButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(UIImage(systemName: "plus"), for: .normal)
         button.contentHorizontalAlignment = .center
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
+        button.addTarget(self, action: #selector(buttonDidPressed), for: .touchUpInside)
         return button
     }()
     
     // MARK: - Lifecycle
+    
+    init(count: Int) {
+        super.init(frame: .zero)
+        currentStepValueLabel.text = String(currentValue)
+        setCurrentValue(amount: count)
+        setupViews()
+        setupConstraints()
+    }
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -55,7 +72,7 @@ final class StepperView: UIView {
     // MARK: - Setup Views
     
     private func setupViews() {
-        addSubviews([decreaseButton, countlabel, upButton])
+        addSubviews([decreaseButton, currentStepValueLabel, increaseButton])
     }
     
     // MARK: - Setup Constraints
@@ -67,18 +84,40 @@ final class StepperView: UIView {
             make.height.width.equalTo(15)
         }
         
-        countlabel.snp.makeConstraints { make in
-            make.leading.equalTo(decreaseButton.snp.trailing).offset(30)
+        currentStepValueLabel.snp.makeConstraints { make in
+            make.leading.equalTo(decreaseButton.snp.trailing).offset(28)
             make.centerY.equalToSuperview()
             make.height.equalTo(18)
         }
         
-        upButton.snp.makeConstraints { make in
+        increaseButton.snp.makeConstraints { make in
             make.trailing.equalToSuperview().offset(-19)
             make.centerY.equalToSuperview()
             make.height.width.equalTo(15)
         }
     }
+    
+    // MARK: - Button Action
+    
+    @objc func buttonDidPressed(_ sender: UIButton) {
+        switch sender {
+        case decreaseButton:
+            currentValue -= 1
+        case increaseButton:
+            currentValue += 1
+        default:
+            break
+        }
+        sendActions(for: .valueChanged)
+    }
+    
+    private func setCurrentValue(amount: Int) {
+        if amount != 0 {
+            currentValue = amount
+        }
+    }
+    
+    // MARK: - Intrinsic Stepper Size
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 135, height: 53)
