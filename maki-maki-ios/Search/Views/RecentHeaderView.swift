@@ -39,6 +39,7 @@ class RecentHeaderView: UIView {
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         recentSearchLabel.snp.makeConstraints { make in
             make.top.equalToSuperview()

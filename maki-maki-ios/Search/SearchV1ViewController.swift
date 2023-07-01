@@ -43,11 +43,6 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
     
     private lazy var searchContainerView: SearchContainerView = SearchContainerView()
     
-//    private lazy var sectionHeaderView: RecentHeaderView = {
-//        let view = RecentHeaderView()
-//        return view
-//    }()
-    
     private lazy var searchTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(SearchResultTableViewCell.self,
@@ -90,7 +85,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         }
         
         searchTableView.snp.makeConstraints {
-            $0.top.equalTo(searchContainerView.snp.bottom).offset(24)
+            $0.top.equalTo(searchContainerView.snp.bottom).offset(8)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(150)
         }
@@ -110,7 +105,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearchTextFieldEmpty {
-            searchTableView.rowHeight = 40
+            searchTableView.rowHeight = 37
             return searchHistory.count
         }
         searchTableView.rowHeight = 66
@@ -154,19 +149,12 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
         }
     }
     
-//    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-//        if isSearchTextFieldEmpty {
-//            return "Recent Searches"
-//        }
-//        return ""
-//    }
-    
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
         if isSearchTextFieldEmpty {
             let header = RecentHeaderView()
+            header.backgroundColor = AppColor.background.uiColor
             return header
         }
-
         return nil
     }
 
