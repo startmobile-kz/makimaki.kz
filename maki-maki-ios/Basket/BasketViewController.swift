@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import ProgressHUD
 
 final class BasketViewController: UIViewController {
     
@@ -18,8 +19,11 @@ final class BasketViewController: UIViewController {
     
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
-        tableView.register(BasketTableViewCell.self, forCellReuseIdentifier: "basketCell")
-        tableView.register(DeliveryTableViewCell.self, forCellReuseIdentifier: "deliveryCell")
+        tableView.register(BasketTableViewCell.self,
+                           forCellReuseIdentifier: BasketTableViewCell.reuseIdentifier)
+        tableView.register(DeliveryFooterView.self,
+                           forHeaderFooterViewReuseIdentifier: DeliveryFooterView.reuseIdentifier)
+
         tableView.rowHeight = 119
         tableView.dataSource = self
         tableView.delegate = self
@@ -28,6 +32,7 @@ final class BasketViewController: UIViewController {
     
     private lazy var checkoutContainerView: ContainerView = {
         let view = ContainerView()
+        view.delegate = self
         return view
     }()
     
@@ -39,6 +44,7 @@ final class BasketViewController: UIViewController {
         setupViews()
         setupConstrains()
         setupNavigationBar()
+        configureContainerView()
     }
 
     // MARK: - Setup Navigation Bar
@@ -51,6 +57,8 @@ final class BasketViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = .white
+        let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 119)
+        orderTableView.tableFooterView = DeliveryFooterView(frame: footerViewSize)
         
         [orderTableView, checkoutContainerView].forEach {
             view.addSubview($0)
@@ -72,6 +80,36 @@ final class BasketViewController: UIViewController {
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
         }
     }
+
+    // MARK: - Network
+    
+    @objc
+    private func createOrder() {
+        ProgressHUD.show("Loading...", interaction: false)
+        let service = BasketService()
+        let basket = Basket(uuid: "151eb4a0-ff99-4482-90d2-c4e7c77810dc",
+                            fullName: "Разработчик тестирует заказ",
+                            phone: "77082020155",
+                            address: "Разработчик тестирует заказ",
+                            promoCode: "BURGER",
+                            comment: "Разработчик тестирует заказ",
+                            basket: [ "6": 1, "17": 2, "23": 4],
+                            code: "8146")
+        service.createOrder(with: basket) { isSucess in
+            if isSucess {
+                ProgressHUD.dismiss()
+            } else {
+                ProgressHUD.showFailed("Please retry...")
+            }
+        }
+    }
+
+    private func configureContainerView() {
+        let totalPrice = selectedDishes.reduce(0) { partialResult, product in
+            return partialResult + (product.count * product.price)
+        }
+        checkoutContainerView.setup(with: totalPrice)
+    }
 }
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
@@ -80,7 +118,8 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "basketCell", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: BasketTableViewCell.reuseIdentifier,
+                                                       for: indexPath)
                 as? BasketTableViewCell else {
             fatalError("basketCell not found")
         }
@@ -91,7 +130,16 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        self.navigationController?.popViewController(animated: true)
+        //        self.navigationController?.popViewController(animated: true)
         dismiss(animated: true)
+    }
+}
+
+// MARK: - Checkout Delegate
+
+extension BasketViewController: CheckoutButtonDelegate {
+    func checkoutPressed() {
+        createOrder()
+        print("done")
     }
 }

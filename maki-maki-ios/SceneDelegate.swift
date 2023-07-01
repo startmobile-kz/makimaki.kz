@@ -20,7 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = false
             if isAuthoried {
-                window.rootViewController = Main2TabBarController()
+                window.rootViewController = RestaurantViewController()
             } else {
                 window.rootViewController =
                     UINavigationController(rootViewController: RestaurantViewController())
