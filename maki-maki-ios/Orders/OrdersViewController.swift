@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class OrdersViewController: UIViewController {
     
@@ -74,6 +75,7 @@ final class OrdersViewController: UIViewController {
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundView = noOrdersView
+        tableView.isSkeletonable = true
         return tableView
     }()
     
@@ -87,7 +89,7 @@ final class OrdersViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+                
         setupNavigationBar()
         setupViews()
         setupConstraints()
@@ -111,6 +113,7 @@ final class OrdersViewController: UIViewController {
     // MARK: - Setup Views
     
     private func setupViews() {
+        view.isSkeletonable = true
         view.backgroundColor = AppColor.background.uiColor
         view.addSubviews([ordersTableView])
     }
@@ -189,6 +192,23 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 114
     }
+    
+    func tableView(_ tableView: UITableView,
+                   willDisplay cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        if cell is OrdersCell || cell is ReorderCell || cell is OrdersTableHeaderView {
+            cell.showAnimatedSkeleton()
+        }
+    }
+
+    func tableView(_ tableView: UITableView,
+                   didEndDisplaying cell: UITableViewCell,
+                   forRowAt indexPath: IndexPath) {
+        if cell is OrdersCell || cell is ReorderCell || cell is OrdersTableHeaderView {
+            cell.stopSkeletonAnimation()
+        }
+    }
+    
 }
 
 // MARK: - Collapse Animation
@@ -216,4 +236,24 @@ extension OrdersViewController: ReorderCellDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
     }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension OrdersViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return 4
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UITableView,
+                                cellIdentifierForRowAt indexPath: IndexPath) -> ReusableCellIdentifier {
+        if indexPath.section == 0 {
+                return ReorderCell.reuseID
+        } else if indexPath.section == 1 {
+                return OrdersCell.reuseID
+            } else {
+                return OrdersTableHeaderView.identifier
+            }
+    }
+    
 }

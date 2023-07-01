@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 protocol ReorderCellDelegate: AnyObject {
     func onReorderButtonPressed()
@@ -32,6 +33,7 @@ final class ReorderCell: UITableViewCell {
         button.titleLabel?.font = AppFont.medium.s15()
         button.layer.cornerRadius = 14
         button.addTarget(self, action: #selector(reorder), for: .touchUpInside)
+        button.isSkeletonable = true
         return button
     }()
     
@@ -51,6 +53,10 @@ final class ReorderCell: UITableViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
+        
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         contentView.backgroundColor = AppColor.background.uiColor
         contentView.addSubview(reorderButton)
     }

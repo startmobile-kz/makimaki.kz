@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 protocol OrdersTableHeaderViewDelegate: AnyObject {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool)
@@ -42,6 +43,7 @@ final class OrdersTableHeaderView: UIView {
         label.font = AppFont.semibold.s18()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -52,6 +54,7 @@ final class OrdersTableHeaderView: UIView {
         label.textAlignment = .center
         label.layer.masksToBounds = true
         label.layer.cornerRadius = 6
+        label.isSkeletonable = true
         return label
     }()
     
@@ -60,6 +63,7 @@ final class OrdersTableHeaderView: UIView {
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.paragraph.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -68,6 +72,7 @@ final class OrdersTableHeaderView: UIView {
         label.font = AppFont.reqular.s14()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -84,6 +89,7 @@ final class OrdersTableHeaderView: UIView {
         imageView.image = AppImage.divider.uiImage
         imageView.contentMode = .scaleAspectFill
         imageView.clipsToBounds = true
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -96,6 +102,7 @@ final class OrdersTableHeaderView: UIView {
         button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 10
         button.isUserInteractionEnabled = false
+        button.isSkeletonable = true
         return button
     }()
     
@@ -117,6 +124,10 @@ final class OrdersTableHeaderView: UIView {
     // MARK: - Setup Views
     
     private func setupViews() {
+        
+        isSkeletonable = true
+        // contentView.isSkeletonable = true
+        
         backgroundColor = AppColor.background.uiColor
         
         [
