@@ -108,12 +108,12 @@ final class ViewCartContainer : UIView {
     
     // MARK: - Actions
     
-    public func setupData(product: [RestaurantProduct]) {
-        let totalPrice = product.reduce(0) { partialResult, product in
+    public func setupData(products: [RestaurantProduct]) {
+        let totalPrice = products.reduce(0) { partialResult, product in
             return partialResult + (product.count * product.price)
         }
         countLabel.isHidden = false
-        countLabel.text = "\(product.count)"
+        countLabel.text = "\(products.count)"
         priceLabel.text =  "\(totalPrice) ₸"
     }
 }
