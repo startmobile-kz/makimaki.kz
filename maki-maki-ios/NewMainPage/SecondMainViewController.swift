@@ -86,7 +86,7 @@ class SecondMainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([categoriesReplacementView, deliveryHeaderView, separatorView, collectionView])
+        view.addSubviews([deliveryHeaderView, separatorView, collectionView, categoriesReplacementView])
     }
     
     // MARK: - SetupLayout
@@ -265,6 +265,7 @@ class SecondMainViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(60)
         }
+        separatorView.isHidden = true
     }
 }
 
@@ -278,16 +279,17 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
 
 extension SecondMainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let heightForPinningHeader = promoSectionHeight + deliveryHeaderHeight + categoryMenuHeight
+        let heightForPinningHeader = promoSectionHeight + categoryMenuHeight
             var sticked = false
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
             if scrollView.contentOffset.y > heightForPinningHeader {
+                print("NEED TO STICK")
                 if !sticked {
                     UIView.animate(withDuration: 0.1) { [weak self] in
                         guard let self = self else {
                             return
                         }
-                        self.makeNavigationBarVisible()
+//                        self.makeNavigationBarVisible()
                         self.pinCategoriesReplacementViewToTheTop()
                         self.categoriesReplacementView.bringSubviewToFront(self.view)
                         self.view.layoutIfNeeded()
