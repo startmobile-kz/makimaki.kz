@@ -256,6 +256,14 @@ extension SecondMainViewController: UICollectionViewDelegate {
             }
             lastContentOffsetY = scrollView.contentOffset.y
     }
+    
+    private func checkScrollDirection(viewOffsetY: CGFloat) {
+        if lastContentOffsetY > viewOffsetY {
+            isScrollingUp = true
+        } else {
+            isScrollingUp = false
+        }
+    }
 }
 
 // MARK: - UICollectionView DataSource methods
