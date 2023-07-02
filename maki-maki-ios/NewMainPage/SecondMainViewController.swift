@@ -16,6 +16,11 @@ class SecondMainViewController: UIViewController {
     private let sections: [NewMainPageSectionTypes] = [.promos, .products]
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
+    private var lastContentOffsetY: CGFloat = 0
+    private var isScrollingUp = false
+    private let deliveryHeaderHeight = 43.5
+    private let promoSectionHeight = 210
+    private let categoryMenuHeight = 60
     
     // MARK: - UI
     
