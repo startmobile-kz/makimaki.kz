@@ -294,6 +294,16 @@ extension SecondMainViewController: UICollectionViewDelegate {
             lastContentOffsetY = scrollView.contentOffset.y
     }
     
+    private func hideCategoriesReplacementView() {
+        categoriesReplacementView.snp.remakeConstraints { make in
+            make.top.equalToSuperview().offset(-64)
+            make.leading.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.height.equalTo(60)
+        }
+    }
+    
+    
     private func checkScrollDirection(viewOffsetY: CGFloat) {
         if lastContentOffsetY > viewOffsetY {
             isScrollingUp = true
