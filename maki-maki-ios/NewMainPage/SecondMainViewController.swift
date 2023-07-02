@@ -24,6 +24,11 @@ class SecondMainViewController: UIViewController {
     
     // MARK: - UI
     
+    private lazy var categoriesReplacementView: CategoryMenuView = {
+        let view = CategoryMenuView(type: .stickyHeader)
+        return view
+    }()
+    
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
         let view = DeliveryHeaderView()
         view.delegate = self
@@ -80,12 +85,17 @@ class SecondMainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([deliveryHeaderView, separatorView, collectionView])
+        view.addSubviews([categoriesReplacementView, deliveryHeaderView, separatorView, collectionView])
     }
     
     // MARK: - SetupLayout
     
     private func setupConstraints() {
+        categoriesReplacementView.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(-60)
+            make.leading.trailing.equalToSuperview()
+        }
+        
         deliveryHeaderView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
             make.leading.equalToSuperview().offset(16)
@@ -235,6 +245,14 @@ class SecondMainViewController: UIViewController {
             .font: AppFont.semibold.s20()
         ]
         self.navigationController?.navigationBar.titleTextAttributes = attributes
+    }
+    
+    private func pinCategoriesReplacementViewToTheTop() {
+        categoriesReplacementView.snp.remakeConstraints { make in
+            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(60)
+        }
     }
 }
 
