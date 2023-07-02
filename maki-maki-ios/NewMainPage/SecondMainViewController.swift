@@ -18,9 +18,9 @@ class SecondMainViewController: UIViewController {
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
-    private let deliveryHeaderHeight = 43.5
-    private let promoSectionHeight = 210
-    private let categoryMenuHeight = 60
+    private let deliveryHeaderHeight: Double  = 43.5
+    private let promoSectionHeight: Double = 210
+    private let categoryMenuHeight: Double = 60
     
     // MARK: - UI
     
@@ -228,7 +228,34 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
 // MARK: - UICollectionView Delegate methods
 
 extension SecondMainViewController: UICollectionViewDelegate {
-    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let heightForPinningHeader = promoSectionHeight + deliveryHeaderHeight + categoryMenuHeight
+            var sticked = false
+            checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
+            if scrollView.contentOffset.y > heightForPinningHeader {
+                if !sticked {
+                    UIView.animate(withDuration: 0.1) { [weak self] in
+                        guard let self = self else {
+                            return
+                        }
+                        self.makeNavigationBarVisible()
+                        self.pinCategoriesReplacementViewToTheTop()
+                        self.categoriesReplacementView.bringSubviewToFront(self.view)
+                        self.view.layoutIfNeeded()
+                        sticked = true
+                    }
+                }
+            }
+            if isScrollingUp {
+                if scrollView.contentOffset.y < initialHeaderHeight {
+                    self.hideCategoriesReplacementView()
+                    self.setupNavigationBar()
+                    self.view.layoutIfNeeded()
+                    sticked = false
+                }
+            }
+            lastContentOffsetY = scrollView.contentOffset.y
+    }
 }
 
 // MARK: - UICollectionView DataSource methods
