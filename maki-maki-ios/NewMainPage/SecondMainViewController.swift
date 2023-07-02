@@ -106,7 +106,7 @@ class SecondMainViewController: UIViewController {
             case 0:
                 return self?.promosSectionLayout()
             default:
-                return self?.productsSectionLayout()
+                return self?.productsSectionLayout(sectionIndex: sectionIndex)
             }
         }
     }
@@ -142,7 +142,7 @@ class SecondMainViewController: UIViewController {
         return section
     }
     
-    private func productsSectionLayout() -> NSCollectionLayoutSection {
+    private func productsSectionLayout(sectionIndex: Int) -> NSCollectionLayoutSection {
         // Item
         let item = NSCollectionLayoutItem(
             layoutSize: NSCollectionLayoutSize(
@@ -168,19 +168,13 @@ class SecondMainViewController: UIViewController {
             trailing: 0
         )
         section.interGroupSpacing = 14
-        section.boundarySupplementaryItems = [supplementaryProductsHeaderItem()]
+        switch sectionIndex {
+        case 1:
+            section.boundarySupplementaryItems = [supplementaryProductsHeaderItem()]
+        default:
+            section.boundarySupplementaryItems = [supplementaryProductsGroupHeaderItem()]
+        }
         return section
-    }
-    
-    private func supplementaryPromosHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
-        return NSCollectionLayoutBoundarySupplementaryItem(
-            layoutSize: NSCollectionLayoutSize(
-                widthDimension: .fractionalWidth(1),
-                heightDimension: .absolute(43)
-            ),
-            elementKind: UICollectionView.elementKindSectionHeader,
-            alignment: .topLeading
-        )
     }
     
     private func supplementaryProductsHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
@@ -194,6 +188,16 @@ class SecondMainViewController: UIViewController {
         )
     }
     
+    private func supplementaryProductsGroupHeaderItem() -> NSCollectionLayoutBoundarySupplementaryItem {
+        return NSCollectionLayoutBoundarySupplementaryItem(
+            layoutSize: NSCollectionLayoutSize(
+                widthDimension: .fractionalWidth(0.5),
+                heightDimension: .absolute(36)
+            ),
+            elementKind: UICollectionView.elementKindSectionHeader,
+            alignment: .topLeading
+        )
+    }
     // MARK: Fetching data
     
     private func fetchCategoriesWithProducts() {
@@ -278,16 +282,6 @@ extension SecondMainViewController: UICollectionViewDataSource {
         if kind == UICollectionView.elementKindSectionHeader {
             let section = indexPath.section
             switch section {
-            case 0:
-                guard let promoSectionHeader = collectionView.dequeueReusableSupplementaryView(
-                    ofKind: kind,
-                    withReuseIdentifier: SectionHeaderView.reuseID,
-                    for: indexPath
-                ) as? SectionHeaderView else {
-                    fatalError("Could not cast to SectionHeaderView")
-                }
-                promoSectionHeader.setHeaderTitle(title: "Promo")
-                return promoSectionHeader
             case 1:
                 guard let productsSectionHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: kind,
