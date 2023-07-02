@@ -11,11 +11,9 @@ import SkyFloatingLabelTextField
 import InputMask
 import Foundation
 import SnackBar_swift
+import Alamofire
 
 final class WelcomePageVerOneViewController: UIViewController {
-    // MARK: - State
-
-    private var urlSession = URLSession.shared
 
     // MARK: - UI Components
     private lazy var makiImage: UIImageView = {
@@ -194,35 +192,55 @@ final class WelcomePageVerOneViewController: UIViewController {
 
     // MARK: - Network
 
-    private func authorize(phoneNumber: String, deviceID: String) {
+//    private func authorize(phoneNumber: String, deviceID: String) {
+//        let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
+//
+//        guard let url = URL(string: urlString) else {
+//            return
+//        }
+//
+//        var request = URLRequest(
+//            url: url,
+//            cachePolicy: .reloadIgnoringLocalCacheData
+//        )
+//
+//        let body = ["uuid": deviceID, "phone": phoneNumber]
+//        let bodyJson = try? JSONSerialization.data(withJSONObject: body)
+//
+//        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpMethod = "POST"
+//        request.httpBody = bodyJson
+//
+//        let task = urlSession.dataTask(
+//            with: request,
+//            completionHandler: { data, response, error in
+//                print(data)
+//                print(response)
+//                print(error)
+//            }
+//        )
+//        task.resume()
+//    }
+    
+    // MARK: - Network With Alamofire
+
+    private func authorizeWithAlamofire(phoneNumber: String, deviceID: String) {
         let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
 
-        guard let url = URL(string: urlString) else {
-            return
-        }
+        let parameters: [String: Any] = [
+            "uuid": deviceID,
+            "phone": phoneNumber
+        ]
 
-        var request = URLRequest(
-            url: url,
-            cachePolicy: .reloadIgnoringLocalCacheData
-        )
-
-        let body = ["uuid": deviceID, "phone": phoneNumber]
-        let bodyJson = try? JSONSerialization.data(withJSONObject: body)
-
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = bodyJson
-
-        let task = urlSession.dataTask(
-            with: request,
-            completionHandler: { data, response, error in
-                print(data)
-                print(response)
-                print(error)
+        AF.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default)
+            .response { response in
+                if let error = response.error {
+                    print(error)
+                } else if let data = response.data {
+                    let jsonData = try? JSONSerialization.jsonObject(with: data, options: [])
+                    print(jsonData)
+                }
             }
-        )
-
-        task.resume()
     }
     // swiftlint:enable all
 }
