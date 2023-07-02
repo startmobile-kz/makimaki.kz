@@ -78,6 +78,7 @@ class SecondMainViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupNavigationBar()
         fetchCategoriesWithProducts()
     }
     
@@ -112,6 +113,17 @@ class SecondMainViewController: UIViewController {
             make.top.equalTo(separatorView.snp.bottom).priority(250)
             make.leading.trailing.bottom.equalToSuperview()
         }
+    }
+    
+    // MARK: - SetupNavigationBar
+    
+    private func setupNavigationBar() {
+        title = ""
+        navigationItem.rightBarButtonItems = []
+        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
+        self.navigationController?.navigationBar.shadowImage = UIImage()
+        self.navigationController?.navigationBar.isTranslucent = true
+        self.navigationController?.view.backgroundColor = .clear
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -249,7 +261,7 @@ class SecondMainViewController: UIViewController {
     
     private func pinCategoriesReplacementViewToTheTop() {
         categoriesReplacementView.snp.remakeConstraints { make in
-            make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
+            make.top.equalTo(separatorView.snp.bottom)
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(60)
         }
@@ -302,7 +314,6 @@ extension SecondMainViewController: UICollectionViewDelegate {
             make.height.equalTo(60)
         }
     }
-    
     
     private func checkScrollDirection(viewOffsetY: CGFloat) {
         if lastContentOffsetY > viewOffsetY {
