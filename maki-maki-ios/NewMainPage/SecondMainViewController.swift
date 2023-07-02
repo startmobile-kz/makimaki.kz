@@ -133,13 +133,12 @@ class SecondMainViewController: UIViewController {
         let section = NSCollectionLayoutSection(group: group)
         section.interGroupSpacing = 10
         section.contentInsets = NSDirectionalEdgeInsets(
-            top: 0,
+            top: 25,
             leading: 16,
-            bottom: 20,
+            bottom: 25,
             trailing: 16
         )
         section.orthogonalScrollingBehavior = .continuous
-        section.boundarySupplementaryItems = [supplementaryPromosHeaderItem()]
         return section
     }
     
