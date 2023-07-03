@@ -41,6 +41,7 @@ final class ManageAdressesViewController: UIViewController {
         addresses = fetchAdress()
         setupViews()
         setupConstraints()
+        setupNavigationBar()
     }
     
     // MARK: - Setup Views
@@ -51,12 +52,17 @@ final class ManageAdressesViewController: UIViewController {
         view.addSubview(savedAddressesLabel)
     }
     
+    private func setupNavigationBar() {
+        title = "Manage Addresses"
+        self.navigationController?.navigationBar.tintColor = AppColor.heading.uiColor
+    }
+    
     // MARK: - Setup Constraints
     
     func setupConstraints() {
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(savedAddressesLabel.snp.bottom).offset(41)
+            make.top.equalTo(savedAddressesLabel.snp.bottom).offset(31)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
