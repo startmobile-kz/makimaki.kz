@@ -89,6 +89,7 @@ class SecondMainViewController: UIViewController {
         super.viewDidLoad()
         setupViews()
         setupConstraints()
+        setupNotificationObservers()
         setupNavigationBar()
         fetchCategoriesWithProducts()
     }
@@ -147,6 +148,17 @@ class SecondMainViewController: UIViewController {
                 return self?.productsSectionLayout(sectionIndex: sectionIndex)
             }
         }
+    }
+    
+    // MARK: - SetupNotificationObservers
+    
+    private func setupNotificationObservers() {
+        NotificationCenter.default.addObserver(
+            self,
+            selector: #selector(scrollToSection),
+            name: CategoryMenuView.notificationName,
+            object: nil
+        )
     }
     
     // MARK: - Section Layouts
@@ -307,6 +319,30 @@ class SecondMainViewController: UIViewController {
                 neededHeightForChangingSection += heights[sectionIndex - 1]
             }
             heights.append(neededHeightForChangingSection)
+        }
+    }
+    
+    // MARK: - Actions
+    
+    @objc func scrollToSection(_ notification: Notification) {
+        let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
+        isScrollToSectionCalled = true
+        if currentSection != sectionIndex {
+            var neededHeight: Double = 0
+            if sectionIndex == 0 {
+                neededHeight = 0
+            } else {
+                neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
+            }
+            collectionView.setContentOffset(
+                CGPoint(x: 0, y: neededHeight),
+                animated: true
+            )
+            currentSection = sectionIndex
+            sendNotification(section: sectionIndex)
+        }
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
+            self.isScrollToSectionCalled = false
         }
     }
 }
