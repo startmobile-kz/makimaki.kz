@@ -168,3 +168,15 @@ extension AccountListViewController {
         return [logo1, logo2, logo3, logo4, logo5, logo6]
     }
 }
+
+extension AccountListViewController: EditProfileDelegate {
+    func didUpdateName(_ name: String) {
+        nameLabel.text = name
+    }
+
+    func didUpdateEmail(_ email: String) {
+    }
+
+    func didUpdatePhone(_ phone: String) {
+    }
+}
