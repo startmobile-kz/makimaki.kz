@@ -118,12 +118,12 @@ class SecondMainViewController: UIViewController {
     private func setupConstraints() {
         categoriesReplacementView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(-60)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().priority(250)
         }
         
         deliveryHeaderView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            make.leading.equalToSuperview().offset(16)
+            make.leading.equalToSuperview().offset(16).priority(250)
             make.trailing.equalToSuperview()
         }
         
@@ -135,13 +135,13 @@ class SecondMainViewController: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).priority(250)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().priority(250)
             make.bottom.equalTo(viewCartContainerView.snp.top)
         }
         
         viewCartContainerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.leading.trailing.equalToSuperview()
+            make.leading.trailing.equalToSuperview().priority(250)
             make.height.equalTo(85)
         }
     }
