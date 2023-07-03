@@ -249,6 +249,7 @@ class SecondMainViewController: UIViewController {
             alignment: .topLeading
         )
     }
+    
     // MARK: Fetching data
     
     private func fetchCategoriesWithProducts() {
@@ -272,7 +273,6 @@ class SecondMainViewController: UIViewController {
         self.navigationController?.navigationBar.shadowImage = nil
         self.navigationController?.navigationBar.isTranslucent = false
         self.navigationController?.view.backgroundColor = .clear
-//        navigationItem.rightBarButtonItems = [likeBarButtonItem]
     }
     
     private func setupNavBarTitle() {
@@ -391,9 +391,10 @@ extension SecondMainViewController: UICollectionViewDelegate {
             }
             if isScrollingUp {
                 if scrollView.contentOffset.y < heightForPinningHeader {
-                    self.hideCategoriesReplacementView()
-                    self.setupNavigationBar()
-                    self.view.layoutIfNeeded()
+                    hideCategoriesReplacementView()
+                    setupNavigationBar()
+                    separatorView.isHidden = false
+                    view.layoutIfNeeded()
                     sticked = false
                 }
             }
@@ -428,8 +429,6 @@ extension SecondMainViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-//        let sectionType = sections[section]
-        
         switch section {
         case 0:
             return 5
