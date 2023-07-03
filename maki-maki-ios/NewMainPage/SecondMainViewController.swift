@@ -279,6 +279,15 @@ class SecondMainViewController: UIViewController {
         separatorView.isHidden = true
     }
     
+    private func sendNotification(section: Int) {
+        let userInfo = ["categoryIndex": section]
+        NotificationCenter.default.post(
+            name: RestaurantViewController.notificationName,
+            object: nil,
+            userInfo: userInfo
+        )
+    }
+    
     private func calculateAllSectionHeights() {
         heights = []
         let itemHeight: Double = 242
@@ -312,7 +321,23 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
 
 extension SecondMainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let heightForPinningHeader = promoSectionHeight + categoryMenuHeight
+        if isLoaded {
+            
+            if !isScrollToSectionCalled {
+                let yOffset = scrollView.contentOffset.y
+                let heightOfOneRowOfItems: Double = 242
+                let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+                if yOffset >= heights[currentSection] - categoryMenuHeight {
+                    currentSection += 1
+                    sendNotification(section: currentSection)
+                } else if
+                    currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                    currentSection -= 1
+                    sendNotification(section: currentSection)
+                }
+            }
+            
+            let heightForPinningHeader = promoSectionHeight + categoryMenuHeight
             var sticked = false
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
             if scrollView.contentOffset.y > heightForPinningHeader {
@@ -333,6 +358,7 @@ extension SecondMainViewController: UICollectionViewDelegate {
                 }
             }
             lastContentOffsetY = scrollView.contentOffset.y
+        }
     }
     
     private func hideCategoriesReplacementView() {
