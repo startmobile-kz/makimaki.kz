@@ -135,7 +135,7 @@ class SecondMainViewController: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).priority(250)
-            make.leading.trailing.equalToSuperview().priority(250)
+            make.leading.trailing.equalToSuperview()
             make.bottom.equalTo(viewCartContainerView.snp.top)
         }
         
