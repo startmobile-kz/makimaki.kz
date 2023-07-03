@@ -244,7 +244,7 @@ class SecondMainViewController: UIViewController {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
-                self?.collectionView.reloadData()
+                self?.isLoaded = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -277,6 +277,28 @@ class SecondMainViewController: UIViewController {
             make.height.equalTo(60)
         }
         separatorView.isHidden = true
+    }
+    
+    private func calculateAllSectionHeights() {
+        heights = []
+        let itemHeight: Double = 242
+        let spacingBetweenItems: Double = 14
+        let heightOfBottomInsetOfSections: Double = 16
+        let heightForPinningHeader = promoSectionHeight + categoryMenuHeight
+        for sectionIndex in 0..<categoriesAndNames.count {
+            let headerHeight: Double = (sectionIndex == 0) ? heightForPinningHeader : 36
+            let numOfProducts = productsByCategoryMap[sectionIndex + 1]?.count ?? 0
+            let numfOfRowsInSection = ceil(Double(numOfProducts) / 2)
+            let totalHeightOfItems =
+            numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
+            var neededHeightForChangingSection =
+            totalHeightOfItems + heightOfBottomInsetOfSections + headerHeight
+            
+            if sectionIndex > 0 {
+                neededHeightForChangingSection += heights[sectionIndex - 1]
+            }
+            heights.append(neededHeightForChangingSection)
+        }
     }
 }
 
