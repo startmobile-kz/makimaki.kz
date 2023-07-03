@@ -14,7 +14,7 @@ class OffersService {
         let urlString = "https://app.makimaki.kz/api/v1/client/promo-codes/details"
         guard let url = URL(string: urlString) else { return }
 
-        AF.request(url, method: .get).responseDecodable(of: [Category].self) { data in
+        AF.request(url, method: .get).responseDecodable(of: [Offers].self) { data in
             completion(data.result)
         }
     }
