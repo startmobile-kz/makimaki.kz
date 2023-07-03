@@ -107,3 +107,7 @@ final class OffersCell: UITableViewCell {
         }
     }
 }
+
+func setupData(with offers: Offers) {
+    daysLabel.text = offers.text
+}

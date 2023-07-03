@@ -10,7 +10,7 @@ import SnapKit
 import Alamofire
 
 final class OffersViewController: UIViewController {
-
+    
     // MARK: - UI
     
     private lazy var tableView: UITableView = {
@@ -41,6 +41,19 @@ final class OffersViewController: UIViewController {
     private func setupConstraints() {
         tableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
+        }
+    }
+}
+
+private func fetchOffers() {
+    OffersService.fetchOffers { result in
+        switch result {
+        case .success():
+            DispatchQueue.main.async {
+                self.tableView.reloadData()
+            }
+        case .failure(let error):
+            print("Failed to fetch offers: \(error)")
         }
     }
 }
