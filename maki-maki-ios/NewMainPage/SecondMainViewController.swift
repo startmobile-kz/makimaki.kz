@@ -8,6 +8,7 @@
 import UIKit
 import SnapKit
 
+// swiftlint:disable all
 class SecondMainViewController: UIViewController {
     
     // MARK: - State
@@ -364,12 +365,13 @@ extension SecondMainViewController: UICollectionViewDelegate {
             if !isScrollToSectionCalled {
                 let yOffset = scrollView.contentOffset.y
                 let heightOfOneRowOfItems: Double = 242
-                let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+                let multiplier: Double = productsByCategoryMap[currentSection]?.count ?? 0 > 2 ? 2 : 1
                 if yOffset >= heights[currentSection] - categoryMenuHeight {
                     currentSection += 1
                     sendNotification(section: currentSection)
                 } else if
-                    currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
+                    currentSection > 0 &&
+                    yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * multiplier {
                     currentSection -= 1
                     sendNotification(section: currentSection)
                 }
@@ -498,3 +500,4 @@ extension SecondMainViewController: UICollectionViewDataSource {
         }
     }
 }
+// swiftlint:enable all
