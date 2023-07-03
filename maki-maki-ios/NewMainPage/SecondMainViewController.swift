@@ -20,7 +20,7 @@ class SecondMainViewController: UIViewController {
     private var isScrollingUp = false
     private let deliveryHeaderHeight: Double  = 43.5
     private let promoSectionHeight: Double = 210
-    private let categoryMenuHeight: Double = 60
+    private let categoryMenuHeight: Double = 40
     
     // MARK: - UI
     
@@ -285,16 +285,11 @@ extension SecondMainViewController: UICollectionViewDelegate {
             if scrollView.contentOffset.y > heightForPinningHeader {
                 print("NEED TO STICK")
                 if !sticked {
-                    UIView.animate(withDuration: 0.1) { [weak self] in
-                        guard let self = self else {
-                            return
-                        }
-//                        self.makeNavigationBarVisible()
-                        self.pinCategoriesReplacementViewToTheTop()
-                        self.categoriesReplacementView.bringSubviewToFront(self.view)
-                        self.view.layoutIfNeeded()
-                        sticked = true
-                    }
+                    // self.makeNavigationBarVisible()
+                    self.pinCategoriesReplacementViewToTheTop()
+                    self.categoriesReplacementView.bringSubviewToFront(self.view)
+                    self.view.layoutIfNeeded()
+                    sticked = true
                 }
             }
             if isScrollingUp {
