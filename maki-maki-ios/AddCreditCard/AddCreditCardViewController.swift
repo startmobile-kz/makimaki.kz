@@ -294,7 +294,7 @@ extension AddCreditCardViewController: UITextFieldDelegate {
         cardHolderNameLabel.text = cardHolderNameTextfield.text
         dateOfExpireLabel.text = dateOfExpireTextField.text
         cardNumberLabel.text =
-        cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d+)",
+        cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d{4})",
                                                        with: "$1 $2 $3 $4",
                                                        options: .regularExpression, range: nil)
         let integer = cardNumberTextfield
