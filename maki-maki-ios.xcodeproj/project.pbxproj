@@ -14,7 +14,6 @@
 		0349DDF62A3BAC3100BACD4F /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDF42A3BAC3100BACD4F /* PaymentMethodViewController.swift */; };
 		037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16702A2F5E3700401843 /* FavoritesViewController.swift */; };
 		037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */; };
-		1D1C64022A448A4200DA83CF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1D1C64012A448A4200DA83CF /* Kingfisher */; };
 		03F45A152A45035900BC23B9 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F45A142A45035900BC23B9 /* Basket.swift */; };
 		03F45A172A45070B00BC23B9 /* BasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F45A162A45070B00BC23B9 /* BasketService.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
@@ -107,6 +106,7 @@
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
+		F1E292DA2A5310A1002C798A /* OffersService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E292D92A5310A1002C798A /* OffersService.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -224,6 +224,7 @@
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		F1E292D92A5310A1002C798A /* OffersService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersService.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -688,6 +689,7 @@
 			children = (
 				F1725D4D2A2F072B0072E258 /* OffersViewController.swift */,
 				F1725D4F2A2F07920072E258 /* OffersCell.swift */,
+				F1E292D92A5310A1002C798A /* OffersService.swift */,
 			);
 			path = AccountOffersList;
 			sourceTree = "<group>";
@@ -958,6 +960,7 @@
 				0349DDEA2A3AD64800BACD4F /* PaymentsViewController.swift in Sources */,
 				B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */,
 				9F2380562A49C6AA0029A5DD /* ProductSectionHeaderView.swift in Sources */,
+				F1E292DA2A5310A1002C798A /* OffersService.swift in Sources */,
 				27943BE72A30870D003F3C7B /* ManegAdressesFooterView.swift in Sources */,
 				1D6610CE2A43252D00F0F81B /* ProductService.swift in Sources */,
 				9F2380532A49C6AA0029A5DD /* RestaurantHeaderView.swift in Sources */,
