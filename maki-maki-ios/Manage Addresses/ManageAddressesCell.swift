@@ -11,7 +11,12 @@ import SnapKit
 final class ManageAddressesCell: UITableViewCell {
     
     // MARK: - UI
-    private lazy var imageAddressView = UIImageView()
+    
+    private lazy var imageAddressView : UIImageView = {
+        let image = UIImageView()
+        image.contentMode = .scaleAspectFit
+        return image
+    }()
    
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
@@ -32,6 +37,7 @@ final class ManageAddressesCell: UITableViewCell {
     }()
 
     // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -42,34 +48,37 @@ final class ManageAddressesCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func set(address: Adress) {
+    public func set(address: Adress) {
         imageAddressView.image = address.image.uiImage
         nameLabel.text = address.title
         addressLabel.text = address.subTitle
     }
     
     // MARK: - Setup Views
-    func setupViews() {
+    
+    private func setupViews() {
         addSubview(imageAddressView)
         addSubview(nameLabel)
         addSubview(addressLabel)
     }
     
     // MARK: - Setup Constraints
-    func setupConstraints() {
+    
+    private func setupConstraints() {
+        
         imageAddressView.snp.makeConstraints { make in
-            make.centerY.equalToSuperview()
+            make.top.equalTo(nameLabel.snp.top)
             make.leading.equalToSuperview().offset(16)
         }
 
         nameLabel.snp.makeConstraints { make in
-            make.top.equalTo(imageAddressView.snp.top)
             make.leading.equalTo(imageAddressView.snp.trailing).offset(14)
         }
 
         addressLabel.snp.makeConstraints { make in
             make.top.equalTo(nameLabel.snp.bottom).offset(8)
             make.leading.equalTo(imageAddressView.snp.trailing).offset(14)
+            make.bottom.equalToSuperview().offset(-15)
         }
     }
 }
