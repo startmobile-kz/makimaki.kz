@@ -21,6 +21,17 @@ class SecondMainViewController: UIViewController {
     private let deliveryHeaderHeight: Double  = 43.5
     private let promoSectionHeight: Double = 210
     private let categoryMenuHeight: Double = 40
+    private let categoryMenuHeightWithBottomPadding: Double = 60
+    private var isScrollToSectionCalled = false
+    private var currentSection = 0
+    private var heights: [Double] = []
+    static let notificationName = Notification.Name("scrolledToSection")
+    private var isLoaded = false {
+        didSet {
+            calculateAllSectionHeights()
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: - UI
     
@@ -283,7 +294,6 @@ extension SecondMainViewController: UICollectionViewDelegate {
             var sticked = false
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
             if scrollView.contentOffset.y > heightForPinningHeader {
-                print("NEED TO STICK")
                 if !sticked {
                     // self.makeNavigationBarVisible()
                     self.pinCategoriesReplacementViewToTheTop()
