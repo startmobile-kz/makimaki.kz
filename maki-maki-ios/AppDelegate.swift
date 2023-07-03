@@ -19,8 +19,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         IQKeyboardManager.shared().isEnabled = true
         IQKeyboardManager.shared().isEnableAutoToolbar = false
         
-        YMKMapKit.setApiKey("08250651-9f7f-46bd-ada3-472616554102")
-        YMKMapKit.sharedInstance()
+        YandexMapsConfiguration.configure()
         
         return true
     }

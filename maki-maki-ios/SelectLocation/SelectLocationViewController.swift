@@ -82,6 +82,12 @@ final class SelectLocationViewController: UIViewController {
         setupYandexMap()
     }
     
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        cornerRadius()
+    }
+    
     // MARK: - Setup Views
     
     private func setupViews() {
@@ -90,7 +96,12 @@ final class SelectLocationViewController: UIViewController {
          saveAsLabel, choiceLocationSegmentedController, saveAddressButton].forEach {
             view.addSubview($0)
         }
-        mapView.addSubview(yandexMap)
+        
+         mapView.addSubview(yandexMap)
+    }
+    
+    private func cornerRadius() {
+        addressSelectionView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
     
     // MARK: - Setup Yandex Map
@@ -119,7 +130,7 @@ final class SelectLocationViewController: UIViewController {
         
         addressSelectionView.snp.makeConstraints { make in
             make.bottom.leading.trailing.equalToSuperview()
-            make.height.equalTo(378)
+            make.top.equalToSuperview().offset(434)
         }
         
         selectLocationLabel.snp.makeConstraints { make in
