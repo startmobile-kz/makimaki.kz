@@ -132,7 +132,9 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         if indexPath.row == 1 {
-            controller = EditProfileViewController()
+            let editProfileViewController = EditProfileViewController()
+            editProfileViewController.delegate = self
+            controller = editProfileViewController
         }
 
         if indexPath.row == 2 {
