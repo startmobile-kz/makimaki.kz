@@ -378,6 +378,17 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
         print("Tapped")
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isLoaded {
+            return
+        }
+        
+        let dishViewController = DishViewController()
+        dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
+        dishViewController.delegate = self
+        present(dishViewController, animated: true)
+    }
 }
 
 // MARK: - UICollectionView Delegate methods
@@ -521,6 +532,21 @@ extension SecondMainViewController: UICollectionViewDataSource {
         } else {
             return UICollectionReusableView()
         }
+    }
+}
+
+extension SecondMainViewController: DishViewControllerDelegate {
+    func addToBasket(dish: RestaurantProduct) {
+        collectionView.reloadData()
+         
+        productsByCategoryMap.values.forEach { products in
+            print(products.description)
+            selectedProducts.append(contentsOf: products.filter({ product in
+                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
+            }))
+        }
+        
+        viewCartContainerView.setupData(products: selectedProducts)
     }
 }
 // swiftlint:enable all
