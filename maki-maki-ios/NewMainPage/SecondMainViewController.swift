@@ -17,6 +17,7 @@ class SecondMainViewController: UIViewController {
     private let sections: [NewMainPageSectionTypes] = [.promos, .products]
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
+    public var selectedProducts: [RestaurantProduct] = []
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
     private let deliveryHeaderHeight: Double  = 43.5
@@ -84,6 +85,14 @@ class SecondMainViewController: UIViewController {
         return collectionView
     }()
     
+    private lazy var viewCartContainerView: ViewCartContainer = {
+        let view = ViewCartContainer()
+        let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
+        view.addGestureRecognizer(tap)
+        view.isSkeletonable = true
+        return view
+    }()
+    
     // MARK: Lifecycle
     
     override func viewDidLoad() {
@@ -99,7 +108,9 @@ class SecondMainViewController: UIViewController {
     
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubviews([deliveryHeaderView, separatorView, collectionView, categoriesReplacementView])
+        view.addSubviews(
+            [deliveryHeaderView, separatorView, collectionView, categoriesReplacementView, viewCartContainerView]
+        )
     }
     
     // MARK: - SetupLayout
@@ -124,7 +135,14 @@ class SecondMainViewController: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).priority(250)
-            make.leading.trailing.bottom.equalToSuperview()
+            make.leading.trailing.equalToSuperview()
+            make.bottom.equalTo(viewCartContainerView.snp.top)
+        }
+        
+        viewCartContainerView.snp.makeConstraints { make in
+            make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
+            make.leading.trailing.equalToSuperview()
+            make.height.equalTo(85)
         }
     }
     
@@ -347,6 +365,12 @@ class SecondMainViewController: UIViewController {
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
             self.isScrollToSectionCalled = false
         }
+    }
+    
+    @objc private func openBasket() {
+        let basketViewController = BasketViewController()
+        basketViewController.selectedDishes = selectedProducts
+        self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
 
