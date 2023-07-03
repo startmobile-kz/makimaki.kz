@@ -34,7 +34,6 @@ final class ManageAdressesViewController: UIViewController {
         return tableView
     }()
     
-    
     // MARK: - Lifecycle
     
     override func viewDidLoad() {
@@ -57,14 +56,13 @@ final class ManageAdressesViewController: UIViewController {
     func setupConstraints() {
         
         tableView.snp.makeConstraints { make in
-            make.top.equalTo(savedAddressesLabel.snp.bottom).offset(16)
+            make.top.equalTo(savedAddressesLabel.snp.bottom).offset(41)
             make.leading.trailing.bottom.equalToSuperview()
         }
         
         savedAddressesLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.top.equalToSuperview().offset(122)
-            make.height.equalTo(18)
         }
     }
 }
@@ -88,6 +86,10 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
+    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+    }
+        
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {

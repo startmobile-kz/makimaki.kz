@@ -9,13 +9,15 @@ import Foundation
 import UIKit
 import SnapKit
 
-class AddressTableViewFooterView: UITableViewHeaderFooterView {
+final class AddressTableViewFooterView: UITableViewHeaderFooterView {
+    
     static let identifier = "TableFooter"
 
     private lazy var addNewAddressButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ADD NEW ADDRESS", for: .normal)
         button.tintColor = AppColor.heading.uiColor
+        button.titleLabel?.font = AppFont.medium.s15()
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
         return button
@@ -31,7 +33,7 @@ class AddressTableViewFooterView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func constraintUI() {
+    private func constraintUI() {
         addNewAddressButton.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(32)
             make.leading.equalToSuperview().offset(16)
