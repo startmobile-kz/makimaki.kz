@@ -10,7 +10,7 @@ import Alamofire
 
 class OffersService {
 
-    func fetchOffers(completion: @escaping (Result<[Category], AFError>) -> Void) {
+    func fetchOffers(completion: @escaping (Result<[Offers], AFError>) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/promo-codes/details"
         guard let url = URL(string: urlString) else { return }
 

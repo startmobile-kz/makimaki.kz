@@ -6,3 +6,7 @@
 //
 
 import Foundation
+
+struct Offers: Codable {
+    let text: String
+}
