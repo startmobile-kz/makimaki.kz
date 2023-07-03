@@ -118,12 +118,12 @@ class SecondMainViewController: UIViewController {
     private func setupConstraints() {
         categoriesReplacementView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(-60)
-            make.leading.trailing.equalToSuperview().priority(250)
+            make.leading.trailing.equalToSuperview()
         }
         
         deliveryHeaderView.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top).offset(16)
-            make.leading.equalToSuperview().offset(16).priority(250)
+            make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview()
         }
         
@@ -141,9 +141,10 @@ class SecondMainViewController: UIViewController {
         
         viewCartContainerView.snp.makeConstraints { make in
             make.bottom.equalTo(view.safeAreaLayoutGuide.snp.bottom)
-            make.leading.trailing.equalToSuperview().priority(250)
+            make.leading.trailing.equalToSuperview()
             make.height.equalTo(85)
         }
+        self.view.layoutIfNeeded()
     }
     
     // MARK: - SetupNavigationBar
