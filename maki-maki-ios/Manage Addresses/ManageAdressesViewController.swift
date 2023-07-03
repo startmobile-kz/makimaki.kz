@@ -10,7 +10,12 @@ import SnapKit
 
 final class ManageAdressesViewController: UIViewController {
     
+    // MARK: - State
+    
+    var addresses: [Adress] = []
+    
     // MARK: - UI
+    
     private lazy var savedAddressesLabel: UILabel = {
        let lable = UILabel()
         lable.text = "SAVED ADDRESSES"
@@ -26,30 +31,31 @@ final class ManageAdressesViewController: UIViewController {
         tableView.dataSource = self
         tableView.register(ManageAddressesCell.self, forCellReuseIdentifier: "Adresscell")
         tableView.register(AddressTableViewFooterView.self, forHeaderFooterViewReuseIdentifier: "footer")
-        tableView.backgroundColor = .white
         return tableView
     }()
     
-    var addresses: [Adress] = []
     
     // MARK: - Lifecycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .white
         addresses = fetchAdress()
         setupViews()
         setupConstraints()
-        view.backgroundColor = .white
     }
     
     // MARK: - Setup Views
+    
     func setupViews() {
+        view.backgroundColor = AppColor.background.uiColor
         view.addSubview(tableView)
         view.addSubview(savedAddressesLabel)
     }
     
     // MARK: - Setup Constraints
+    
     func setupConstraints() {
+        
         tableView.snp.makeConstraints { make in
             make.top.equalTo(savedAddressesLabel.snp.bottom).offset(16)
             make.leading.trailing.bottom.equalToSuperview()
@@ -92,11 +98,14 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
     }
 
     // MARK: - Footer
+    
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer")
         return footer
     }
 }
+
+// MARK: - extension
 
 extension ManageAdressesViewController {
     func fetchAdress() -> [Adress] {
