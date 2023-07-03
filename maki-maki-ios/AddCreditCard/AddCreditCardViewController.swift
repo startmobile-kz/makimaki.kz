@@ -83,10 +83,11 @@ final class AddCreditCardViewController: UIViewController {
         return textField
     }()
     
-    lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
+   private lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         let imageView = UIImageView()
         let image = UIImage(named: "camera")
+        let firstDigit = String((cardHolderNameTextfield.text?.prefix(1))!)
         textField.font = AppFont.reqular.s15()
         textField.title = "CARD NUMBER"
         textField.placeholder = "CARD NUMBER"
@@ -294,8 +295,12 @@ extension AddCreditCardViewController: UITextFieldDelegate {
         cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d+)",
                                                        with: "$1 $2 $3 $4",
                                                        options: .regularExpression, range: nil)
-        if cvcTextField.text?.count == 3 {
-            return false
+        let integer = cardNumberTextfield
+        if integer.text?.first == "2" || integer.text?.first == "5" {
+            mastercardImageView.image = UIImage(named: "visa")
+        }
+        if cvcTextField.text?.count == 3 && string.isEmpty {
+            return true
         }
         return true
     }
