@@ -181,7 +181,12 @@ final class DishViewController: UIViewController {
         
         productNameLabel.text = dish.name
         descriptionLabel.text = "\(dish.description)"
-        orderPrice.text = "\(dish.price) ₸"
+        // swiftlint: disable all
+        if dish.count != 0 {
+            count = dish.count
+        }
+        // swiftlint: enable all
+        orderPrice.text = "\(dish.price * count) ₸"
         let url = URL(string: dish.image ?? "")
         dishImageView.kf.setImage(with: url)
     }

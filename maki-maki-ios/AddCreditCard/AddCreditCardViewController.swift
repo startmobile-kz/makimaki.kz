@@ -83,7 +83,7 @@ final class AddCreditCardViewController: UIViewController {
         return textField
     }()
     
-    private lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
+   private lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         let imageView = UIImageView()
         let image = UIImage(named: "camera")
@@ -298,11 +298,11 @@ extension AddCreditCardViewController: UITextFieldDelegate {
                                                        with: "$1 $2 $3 $4",
                                                        options: .regularExpression, range: nil)
         let integer = cardNumberTextfield
-        if integer.text?.first == "4" {
+        if integer.text?.first == "2" || integer.text?.first == "5" {
             mastercardImageView.image = UIImage(named: "visa")
         }
-        if cvcTextField.text?.count == 3 {
-            return false
+        if cvcTextField.text?.count == 3 && string.isEmpty {
+            return true
         }
         return true
     }

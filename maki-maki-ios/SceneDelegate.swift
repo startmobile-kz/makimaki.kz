@@ -20,10 +20,10 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
             let isAuthoried = true
             if isAuthoried {
-                window.rootViewController = AddCreditCardViewController()
+                window.rootViewController = RestaurantViewController()
             } else {
                 window.rootViewController =
-                    UINavigationController(rootViewController: OrdersViewController())
+                    UINavigationController(rootViewController: RestaurantViewController())
             }
             
             self.window = window

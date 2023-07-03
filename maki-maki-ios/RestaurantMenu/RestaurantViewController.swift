@@ -15,34 +15,30 @@ final class RestaurantViewController: UIViewController {
     // MARK: - State
     
     private var service = RestaurantProductService()
-    public var products: [RestaurantProduct] = []
-
-    // MARK: - Properties
-    
+    public var selectedProducts: [RestaurantProduct] = []
+    private var categoriesAndNames: [Int: String] = [:]
+    private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
     private var lastContentOffsetY: CGFloat = 0
     private var isScrollingUp = false
     private let initialHeaderHeight: CGFloat = 318
     private let spacingBetweenHeaderAndSection: CGFloat = 32
     private let categoryMenuHeight: Double = 60
     private var isScrollToSectionCalled = false
-    private var isLoaded = false
-    private let numberOfItemsInSection = [5, 6, 5, 4, 5, 5, 7, 7, 8, 8, 8]
     private var currentSection = 0
     private var heights: [Double] = []
     static let notificationName = Notification.Name("scrolledToSection")
-    
-    // MARK: - Enumeration for dish sections
-    
-    private let sections: [SectionProductsType] = [.mostPopular, .pizza, .sushi,
-                                                .rolls, .burgers, .breakfast,
-                                                .sandwichs, .kebab, .salads,
-                                                .frenchFries, .coldDrinks]
+    private var isLoaded = false {
+        didSet {
+            hideSkeletons()
+            calculateAllSectionHeights()
+            collectionView.reloadData()
+        }
+    }
     
     // MARK: - UI
     
     private lazy var categoriesReplacementView: CategoryMenuView = {
         let view = CategoryMenuView(type: .stickyHeader)
-        view.isSkeletonable = true
         return view
     }()
     
@@ -57,7 +53,6 @@ final class RestaurantViewController: UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: createLayout())
         collectionView.delegate = self
         collectionView.dataSource = self
-        collectionView.isSkeletonable = true
         collectionView.register(
             RestaurantHeaderView.self,
             forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader,
@@ -75,6 +70,8 @@ final class RestaurantViewController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.contentInsetAdjustmentBehavior = .never
         collectionView.bounces = false
+        collectionView.isSkeletonable = true
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         return collectionView
     }()
     
@@ -95,26 +92,22 @@ final class RestaurantViewController: UIViewController {
         setupConstraints()
         setupNavigationBar()
         setupNotificationObservers()
-        calculateAllSectionHeights()
-        hideSkeletons()
-        fetchProducts()
+        showSkeletonAnimation()
+        fetchCategoriesWithProducts()
     }
     
     // MARK: - Callback
     
-    private func fetchProducts() {
-        service.fetchProducts { dishes in
-            self.products = dishes
-            DispatchQueue.main.async { [weak self] in
-                self?.collectionView.reloadData()
+    private func fetchCategoriesWithProducts() {
+        service.fetchCategoriesWithProducts { [weak self] result in
+            switch result {
+            case .success(let groupedProducts):
+                self?.categoriesAndNames = groupedProducts.categoriesAndNames
+                self?.productsByCategoryMap = groupedProducts.dividedProducts
+                self?.isLoaded = true
+            case .failure(let error):
+                print(error.localizedDescription)
             }
-        }
-    }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        if !isLoaded {
-            showSkeletonAnimation()
         }
     }
     
@@ -174,20 +167,18 @@ final class RestaurantViewController: UIViewController {
     // MARK: - SetupSkeletons
     
     private func showSkeletonAnimation() {
-        collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        collectionView.prepareSkeleton { _ in
+            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        }
+        
+        self.viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     private func hideSkeletons() {
-        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
-        DispatchQueue.main.asyncAfter(deadline: .now() + 5) { [weak self] in
-            self?.isLoaded = true
-            self?.collectionView.stopSkeletonAnimation()
-            self?.collectionView.hideSkeleton(transition: .crossDissolve(0.25))
-            self?.collectionView.reloadData()
-            self?.viewCartContainerView.stopSkeletonAnimation()
-            self?.viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
-        }
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.stopSkeletonAnimation()
+        viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Layout for Main Section Header
@@ -206,9 +197,8 @@ final class RestaurantViewController: UIViewController {
     // MARK: - Layout for CollectionView
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
-        return UICollectionViewCompositionalLayout { sectionIndex, _ in
+        return UICollectionViewCompositionalLayout { [weak self] sectionIndex, _ in
             // Item
-            let sectionType = self.sections[sectionIndex]
             let item = NSCollectionLayoutItem(
                 layoutSize: NSCollectionLayoutSize(
                     widthDimension: .fractionalWidth(0.5),
@@ -233,12 +223,15 @@ final class RestaurantViewController: UIViewController {
                 trailing: 0
             )
             section.interGroupSpacing = 14
-            switch sectionType {
-            case .mostPopular:
-                section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
-            default:
-                section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+            if let self = self {
+                switch sectionIndex {
+                case 0:
+                    section.boundarySupplementaryItems = [self.supplementaryMainHeaderItem()]
+                default:
+                    section.boundarySupplementaryItems = [self.supplementaryHeaderItem()]
+                }
             }
+            
             return section
         }
     }
@@ -312,12 +305,14 @@ final class RestaurantViewController: UIViewController {
     }
     
     private func calculateAllSectionHeights() {
+        heights = []
         let itemHeight: Double = 242
         let spacingBetweenItems: Double = 14
         let heightOfBottomInsetOfSections: Double = 16
-        for sectionIndex in 0..<sections.count {
+        for sectionIndex in 0..<categoriesAndNames.count {
             let headerHeight: Double = (sectionIndex == 0) ? 342 : 36
-            let numfOfRowsInSection = ceil(Double(numberOfItemsInSection[sectionIndex]) / 2)
+            let numOfProducts = productsByCategoryMap[sectionIndex + 1]?.count ?? 0
+            let numfOfRowsInSection = ceil(Double(numOfProducts) / 2)
             let totalHeightOfItems =
             numfOfRowsInSection * itemHeight + (numfOfRowsInSection - 1) * spacingBetweenItems
             var neededHeightForChangingSection =
@@ -356,9 +351,7 @@ final class RestaurantViewController: UIViewController {
     
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
-        basketViewController.selectedDishes = products.filter({ dish in
-            return dish.isSelected
-        })
+        basketViewController.selectedDishes = selectedProducts
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
     
@@ -413,9 +406,15 @@ final class RestaurantViewController: UIViewController {
 extension RestaurantViewController: DishViewControllerDelegate {
     func addToBasket(dish: RestaurantProduct) {
         collectionView.reloadData()
-        viewCartContainerView.setupData(product: products.filter({ product in
-            return product.isSelected
-        }))
+         
+        productsByCategoryMap.values.forEach { products in
+            print(products.description)
+            selectedProducts.append(contentsOf: products.filter({ product in
+                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
+            }))
+        }
+        
+        viewCartContainerView.setupData(products: selectedProducts)
     }
 }
 
@@ -423,8 +422,12 @@ extension RestaurantViewController: DishViewControllerDelegate {
 
 extension RestaurantViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if !isLoaded {
+            return
+        }
+        
         let dishViewController = DishViewController()
-        dishViewController.dish = products[indexPath.row]
+        dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
         dishViewController.delegate = self
         present(dishViewController, animated: true)
     }
@@ -435,11 +438,11 @@ extension RestaurantViewController: UICollectionViewDelegate {
 extension RestaurantViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        sections.count
+        return categoriesAndNames.count
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return products.count
+        return productsByCategoryMap[section + 1]?.count ?? 0
     }
     
     func collectionView(_ collectionView: UICollectionView,
@@ -449,7 +452,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
             for: indexPath) as? ProductCollectionViewCell else {
             fatalError("Could not cast to DishesCollectionViewCell")
         }
-        let product = products[indexPath.item]
+        guard let product = productsByCategoryMap[indexPath.section + 1]?[indexPath.row] else {
+            return UICollectionViewCell()
+        }
         cell.setupData(product: product)
         return cell
     }
@@ -466,9 +471,9 @@ extension RestaurantViewController: UICollectionViewDataSource {
             ) as? ProductSectionHeaderView else {
                 fatalError("Could not cast to DishSectionHeaderView")
             }
-            let section = sections[indexPath.section]
-            switch section {
-            case .mostPopular:
+            let sectionID = indexPath.section + 1
+            switch sectionID {
+            case 1:
                 guard let mainHeader = collectionView.dequeueReusableSupplementaryView(
                     ofKind: UICollectionView.elementKindSectionHeader,
                     withReuseIdentifier: RestaurantHeaderView.reuseID,
@@ -477,21 +482,14 @@ extension RestaurantViewController: UICollectionViewDataSource {
                     fatalError("Could not cast to RestaurantHeaderView")
                 }
                 return mainHeader
-            case .pizza:
-                sectionHeader.setSectionHeaderTitle(title: "Classic Pizza")
-            case .sushi:
-                sectionHeader.setSectionHeaderTitle(title: "Sushi")
-            case .rolls:
-                sectionHeader.setSectionHeaderTitle(title: "Rolls")
-            case .burgers:
-                sectionHeader.setSectionHeaderTitle(title: "Burgers")
             default :
-                sectionHeader.setSectionHeaderTitle(title: "Default name")
+                sectionHeader.setSectionHeaderTitle(title: categoriesAndNames[sectionID] ?? "")
             }
             return sectionHeader
         }
         return UICollectionReusableView()
     }
+
 }
 
 // MARK: - SkeletonCollectionViewDataSource

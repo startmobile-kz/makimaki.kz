@@ -14,25 +14,25 @@ final class OrdersViewController: UIViewController {
     lazy var orders: [Order] = {
         return [
             Order(cafeName: "Bellissimo Pizza",
-                        status: "Delivered",
-                        time: "31 May 2020, 07:55 PM  ",
-                        price: "$43.95",
-                        ordersList: self.firstOrder),
+                  status: "Delivered",
+                  time: "31 May 2020, 07:55 PM  ",
+                  price: "$43.95",
+                  ordersList: self.firstOrder),
             Order(cafeName: "Capital One Cafe",
-                        status: "Cancelled",
-                        time: "24 May 2020, 04:50 PM  ",
-                        price: "$5.48",
-                        ordersList: self.secondOrder),
+                  status: "Cancelled",
+                  time: "24 May 2020, 04:50 PM  ",
+                  price: "$5.48",
+                  ordersList: self.secondOrder),
             Order(cafeName: "Street Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:37 PM  ",
-                        price: "$18.30",
-                        ordersList: self.thirdOrder),
+                  status: "Delivered",
+                  time: "18 May 2020, 02:37 PM  ",
+                  price: "$18.30",
+                  ordersList: self.thirdOrder),
             Order(cafeName: "Smile House Cafe",
-                        status: "Delivered",
-                        time: "18 May 2020, 02:08 PM  ",
-                        price: "$14.00",
-                        ordersList: self.fouthOrder)
+                  status: "Delivered",
+                  time: "18 May 2020, 02:08 PM  ",
+                  price: "$14.00",
+                  ordersList: self.fouthOrder)
         ]
     }()
     
@@ -60,7 +60,6 @@ final class OrdersViewController: UIViewController {
     ]
     
     private var ordersCopy: [Order] = []
-    
     private var sectionIsExpanded: [Bool] = []
     
     // MARK: - UI
@@ -69,7 +68,6 @@ final class OrdersViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
-        tableView.rowHeight = 36
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
@@ -121,7 +119,6 @@ final class OrdersViewController: UIViewController {
         ordersTableView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
-        
         noOrdersView.snp.makeConstraints { make in
             make.center.equalTo(view.snp.center)
         }
@@ -144,7 +141,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return orders[section].ordersList.count + 1
+        let isExpanded = sectionIsExpanded[section]
+        if isExpanded {
+            return orders[section].ordersList.count + 1
+        }
+        return orders[section].ordersList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -167,9 +168,8 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         if indexPath.row == orders[indexPath.section].ordersList.count {
             return 83
-        } else {
-            return 36
         }
+        return 36
     }
     
     // MARK: - Header of Section
@@ -203,12 +203,12 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
 extension OrdersViewController: OrdersTableHeaderViewDelegate {
     func onCollapseMenuButtonDidPressed(section: Int, isExpanded: Bool) {
         var indexPathes: [IndexPath] = []
-        for i in stride(from: 0, to: ordersCopy[section].ordersList.count, by: 1) {
-            indexPathes.append(IndexPath(row: i, section: section))
+        for row in stride(from: 0, to: ordersCopy[section].ordersList.count + 1, by: 1) {
+            indexPathes.append(IndexPath(row: row, section: section))
         }
         sectionIsExpanded[section] = !sectionIsExpanded[section]
         if !isExpanded {
-            self.orders[section].ordersList = []
+            orders[section].ordersList = []
             ordersTableView.deleteRows(at: indexPathes, with: .fade)
         } else {
             orders[section].ordersList = ordersCopy[section].ordersList
