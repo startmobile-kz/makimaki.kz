@@ -20,7 +20,7 @@ final class ManageAdressesViewController: UIViewController {
     }()
     
     private lazy var tableView: UITableView = {
-        let tableView = UITableView(frame: .zero, style: .grouped)
+        let tableView = UITableView(frame: .zero, style: .plain)
         tableView.rowHeight = 78
         tableView.delegate = self
         tableView.dataSource = self
