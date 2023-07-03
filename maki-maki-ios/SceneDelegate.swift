@@ -18,7 +18,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let window = UIWindow(windowScene: windowScene)
             window.overrideUserInterfaceStyle = .light
 
-            let isAuthoried = false
+            let isAuthoried = true
             if isAuthoried {
                 window.rootViewController = RestaurantViewController()
             } else {
