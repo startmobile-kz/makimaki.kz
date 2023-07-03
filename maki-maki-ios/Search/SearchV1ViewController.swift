@@ -63,6 +63,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         setupConstraints()
         fetchProducts()
         searchContainerView.delegate = self
+
     }
     
     // MARK: - Setup Views
@@ -84,7 +85,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         }
         
         searchTableView.snp.makeConstraints {
-            $0.top.equalTo(searchContainerView.snp.bottom).offset(16)
+            $0.top.equalTo(searchContainerView.snp.bottom).offset(8)
             $0.leading.trailing.bottom.equalToSuperview()
             $0.height.equalTo(150)
         }
@@ -104,7 +105,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearchTextFieldEmpty {
-            searchTableView.rowHeight = 40
+            searchTableView.rowHeight = 37
             return searchHistory.count
         }
         searchTableView.rowHeight = 66
@@ -112,6 +113,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         if isSearchTextFieldEmpty {
             guard let cell = tableView.dequeueReusableCell(
                 withIdentifier: RecentSearchesTableViewCell.reuseID,
@@ -145,6 +147,19 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             dishViewController.delegate = self
             present(dishViewController, animated: true)
         }
+    }
+    
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        if isSearchTextFieldEmpty {
+            let header = RecentHeaderView()
+            header.backgroundColor = AppColor.background.uiColor
+            return header
+        }
+        return nil
+    }
+
+    func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
+        return isSearchTextFieldEmpty ? 18 : 0
     }
 }
 
