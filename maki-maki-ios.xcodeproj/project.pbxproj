@@ -113,6 +113,7 @@
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
+		F1E293032A543467002C798A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E293022A543467002C798A /* User.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -237,6 +238,7 @@
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
+		F1E293022A543467002C798A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -771,6 +773,7 @@
 			isa = PBXGroup;
 			children = (
 				F187EADE2A263F5E00019242 /* EditProfileViewController.swift */,
+				F1E293022A543467002C798A /* User.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -1030,6 +1033,7 @@
 				6838C40A2A4EBB03008BA320 /* NewMainPageSectionTypes.swift in Sources */,
 				773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */,
 				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
+				F1E293032A543467002C798A /* User.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				6838C40C2A4EC684008BA320 /* СategoriesHeaderView.swift in Sources */,
 				0349DDF52A3BAC3100BACD4F /* PaymentMethodTableViewCell.swift in Sources */,
