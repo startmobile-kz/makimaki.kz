@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
@@ -34,6 +35,8 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     private func setupViews() {
         let subviews = [promoImageView]
         subviews.forEach({contentView.addSubview($0)})
+        isSkeletonable = true
+        skeletonCornerRadius = 14
     }
     
     // MARK: - SetupConstraints
