@@ -260,12 +260,16 @@ class SecondMainViewController: UIViewController {
         )
         // Section
         let section = NSCollectionLayoutSection(group: group)
+    
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 4,
             leading: 16,
             bottom: 16,
             trailing: 0
         )
+        if !isLoaded {
+            section.contentInsets.top = 25
+        }
         section.interGroupSpacing = 14
         switch sectionIndex {
         case 1:
@@ -306,7 +310,7 @@ class SecondMainViewController: UIViewController {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
-                self?.isLoaded = true
+//                self?.isLoaded = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
