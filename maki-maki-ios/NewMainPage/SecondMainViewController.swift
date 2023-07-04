@@ -555,7 +555,6 @@ extension SecondMainViewController: DishViewControllerDelegate {
         collectionView.reloadData()
          
         productsByCategoryMap.values.forEach { products in
-            print(products.description)
             selectedProducts.append(contentsOf: products.filter({ product in
                 return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
             }))
@@ -587,7 +586,6 @@ extension SecondMainViewController: SkeletonCollectionViewDataSource {
         cellIdentifierForItemAt indexPath: IndexPath
     ) -> SkeletonView.ReusableCellIdentifier {
         let section = indexPath.section
-        print(section)
         switch section {
         case 0:
             return PromoBannerCollectionViewCell.reuseID
