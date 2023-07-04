@@ -100,8 +100,17 @@ class SecondMainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNotificationObservers()
-        setupNavigationBar()
         fetchCategoriesWithProducts()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        hideNavBar()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        showNavBar()
     }
     
     // MARK: - SetupView
@@ -149,13 +158,12 @@ class SecondMainViewController: UIViewController {
     
     // MARK: - SetupNavigationBar
     
-    private func setupNavigationBar() {
-        title = ""
-        navigationItem.rightBarButtonItems = []
-        self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
-        self.navigationController?.navigationBar.shadowImage = UIImage()
-        self.navigationController?.navigationBar.isTranslucent = true
-        self.navigationController?.view.backgroundColor = .clear
+    private func hideNavBar() {
+        self.navigationController?.isNavigationBarHidden = true
+    }
+    
+    private func showNavBar() {
+        self.navigationController?.isNavigationBarHidden = false
     }
     
     private func createLayout() -> UICollectionViewCompositionalLayout {
@@ -418,7 +426,6 @@ extension SecondMainViewController: UICollectionViewDelegate {
             checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
             if scrollView.contentOffset.y > heightForPinningHeader {
                 if !sticked {
-                    // self.makeNavigationBarVisible()
                     self.pinCategoriesReplacementViewToTheTop()
                     self.categoriesReplacementView.bringSubviewToFront(self.view)
                     self.view.layoutIfNeeded()
@@ -428,7 +435,6 @@ extension SecondMainViewController: UICollectionViewDelegate {
             if isScrollingUp {
                 if scrollView.contentOffset.y < heightForPinningHeader {
                     hideCategoriesReplacementView()
-                    setupNavigationBar()
                     separatorView.isHidden = false
                     view.layoutIfNeeded()
                     sticked = false
