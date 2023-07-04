@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 // swiftlint:disable all
 class SecondMainViewController: UIViewController {
@@ -82,6 +83,7 @@ class SecondMainViewController: UIViewController {
             forCellWithReuseIdentifier: ProductCollectionViewCell.reuseID
         )
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isSkeletonable = true
         return collectionView
     }()
     
@@ -100,6 +102,7 @@ class SecondMainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNotificationObservers()
+        showSkeletonAnimation()
         fetchCategoriesWithProducts()
     }
     
@@ -187,6 +190,23 @@ class SecondMainViewController: UIViewController {
             name: CategoryMenuView.notificationName,
             object: nil
         )
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.prepareSkeleton { _ in
+            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        }
+        
+        self.viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
+    
+    private func hideSkeletons() {
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
+        viewCartContainerView.stopSkeletonAnimation()
+        viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Section Layouts
@@ -538,6 +558,21 @@ extension SecondMainViewController: DishViewControllerDelegate {
         }
         
         viewCartContainerView.setupData(products: selectedProducts)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension SecondMainViewController: SkeletonCollectionViewDataSource {
+    func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
+    -> Int {
+        return 8
+    }
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        return ProductCollectionViewCell.reuseID
     }
 }
 // swiftlint:enable all
