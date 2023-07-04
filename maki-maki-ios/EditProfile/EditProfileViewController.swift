@@ -11,9 +11,7 @@ import SkyFloatingLabelTextField
 import InputMask
 
 protocol EditProfileDelegate: AnyObject {
-    func didUpdateName(_ name: String)
-    func didUpdateEmail(_ email: String)
-    func didUpdatePhone(_ phone: String)
+    func profileDidUpdate(user: User)
 }
 
 final class EditProfileViewController: UIViewController {
@@ -198,9 +196,8 @@ final class EditProfileViewController: UIViewController {
             return
         }
         
-        delegate?.didUpdateName(name)
-        delegate?.didUpdateEmail(email)
-        delegate?.didUpdatePhone(phone)
+        let user = User()
+        delegate?.profileDidUpdate(user: user)
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(name, forKey: "name")

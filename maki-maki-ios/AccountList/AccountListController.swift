@@ -172,13 +172,7 @@ extension AccountListViewController {
 }
 
 extension AccountListViewController: EditProfileDelegate {
-    func didUpdateName(_ name: String) {
-        nameLabel.text = name
-    }
-
-    func didUpdateEmail(_ email: String) {
-    }
-
-    func didUpdatePhone(_ phone: String) {
+    func profileDidUpdate(user: User) {
+        nameLabel.text = user.name
     }
 }
