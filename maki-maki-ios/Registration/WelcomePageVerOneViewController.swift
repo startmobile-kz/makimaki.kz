@@ -167,6 +167,11 @@ final class WelcomePageVerOneViewController: UIViewController {
             showSnackBar(message: "Please enter a phone number.")
             return
         }
+        
+        if phoneNumber.count != 18 {
+            showSnackBar(message: "Phone number entered incorrectly.")
+            return
+        }
 
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
         

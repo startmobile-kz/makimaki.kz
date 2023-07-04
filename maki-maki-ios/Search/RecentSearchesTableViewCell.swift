@@ -31,7 +31,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [clockImage, recentSearchLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
-        stackView.spacing = 11
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -57,7 +57,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         recentInfoStackView.snp.makeConstraints { make in
-            make.top.equalTo(13)
+            make.top.equalTo(11)
             make.leading.equalTo(16)
             make.width.equalTo(116)
             make.centerY.equalToSuperview()
