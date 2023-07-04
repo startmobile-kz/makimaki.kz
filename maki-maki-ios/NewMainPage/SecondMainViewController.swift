@@ -392,11 +392,12 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
         if !isLoaded {
             return
         }
-        
-        let dishViewController = DishViewController()
-        dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
-        dishViewController.delegate = self
-        present(dishViewController, animated: true)
+        if indexPath.section > 0 {
+            let dishViewController = DishViewController()
+            dishViewController.dish = productsByCategoryMap[indexPath.section]?[indexPath.row]
+            dishViewController.delegate = self
+            present(dishViewController, animated: true)
+        }
     }
 }
 
