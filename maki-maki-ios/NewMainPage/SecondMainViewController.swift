@@ -385,7 +385,8 @@ class SecondMainViewController: UIViewController {
 
 extension SecondMainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
-        print("Tapped")
+        let controller = ManageAdressesViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
