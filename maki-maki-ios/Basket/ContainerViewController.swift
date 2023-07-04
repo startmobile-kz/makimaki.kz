@@ -45,20 +45,10 @@ class ContainerView: UIView {
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
         button.setTitle("CHECKOUT", for: .normal)
-        button.contentHorizontalAlignment = .leading
-        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 16, bottom: 0, right: 0)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
         button.addTarget(self, action: #selector(checkoutPressed), for: .touchUpInside)
         return button
-    }()
-    
-    private lazy var checkoutPriceLabel: UILabel = {
-        let label = UILabel()
-        label.text = "$43.95"
-        label.font = AppFont.medium.s15()
-        label.textColor = AppColor.heading.uiColor
-        return label
     }()
     
     // MARK: - LifeCycle
@@ -79,7 +69,7 @@ class ContainerView: UIView {
     private func setupViews() {
         self.backgroundColor = .white
         
-        [dividerImage, totalLabel, priceLabel, checkoutButton, checkoutPriceLabel].forEach {
+        [dividerImage, totalLabel, priceLabel, checkoutButton].forEach {
             addSubview($0)
         }
     }
@@ -109,18 +99,12 @@ class ContainerView: UIView {
             make.bottom.equalToSuperview()
             make.height.equalTo(53)
         }
-        
-        checkoutPriceLabel.snp.makeConstraints { make in
-            make.trailing.equalTo(checkoutButton.snp.trailing).offset(-16)
-            make.centerY.equalTo(checkoutButton)
-        }
     }
 
     // MARK: - Public
 
     public func setup(with totalSum: Int) {
         priceLabel.text = "\(totalSum) ₸"
-        checkoutPriceLabel.text = "\(totalSum) ₸"
     }
     
     // MARK: - Action
