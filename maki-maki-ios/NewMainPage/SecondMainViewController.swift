@@ -487,7 +487,6 @@ extension SecondMainViewController: UICollectionViewDataSource {
             guard let product = productsByCategoryMap[indexPath.section]?[indexPath.row] else {
                 return UICollectionViewCell()
             }
-            print(product.name)
             cell.setupData(product: product)
             return cell
         }
