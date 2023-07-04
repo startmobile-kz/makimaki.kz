@@ -11,9 +11,9 @@ import SnapKit
 final class ManageAdressesViewController: UIViewController {
     
     // MARK: - State
-    
-    var addresses: [Adress] = []
-    
+
+    var addresses: [Address] = []
+       
     // MARK: - UI
     
     private lazy var savedAddressesLabel: UILabel = {
@@ -38,10 +38,10 @@ final class ManageAdressesViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        addresses = fetchAdress()
         setupViews()
         setupConstraints()
         setupNavigationBar()
+        print(UserDefaults.standard.data(forKey: "address"))
     }
     
     // MARK: - Setup Views
@@ -110,16 +110,5 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer")
         return footer
-    }
-}
-
-// MARK: - extension
-
-extension ManageAdressesViewController {
-    func fetchAdress() -> [Adress] {
-        let adress1 = Adress(image: AppImage.homeMA, title: "Home", subTitle: "Navoi 37")
-        let adress2 = Adress(image: AppImage.workMA, title: "Work", subTitle: "Baizakova 280")
-        let adress3 = Adress(image: AppImage.locationMA, title: "Other", subTitle: "Bereke 56")
-        return [adress1, adress2, adress3]
     }
 }
