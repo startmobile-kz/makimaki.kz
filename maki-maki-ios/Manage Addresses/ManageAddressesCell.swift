@@ -48,10 +48,9 @@ final class ManageAddressesCell: UITableViewCell {
         fatalError("init(coder:) has not been implemented")
     }
     
-    public func set(address: Adress) {
-        imageAddressView.image = address.image.uiImage
-        nameLabel.text = address.title
-        addressLabel.text = address.subTitle
+    public func set(address: Address) {
+        nameLabel.text = address.street
+        addressLabel.text = address.house
     }
     
     // MARK: - Setup Views
