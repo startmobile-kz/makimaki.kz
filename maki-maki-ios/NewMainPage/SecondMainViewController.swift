@@ -572,7 +572,13 @@ extension SecondMainViewController: SkeletonCollectionViewDataSource {
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
     ) -> SkeletonView.ReusableCellIdentifier {
-        return ProductCollectionViewCell.reuseID
+        let section = indexPath.section
+        switch section {
+        case 0:
+            return PromoBannerCollectionViewCell.reuseID
+        default:
+            return ProductCollectionViewCell.reuseID
+        }
     }
 }
 // swiftlint:enable all
