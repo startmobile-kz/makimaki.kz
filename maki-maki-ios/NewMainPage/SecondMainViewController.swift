@@ -84,6 +84,7 @@ class SecondMainViewController: UIViewController {
         )
         collectionView.showsVerticalScrollIndicator = false
         collectionView.isSkeletonable = true
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         return collectionView
     }()
     
@@ -410,7 +411,6 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
 extension SecondMainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isLoaded {
-            
             if !isScrollToSectionCalled {
                 let yOffset = scrollView.contentOffset.y
                 let heightOfOneRowOfItems: Double = 242
