@@ -17,6 +17,7 @@ target 'maki-maki-ios' do
   pod 'SkeletonView', '1.30.4'
   pod 'Kingfisher', '7.7.0'
   pod 'ProgressHUD', '13.6.2'
+  pod 'YandexMapsMobile', '4.3.1-full'
 
   post_install do |installer|
     installer.generated_projects.each do |project|
