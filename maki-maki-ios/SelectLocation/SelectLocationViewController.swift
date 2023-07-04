@@ -10,6 +10,10 @@ import SnapKit
 import YandexMapsMobile
 
 final class SelectLocationViewController: UIViewController {
+    
+    // MARK: - State
+    
+    private var addresses: [Address] = []
         
     // MARK: - Map View UI
     
@@ -56,7 +60,10 @@ final class SelectLocationViewController: UIViewController {
     }()
     
     private lazy var choiceLocationSegmentedController: UISegmentedControl = {
-        let control = UISegmentedControl(first: "Home", second: "Work", third: "Other")
+        let control = UISegmentedControl(
+            first: LocationType.home.description,
+            second: LocationType.work.description,
+            third: LocationType.other.description)
         control.layer.cornerRadius = 12
         control.layer.masksToBounds = true
         control.clipsToBounds = true
@@ -69,6 +76,7 @@ final class SelectLocationViewController: UIViewController {
         button.tintColor = AppColor.heading.uiColor
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(saveAddressButtonDidPressed), for: .touchUpInside)
         return button
     }()
 
@@ -167,5 +175,31 @@ final class SelectLocationViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func saveAddressButtonDidPressed() {
+        guard let text = locationTextField.text else {
+            return
+        }
+            
+        var address = Address(
+            id: UUID(),
+            street: text,
+            latitude: 28.751574,
+            longitude: 24.751574,
+            house: "",
+            flat: "",
+            type: choiceLocationSegmentedController.selectedSegmentIndex)
+        
+        addresses.append(address)
+        
+        let encodedData = try? JSONEncoder().encode(addresses)
+        let defaults = UserDefaults.standard
+            defaults.set(encodedData, forKey: "address")
+    
+        let controller = ManageAdressesViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
