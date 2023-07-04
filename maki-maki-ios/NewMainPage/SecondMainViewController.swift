@@ -292,24 +292,6 @@ class SecondMainViewController: UIViewController {
         }
     }
     
-    private func makeNavigationBarVisible() {
-        title = "Smile House Cafe"
-        setupNavBarTitle()
-        self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)
-        self.navigationController?.navigationBar.setBackgroundImage(nil, for: .default)
-        self.navigationController?.navigationBar.shadowImage = nil
-        self.navigationController?.navigationBar.isTranslucent = false
-        self.navigationController?.view.backgroundColor = .clear
-    }
-    
-    private func setupNavBarTitle() {
-        let attributes: [NSAttributedString.Key: Any] = [
-            .foregroundColor: AppColor.heading.uiColor,
-            .font: AppFont.semibold.s20()
-        ]
-        self.navigationController?.navigationBar.titleTextAttributes = attributes
-    }
-    
     private func pinCategoriesReplacementViewToTheTop() {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom)
@@ -393,6 +375,7 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
         if !isLoaded {
             return
         }
+        
         if indexPath.section > 0 {
             let dishViewController = DishViewController()
             dishViewController.dish = productsByCategoryMap[indexPath.section]?[indexPath.row]
