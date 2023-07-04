@@ -156,7 +156,6 @@ class SecondMainViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(85)
         }
-        self.view.layoutIfNeeded()
     }
     
     // MARK: - SetupNavigationBar
@@ -195,11 +194,12 @@ class SecondMainViewController: UIViewController {
     // MARK: - SetupSkeletons
     
     private func showSkeletonAnimation() {
-        collectionView.prepareSkeleton { _ in
-            self.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        collectionView.prepareSkeleton { [weak self] _ in
+            self?.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
         }
         
         self.viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        self.view.layoutSkeletonIfNeeded()
     }
     
     private func hideSkeletons() {
@@ -472,7 +472,7 @@ extension SecondMainViewController: UICollectionViewDelegate {
 extension SecondMainViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count + 8
+        return categoriesAndNames.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -564,15 +564,26 @@ extension SecondMainViewController: DishViewControllerDelegate {
 // MARK: - SkeletonCollectionViewDataSource
 
 extension SecondMainViewController: SkeletonCollectionViewDataSource {
+    
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return 2
+    }
+    
     func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
     -> Int {
-        return 8
+        switch section {
+        case 0:
+            return 5
+        default:
+            return 8
+        }
     }
     func collectionSkeletonView(
         _ skeletonView: UICollectionView,
         cellIdentifierForItemAt indexPath: IndexPath
     ) -> SkeletonView.ReusableCellIdentifier {
         let section = indexPath.section
+        print(section)
         switch section {
         case 0:
             return PromoBannerCollectionViewCell.reuseID
