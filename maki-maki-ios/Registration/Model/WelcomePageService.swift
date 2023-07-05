@@ -12,12 +12,13 @@ class WelcomePageService {
     
     // MARK: - Network With Alamofire
     
-    private func authorizeWithAlamofire(phoneNumber: String, deviceID: String) {
+    private func authorizeWithAlamofire(with person: Person) {
+        
         let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
         
         let parameters: [String: Any] = [
-            "uuid": deviceID,
-            "phone": phoneNumber
+            "uuid": person.uuid,
+            "phone": person.phone
         ]
         
         AF.request(urlString, method: .post, parameters: parameters, encoding: JSONEncoding.default)
