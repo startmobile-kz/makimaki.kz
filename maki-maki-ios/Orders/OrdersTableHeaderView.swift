@@ -169,18 +169,18 @@ final class OrdersTableHeaderView: UIView {
         }
     }
     
-    public func setUp(model: Order, section: Int) {
+    public func setUp(model: OrdersModel, section: Int) {
         self.section = section
-        cafeNameLabel.text = model.cafeName
-        orderStatusLabel.text = model.status
-        if model.status == "Delivered" {
-            orderStatusLabel.backgroundColor = AppColor.green.uiColor
-        } else {
-            orderStatusLabel.backgroundColor = AppColor.red.uiColor
-        }
-        orderPriceLabel.text = model.price
+        cafeNameLabel.text = model.name 
+        orderStatusLabel.text = "\(model.status)"
+//        if model.status == "Delivered" {
+//            orderStatusLabel.backgroundColor = AppColor.green.uiColor
+//        } else {
+//            orderStatusLabel.backgroundColor = AppColor.red.uiColor
+//        }
+        orderPriceLabel.text = "\(model.finalTotal)"
         let dataComponents = [
-            NSAttributedString(string: NSLocalizedString(model.time, comment: "Data"), attributes: [
+            NSAttributedString(string: NSLocalizedString(model.createdAt, comment: "Data"), attributes: [
                 .foregroundColor: AppColor.paragraph.uiColor,
                 .font: AppFont.reqular.s14()
             ]),
@@ -218,4 +218,10 @@ final class OrdersTableHeaderView: UIView {
         sectionIsExpanded = !sectionIsExpanded
         self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
     }
+    
+//    public func setupData(model: OrdersModel) {
+//        cafeNameLabel.text = model.name
+//        orderStatusLabel.text = "\(model.status)"
+//        orderPriceLabel.text = "\(model.finalTotal)"
+//    }
 }

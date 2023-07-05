@@ -35,6 +35,8 @@
 		26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */; };
 		26E2798A2A2F5DE00071863C /* Order.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279892A2F5DE00071863C /* Order.swift */; };
 		26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26FC1D5B2A273626003BA971 /* OrdersCell.swift */; };
+		271C86B02A5572A7005E94A1 /* OderModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C86AF2A5572A7005E94A1 /* OderModel.swift */; };
+		271C86B22A5572B4005E94A1 /* OrderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 271C86B12A5572B4005E94A1 /* OrderService.swift */; };
 		274BB4E82A2864C400599092 /* WelcomePageVerTwoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */; };
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
 		275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F31242A31CFAB00E94CDC /* SignInViewController.swift */; };
@@ -154,6 +156,8 @@
 		26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableHeaderView.swift; sourceTree = "<group>"; };
 		26E279892A2F5DE00071863C /* Order.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Order.swift; sourceTree = "<group>"; };
 		26FC1D5B2A273626003BA971 /* OrdersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersCell.swift; sourceTree = "<group>"; };
+		271C86AF2A5572A7005E94A1 /* OderModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OderModel.swift; sourceTree = "<group>"; };
+		271C86B12A5572B4005E94A1 /* OrderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrderService.swift; sourceTree = "<group>"; };
 		274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerTwoViewController.swift; sourceTree = "<group>"; };
 		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
 		275F31242A31CFAB00E94CDC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
@@ -338,6 +342,7 @@
 		26FC1D542A264B1F003BA971 /* Orders */ = {
 			isa = PBXGroup;
 			children = (
+				271C86AE2A557286005E94A1 /* Model */,
 				2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */,
 				26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */,
 				26FC1D5B2A273626003BA971 /* OrdersCell.swift */,
@@ -347,6 +352,15 @@
 				26C63CC42A332FA40095CF47 /* NoOrdersView.swift */,
 			);
 			path = Orders;
+			sourceTree = "<group>";
+		};
+		271C86AE2A557286005E94A1 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				271C86AF2A5572A7005E94A1 /* OderModel.swift */,
+				271C86B12A5572B4005E94A1 /* OrderService.swift */,
+			);
+			path = Model;
 			sourceTree = "<group>";
 		};
 		274485FD2A27B3B400F2FFBD /* Registration */ = {
@@ -1000,6 +1014,7 @@
 				27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */,
 				26C63CC12A2F97F50095CF47 /* OrdersList.swift in Sources */,
 				1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */,
+				271C86B02A5572A7005E94A1 /* OderModel.swift in Sources */,
 				1D7EE2372A49938000E3756F /* SearchHistory.swift in Sources */,
 				9F2380512A49C6AA0029A5DD /* RestaurantProduct.swift in Sources */,
 				683AF7BD2A290625006469AD /* DeliveryHeaderView.swift in Sources */,
@@ -1030,6 +1045,7 @@
 				6838C40A2A4EBB03008BA320 /* NewMainPageSectionTypes.swift in Sources */,
 				773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */,
 				26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */,
+				271C86B22A5572B4005E94A1 /* OrderService.swift in Sources */,
 				CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */,
 				6838C40C2A4EC684008BA320 /* СategoriesHeaderView.swift in Sources */,
 				0349DDF52A3BAC3100BACD4F /* PaymentMethodTableViewCell.swift in Sources */,

@@ -11,6 +11,21 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - State
     
+//    private var urlSession = URLSession.shared
+    
+    // MARK: - State
+    
+    var backendOrders: [OrdersModel] = []
+    
+    private var service = OrderService()
+    private var order = [OrdersModel]()
+    
+    var filteredOrders = [OrdersModel]() {
+        didSet {
+            self.ordersTableView.reloadData()
+        }
+    }
+    
     lazy var orders: [Order] = {
         return [
             Order(cafeName: "Bellissimo Pizza",
@@ -91,6 +106,8 @@ final class OrdersViewController: UIViewController {
         setupConstraints()
         setupData()
         showNoOrdersViewIfNeeded()
+        
+        getOrders()
     }
     
     // MARK: - SetupData
@@ -131,6 +148,54 @@ final class OrdersViewController: UIViewController {
             ordersTableView.backgroundView = nil
         }
     }
+    
+//    // MARK: - Load Data
+//    // swiftlint:disable all
+//    private func getOrders() {
+//        let urlString = "https://app.makimaki.kz/api/v1/client/orders?uuid=151eb4a0-ff99-4482-90d2-c4e7c77810dc"
+//        
+//        guard let url = URL(string: urlString) else {
+//            return
+//        }
+//        
+//        var request = URLRequest(url: url)
+//        
+//        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
+//        request.httpMethod = "GET"
+//        
+//        let task = urlSession.dataTask(
+//            with: request,
+//            completionHandler: { data, response, error in
+//                
+//                guard let data = data else {
+//                    return
+//                }
+//                
+//                let decoder = JSONDecoder()
+//                
+//                if let orders = try? decoder.decode([OrdersModel].self, from: data) {
+//                    DispatchQueue.main.async { [weak self] in
+//                        self?.backendOrders = orders
+//                        self?.ordersTableView.reloadData()
+//                    }
+//                }
+//            }
+//        )
+//        
+//        task.resume()
+//    }
+//    // swiftlint:enable all
+    
+    private func getOrders() {
+        service.getOrders { orders in
+            DispatchQueue.main.async { [weak self] in
+                self?.order = orders
+                self?.filteredOrders = orders
+                self?.ordersTableView.reloadData()
+            }
+        }
+    }
+    
 }
 
 // MARK: - UITableView Data Source and Delegate methods
@@ -181,7 +246,12 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              height:114),
                                                isExpanded: sectionIsExpanded[section])
         headerView.delegate = self
-        headerView.setUp(model: orders[section], section: section)
+        
+        if let order = service.backendOrders.first {
+            headerView.setUp(model: order, section: section)
+            print(order)
+        }
+         
         return headerView
     }
     
