@@ -10,6 +10,8 @@ import Alamofire
 
 class WelcomePageService {
     
+    // MARK: - Network With Alamofire
+    
     private func authorizeWithAlamofire(phoneNumber: String, deviceID: String) {
         let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
         
