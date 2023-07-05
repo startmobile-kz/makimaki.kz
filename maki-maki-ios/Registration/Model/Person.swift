@@ -6,3 +6,8 @@
 //
 
 import Foundation
+
+struct Person: Codable {
+    let uuid: String
+    let phone: String
+}
