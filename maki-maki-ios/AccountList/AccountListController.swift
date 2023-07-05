@@ -132,7 +132,9 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         if indexPath.row == 1 {
-            controller = EditProfileViewController()
+            let editProfileViewController = EditProfileViewController()
+            editProfileViewController.delegate = self
+            controller = editProfileViewController
         }
 
         if indexPath.row == 2 {
@@ -166,5 +168,11 @@ extension AccountListViewController {
         let logo5 = Logo(image: AppImage.payment, title: "Payments", arrow: AppImage.arrowRight)
         let logo6 = Logo(image: AppImage.location, title: "Location", arrow: AppImage.arrowRight)
         return [logo1, logo2, logo3, logo4, logo5, logo6]
+    }
+}
+
+extension AccountListViewController: EditProfileDelegate {
+    func profileDidUpdate(user: User) {
+        nameLabel.text = user.name
     }
 }
