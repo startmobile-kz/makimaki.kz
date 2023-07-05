@@ -181,6 +181,10 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     func returnButtonTapped(lastWord: String) {
         let historyToAdd = History(name: lastWord)
         searchHistory.append(historyToAdd)
+        if let encoded = try? JSONEncoder().encode(historyToAdd) {
+            let userDefaults = UserDefaults.standard
+            userDefaults.setValue(encoded, forKey: "key")
+        }
     }
         
     func searchCompleted(word: String) {

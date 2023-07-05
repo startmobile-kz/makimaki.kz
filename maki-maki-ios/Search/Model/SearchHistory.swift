@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct History {
+struct History: Encodable {
     let name: String
 }
