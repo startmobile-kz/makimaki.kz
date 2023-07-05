@@ -10,7 +10,13 @@ import SnapKit
 import SkyFloatingLabelTextField
 import InputMask
 
+protocol EditProfileDelegate: AnyObject {
+    func profileDidUpdate(user: User)
+}
+
 final class EditProfileViewController: UIViewController {
+    
+    weak var delegate: EditProfileDelegate?
     
     // MARK: - UI
     
@@ -189,6 +195,9 @@ final class EditProfileViewController: UIViewController {
               let phone = phoneTextField.text else {
             return
         }
+        
+        let user = User()
+        delegate?.profileDidUpdate(user: user)
         
         let userDefaults = UserDefaults.standard
         userDefaults.set(name, forKey: "name")
