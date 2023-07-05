@@ -11,7 +11,7 @@ import Alamofire
 class WelcomePageService {
     
     private func authorizeWithAlamofire(phoneNumber: String, deviceID: String) {
-        let = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
+        let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
         
         let parameters: [String: Any] = [
             "uuid": deviceID,
