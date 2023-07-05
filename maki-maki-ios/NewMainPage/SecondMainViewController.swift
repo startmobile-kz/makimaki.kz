@@ -535,7 +535,6 @@ extension SecondMainViewController: DishViewControllerDelegate {
         collectionView.reloadData()
          
         productsByCategoryMap.values.forEach { products in
-            print(products.description)
             selectedProducts.append(contentsOf: products.filter({ product in
                 return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
             }))
