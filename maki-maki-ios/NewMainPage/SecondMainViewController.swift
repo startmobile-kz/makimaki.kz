@@ -540,6 +540,7 @@ extension SecondMainViewController: DishViewControllerDelegate {
                 return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
             }))
         }
+        
         setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
     }
