@@ -17,6 +17,7 @@ final class DishViewController: UIViewController {
     // MARK: - State
 
     var dish: RestaurantProduct?
+    var product: Product?
     var count = 1 {
         didSet {
             orderPrice.text = "\((dish?.price ?? 0) * count) ₸"
@@ -93,6 +94,7 @@ final class DishViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupData()
+        setupDataFromSearch()
     }
     
     // MARK: - Setup Views
@@ -179,8 +181,27 @@ final class DishViewController: UIViewController {
         
         productNameLabel.text = dish.name
         descriptionLabel.text = "\(dish.description)"
-        orderPrice.text = "\(dish.price) ₸"
+        // swiftlint: disable all
+        if dish.count != 0 {
+            count = dish.count
+        }
+        // swiftlint: enable all
+        orderPrice.text = "\(dish.price * count) ₸"
         let url = URL(string: dish.image ?? "")
+        dishImageView.kf.setImage(with: url)
+    }
+    
+    // MARK: - Setup Data from Search
+
+    private func setupDataFromSearch() {
+        guard let product = product else {
+            return
+        }
+        
+        productNameLabel.text = product.name
+        orderPrice.text = "\(product.price) ₸"
+        descriptionLabel.text = product.description
+        let url = URL(string: product.image ?? " ")
         dishImageView.kf.setImage(with: url)
     }
 }

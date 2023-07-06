@@ -33,10 +33,10 @@ final class ViewCartContainer : UIView {
         label.backgroundColor = AppColor.heading.uiColor
         label.textColor = AppColor.background.uiColor
         label.font = AppFont.reqular.s14()
-        label.text = "3"
         label.textAlignment = .center
         label.layer.cornerRadius = 8
         label.clipsToBounds = true
+        label.isHidden = true
         return label
     }()
     
@@ -52,7 +52,6 @@ final class ViewCartContainer : UIView {
         let label = UILabel()
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
-        label.text = "$25.98"
         return label
     }()
     
@@ -72,6 +71,7 @@ final class ViewCartContainer : UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
+        backgroundColor = AppColor.background.uiColor
         viewCartView.addSubviews([countLabel, viewCartLabel, priceLabel])
         addSubviews([separatorView, viewCartView])
     }
@@ -105,5 +105,16 @@ final class ViewCartContainer : UIView {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
         }
+    }
+    
+    // MARK: - Actions
+    
+    public func setupData(products: [RestaurantProduct]) {
+        let totalPrice = products.reduce(0) { partialResult, product in
+            return partialResult + (product.count * product.price)
+        }
+        countLabel.isHidden = false
+        countLabel.text = "\(products.count)"
+        priceLabel.text =  "\(totalPrice) ₸"
     }
 }

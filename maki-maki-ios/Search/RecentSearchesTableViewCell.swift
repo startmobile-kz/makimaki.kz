@@ -22,7 +22,6 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private lazy var recentSearchLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pizza"
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s15()
         return label
@@ -32,7 +31,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         let stackView = UIStackView(arrangedSubviews: [clockImage, recentSearchLabel])
         stackView.axis = .horizontal
         stackView.distribution = .fillProportionally
-        stackView.spacing = 11
+        stackView.spacing = 8
         return stackView
     }()
     
@@ -58,7 +57,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     
     private func setupConstraints() {
         recentInfoStackView.snp.makeConstraints { make in
-            make.top.equalTo(13)
+            make.top.equalTo(11)
             make.leading.equalTo(16)
             make.width.equalTo(116)
             make.centerY.equalToSuperview()
@@ -71,5 +70,9 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         recentSearchLabel.snp.makeConstraints { make in
             make.height.equalTo(18)
         }
+    }
+    
+    public func setupData(history: History) {
+        recentSearchLabel.text = history.name
     }
 }

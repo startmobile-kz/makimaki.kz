@@ -21,7 +21,6 @@ class AccountListViewController: UIViewController {
     
     private lazy var nameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Islam Temirbek"
         label.font = AppFont.bold.s24()
         return label
     }()
@@ -54,10 +53,22 @@ class AccountListViewController: UIViewController {
         setupConstraints()
 
         logos = fetchData()
+        setupName()
+        
+    }
+    
+    // MARK: - setupName
+    
+    private func setupName() {
+        if let name = UserDefaults.standard.string(forKey: "name") {
+            nameLabel.text = name
+        } else {
+            nameLabel.text = ""
+        }
     }
     
     // MARK: - Set UI
-    func setupViews() {
+    private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
 
         view.addSubview(profileImage)
@@ -67,7 +78,7 @@ class AccountListViewController: UIViewController {
     }
     
     // MARK: - Setup Constraints
-    func setupConstraints() {
+    private func setupConstraints() {
         profileImage.snp.makeConstraints { make in
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
             make.size.equalTo(48)
@@ -121,7 +132,9 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         if indexPath.row == 1 {
-            controller = EditProfileViewController()
+            let editProfileViewController = EditProfileViewController()
+            editProfileViewController.delegate = self
+            controller = editProfileViewController
         }
 
         if indexPath.row == 2 {
@@ -155,5 +168,11 @@ extension AccountListViewController {
         let logo5 = Logo(image: AppImage.payment, title: "Payments", arrow: AppImage.arrowRight)
         let logo6 = Logo(image: AppImage.location, title: "Location", arrow: AppImage.arrowRight)
         return [logo1, logo2, logo3, logo4, logo5, logo6]
+    }
+}
+
+extension AccountListViewController: EditProfileDelegate {
+    func profileDidUpdate(user: User) {
+        nameLabel.text = user.name
     }
 }

@@ -11,11 +11,9 @@ import SkyFloatingLabelTextField
 import InputMask
 import Foundation
 import SnackBar_swift
+import Alamofire
 
 final class WelcomePageVerOneViewController: UIViewController {
-    // MARK: - State
-
-    private var urlSession = URLSession.shared
 
     // MARK: - UI Components
     private lazy var makiImage: UIImageView = {
@@ -167,6 +165,11 @@ final class WelcomePageVerOneViewController: UIViewController {
             showSnackBar(message: "Please enter a phone number.")
             return
         }
+        
+        if phoneNumber.count != 18 {
+            showSnackBar(message: "Phone number entered incorrectly.")
+            return
+        }
 
         let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
         
@@ -185,39 +188,6 @@ final class WelcomePageVerOneViewController: UIViewController {
         if let view = self.view {
             SnackBarController.showSnackBar(in: view, message: message, duration: .lengthLong)
         }
-    }
-
-    // MARK: - Network
-
-    private func authorize(phoneNumber: String, deviceID: String) {
-        let urlString = "https://app.makimaki.kz/api/v1/client/phone-confirmation/request"
-
-        guard let url = URL(string: urlString) else {
-            return
-        }
-
-        var request = URLRequest(
-            url: url,
-            cachePolicy: .reloadIgnoringLocalCacheData
-        )
-
-        let body = ["uuid": deviceID, "phone": phoneNumber]
-        let bodyJson = try? JSONSerialization.data(withJSONObject: body)
-
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "POST"
-        request.httpBody = bodyJson
-
-        let task = urlSession.dataTask(
-            with: request,
-            completionHandler: { data, response, error in
-                print(data)
-                print(response)
-                print(error)
-            }
-        )
-
-        task.resume()
     }
     // swiftlint:enable all
 }

@@ -10,7 +10,13 @@ import SnapKit
 import SkyFloatingLabelTextField
 import InputMask
 
+protocol EditProfileDelegate: AnyObject {
+    func profileDidUpdate(user: User)
+}
+
 final class EditProfileViewController: UIViewController {
+    
+    weak var delegate: EditProfileDelegate?
     
     // MARK: - UI
     
@@ -67,6 +73,7 @@ final class EditProfileViewController: UIViewController {
         textField.lineHeight = 0.5
         textField.autocorrectionType = .no
         textField.keyboardType = .emailAddress
+        textField.autocapitalizationType = .none
         return textField
     }()
     
@@ -182,5 +189,19 @@ final class EditProfileViewController: UIViewController {
 
     @objc func saveButtonDidPress() {
         self.navigationController?.popViewController(animated: true)
+
+        guard let name = nameTextField.text,
+                let email = emailTextField.text,
+              let phone = phoneTextField.text else {
+            return
+        }
+        
+        let user = User()
+        delegate?.profileDidUpdate(user: user)
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(name, forKey: "name")
+        userDefaults.set(email, forKey: "email")
+        userDefaults.set(phone, forKey: "phone")
     }
 }
