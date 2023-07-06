@@ -12,10 +12,6 @@ import Foundation
  class OrderService {
     
     private var urlSession = URLSession.shared
-    
-//    var backendOrders: [OrdersModel] = []
-//
-//    var ordersVC = OrdersViewController()
 
     // MARK: - Load Data
     // swiftlint:disable all
@@ -33,20 +29,10 @@ import Foundation
             guard let data = data else {
                     fatalError("Data not found")
             }
-                
-//                let decoder = JSONDecoder()
-//
-//                if let orders = try? decoder.decode([OrdersModel].self, from: data) {
-//                    DispatchQueue.main.async { [weak self] in
-//                        self?.backendOrders = orders
-//                        self?.ordersVC.ordersTableView.reloadData()
-//                    }
-//                }
             
             do {
                 let order = try JSONDecoder().decode([OrdersModel].self, from: data)
                 completion(order)
-                print(order)
             } catch let error {
                 print("Error:\(error.localizedDescription)")
                 completion([])

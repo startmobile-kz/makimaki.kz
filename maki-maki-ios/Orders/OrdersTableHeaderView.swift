@@ -173,11 +173,11 @@ final class OrdersTableHeaderView: UIView {
         self.section = section
         cafeNameLabel.text = model.name 
         orderStatusLabel.text = "\(model.status)"
-//        if model.status == "Delivered" {
-//            orderStatusLabel.backgroundColor = AppColor.green.uiColor
-//        } else {
-//            orderStatusLabel.backgroundColor = AppColor.red.uiColor
-//        }
+        if model.status == 7 {
+            orderStatusLabel.backgroundColor = AppColor.green.uiColor
+        } else {
+            orderStatusLabel.backgroundColor = AppColor.red.uiColor
+        }
         orderPriceLabel.text = "\(model.finalTotal)"
         let dataComponents = [
             NSAttributedString(string: NSLocalizedString(model.createdAt, comment: "Data"), attributes: [
@@ -218,10 +218,4 @@ final class OrdersTableHeaderView: UIView {
         sectionIsExpanded = !sectionIsExpanded
         self.delegate?.onCollapseMenuButtonDidPressed(section: section, isExpanded: sectionIsExpanded)
     }
-    
-//    public func setupData(model: OrdersModel) {
-//        cafeNameLabel.text = model.name
-//        orderStatusLabel.text = "\(model.status)"
-//        orderPriceLabel.text = "\(model.finalTotal)"
-//    }
 }
