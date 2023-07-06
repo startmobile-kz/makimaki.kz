@@ -71,6 +71,7 @@ final class ViewCartContainer : UIView {
     // MARK: - SetupViews
     
     private func setupViews() {
+        backgroundColor = AppColor.background.uiColor
         viewCartView.addSubviews([countLabel, viewCartLabel, priceLabel])
         addSubviews([separatorView, viewCartView])
     }
