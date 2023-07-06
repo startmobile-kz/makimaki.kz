@@ -120,6 +120,7 @@ class SecondMainViewController: UIViewController {
         view.addSubviews(
             [deliveryHeaderView, separatorView, collectionView, categoriesReplacementView, viewCartContainerView]
         )
+        setupViewCartAppearance()
     }
     
     // MARK: - SetupLayout
@@ -144,8 +145,7 @@ class SecondMainViewController: UIViewController {
         
         collectionView.snp.makeConstraints { make in
             make.top.equalTo(separatorView.snp.bottom).priority(250)
-            make.leading.trailing.equalToSuperview()
-            make.bottom.equalTo(viewCartContainerView.snp.top)
+            make.leading.trailing.bottom.equalToSuperview()
         }
         
         viewCartContainerView.snp.makeConstraints { make in
@@ -330,6 +330,10 @@ class SecondMainViewController: UIViewController {
             }
             heights.append(neededHeightForChangingSection)
         }
+    }
+    
+    private func setupViewCartAppearance() {
+        viewCartContainerView.isHidden = selectedProducts.isEmpty
     }
     
     // MARK: - Actions
@@ -531,12 +535,12 @@ extension SecondMainViewController: DishViewControllerDelegate {
         collectionView.reloadData()
          
         productsByCategoryMap.values.forEach { products in
-            print(products.description)
             selectedProducts.append(contentsOf: products.filter({ product in
                 return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
             }))
         }
         
+        setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
     }
 }
