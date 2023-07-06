@@ -16,7 +16,6 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     // MARK: - UI
     private lazy var promoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "promo_1")
         return imageView
     }()
     
