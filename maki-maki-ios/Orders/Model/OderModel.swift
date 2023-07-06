@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct OrdersModel: Decodable {
+ struct OrdersModel: Decodable {
     var status: Int
     var createdAt: String
     var finalTotal: Int
@@ -22,4 +22,4 @@ struct OrdersModel: Decodable {
         case name = "full_name"
         
     }
-}
+ }

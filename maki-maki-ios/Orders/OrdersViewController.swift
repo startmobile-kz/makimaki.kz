@@ -15,11 +15,11 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - State
     
-    var backendOrders: [OrdersModel] = []
+//    var backendOrders: [OrdersModel] = []
     
     private var service = OrderService()
     private var order = [OrdersModel]()
-    
+
     var filteredOrders = [OrdersModel]() {
         didSet {
             self.ordersTableView.reloadData()
@@ -79,7 +79,7 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
-    private lazy var ordersTableView: UITableView = {
+    lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
@@ -107,7 +107,7 @@ final class OrdersViewController: UIViewController {
         setupData()
         showNoOrdersViewIfNeeded()
         
-        getOrders()
+         getOrders()
     }
     
     // MARK: - SetupData
@@ -149,30 +149,30 @@ final class OrdersViewController: UIViewController {
         }
     }
     
-//    // MARK: - Load Data
-//    // swiftlint:disable all
+    // MARK: - Load Data
+    // swiftlint:disable all
 //    private func getOrders() {
 //        let urlString = "https://app.makimaki.kz/api/v1/client/orders?uuid=151eb4a0-ff99-4482-90d2-c4e7c77810dc"
-//        
+//
 //        guard let url = URL(string: urlString) else {
 //            return
 //        }
-//        
+//
 //        var request = URLRequest(url: url)
-//        
+//
 //        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
 //        request.httpMethod = "GET"
-//        
+//
 //        let task = urlSession.dataTask(
 //            with: request,
 //            completionHandler: { data, response, error in
-//                
+//
 //                guard let data = data else {
 //                    return
 //                }
-//                
+//
 //                let decoder = JSONDecoder()
-//                
+//
 //                if let orders = try? decoder.decode([OrdersModel].self, from: data) {
 //                    DispatchQueue.main.async { [weak self] in
 //                        self?.backendOrders = orders
@@ -181,18 +181,20 @@ final class OrdersViewController: UIViewController {
 //                }
 //            }
 //        )
-//        
+//
 //        task.resume()
 //    }
-//    // swiftlint:enable all
+    // swiftlint:enable all
     
     private func getOrders() {
         service.getOrders { orders in
             DispatchQueue.main.async { [weak self] in
-                self?.order = orders
-                self?.filteredOrders = orders
+//                self?.order = orders
+//                self?.filteredOrders = orders
                 self?.ordersTableView.reloadData()
             }
+            self?.order = orders
+            self?.filteredOrders = orders
         }
     }
     
@@ -247,7 +249,7 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                isExpanded: sectionIsExpanded[section])
         headerView.delegate = self
         
-        if let order = service.backendOrders.first {
+        if let order = filteredOrders.first {
             headerView.setUp(model: order, section: section)
             print(order)
         }
