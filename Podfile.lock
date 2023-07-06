@@ -35,6 +35,7 @@ PODS:
     - SnapKit
   - SnapKit (5.6.0)
   - SwiftLint (0.52.2)
+  - YandexMapsMobile (4.3.1-full)
 
 DEPENDENCIES:
   - CHIOTPField (= 0.1.0)
@@ -49,6 +50,7 @@ DEPENDENCIES:
   - SnackBar.swift (= 0.1.0)
   - SnapKit (= 5.6.0)
   - SwiftLint (= 0.52.2)
+  - YandexMapsMobile (= 4.3.1-full)
 
 SPEC REPOS:
   trunk:
@@ -67,6 +69,7 @@ SPEC REPOS:
     - SnackBar.swift
     - SnapKit
     - SwiftLint
+    - YandexMapsMobile
 
 EXTERNAL SOURCES:
   FirebaseCore:
@@ -95,7 +98,8 @@ SPEC CHECKSUMS:
   SnackBar.swift: 79ea4df13ea9e6633137dd6acbd490534d26440d
   SnapKit: e01d52ebb8ddbc333eefe2132acf85c8227d9c25
   SwiftLint: 1ac76dac888ca05cb0cf24d0c85887ec1209961d
+  YandexMapsMobile: 7e077fa079e4ae2b73ac85a6d5062fa91d04539b
 
-PODFILE CHECKSUM: 0a97b2c4caba20dac17aaac831cd023fb99b508b
+PODFILE CHECKSUM: 355a17f1ef58ebf21bff13ba801932502522ac82
 
 COCOAPODS: 1.12.1
