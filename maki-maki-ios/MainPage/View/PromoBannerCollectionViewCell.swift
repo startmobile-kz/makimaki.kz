@@ -51,6 +51,5 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     func setupCell() {
         promoImageView.image = AppImage.promo_1.uiImage
-        print("setip promo")
     }
 }

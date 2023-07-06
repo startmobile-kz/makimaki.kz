@@ -201,7 +201,7 @@ class SecondMainViewController: UIViewController {
             self?.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
         }
         deliveryHeaderView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
             self?.collectionView.reloadData()
         }
     }
