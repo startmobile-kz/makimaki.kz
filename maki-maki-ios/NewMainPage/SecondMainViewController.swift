@@ -198,9 +198,9 @@ class SecondMainViewController: UIViewController {
         collectionView.prepareSkeleton { [weak self] _ in
             self?.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
         }
-        
-        self.viewCartContainerView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
-        self.view.layoutSkeletonIfNeeded()
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
+            self?.collectionView.reloadData()
+        }
     }
     
     private func hideSkeletons() {
