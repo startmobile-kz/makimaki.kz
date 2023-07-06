@@ -6,36 +6,25 @@
 //
 
 import Foundation
+import Alamofire
 
 // MARK: - Network request for products
 
 class ProductsService {
-    
-    private var urlSession = URLSession.shared
-    
-    func fetchProducts(completion: @escaping ([Product]) -> Void) {
+        
+    func fetchProductsWithAlamofire(completion: @escaping ([Product]) -> Void) {
         
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
-        
         guard let url = URL(string: urlString) else { return }
         
-        var request = URLRequest(url: url)
-        
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        
-        let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
-            guard let data = data else {
-                fatalError("Data not found")
-            }
-            do {
-                let product = try JSONDecoder().decode([Product].self, from: data)
+        AF.request(url).validate().responseDecodable(of: [Product].self) { data in
+            switch data.result {
+            case .success(let product):
                 completion(product)
-            } catch let error {
-                print("Error:\(error.localizedDescription)")
+            case .failure(let error):
+                print(error)
                 completion([])
             }
         }
-        )
-        task.resume()
     }
 }
