@@ -207,10 +207,10 @@ class SecondMainViewController: UIViewController {
     }
     
     private func hideSkeletons() {
-        collectionView.stopSkeletonAnimation()
-        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
         deliveryHeaderView.stopSkeletonAnimation()
         deliveryHeaderView.hideSkeleton(transition: .crossDissolve(0.25))
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Section Layouts
@@ -511,6 +511,11 @@ extension SecondMainViewController: UICollectionViewDataSource {
             ) as? PromoBannerCollectionViewCell else {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
+            if isLoaded {
+                cell.hideSkeleton()
+                cell.stopSkeletonAnimation()
+            }
+            cell.setupCell()
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(
