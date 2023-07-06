@@ -31,8 +31,10 @@ final class DishViewController: UIViewController {
     // MARK: - UI
     
     private lazy var likeButton: UIButton = {
-        let button = UIButton()
+        let button = UIButton(type: .system)
         button.setImage(AppImage.like_black.uiImage, for: .normal)
+        button.backgroundColor = AppColor.background.uiColor
+        button.tintColor = AppColor.heading.uiColor
         return button
     }()
     
@@ -122,7 +124,7 @@ final class DishViewController: UIViewController {
     
     private func setupConstraints() {
         likeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(57)
+            make.top.equalToSuperview().offset(14)
             make.trailing.equalToSuperview().offset(-14)
             make.size.equalTo(24)
         }
