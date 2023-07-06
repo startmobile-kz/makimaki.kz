@@ -144,11 +144,16 @@ final class OrdersViewController: UIViewController {
     }
    
     private func getOrders() {
-        service.getOrders { orders in
-            DispatchQueue.main.async { [weak self] in
-                self?.order = orders
-                self?.filteredOrders = orders
-                self?.ordersTableView.reloadData()
+        service.getOrdersOfAlamofire { result in
+            switch result {
+            case .success(let orders):
+                DispatchQueue.main.async { [weak self] in
+                    self?.order = orders
+                    self?.filteredOrders = orders
+                    self?.ordersTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
             }
         }
     }

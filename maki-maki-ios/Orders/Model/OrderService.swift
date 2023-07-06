@@ -6,41 +6,17 @@
 //
 
 import Foundation
-
-// MARK: - Network request for products
+import Alamofire
 
  class OrderService {
-    
-    private var urlSession = URLSession.shared
-
-    // MARK: - Load Data
-    // swiftlint:disable all
-     func getOrders(completion: @escaping ([OrdersModel]) -> Void) {
-        let urlString = "https://app.makimaki.kz/api/v1/client/orders?uuid=151eb4a0-ff99-4482-90d2-c4e7c77810dc"
-        
+     
+     func getOrdersOfAlamofire(completion: @escaping (Result<[OrdersModel], AFError>) -> Void) {
+        let urlString =
+         "https://app.makimaki.kz/api/v1/client/orders?uuid=151eb4a0-ff99-4482-90d2-c4e7c77810dc"
         guard let url = URL(string: urlString) else { return }
-        
-        var request = URLRequest(url: url)
-        
-        request.setValue("Application/json", forHTTPHeaderField: "Content-Type")
-        request.httpMethod = "GET"
-        
-        let task = urlSession.dataTask(with: request, completionHandler: { data, _, error in
-            guard let data = data else {
-                    fatalError("Data not found")
-            }
-            
-            do {
-                let order = try JSONDecoder().decode([OrdersModel].self, from: data)
-                completion(order)
-            } catch let error {
-                print("Error:\(error.localizedDescription)")
-                completion([])
-            }
+         
+        AF.request(url).responseDecodable(of: [OrdersModel].self) { data in
+            completion(data.result)
         }
-        )
-        
-        task.resume()
     }
-    // swiftlint:enable all
  }

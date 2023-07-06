@@ -172,10 +172,11 @@ final class OrdersTableHeaderView: UIView {
     public func setUp(model: OrdersModel, section: Int) {
         self.section = section
         cafeNameLabel.text = model.name 
-        orderStatusLabel.text = "\(model.status)"
         if model.status == 7 {
+            orderStatusLabel.text = "Delivered"
             orderStatusLabel.backgroundColor = AppColor.green.uiColor
         } else {
+            orderStatusLabel.text = "Cancelled"
             orderStatusLabel.backgroundColor = AppColor.red.uiColor
         }
         orderPriceLabel.text = "\(model.finalTotal)"
