@@ -108,6 +108,7 @@ final class DishViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         [
+            likeButton,
             dishImageView,
             productNameLabel,
             descriptionLabel,
