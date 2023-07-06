@@ -10,7 +10,7 @@ import SnapKit
 import SkeletonView
 
 // swiftlint:disable all
-class SecondMainViewController: UIViewController {
+final class SecondMainViewController: UIViewController {
     
     // MARK: - State
     
