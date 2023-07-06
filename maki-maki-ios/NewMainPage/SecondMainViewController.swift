@@ -31,6 +31,7 @@ class SecondMainViewController: UIViewController {
     static let notificationName = Notification.Name("scrolledToSection")
     private var isLoaded = false {
         didSet {
+            hideSkeletons()
             calculateAllSectionHeights()
             collectionView.reloadData()
         }
@@ -208,8 +209,8 @@ class SecondMainViewController: UIViewController {
     private func hideSkeletons() {
         collectionView.stopSkeletonAnimation()
         collectionView.hideSkeleton(transition: .crossDissolve(0.25))
-        viewCartContainerView.stopSkeletonAnimation()
-        viewCartContainerView.hideSkeleton(transition: .crossDissolve(0.25))
+        deliveryHeaderView.stopSkeletonAnimation()
+        deliveryHeaderView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Section Layouts
@@ -312,7 +313,7 @@ class SecondMainViewController: UIViewController {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
-//                self?.isLoaded = true
+                self?.isLoaded = true
             case .failure(let error):
                 print(error.localizedDescription)
             }
@@ -398,6 +399,9 @@ class SecondMainViewController: UIViewController {
 
 extension SecondMainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
+        if !isLoaded {
+            return
+        }
         let controller = ManageAdressesViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }
