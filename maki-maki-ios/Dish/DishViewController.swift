@@ -30,6 +30,12 @@ final class DishViewController: UIViewController {
     
     // MARK: - UI
     
+    private lazy var likeButton: UIButton = {
+        let button = UIButton()
+        button.setImage(AppImage.like_black.uiImage, for: .normal)
+        return button
+    }()
+    
     private lazy var dishImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = AppImage.pizza_image.uiImage
