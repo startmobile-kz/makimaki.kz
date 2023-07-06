@@ -46,6 +46,7 @@ class SecondMainViewController: UIViewController {
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
         let view = DeliveryHeaderView()
         view.delegate = self
+        view.isSkeletonable = true
         return view
     }()
     
@@ -198,6 +199,7 @@ class SecondMainViewController: UIViewController {
         collectionView.prepareSkeleton { [weak self] _ in
             self?.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
         }
+        deliveryHeaderView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) { [weak self] in
             self?.collectionView.reloadData()
         }
