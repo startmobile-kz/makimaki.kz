@@ -13,8 +13,16 @@ final class SelectLocationViewController: UIViewController {
     
     // MARK: - State
     
-    private var addresses: [Address] = []
-        
+    private let addressService = AddressService()
+    
+    let newAddress = Address(id: UUID(),
+                             street: "ddd",
+                             latitude: 44.55,
+                             longitude: 55.66,
+                             house: "45",
+                             flat: "44",
+                             type: "home")
+    
     // MARK: - Map View UI
     
     private lazy var mapView: UIView = {
@@ -84,7 +92,6 @@ final class SelectLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
         setupConstraints()
         setupYandexMap()
@@ -180,26 +187,22 @@ final class SelectLocationViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func saveAddressButtonDidPressed() {
-        guard let text = locationTextField.text else {
-            return
+        addressService.saveAddress(address: newAddress)
+        
+        var savedAddresses = addressService.fetchAddresses()
+        
+        if let firstAddress = savedAddresses.first {
+            var updatedAddress = firstAddress
+            updatedAddress.street = "456 Elm St"
+            addressService.updateAddress(address: updatedAddress)
         }
-            
-        var address = Address(
-            id: UUID(),
-            street: text,
-            latitude: 28.751574,
-            longitude: 24.751574,
-            house: "",
-            flat: "",
-            type: choiceLocationSegmentedController.selectedSegmentIndex)
         
-        addresses.append(address)
+        if let last = savedAddresses.last {
+            addressService.deleteAddress(address: last)
+        }
         
-        let encodedData = try? JSONEncoder().encode(addresses)
-        let defaults = UserDefaults.standard
-            defaults.set(encodedData, forKey: "address")
-    
-        let controller = ManageAdressesViewController()
-        self.navigationController?.pushViewController(controller, animated: true)
+        savedAddresses = addressService.fetchAddresses()
+        print(savedAddresses)
     }
+
 }
