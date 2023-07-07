@@ -61,9 +61,9 @@ final class SelectLocationViewController: UIViewController {
     
     private lazy var choiceLocationSegmentedController: UISegmentedControl = {
         let control = UISegmentedControl(
-            first: LocationType.home.description,
-            second: LocationType.work.description,
-            third: LocationType.other.description)
+            first: "Home",
+            second: "Home",
+            third: "Home")
         control.layer.cornerRadius = 12
         control.layer.masksToBounds = true
         control.clipsToBounds = true
