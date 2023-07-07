@@ -221,6 +221,8 @@ final class DishViewController: UIViewController {
         dishImageView.kf.setImage(with: url)
     }
     
+    // MARK: - Add Product to Favorites
+    
     @objc func onFavoriteButtonPressed() {
         self.dismiss(animated: true, completion: nil)
     }
