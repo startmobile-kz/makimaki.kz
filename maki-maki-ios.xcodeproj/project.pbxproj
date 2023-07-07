@@ -332,8 +332,8 @@
 				1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */,
 				1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */,
 				1D26D70D2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift */,
-				F1E293072A581ED9002C798A /* CoreDataSearch.xcdatamodeld */,
 				F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */,
+				F1E293072A581ED9002C798A /* CoreDataSearch.xcdatamodeld */,
 			);
 			path = Search;
 			sourceTree = "<group>";
