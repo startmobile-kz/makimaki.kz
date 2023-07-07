@@ -35,6 +35,7 @@ final class DishViewController: UIViewController {
         button.setImage(AppImage.like_black.uiImage, for: .normal)
         button.backgroundColor = AppColor.background.uiColor
         button.tintColor = AppColor.heading.uiColor
+        button.addTarget(self, action: #selector(onFavoriteButtonPressed), for: .touchUpInside)
         return button
     }()
     
@@ -218,5 +219,9 @@ final class DishViewController: UIViewController {
         descriptionLabel.text = product.description
         let url = URL(string: product.image ?? " ")
         dishImageView.kf.setImage(with: url)
+    }
+    
+    @objc func onFavoriteButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
 }
