@@ -117,6 +117,7 @@
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 		F1E293032A543467002C798A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E293022A543467002C798A /* User.swift */; };
 		F1E293092A581ED9002C798A /* CoreDataSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1E293072A581ED9002C798A /* CoreDataSearch.xcdatamodeld */; };
+		F1E2930B2A58208A002C798A /* SaveRecentSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -245,6 +246,7 @@
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1E293022A543467002C798A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		F1E293082A581ED9002C798A /* CoreDataSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataSearch.xcdatamodel; sourceTree = "<group>"; };
+		F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecentSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -331,6 +333,7 @@
 				1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */,
 				1D26D70D2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift */,
 				F1E293072A581ED9002C798A /* CoreDataSearch.xcdatamodeld */,
+				F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1094,6 +1097,7 @@
 				261494F02A3A598800767D1B /* StepperView.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				260815B42A4A168300751BDC /* ReorderCell.swift in Sources */,
+				F1E2930B2A58208A002C798A /* SaveRecentSearch.swift in Sources */,
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
