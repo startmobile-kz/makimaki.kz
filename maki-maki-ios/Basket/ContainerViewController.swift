@@ -102,14 +102,29 @@ class ContainerView: UIView {
     }
 
     // MARK: - Public
-
+    private let formatter = NumberFormatter()
     public func setup(with totalSum: Int) {
-        priceLabel.text = "\(totalSum) ₸"
+        priceLabel.text = "\(totalSum.formattedWithSeparator) ₸"
     }
     
     // MARK: - Action
     
     @objc func checkoutPressed() {
         self.delegate?.checkoutPressed()
+    }
+}
+
+extension Formatter {
+    static let withSeparator: NumberFormatter = {
+        let formatter = NumberFormatter()
+        formatter.groupingSeparator = " "
+        formatter.numberStyle = .decimal
+        return formatter
+    }()
+}
+
+extension Int {
+    var formattedWithSeparator: String {
+        return Formatter.withSeparator.string(for: self) ?? ""
     }
 }
