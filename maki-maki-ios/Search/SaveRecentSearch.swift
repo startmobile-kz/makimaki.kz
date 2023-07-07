@@ -22,7 +22,7 @@ func saveRecentSearch(name: String) {
         appDelegate.persistentContainer.viewContext
     
     let entity =
-        NSEntityDescription.entity(forEntityName: "SearchHistory",
+        NSEntityDescription.entity(forEntityName: "Recent",
                                in: managedContext)!
     
     let searchHistory = NSManagedObject(entity: entity,
