@@ -9,16 +9,49 @@ import Foundation
 
 class AddressService {
     
-    func saveAddress() {
+    private let addressesKey = "addressKey"
+    
+    func saveAddress(address: Address) {
+        var savedAddresses = fetchAddresses()
+        savedAddresses.append(address)
+        
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(savedAddresses) {
+            UserDefaults.standard.set(encodedData, forKey: addressesKey)
+        }
     }
     
-    func deleteAddress(){
+    func deleteAddress(address: Address) {
+        var savedAddresses = fetchAddresses()
+        if let index = savedAddresses.firstIndex(where: {$0.id == address.id}) {
+            savedAddresses.remove(at: index)
+        }
+        
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(savedAddresses) {
+            UserDefaults.standard.set(encodedData, forKey: addressesKey)
+        }
     }
     
-    func fetchAddress() -> [Address]{
+    func fetchAddresses() -> [Address] {
+        if let savedData = UserDefaults.standard.data(forKey: addressesKey) {
+            let decoder = JSONDecoder()
+            if let decodedData = try? decoder.decode([Address].self, from: savedData) {
+                return decodedData
+            }
+        }
         return []
     }
     
-    func updateAddress(){
+    func updateAddress(address: Address) {
+        var savedAddresses = fetchAddresses()
+        if let index = savedAddresses.firstIndex(where: {$0.id == address.id}) {
+            savedAddresses[index] = address
+        }
+        
+        let encoder = JSONEncoder()
+        if let encodedData = try? encoder.encode(savedAddresses) {
+            UserDefaults.standard.set(encodedData, forKey: addressesKey)
+        }
     }
 }
