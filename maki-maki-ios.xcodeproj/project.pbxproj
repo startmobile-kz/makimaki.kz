@@ -70,6 +70,7 @@
 		68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68C3EC352A27A31A009A0E02 /* MainViewController.swift */; };
 		68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */; };
 		68D810372A286DB600D29827 /* SectionHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D810362A286DB600D29827 /* SectionHeaderView.swift */; };
+		68E768012A59B89400D5A7B6 /* CoreData.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 68E767FF2A59B89400D5A7B6 /* CoreData.xcdatamodeld */; };
 		7720EEF02A23996100A01669 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */; };
 		773799302A36433800E2CF7F /* AuthEndpoint.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7737992F2A36433800E2CF7F /* AuthEndpoint.swift */; };
 		773799332A36439700E2CF7F /* NSError+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 773799322A36439700E2CF7F /* NSError+Extensions.swift */; };
@@ -193,6 +194,7 @@
 		68C3EC352A27A31A009A0E02 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		68D810342A2867A000D29827 /* RestaurantCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RestaurantCollectionViewCell.swift; sourceTree = "<group>"; };
 		68D810362A286DB600D29827 /* SectionHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionHeaderView.swift; sourceTree = "<group>"; };
+		68E768002A59B89400D5A7B6 /* CoreData.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreData.xcdatamodel; sourceTree = "<group>"; };
 		7720EEED2A2382FE00A01669 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7737992F2A36433800E2CF7F /* AuthEndpoint.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthEndpoint.swift; sourceTree = "<group>"; };
 		773799322A36439700E2CF7F /* NSError+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSError+Extensions.swift"; sourceTree = "<group>"; };
@@ -475,6 +477,14 @@
 			path = MainPage;
 			sourceTree = "<group>";
 		};
+		68E768022A59B89800D5A7B6 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				68E767FF2A59B89400D5A7B6 /* CoreData.xcdatamodeld */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
 		773799282A36424C00E2CF7F /* Managers */ = {
 			isa = PBXGroup;
 			children = (
@@ -731,6 +741,7 @@
 				0349DDE62A3AD62500BACD4F /* Payments */,
 				B423AD5D2A4567BB00B3AB7C /* AddCreditCard */,
 				0349DDF22A3BABEA00BACD4F /* Payment Method */,
+				68E768022A59B89800D5A7B6 /* CoreData */,
 			);
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
@@ -1026,6 +1037,7 @@
 				03F45A172A45070B00BC23B9 /* BasketService.swift in Sources */,
 				9F2380582A49C6AA0029A5DD /* SectionProductsType.swift in Sources */,
 				9F61734A2A2E655B00299E56 /* BasketViewController.swift in Sources */,
+				68E768012A59B89400D5A7B6 /* CoreData.xcdatamodeld in Sources */,
 				F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */,
 				0349DDEA2A3AD64800BACD4F /* PaymentsViewController.swift in Sources */,
 				B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */,
@@ -1400,6 +1412,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		68E767FF2A59B89400D5A7B6 /* CoreData.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				68E768002A59B89400D5A7B6 /* CoreData.xcdatamodel */,
+			);
+			currentVersion = 68E768002A59B89400D5A7B6 /* CoreData.xcdatamodel */;
+			path = CoreData.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE9623572A132B1A00C36D03 /* Project object */;
 }
