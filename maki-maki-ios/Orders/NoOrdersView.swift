@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class NoOrdersView: UIView {
     
@@ -16,6 +17,7 @@ final class NoOrdersView: UIView {
         let imageView = UIImageView()
         imageView.image = AppImage.no_orders.uiImage
         imageView.contentMode = .scaleAspectFill
+        imageView.isSkeletonable = true
         return imageView
     }()
     
@@ -25,6 +27,7 @@ final class NoOrdersView: UIView {
         label.textAlignment = .center
         label.textColor = AppColor.heading.uiColor
         label.font = AppFont.bold.s24()
+        label.isSkeletonable = true
         return label
     }()
     
@@ -34,6 +37,7 @@ final class NoOrdersView: UIView {
         label.textAlignment = .center
         label.textColor = AppColor.paragraph.uiColor
         label.font = AppFont.reqular.s14()
+        label.isSkeletonable = true
         return label
     }()
     
@@ -53,6 +57,8 @@ final class NoOrdersView: UIView {
     // MARK: - Setup Views
     
     private func setupViews() {
+        isSkeletonable = true
+        // contentView.isSkeletonable = true
         [noOrdersImageView, noOrderslabel, proposalLabel].forEach { addSubview($0) }
     }
     

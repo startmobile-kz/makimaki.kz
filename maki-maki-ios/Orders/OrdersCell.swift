@@ -7,6 +7,7 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class OrdersCell: UITableViewCell {
     
@@ -21,6 +22,7 @@ final class OrdersCell: UITableViewCell {
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -29,6 +31,7 @@ final class OrdersCell: UITableViewCell {
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -37,6 +40,7 @@ final class OrdersCell: UITableViewCell {
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
         label.textAlignment = .center
+        label.isSkeletonable = true
         return label
     }()
     
@@ -56,6 +60,10 @@ final class OrdersCell: UITableViewCell {
     // MARK: - Setup Views
     
     private func setupViews() {
+        
+        isSkeletonable = true
+        contentView.isSkeletonable = true
+        
         contentView.backgroundColor = AppColor.background.uiColor
         [orderCountLabel, orderListLabel, costOrderLabel].forEach { contentView.addSubview($0) }
     }
