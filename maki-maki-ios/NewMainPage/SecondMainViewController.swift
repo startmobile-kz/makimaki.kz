@@ -7,9 +7,10 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 // swiftlint:disable all
-class SecondMainViewController: UIViewController {
+final class SecondMainViewController: UIViewController {
     
     // MARK: - State
     
@@ -30,6 +31,7 @@ class SecondMainViewController: UIViewController {
     static let notificationName = Notification.Name("scrolledToSection")
     private var isLoaded = false {
         didSet {
+            hideSkeletons()
             calculateAllSectionHeights()
             collectionView.reloadData()
         }
@@ -45,6 +47,7 @@ class SecondMainViewController: UIViewController {
     private lazy var deliveryHeaderView: DeliveryHeaderView = {
         let view = DeliveryHeaderView()
         view.delegate = self
+        view.isSkeletonable = true
         return view
     }()
     
@@ -82,6 +85,8 @@ class SecondMainViewController: UIViewController {
             forCellWithReuseIdentifier: ProductCollectionViewCell.reuseID
         )
         collectionView.showsVerticalScrollIndicator = false
+        collectionView.isSkeletonable = true
+        collectionView.isUserInteractionDisabledWhenSkeletonIsActive = false
         return collectionView
     }()
     
@@ -100,6 +105,7 @@ class SecondMainViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNotificationObservers()
+        showSkeletonAnimation()
         fetchCategoriesWithProducts()
     }
     
@@ -153,7 +159,6 @@ class SecondMainViewController: UIViewController {
             make.leading.trailing.equalToSuperview()
             make.height.equalTo(85)
         }
-        self.view.layoutIfNeeded()
     }
     
     // MARK: - SetupNavigationBar
@@ -187,6 +192,25 @@ class SecondMainViewController: UIViewController {
             name: CategoryMenuView.notificationName,
             object: nil
         )
+    }
+    
+    // MARK: - SetupSkeletons
+    
+    private func showSkeletonAnimation() {
+        collectionView.prepareSkeleton { [weak self] _ in
+            self?.collectionView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        }
+        deliveryHeaderView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.1) { [weak self] in
+            self?.collectionView.reloadData()
+        }
+    }
+    
+    private func hideSkeletons() {
+        deliveryHeaderView.stopSkeletonAnimation()
+        deliveryHeaderView.hideSkeleton(transition: .crossDissolve(0.25))
+        collectionView.stopSkeletonAnimation()
+        collectionView.hideSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - Section Layouts
@@ -239,12 +263,16 @@ class SecondMainViewController: UIViewController {
         )
         // Section
         let section = NSCollectionLayoutSection(group: group)
+    
         section.contentInsets = NSDirectionalEdgeInsets(
             top: 4,
             leading: 16,
             bottom: 16,
             trailing: 0
         )
+        if !isLoaded {
+            section.contentInsets.top = 25
+        }
         section.interGroupSpacing = 14
         switch sectionIndex {
         case 1:
@@ -371,6 +399,9 @@ class SecondMainViewController: UIViewController {
 
 extension SecondMainViewController: DeliveryHeaderViewDelegate {
     func viewWasTapped() {
+        if !isLoaded {
+            return
+        }
         let controller = ManageAdressesViewController()
         self.navigationController?.pushViewController(controller, animated: true)
     }
@@ -394,7 +425,6 @@ extension SecondMainViewController: DeliveryHeaderViewDelegate {
 extension SecondMainViewController: UICollectionViewDelegate {
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         if isLoaded {
-            
             if !isScrollToSectionCalled {
                 let yOffset = scrollView.contentOffset.y
                 let heightOfOneRowOfItems: Double = 242
@@ -456,7 +486,7 @@ extension SecondMainViewController: UICollectionViewDelegate {
 extension SecondMainViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return sections.count + 8
+        return categoriesAndNames.count + 1
     }
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -481,6 +511,11 @@ extension SecondMainViewController: UICollectionViewDataSource {
             ) as? PromoBannerCollectionViewCell else {
                 fatalError("Could not cast to PromoBannerCollectionViewCell")
             }
+            if isLoaded {
+                cell.hideSkeleton()
+                cell.stopSkeletonAnimation()
+            }
+            cell.setupCell()
             return cell
         default:
             guard let cell = collectionView.dequeueReusableCell(
@@ -542,6 +577,37 @@ extension SecondMainViewController: DishViewControllerDelegate {
         
         setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
+    }
+}
+
+// MARK: - SkeletonCollectionViewDataSource
+
+extension SecondMainViewController: SkeletonCollectionViewDataSource {
+    
+    func numSections(in collectionSkeletonView: UICollectionView) -> Int {
+        return 2
+    }
+    
+    func collectionSkeletonView(_ skeletonView: UICollectionView,numberOfItemsInSection section: Int)
+    -> Int {
+        switch section {
+        case 0:
+            return 5
+        default:
+            return 8
+        }
+    }
+    func collectionSkeletonView(
+        _ skeletonView: UICollectionView,
+        cellIdentifierForItemAt indexPath: IndexPath
+    ) -> SkeletonView.ReusableCellIdentifier {
+        let section = indexPath.section
+        switch section {
+        case 0:
+            return PromoBannerCollectionViewCell.reuseID
+        default:
+            return ProductCollectionViewCell.reuseID
+        }
     }
 }
 // swiftlint:enable all
