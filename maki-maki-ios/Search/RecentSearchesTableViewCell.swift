@@ -11,6 +11,7 @@ import SnapKit
 final class RecentSearchesTableViewCell: UITableViewCell {
 
     static let reuseID = String(describing: RecentSearchesTableViewCell.self)
+    private let recentSearchService = RecentSearchService()
     
     // MARK: - UI
     
@@ -72,7 +73,13 @@ final class RecentSearchesTableViewCell: UITableViewCell {
         }
     }
     
+    // MARK: - Public Methods
+    
     public func setupData(history: History) {
         recentSearchLabel.text = history.name
+    }
+    
+    public func saveRecentSearch(name: String) {
+        recentSearchService.createRecentSearch(name: name)
     }
 }
