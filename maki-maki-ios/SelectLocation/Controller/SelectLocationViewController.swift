@@ -15,14 +15,6 @@ final class SelectLocationViewController: UIViewController {
     
     private let addressService = AddressService()
     
-    let newAddress = Address(id: UUID(),
-                             street: "ddd",
-                             latitude: 44.55,
-                             longitude: 55.66,
-                             house: "45",
-                             flat: "44",
-                             type: "home")
-    
     // MARK: - Map View UI
     
     private lazy var mapView: UIView = {
@@ -187,22 +179,20 @@ final class SelectLocationViewController: UIViewController {
     // MARK: - Actions
     
     @objc private func saveAddressButtonDidPressed() {
+        guard let text = locationTextField.text  else {
+            return
+        }
+
+        let newAddress = Address(id: UUID(),
+                                 street: text,
+                                 latitude: 43.297601,
+                                 longitude: 76.974137,
+                                 house: "45",
+                                 flat: "44",
+                                 type: "home")
+        
         addressService.saveAddress(address: newAddress)
-        
-        var savedAddresses = addressService.fetchAddresses()
-        
-        if let firstAddress = savedAddresses.first {
-            var updatedAddress = firstAddress
-            updatedAddress.street = "456 Elm St"
-            addressService.updateAddress(address: updatedAddress)
-        }
-        
-        if let last = savedAddresses.last {
-            addressService.deleteAddress(address: last)
-        }
-        
-        savedAddresses = addressService.fetchAddresses()
-        print(savedAddresses)
+        self.navigationController?.popToRootViewController(animated: true)
     }
 
 }

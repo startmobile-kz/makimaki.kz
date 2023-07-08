@@ -11,13 +11,19 @@ import SnapKit
 final class ManageAdressesViewController: UIViewController {
     
     // MARK: - State
-
-    var addresses: [Address] = []
-       
+    
+    var addresses: [Address] = [] {
+        didSet {
+            tableView.reloadData()
+        }
+    }
+    
+    private let service: AddressService = AddressService()
+    
     // MARK: - UI
     
     private lazy var savedAddressesLabel: UILabel = {
-       let lable = UILabel()
+        let lable = UILabel()
         lable.text = "SAVED ADDRESSES"
         lable.font = AppFont.medium.s15()
         lable.textColor = AppColor.paragraph.uiColor
@@ -41,7 +47,8 @@ final class ManageAdressesViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        print(UserDefaults.standard.data(forKey: "address"))
+        
+        loadAddreses()
     }
     
     // MARK: - Setup Views
@@ -71,12 +78,24 @@ final class ManageAdressesViewController: UIViewController {
             make.top.equalToSuperview().offset(122)
         }
     }
+    
+    // MARK: - Load Data
+    
+    private func loadAddreses() {
+        addresses = service.fetchAddresses()
+    }
+    
+    // MARK: - Actions
+    
+    @objc private func addButtonDidPress() {
+        self.navigationController?.pushViewController(SelectLocationViewController(), animated: true)
+    }
 }
 
 // MARK: - Extension: ManageAdressesViewController
 
 extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSource {
-   func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return addresses.count
     }
     
@@ -95,20 +114,26 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
     }
-        
+    
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         tableView.beginUpdates()
+        let currentAddress = addresses[indexPath.row]
+        service.deleteAddress(address: currentAddress)
         addresses.remove(at: indexPath.row)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.endUpdates()
     }
-
+    
     // MARK: - Footer
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
-        let footer = tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer")
+        let footer =
+            tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer") as? AddressTableViewFooterView
+        footer?.addNewAddressButton.addTarget(self,
+                                              action: #selector(addButtonDidPress),
+                                              for: .touchUpInside)
         return footer
     }
 }
