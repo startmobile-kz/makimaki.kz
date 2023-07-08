@@ -9,31 +9,63 @@ import Foundation
 import CoreData
 import UIKit
 
-func saveRecentSearch(name: String) {
+class RecentSearchService {
     
-    var searchObject: [NSManagedObject] = []
+    private let managedContext: NSManagedObjectContext
     
-    guard let appDelegate =
-            UIApplication.shared.delegate as? AppDelegate else {
-        return
+    init() {
+        guard let appDelegate = UIApplication.shared.delegate as? AppDelegate else {
+            fatalError("Unable to access AppDelegate")
+        }
+        
+        managedContext = appDelegate.persistentContainer.viewContext
     }
     
-    let managedContext =
-        appDelegate.persistentContainer.viewContext
+    // Create
+    func createRecentSearch(name: String) {
+        let entity = NSEntityDescription.entity(forEntityName: "Recent", in: managedContext)!
+        let searchHistory = NSManagedObject(entity: entity, insertInto: managedContext)
+        searchHistory.setValue(name, forKeyPath: "name")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not save. \(error), \(error.userInfo)")
+        }
+    }
     
-    let entity =
-        NSEntityDescription.entity(forEntityName: "Recent",
-                               in: managedContext)!
+    // Read
+    func fetchAllRecentSearches() -> [NSManagedObject] {
+        let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Recent")
+        
+        do {
+            let searchObject = try managedContext.fetch(fetchRequest)
+            return searchObject
+        } catch let error as NSError {
+            print("Could not fetch. \(error), \(error.userInfo)")
+            return []
+        }
+    }
     
-    let searchHistory = NSManagedObject(entity: entity,
-                                 insertInto: managedContext)
+    // Update
+    func updateRecentSearch(_ searchObject: NSManagedObject, withName name: String) {
+        searchObject.setValue(name, forKeyPath: "name")
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not update. \(error), \(error.userInfo)")
+        }
+    }
     
-    searchHistory.setValue(name, forKeyPath: "name")
-    
-    do {
-        try managedContext.save()
-        searchObject.append(searchHistory)
-    } catch let error as NSError {
-        print("Could not save. \(error), \(error.userInfo)")
+    // Delete
+    func deleteRecentSearch(_ searchObject: NSManagedObject) {
+        managedContext.delete(searchObject)
+        
+        do {
+            try managedContext.save()
+        } catch let error as NSError {
+            print("Could not delete. \(error), \(error.userInfo)")
+        }
     }
 }
