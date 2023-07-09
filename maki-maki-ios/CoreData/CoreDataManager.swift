@@ -33,6 +33,7 @@ class CoreDataManager {
         let selectedProduct = SelectedProduct(context: context)
         selectedProduct.id = Int16(product.id)
         selectedProduct.count = Int16(product.count)
+        selectedProduct.category = Int16(product.category)
         
         do {
             try context.save()
