@@ -43,5 +43,18 @@ class CoreDataManager {
         }
         return nil
     }
+    
+    func fetchSelectedProducts() -> [SelectedProduct] {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<SelectedProduct>(entityName: "SelectedProduct")
+        
+        do {
+            let selectedProducts = try context.fetch(fetchRequest)
+            return selectedProducts
+        } catch let error {
+            print("Failed to fetch selected products: \(error)")
+        }
+        return []
+    }
 
 }
