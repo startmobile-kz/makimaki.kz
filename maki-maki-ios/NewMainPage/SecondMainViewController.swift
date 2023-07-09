@@ -588,13 +588,17 @@ extension SecondMainViewController: DishViewControllerDelegate {
         collectionView.reloadData()
          
         productsByCategoryMap.values.forEach { products in
-            selectedProducts.append(contentsOf: products.filter({ product in
-                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
-            }))
-        }
-        
-        for product in selectedProducts {
-            CoreDataManager.shared.addSelectedProduct(product: product)
+            for product in products {
+                if product.isSelected && !selectedProducts.contains(where: {$0.id == product.id}) {
+                    selectedProducts.append(product)
+                    CoreDataManager.shared.addSelectedProduct(product: product)
+                } else if selectedProducts.contains(where: {$0.id == product.id}) {
+                    CoreDataManager.shared.updateSelectedProduct(product: product)
+                }
+            }
+//            selectedProducts.append(contentsOf: products.filter({ product in
+//                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
+//            }))
         }
         
         setupViewCartAppearance()
