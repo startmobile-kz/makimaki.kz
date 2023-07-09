@@ -59,7 +59,7 @@ class CoreDataManager {
         let context = persistentContainer.viewContext
         let fetchRequest = NSFetchRequest<SelectedProduct>(entityName: "SelectedProduct")
         fetchRequest.fetchLimit = 1
-        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        fetchRequest.predicate = NSPredicate(format: "id == %d", id)
         
         do {
             let products = try context.fetch(fetchRequest)
@@ -72,7 +72,8 @@ class CoreDataManager {
     
     func updateSelectedProduct(product: RestaurantProduct) {
         let context = persistentContainer.viewContext
-        
+        let selectedProduct = fetchSelectedProduct(withID: product.id)
+        selectedProduct?.count = Int16(product.count)
         do {
             try context.save()
         } catch let error {
