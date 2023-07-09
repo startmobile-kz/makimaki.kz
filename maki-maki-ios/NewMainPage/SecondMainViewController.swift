@@ -411,6 +411,23 @@ final class SecondMainViewController: UIViewController {
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
         basketViewController.selectedDishes = selectedProducts
+        basketViewController.deleteProductCallback = { [weak self] removedProduct in
+            guard let self = self else {
+                return
+            }
+            CoreDataManager.shared.deleteSelectedProduct(product: removedProduct)
+            self.selectedProducts.removeAll(where: { selectedProduct in
+                selectedProduct.id == removedProduct.id
+            })
+            productsByCategoryMap[removedProduct.category]?.forEach({ product in
+                if product.id == removedProduct.id {
+                    product.count = 0
+                }
+            })
+            self.viewCartContainerView.setupData(products: self.selectedProducts)
+            self.setupViewCartAppearance()
+            self.collectionView.reloadData()
+        }
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }

@@ -15,6 +15,8 @@ final class BasketViewController: UIViewController {
     
     public var selectedDishes: [RestaurantProduct] = []
     
+    var deleteProductCallback: ((RestaurantProduct) -> Void)?
+    
     // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
@@ -131,7 +133,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
             if editingStyle == .delete {
-                CoreDataManager.shared.deleteSelectedProduct(product: selectedDishes[indexPath.row])
+                deleteProductCallback?(selectedDishes[indexPath.row])
                 selectedDishes.remove(at: indexPath.row)
                 tableView.deleteRows(at: [indexPath], with: .fade)
                 configureContainerView()
