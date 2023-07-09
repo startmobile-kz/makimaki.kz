@@ -14,6 +14,16 @@ class CoreDataManager {
     
     let shared = CoreDataManager()
     
+    let persistentContainer: NSPersistentContainer = {
+        let container = NSPersistentContainer(name: "CoreDataContainer")
+        container.loadPersistentStores { _, error in
+            if let error = error {
+                fatalError("Loading of store failed \(error)")
+            }
+        }
+        return container
+    }()
+    
     // MARK: Lifecycle
     
     private init() {}
