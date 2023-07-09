@@ -8,12 +8,7 @@
 import UIKit
 import SnapKit
 
-final class DeliveryFooterView: UITableViewHeaderFooterView {
-
-    public static let reuseIdentifier = String(describing: DeliveryFooterView.self)
-
-    // MARK: - UI
-    
+class DeliveryFooterView: UITableViewHeaderFooterView {
     private lazy var courierBackgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "courier_background")
@@ -42,33 +37,26 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
         label.textColor = AppColor.paragraph.uiColor
         return label
     }()
-
-    // MARK: - LifeCycle
-
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         setupViews()
-        setupConstaints()
-
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
     
-    // MARK: - Setup Views
-    
     private func setupViews() {
-        contentView.addSubview(courierBackgroundImageView)
-        contentView.addSubview(courierImageView)
-        contentView.addSubview(deliveryLabel)
-        contentView.addSubview(deliveryPriceLabel)
+        addSubview(courierBackgroundImageView)
+        addSubview(courierImageView)
+        addSubview(deliveryLabel)
+        addSubview(deliveryPriceLabel)
     }
     
-    // MARK: - Setup Constraints
-    
-    private func setupConstaints() {
+    private func setupConstraints() {
         courierBackgroundImageView.snp.makeConstraints { make in
             make.size.equalTo(70)
             make.centerY.equalToSuperview()
@@ -89,5 +77,4 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
             make.trailing.equalToSuperview().offset(-16)
         }
     }
-
 }

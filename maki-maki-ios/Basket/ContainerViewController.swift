@@ -12,12 +12,7 @@ protocol CheckoutButtonDelegate: AnyObject {
     func checkoutPressed()
 }
 
-class ContainerView: UIView {
-    
-    var delegate: CheckoutButtonDelegate?
-
-    // MARK: - UI
-    
+class ContainerView: UIView {    
     private lazy var dividerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "divider")
@@ -34,7 +29,6 @@ class ContainerView: UIView {
     
     private lazy var priceLabel: UILabel = {
         let label = UILabel()
-        label.text = "$43.95"
         label.font = AppFont.semibold.s24()
         label.textColor = AppColor.heading.uiColor
         return label
@@ -47,36 +41,31 @@ class ContainerView: UIView {
         button.setTitle("CHECKOUT", for: .normal)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
-        button.addTarget(self, action: #selector(checkoutPressed), for: .touchUpInside)
+        button.addTarget(self, action: #selector(checkoutButtonTapped), for: .touchUpInside)
         return button
     }()
     
-    // MARK: - LifeCycle
-
+    weak var delegate: CheckoutButtonDelegate?
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-
+        
         setupViews()
-        setupConstrains()
+        setupConstraints()
     }
-
+    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-
-    // MARK: - Setup Views
     
     private func setupViews() {
-        self.backgroundColor = .white
-        
-        [dividerImage, totalLabel, priceLabel, checkoutButton].forEach {
-            addSubview($0)
-        }
+        addSubview(dividerImage)
+        addSubview(totalLabel)
+        addSubview(priceLabel)
+        addSubview(checkoutButton)
     }
     
-    // MARK: - Setup Constrains
-    
-    private func setupConstrains() {
+    private func setupConstraints() {
         dividerImage.snp.makeConstraints { make in
             make.top.equalToSuperview()
             make.leading.equalToSuperview().offset(16)
@@ -96,21 +85,18 @@ class ContainerView: UIView {
         checkoutButton.snp.makeConstraints { make in
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.bottom.equalToSuperview()
+            make.bottom.equalToSuperview().offset(-5)
             make.height.equalTo(53)
         }
-    }
-
-    // MARK: - Public
-    private let formatter = NumberFormatter()
-    public func setup(with totalSum: Int) {
-        priceLabel.text = "\(totalSum.formattedWithSeparator) ₸"
+        
     }
     
-    // MARK: - Action
+    func setup(with totalPrice: Int) {
+        priceLabel.text = "\(totalPrice.formattedWithSeparator) ₸"
+    }
     
-    @objc func checkoutPressed() {
-        self.delegate?.checkoutPressed()
+    @objc private func checkoutButtonTapped() {
+        delegate?.checkoutPressed()
     }
 }
 
