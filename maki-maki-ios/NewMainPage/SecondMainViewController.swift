@@ -575,6 +575,10 @@ extension SecondMainViewController: DishViewControllerDelegate {
             }))
         }
         
+        for product in selectedProducts {
+            CoreDataManager.shared.addSelectedProduct(product: product)
+        }
+        
         setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
     }
