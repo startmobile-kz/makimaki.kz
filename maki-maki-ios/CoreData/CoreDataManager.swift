@@ -27,5 +27,21 @@ class CoreDataManager {
     // MARK: Lifecycle
     
     private init() {}
+    
+    func addSelectedProduct(product: RestaurantProduct) -> SelectedProduct? {
+        let context = persistentContainer.viewContext
+        
+        let selectedProduct = SelectedProduct(context: context)
+        selectedProduct.id = Int16(product.id)
+        selectedProduct.count = Int16(product.count)
+        
+        do {
+            try context.save()
+            return selectedProduct
+        } catch let error {
+            print("Failed to add: \(error)")
+        }
+        return nil
+    }
 
 }
