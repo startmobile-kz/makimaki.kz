@@ -30,7 +30,6 @@ class CoreDataManager {
     
     func addSelectedProduct(product: RestaurantProduct) -> SelectedProduct? {
         let context = persistentContainer.viewContext
-        
         let selectedProduct = SelectedProduct(context: context)
         selectedProduct.id = Int16(product.id)
         selectedProduct.count = Int16(product.count)
@@ -57,6 +56,21 @@ class CoreDataManager {
         return []
     }
     
+    func fetchSelectedProduct(withID id: Int) -> SelectedProduct? {
+        let context = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<SelectedProduct>(entityName: "SelectedProduct")
+        fetchRequest.fetchLimit = 1
+        fetchRequest.predicate = NSPredicate(format: "id == %@", id)
+        
+        do {
+            let products = try context.fetch(fetchRequest)
+            return products.first
+        } catch let error {
+            print("Failed to fetch: \(error)")
+        }
+        return nil
+    }
+    
     func updateSelectedProduct(product: RestaurantProduct) {
         let context = persistentContainer.viewContext
         
@@ -64,6 +78,22 @@ class CoreDataManager {
             try context.save()
         } catch let error {
             print("Failed to update: \(error)")
+        }
+    }
+    
+    func deleteSelectedProduct(product: RestaurantProduct) {
+        let context = persistentContainer.viewContext
+        
+        guard let selectedProduct = fetchSelectedProduct(withID: product.id) else {
+            print("Couldn't fetch product with this id.")
+            return
+        }
+        context.delete(selectedProduct)
+        
+        do {
+            try context.save()
+        } catch let error {
+            print("Failed to delete: \(error)")
         }
     }
 }
