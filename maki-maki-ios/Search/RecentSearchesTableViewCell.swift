@@ -7,9 +7,10 @@
 
 import UIKit
 import SnapKit
+import CoreData
 
 final class RecentSearchesTableViewCell: UITableViewCell {
-
+    
     static let reuseID = String(describing: RecentSearchesTableViewCell.self)
     private let recentSearchService = RecentSearchService()
     
@@ -80,6 +81,7 @@ final class RecentSearchesTableViewCell: UITableViewCell {
     }
     
     public func saveRecentSearch(name: String) {
+        let recentSearchService = RecentSearchService()
         recentSearchService.createRecentSearch(name: name)
     }
 }
