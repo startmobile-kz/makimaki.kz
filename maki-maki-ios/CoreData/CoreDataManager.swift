@@ -95,4 +95,21 @@ class CoreDataManager {
             print("Failed to delete: \(error)")
         }
     }
+    
+    func deleteData() {
+        let context:NSManagedObjectContext = persistentContainer.viewContext
+        let fetchRequest = NSFetchRequest<NSFetchRequestResult>(entityName: "SelectedProduct")
+        fetchRequest.returnsObjectsAsFaults = false
+        do {
+            let results = try context.fetch(fetchRequest)
+            for managedObject in results {
+                if let managedObjectData: NSManagedObject = managedObject as? NSManagedObject {
+                    context.delete(managedObjectData)
+                }
+            }
+            try context.save()
+        } catch let error as NSError {
+            print("Deleted all my data in myEntity error : \(error) \(error.userInfo)")
+        }
+    }
 }
