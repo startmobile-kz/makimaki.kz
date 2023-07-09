@@ -28,7 +28,7 @@ class CoreDataManager {
     
     private init() {}
     
-    func addSelectedProduct(product: RestaurantProduct) -> SelectedProduct? {
+    func addSelectedProduct(product: RestaurantProduct) {
         let context = persistentContainer.viewContext
         let selectedProduct = SelectedProduct(context: context)
         selectedProduct.id = Int16(product.id)
@@ -36,11 +36,9 @@ class CoreDataManager {
         
         do {
             try context.save()
-            return selectedProduct
         } catch let error {
             print("Failed to add: \(error)")
         }
-        return nil
     }
     
     func fetchSelectedProducts() -> [SelectedProduct] {
