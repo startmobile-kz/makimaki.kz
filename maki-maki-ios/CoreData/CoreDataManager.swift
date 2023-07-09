@@ -56,5 +56,14 @@ class CoreDataManager {
         }
         return []
     }
-
+    
+    func updateSelectedProduct(product: RestaurantProduct) {
+        let context = persistentContainer.viewContext
+        
+        do {
+            try context.save()
+        } catch let error {
+            print("Failed to update: \(error)")
+        }
+    }
 }
