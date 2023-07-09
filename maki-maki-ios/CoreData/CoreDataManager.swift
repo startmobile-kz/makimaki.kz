@@ -12,10 +12,10 @@ class CoreDataManager {
     
     // MARK: State
     
-    let shared = CoreDataManager()
+    static let shared = CoreDataManager()
     
     let persistentContainer: NSPersistentContainer = {
-        let container = NSPersistentContainer(name: "CoreDataContainer")
+        let container = NSPersistentContainer(name: "CoreData")
         container.loadPersistentStores { _, error in
             if let error = error {
                 fatalError("Loading of store failed \(error)")
