@@ -94,7 +94,7 @@ final class SecondMainViewController: UIViewController {
         let view = ViewCartContainer()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
         view.addGestureRecognizer(tap)
-        view.isSkeletonable = true
+        view.isHiddenWhenSkeletonIsActive = true
         return view
     }()
     
@@ -313,6 +313,7 @@ final class SecondMainViewController: UIViewController {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
+                self?.setupSelectedProducts()
                 self?.isLoaded = true
             case .failure(let error):
                 print(error.localizedDescription)
@@ -358,6 +359,23 @@ final class SecondMainViewController: UIViewController {
             }
             heights.append(neededHeightForChangingSection)
         }
+    }
+    
+    private func setupSelectedProducts() {
+        let productsFromCoreData = CoreDataManager.shared.fetchSelectedProducts()
+        
+        productsFromCoreData.forEach { selectedProduct in
+            let categoryIndex = Int(selectedProduct.category)
+            let products = productsByCategoryMap[categoryIndex] ?? []
+            for product in products {
+                if selectedProduct.id == product.id {
+                    product.count = Int(selectedProduct.count)
+                    selectedProducts.append(product)
+                }
+            }
+        }
+        viewCartContainerView.setupData(products: selectedProducts)
+        setupViewCartAppearance()
     }
     
     private func setupViewCartAppearance() {
