@@ -62,8 +62,8 @@ final class SelectLocationViewController: UIViewController {
     private lazy var choiceLocationSegmentedController: UISegmentedControl = {
         let control = UISegmentedControl(
             first: "Home",
-            second: "Home",
-            third: "Home")
+            second: "Work",
+            third: "Other")
         control.layer.cornerRadius = 12
         control.layer.masksToBounds = true
         control.clipsToBounds = true
@@ -182,14 +182,14 @@ final class SelectLocationViewController: UIViewController {
         guard let text = locationTextField.text  else {
             return
         }
-
+      
         let newAddress = Address(id: UUID(),
                                  street: text,
                                  latitude: 43.297601,
                                  longitude: 76.974137,
                                  house: "45",
                                  flat: "44",
-                                 type: "home")
+                                 type: choiceLocationSegmentedController.selectedSegmentIndex )
         
         addressService.saveAddress(address: newAddress)
         self.navigationController?.popToRootViewController(animated: true)
