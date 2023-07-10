@@ -63,7 +63,6 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         setupConstraints()
         fetchProducts()
         searchContainerView.delegate = self
-
     }
     
     // MARK: - Setup Views
@@ -120,6 +119,11 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
                 for: indexPath
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
+            }
+            if let data = UserDefaults.standard.object(forKey: "key") as? Data {
+                if let decodedHistory = try? JSONDecoder().decode(History.self, from: data) {
+                    searchHistory.append(decodedHistory)
+                }
             }
             cell.setupData(history: searchHistory[indexPath.row])
             return cell
@@ -180,10 +184,18 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     
     func returnButtonTapped(lastWord: String) {
         let historyToAdd = History(name: lastWord)
-        searchHistory.append(historyToAdd)
         if let encoded = try? JSONEncoder().encode(historyToAdd) {
             let userDefaults = UserDefaults.standard
             userDefaults.setValue(encoded, forKey: "key")
+            userDefaults.synchronize()
+            print(encoded)
+        }
+        
+        if let data = UserDefaults.standard.object(forKey: "key") as? Data {
+            if let decodedHistory = try? JSONDecoder().decode(History.self, from: data) {
+                searchHistory.append(decodedHistory)
+                print(searchHistory)
+            }
         }
     }
         
