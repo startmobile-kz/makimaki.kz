@@ -17,7 +17,6 @@ final class ManageAdressesViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    
     private let service: AddressService = AddressService()
     
     // MARK: - UI
@@ -47,7 +46,6 @@ final class ManageAdressesViewController: UIViewController {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        
         loadAddreses()
     }
     
@@ -85,11 +83,6 @@ final class ManageAdressesViewController: UIViewController {
         addresses = service.fetchAddresses()
     }
     
-    // MARK: - Actions
-    
-    @objc private func addButtonDidPress() {
-        self.navigationController?.pushViewController(SelectLocationViewController(), animated: true)
-    }
 }
 
 // MARK: - Extension: ManageAdressesViewController
@@ -131,9 +124,14 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer =
             tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer") as? AddressTableViewFooterView
-        footer?.addNewAddressButton.addTarget(self,
-                                              action: #selector(addButtonDidPress),
-                                              for: .touchUpInside)
+        footer?.delegate = self
         return footer
+    }
+}
+
+extension ManageAdressesViewController: AddressTableViewFooterViewDelegate {
+    func addAddressButtonDidTap() {
+        let controller = SelectLocationViewController()
+        self.navigationController?.pushViewController(controller, animated: true)
     }
 }
