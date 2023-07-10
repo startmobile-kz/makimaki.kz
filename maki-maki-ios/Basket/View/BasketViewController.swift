@@ -116,10 +116,12 @@ extension BasketViewController: BasketViewProtocol {
     
     func showOrderSuccess() {
         // Show success message
+        print("Success")
     }
     
     func showOrderFailure() {
         // Show failure message
+        print("Failure")
     }
 }
 

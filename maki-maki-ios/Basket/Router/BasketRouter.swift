@@ -18,15 +18,14 @@ class BasketRouter: BasketRouterProtocol {
     
     static func createModule() -> UIViewController {
         let view = BasketViewController()
-        let interactor = BasketService()
+        let interactor = BasketInteractor()
         let presenter = BasketPresenter(view: view)
         let router = BasketRouter()
         
         view.presenter = presenter
         presenter.view = view
-        presenter.basketService = interactor
+        presenter.basketInteractor = interactor
         presenter.router = router
-        interactor.presenter = presenter
         router.viewController = view
         
         return view

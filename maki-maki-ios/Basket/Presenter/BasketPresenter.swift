@@ -16,11 +16,11 @@ protocol BasketPresenterProtocol {
 class BasketPresenter: BasketPresenterProtocol {
     weak var view: BasketViewProtocol?
     var router: BasketRouterProtocol?
-    var basketService: BasketServiceProtocol
+    var basketInteractor: BasketInteractorProtocol
 
-    init(view: BasketViewProtocol, basketService: BasketServiceProtocol = BasketService()) {
+    init(view: BasketViewProtocol, basketInteractor: BasketInteractorProtocol = BasketInteractor()) {
         self.view = view
-        self.basketService = basketService
+        self.basketInteractor = basketInteractor
     }
     
     var selectedDishes: [RestaurantProduct] = [] // Replace with your implementation
@@ -53,7 +53,7 @@ class BasketPresenter: BasketPresenterProtocol {
                             basket: ["6": 1, "17": 2, "23": 4],
                             code: "8146")
         
-        basketService.createOrder(with: basket) { [weak self] isSuccess in
+        basketInteractor.createOrder(with: basket) { [weak self] isSuccess in
             if isSuccess {
                 self?.view?.showOrderSuccess()
             } else {
