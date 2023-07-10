@@ -15,11 +15,5 @@ struct Address: Codable {
     var longitude: Double
     var house: String
     var flat: String
-    var type: String
-}
-
-enum LocationType: String {
-    case home
-    case work
-    case other
+    var type: Int
 }
