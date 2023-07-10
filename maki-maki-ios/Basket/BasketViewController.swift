@@ -18,6 +18,8 @@ protocol BasketViewProtocol: AnyObject {
 
 class BasketViewController: UIViewController {
     var presenter: BasketPresenterProtocol?
+    var cellView: BasketTableViewCellProtocol?
+    var router: BasketRouterProtocol?
     var selectedDishes: [RestaurantProduct] = []
     
     private lazy var orderTableView: UITableView = {
@@ -82,7 +84,9 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
             for: indexPath) as? BasketTableViewCell else {
             fatalError("Failed to dequeue BasketTableViewCell")
         }
-        // Configure the cell with the dish at the corresponding index path
+        let dish = selectedDishes[indexPath.row]
+            cell.setupData(dish: dish)
+        presenter?.getSelectedDishes()
         return cell
     }
     

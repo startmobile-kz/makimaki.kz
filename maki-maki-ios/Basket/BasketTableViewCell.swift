@@ -11,8 +11,15 @@ import SnapKit
 protocol BasketTableViewCellDelegate: AnyObject {
     func deleteButtonTapped(at indexPath: IndexPath)
 }
+protocol BasketTableViewCellProtocol: AnyObject {
+    var presenter: BasketPresenter? { get set }
+    func setupData(dish: RestaurantProduct)
+}
 
-class BasketTableViewCell: UITableViewCell {
+class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
+    
+    var presenter: BasketPresenter?
+    
     static let reuseIdentifier = String(describing: BasketTableViewCell.self)
     
     weak var delegate: BasketTableViewCellDelegate?
@@ -107,12 +114,13 @@ class BasketTableViewCell: UITableViewCell {
     
     func configure(with product: RestaurantProduct, at indexPath: IndexPath) {
         self.indexPath = indexPath
-//        let url = URL(string: dish.image ?? "")
-//        productImageView.kf.setImage(with: url)
-//        quantityLabel.text = "\(dish.count) X"
-//        productNameLabel.text = dish.name
-//        priceOrderLabel.text = "\(dish.count * dish.price) ₸"
-        
-//        не отображается инфа по ячейке
+    }
+    
+    func setupData(dish: RestaurantProduct) {
+        let url = URL(string: dish.image ?? "")
+        productImageView.kf.setImage(with: url)
+        quantityLabel.text = "\(dish.count) X"
+        productNameLabel.text = dish.name
+        priceOrderLabel.text = "\(dish.count * dish.price) ₸"
     }
 }

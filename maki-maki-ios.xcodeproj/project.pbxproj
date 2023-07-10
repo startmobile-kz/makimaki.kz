@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		03430AAE2A5B38F9002DB7D5 /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */; };
+		03430AB02A5C03F3002DB7D5 /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */; };
 		0349DDEA2A3AD64800BACD4F /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE72A3AD64700BACD4F /* PaymentsViewController.swift */; };
 		0349DDEB2A3AD64800BACD4F /* ApplePayCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE82A3AD64700BACD4F /* ApplePayCardTableViewCell.swift */; };
 		0349DDEC2A3AD64800BACD4F /* PaymentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE92A3AD64700BACD4F /* PaymentsTableViewCell.swift */; };
@@ -131,6 +132,7 @@
 
 /* Begin PBXFileReference section */
 		03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
+		03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
 		0349DDE72A3AD64700BACD4F /* PaymentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		0349DDE82A3AD64700BACD4F /* ApplePayCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayCardTableViewCell.swift; sourceTree = "<group>"; };
 		0349DDE92A3AD64700BACD4F /* PaymentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -656,6 +658,7 @@
 				9F6173482A2E655B00299E56 /* ContainerViewController.swift */,
 				9F6173472A2E655B00299E56 /* DeliveryFooterView.swift */,
 				03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */,
+				03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -1014,6 +1017,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */,
+				03430AB02A5C03F3002DB7D5 /* BasketRouter.swift in Sources */,
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
 				03430AAE2A5B38F9002DB7D5 /* BasketPresenter.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,

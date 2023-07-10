@@ -15,8 +15,9 @@ protocol BasketPresenterProtocol {
 
 class BasketPresenter: BasketPresenterProtocol {
     weak var view: BasketViewProtocol?
-    let basketService: BasketServiceProtocol
-    
+    var router: BasketRouterProtocol?
+    var basketService: BasketServiceProtocol
+
     init(view: BasketViewProtocol, basketService: BasketServiceProtocol = BasketService()) {
         self.view = view
         self.basketService = basketService
@@ -25,7 +26,6 @@ class BasketPresenter: BasketPresenterProtocol {
     var selectedDishes: [RestaurantProduct] = [] // Replace with your implementation
     
     func getSelectedDishes() {
-        // Get selected dishes from the data source
         view?.showSelectedDishes(selectedDishes)
         
         let totalPrice = calculateTotalPrice(selectedDishes)

@@ -3,7 +3,7 @@
 //  maki-maki-ios
 //
 //  Created by Александр Козлов on 23.06.2023.
-//
+//  Interactor
 
 import Foundation
 import Alamofire
@@ -13,6 +13,7 @@ protocol BasketServiceProtocol {
 }
 
 class BasketService: BasketServiceProtocol {
+    var presenter: BasketPresenterProtocol?
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/orders"
         guard let url = URL(string: urlString) else { return }
