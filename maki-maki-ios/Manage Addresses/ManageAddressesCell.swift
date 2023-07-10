@@ -49,8 +49,20 @@ final class ManageAddressesCell: UITableViewCell {
     }
     
     public func set(address: Address) {
-        nameLabel.text = address.street
-        addressLabel.text = address.house
+        
+        addressLabel.text = address.street
+        
+        if address.type == 0 {
+            imageAddressView.image = AppImage.homeMA.uiImage
+            return nameLabel.text = "Home"
+        } else if address.type == 1 {
+            imageAddressView.image = AppImage.workMA.uiImage
+            return nameLabel.text = "Work"
+        } else if address.type == 2 {
+            imageAddressView.image = AppImage.locationMA.uiImage
+            return nameLabel.text = "Other"
+        }
+        
     }
     
     // MARK: - Setup Views
