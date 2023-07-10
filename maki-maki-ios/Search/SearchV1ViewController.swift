@@ -194,9 +194,11 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
         let userDefaults = UserDefaults.standard
         if let existingData = userDefaults.object(forKey: "key") as? Data,
            var existingHistory = try? JSONDecoder().decode([History].self, from: existingData) {
-            existingHistory.append(historyToAdd)
-            if let encoded = try? JSONEncoder().encode(existingHistory) {
-                userDefaults.setValue(encoded, forKey: "key")
+            if !existingHistory.contains(where: { $0.name == historyToAdd.name }) {
+                existingHistory.append(historyToAdd)
+                if let encoded = try? JSONEncoder().encode(existingHistory) {
+                    userDefaults.setValue(encoded, forKey: "key")
+                }
             }
         } else {
             if let encoded = try? JSONEncoder().encode([historyToAdd]) {
