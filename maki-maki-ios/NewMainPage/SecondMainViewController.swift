@@ -613,11 +613,7 @@ extension SecondMainViewController: DishViewControllerDelegate {
                     CoreDataManager.shared.updateSelectedProduct(product: product)
                 }
             }
-//            selectedProducts.append(contentsOf: products.filter({ product in
-//                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
-//            }))
         }
-        
         setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
     }
