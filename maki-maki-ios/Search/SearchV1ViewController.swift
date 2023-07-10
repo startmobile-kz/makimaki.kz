@@ -63,6 +63,17 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         setupConstraints()
         fetchProducts()
         searchContainerView.delegate = self
+        if let data = UserDefaults.standard.object(forKey: "key") as? Data {
+            if let decodedHistory = try? JSONDecoder().decode([History].self, from: data) {
+                searchHistory.append(contentsOf: decodedHistory)
+            }
+        }
+        searchTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchTableView.reloadData()
     }
     
     // MARK: - Setup Views
@@ -119,11 +130,6 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
                 for: indexPath
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
-            }
-            if let data = UserDefaults.standard.object(forKey: "key") as? Data {
-                if let decodedHistory = try? JSONDecoder().decode(History.self, from: data) {
-                    searchHistory.append(decodedHistory)
-                }
             }
             cell.setupData(history: searchHistory[indexPath.row])
             return cell
@@ -184,19 +190,20 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     
     func returnButtonTapped(lastWord: String) {
         let historyToAdd = History(name: lastWord)
-        if let encoded = try? JSONEncoder().encode(historyToAdd) {
-            let userDefaults = UserDefaults.standard
-            userDefaults.setValue(encoded, forKey: "key")
-            userDefaults.synchronize()
-            print(encoded)
-        }
-        
-        if let data = UserDefaults.standard.object(forKey: "key") as? Data {
-            if let decodedHistory = try? JSONDecoder().decode(History.self, from: data) {
-                searchHistory.append(decodedHistory)
-                print(searchHistory)
+        searchHistory.append(historyToAdd)
+        let userDefaults = UserDefaults.standard
+        if let existingData = userDefaults.object(forKey: "key") as? Data,
+           var existingHistory = try? JSONDecoder().decode([History].self, from: existingData) {
+            existingHistory.append(historyToAdd)
+            if let encoded = try? JSONEncoder().encode(existingHistory) {
+                userDefaults.setValue(encoded, forKey: "key")
+            }
+        } else {
+            if let encoded = try? JSONEncoder().encode([historyToAdd]) {
+                userDefaults.setValue(encoded, forKey: "key")
             }
         }
+        userDefaults.synchronize()
     }
         
     func searchCompleted(word: String) {
