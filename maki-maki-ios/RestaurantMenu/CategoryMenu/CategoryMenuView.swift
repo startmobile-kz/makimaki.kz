@@ -85,6 +85,7 @@ final class CategoryMenuView: UIView {
         backgroundColor = AppColor.background.uiColor
         addSubview(categoryCollectionView)
         isSkeletonable = true
+        skeletonCornerRadius = 14
     }
     
     // MARK: - SetupConstraints

@@ -7,19 +7,21 @@
 
 import UIKit
 import SnapKit
+import SkeletonView
 
 final class PromoBannerCollectionViewCell: UICollectionViewCell {
     
     static let reuseID = String(describing: PromoBannerCollectionViewCell.self)
     
     // MARK: - UI
+    
     private lazy var promoImageView: UIImageView = {
         let imageView = UIImageView()
-        imageView.image = UIImage(named: "promo_1")
         return imageView
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
@@ -31,15 +33,23 @@ final class PromoBannerCollectionViewCell: UICollectionViewCell {
     }
     
     // MARK: - SetupViews
+    
     private func setupViews() {
         let subviews = [promoImageView]
         subviews.forEach({contentView.addSubview($0)})
+        isSkeletonable = true
+        skeletonCornerRadius = 14
     }
     
     // MARK: - SetupConstraints
+    
     private func setupConstraints() {
         promoImageView.snp.makeConstraints { make in
             make.edges.equalToSuperview()
         }
+    }
+    
+    func setupCell() {
+        promoImageView.image = AppImage.promo_1.uiImage
     }
 }
