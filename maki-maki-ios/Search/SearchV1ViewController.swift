@@ -92,7 +92,7 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
     }
     
     private func fetchProducts() {
-        service.fetchProducts { products in
+        service.fetchProductsWithAlamofire { products in
             DispatchQueue.main.async { [weak self] in
                 self?.products = products
                 self?.filteredProducts = products

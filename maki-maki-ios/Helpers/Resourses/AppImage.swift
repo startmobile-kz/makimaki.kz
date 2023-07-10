@@ -82,4 +82,5 @@ enum AppImage: String, AppImageProtocol {
     case like_black = "like_black"
     case arrow_left_white = "arrow_left_white"
     case placeholder = "placeholder"
+    case promo_1 = "promo_1"
 }
