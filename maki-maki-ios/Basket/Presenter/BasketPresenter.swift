@@ -8,6 +8,7 @@
 import Foundation
 
 protocol BasketPresenterProtocol {
+    func setSelectedDishes(selectedDishes: [RestaurantProduct])
     func getSelectedDishes()
     func deleteSelectedDish(at indexPath: IndexPath)
     func createOrder()
@@ -24,6 +25,10 @@ class BasketPresenter: BasketPresenterProtocol {
     }
     
     var selectedDishes: [RestaurantProduct] = [] // Replace with your implementation
+    
+    func setSelectedDishes(selectedDishes: [RestaurantProduct]) {
+        self.selectedDishes = selectedDishes
+    }
     
     func getSelectedDishes() {
         view?.showSelectedDishes(selectedDishes)

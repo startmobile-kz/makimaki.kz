@@ -41,7 +41,8 @@ class BasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        presenter = BasketPresenter(view: self)
+        presenter?.setSelectedDishes(selectedDishes: selectedDishes)
         setupViews()
         setupConstraints()
         presenter?.getSelectedDishes()
@@ -75,8 +76,7 @@ class BasketViewController: UIViewController {
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // Return the number of selected dishes
-        return selectedDishes.count // Replace with your implementation
+        return selectedDishes.count
     }
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
@@ -86,7 +86,6 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
         }
         let dish = selectedDishes[indexPath.row]
             cell.setupData(dish: dish)
-        presenter?.getSelectedDishes()
         return cell
     }
     
