@@ -9,17 +9,23 @@ import Foundation
 import UIKit
 import SnapKit
 
+protocol AddressTableViewFooterViewDelegate: AnyObject {
+    func addAddressButtonDidTap()
+}
+
 final class AddressTableViewFooterView: UITableViewHeaderFooterView {
     
+    weak var delegate: AddressTableViewFooterViewDelegate?
     static let identifier = "TableFooter"
     
-    public lazy var addNewAddressButton: UIButton = {
+    private lazy var addNewAddressButton: UIButton = {
         let button = UIButton(type: .system)
         button.setTitle("ADD NEW ADDRESS", for: .normal)
         button.tintColor = AppColor.heading.uiColor
         button.titleLabel?.font = AppFont.medium.s15()
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(addAddressButtonDidTap), for: .touchUpInside)
         return button
     }()
     
@@ -44,4 +50,7 @@ final class AddressTableViewFooterView: UITableViewHeaderFooterView {
     
     // MARK: - Actions
  
+    @objc private func addAddressButtonDidTap() {
+        delegate?.addAddressButtonDidTap()
+    }
 } 
