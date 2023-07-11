@@ -147,6 +147,5 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 extension BasketViewController: CheckoutButtonDelegate {
     func checkoutPressed() {
         createOrder()
-        print("done")
     }
 }

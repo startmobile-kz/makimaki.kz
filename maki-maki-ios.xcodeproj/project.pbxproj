@@ -264,6 +264,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		03430AB12A5D9022002DB7D5 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */,
+				9F6173482A2E655B00299E56 /* ContainerViewController.swift */,
+				9F6173472A2E655B00299E56 /* DeliveryFooterView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		03430AB22A5D902D002DB7D5 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				9F6173462A2E655B00299E56 /* BasketViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
 		0349DDE62A3AD62500BACD4F /* Payments */ = {
 			isa = PBXGroup;
 			children = (
@@ -648,11 +666,9 @@
 		9F61734E2A2E656100299E56 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
+				03430AB22A5D902D002DB7D5 /* Controller */,
+				03430AB12A5D9022002DB7D5 /* View */,
 				03F45A132A45031F00BC23B9 /* Model */,
-				9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */,
-				9F6173462A2E655B00299E56 /* BasketViewController.swift */,
-				9F6173482A2E655B00299E56 /* ContainerViewController.swift */,
-				9F6173472A2E655B00299E56 /* DeliveryFooterView.swift */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
