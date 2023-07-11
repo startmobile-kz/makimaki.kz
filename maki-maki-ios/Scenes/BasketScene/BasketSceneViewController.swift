@@ -1,15 +1,19 @@
 //
-//  OrderViewController.swift
+//  BasketSceneViewController.swift
 //  maki-maki-ios
 //
-//  Created by Александр Козлов on 30.05.2023.
+//  Created by Damir Aliyev on 11.07.2023.
 //
 
 import UIKit
 import SnapKit
 import ProgressHUD
 
-final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
+protocol BasketSceneDisplayLogic: NSObject {
+    func displaySelectedProducts(selectedProducts: [RestaurantProduct])
+}
+
+final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
     
     // MARK: - VIP
     
@@ -146,7 +150,7 @@ final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
     }
 }
 
-extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
+extension BasketSceneViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedDishes.count
     }
@@ -178,7 +182,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - Checkout Delegate
 
-extension BasketViewController: CheckoutButtonDelegate {
+extension BasketSceneViewController: CheckoutButtonDelegate {
     func checkoutPressed() {
         createOrder()
         print("done")
