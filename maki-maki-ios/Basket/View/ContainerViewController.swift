@@ -12,7 +12,10 @@ protocol CheckoutButtonDelegate: AnyObject {
     func checkoutPressed()
 }
 
-class ContainerView: UIView {    
+class ContainerView: UIView {
+    
+    // MARK: - UI
+    
     private lazy var dividerImage: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "divider")
@@ -47,6 +50,8 @@ class ContainerView: UIView {
     
     weak var delegate: CheckoutButtonDelegate?
     
+    // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         
@@ -58,12 +63,16 @@ class ContainerView: UIView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
         addSubview(dividerImage)
         addSubview(totalLabel)
         addSubview(priceLabel)
         addSubview(checkoutButton)
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         dividerImage.snp.makeConstraints { make in
@@ -91,6 +100,8 @@ class ContainerView: UIView {
         
     }
     
+    // MARK: - Logic
+    
     func setup(with totalPrice: Int) {
         priceLabel.text = "\(totalPrice.formattedWithSeparator) ₸"
     }
@@ -99,6 +110,8 @@ class ContainerView: UIView {
         delegate?.checkoutPressed()
     }
 }
+
+// MARK: - Extentions for correct total sum
 
 extension Formatter {
     static let withSeparator: NumberFormatter = {

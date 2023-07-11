@@ -22,6 +22,8 @@ class BasketViewController: UIViewController {
     var router: BasketRouterProtocol?
     var selectedDishes: [RestaurantProduct] = []
     
+    //MARK: - UI
+    
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BasketTableViewCell.self,
@@ -39,6 +41,8 @@ class BasketViewController: UIViewController {
         return view
     }()
     
+    // MARK: - LifeCycle
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         presenter = BasketPresenter(view: self)
@@ -49,6 +53,8 @@ class BasketViewController: UIViewController {
         
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
         view.backgroundColor = .white
         let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 119)
@@ -58,6 +64,8 @@ class BasketViewController: UIViewController {
             view.addSubview($0)
         }
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         orderTableView.snp.makeConstraints { make in
@@ -73,6 +81,8 @@ class BasketViewController: UIViewController {
         }
     }
 }
+
+//MARK - TableView extention
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -99,9 +109,11 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        // Handle row selection if needed
+
     }
 }
+
+// MARK: - BasketViewProtocol
 
 extension BasketViewController: BasketViewProtocol {
     func showSelectedDishes(_ dishes: [RestaurantProduct]) {
@@ -114,15 +126,16 @@ extension BasketViewController: BasketViewProtocol {
     }
     
     func showOrderSuccess() {
-        // Show success message
         print("Success")
+        ProgressHUD.showSucceed()
     }
     
     func showOrderFailure() {
-        // Show failure message
-        print("Failure")
+        ProgressHUD.showFailed("Try Again")
     }
 }
+
+// MARK: - BasketTableViewCellDelegate
 
 extension BasketViewController: BasketTableViewCellDelegate {
     func deleteButtonTapped(at indexPath: IndexPath) {

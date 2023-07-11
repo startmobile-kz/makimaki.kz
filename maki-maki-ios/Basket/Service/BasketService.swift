@@ -11,6 +11,8 @@ protocol BasketServiceProtocol {
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void)
 }
 
+// MARK: - Service
+
 class BasketService: BasketServiceProtocol {
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/orders"
@@ -33,6 +35,7 @@ class BasketService: BasketServiceProtocol {
                     completion(true)
                 case .failure(let error):
                     print("Error \(error)")
+                    print(body)
                     completion(false)
                 }
             }

@@ -9,8 +9,7 @@ import UIKit
 import Foundation
 
 protocol BasketRouterProtocol {
-    // Define your routing methods here
-    // ...
+
 }
 
 class BasketRouter: BasketRouterProtocol {
@@ -30,7 +29,4 @@ class BasketRouter: BasketRouterProtocol {
         
         return view
     }
-    
-    // Implement your routing methods here
-    // ...
 }

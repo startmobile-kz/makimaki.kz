@@ -24,7 +24,9 @@ class BasketPresenter: BasketPresenterProtocol {
         self.basketInteractor = basketInteractor
     }
     
-    var selectedDishes: [RestaurantProduct] = [] // Replace with your implementation
+    var selectedDishes: [RestaurantProduct] = []
+    
+    // MARK: - Logic
     
     func setSelectedDishes(selectedDishes: [RestaurantProduct]) {
         self.selectedDishes = selectedDishes
@@ -38,8 +40,6 @@ class BasketPresenter: BasketPresenterProtocol {
     }
     
     func deleteSelectedDish(at indexPath: IndexPath) {
-        // Delete the selected dish at the given index path from the data source
-        // ...
         selectedDishes.remove(at: indexPath.row)
         view?.showSelectedDishes(selectedDishes)
         
@@ -48,7 +48,6 @@ class BasketPresenter: BasketPresenterProtocol {
     }
     
     func createOrder() {
-        // Create a Basket object with the necessary details
         let basket = Basket(uuid: "151eb4a0-ff99-4482-90d2-c4e7c77810dc",
                             fullName: "Разработчик тестирует заказ",
                             phone: "77082020155",
@@ -67,7 +66,6 @@ class BasketPresenter: BasketPresenterProtocol {
         }
     }
     private func calculateTotalPrice(_ dishes: [RestaurantProduct]) -> Int {
-        // Calculate the total price of the selected dishes
         var totalPrice = 0
         for dish in dishes {
             totalPrice += dish.count * dish.price

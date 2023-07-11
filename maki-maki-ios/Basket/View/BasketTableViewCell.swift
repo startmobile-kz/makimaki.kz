@@ -22,6 +22,8 @@ class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
     
     static let reuseIdentifier = String(describing: BasketTableViewCell.self)
     
+    // MARK: - UI
+    
     weak var delegate: BasketTableViewCellDelegate?
     private var indexPath: IndexPath?
     
@@ -62,6 +64,8 @@ class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
         return button
     }()
     
+    // MARK: - Lifecycle
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         
@@ -73,6 +77,8 @@ class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
         contentView.addSubview(productImageView)
         contentView.addSubview(quantityLabel)
@@ -80,6 +86,8 @@ class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
         contentView.addSubview(priceOrderLabel)
         contentView.addSubview(deleteButton)
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         productImageView.snp.makeConstraints { make in
@@ -105,6 +113,8 @@ class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
         }
         
     }
+    
+    // MARK: - Logic
     
     @objc private func deleteButtonTapped() {
         if let indexPath = indexPath {

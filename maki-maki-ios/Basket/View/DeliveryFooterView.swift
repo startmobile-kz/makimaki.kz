@@ -9,6 +9,9 @@ import UIKit
 import SnapKit
 
 class DeliveryFooterView: UITableViewHeaderFooterView {
+    
+    // MARK: - UI
+    
     private lazy var courierBackgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "courier_background")
@@ -38,6 +41,8 @@ class DeliveryFooterView: UITableViewHeaderFooterView {
         return label
     }()
     
+    // MARK: - Lifecycle
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         
@@ -49,12 +54,16 @@ class DeliveryFooterView: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
     
+    // MARK: - Setup Views
+    
     private func setupViews() {
         addSubview(courierBackgroundImageView)
         addSubview(courierImageView)
         addSubview(deliveryLabel)
         addSubview(deliveryPriceLabel)
     }
+    
+    // MARK: - Setup Constraints
     
     private func setupConstraints() {
         courierBackgroundImageView.snp.makeConstraints { make in

@@ -20,7 +20,7 @@ class BasketInteractor: BasketInteractorProtocol {
     }
     
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void) {
-        basketService.createOrder(with: basket) { [weak self] isSuccess in
+        basketService.createOrder(with: basket) { isSuccess in
             completion(isSuccess)
         }
     }
