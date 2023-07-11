@@ -30,6 +30,14 @@ final class DishViewController: UIViewController {
     
     // MARK: - UI
     
+    private lazy var dishImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = AppImage.pizza_image.uiImage
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(AppImage.like_black.uiImage, for: .normal)
@@ -37,14 +45,6 @@ final class DishViewController: UIViewController {
         button.tintColor = AppColor.heading.uiColor
         button.addTarget(self, action: #selector(onFavoriteButtonPressed), for: .touchUpInside)
         return button
-    }()
-    
-    private lazy var dishImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = AppImage.pizza_image.uiImage
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
     }()
     
     private lazy var productNameLabel: UILabel = {
@@ -111,8 +111,8 @@ final class DishViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         [
-            likeButton,
             dishImageView,
+            likeButton,
             productNameLabel,
             descriptionLabel,
             stepperView,
