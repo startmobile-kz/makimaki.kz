@@ -27,7 +27,7 @@ final class BasketViewController: UIViewController {
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
         tableView.register(BasketTableViewCell.self,
-            forCellReuseIdentifier: BasketTableViewCell.reuseIdentifier
+                           forCellReuseIdentifier: BasketTableViewCell.reuseIdentifier
         )
         tableView.rowHeight = 119
         tableView.dataSource = self
@@ -45,7 +45,7 @@ final class BasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
         setupViews()
         setupConstraints()
     }
@@ -56,10 +56,9 @@ final class BasketViewController: UIViewController {
         view.backgroundColor = AppColor.background.uiColor
         let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 119)
         orderTableView.tableFooterView = DeliveryFooterView(frame: footerViewSize)
-        
         presenter = BasketPresenter(view: self)
         presenter?.setSelectedDishes(selectedDishes: selectedDishes)
-        
+        presenter?.getSelectedDishes()
         [orderTableView, checkoutContainerView].forEach {
             view.addSubview($0)
         }
@@ -96,7 +95,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
             fatalError("Failed to dequeue BasketTableViewCell")
         }
         let dish = selectedDishes[indexPath.row]
-            cell.setupData(dish: dish)
+        cell.setupData(dish: dish)
         return cell
     }
     
