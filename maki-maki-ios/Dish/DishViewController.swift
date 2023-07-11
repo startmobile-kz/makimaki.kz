@@ -125,8 +125,8 @@ final class DishViewController: UIViewController {
     
     private func setupConstraints() {
         likeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(14)
-            make.trailing.equalToSuperview().offset(-14)
+            make.top.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.size.equalTo(24)
         }
         
