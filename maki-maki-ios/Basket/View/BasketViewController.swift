@@ -125,7 +125,6 @@ extension BasketViewController: BasketViewProtocol {
     }
     
     func showOrderSuccess() {
-        print("Success")
         ProgressHUD.showSucceed()
     }
     

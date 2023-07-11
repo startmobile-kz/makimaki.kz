@@ -34,8 +34,6 @@ final class BasketService: BasketServiceProtocol {
                 case .success:
                     completion(true)
                 case .failure(let error):
-                    print("Error \(error)")
-                    print(body)
                     completion(false)
                 }
             }
