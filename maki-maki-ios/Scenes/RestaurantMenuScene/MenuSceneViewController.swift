@@ -23,10 +23,39 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     var interactor: MenuSceneBusinessLogic?
     var router: (MenuSceneRoutingLogic & MenuSceneDataPassing)?
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setupArchitecture()
+    }
+    
+    // MARK: - SetupArchitecture
+    
+    private func setupArchitecture() {
+        let viewController = self
+        let interactor = MenuSceneInteractor()
+        let presenter = MenuScenePresenter()
+        let router = MenuSceneRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        presenter.viewController = viewController
+        router.viewController = viewController
+        router.dataStore = interactor
+    }
+    
+    required init?(coder: NSCoder) {
+        fatalError("init(coder:) has not been implemented")
+    }
+    
     func displayMenu(viewModel: MenuSceneModels.ViewModel) {
         self.categoriesAndNames = viewModel.categoriesAndNames
         self.productsByCategoryMap = viewModel.dividedProducts
         self.isLoaded = true
+    }
+    
+    private func fetchMenu() {
+        let request = MenuSceneModels.Request()
+        interactor?.fetchProducts(request: request)
     }
     
     // MARK: - State
@@ -105,15 +134,6 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
 
     // MARK: - Lifecycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupArchitecture()
-    }
-    
-    required init?(coder: NSCoder) {
-        fatalError("init(coder:) has not been implemented")
-    }
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -123,26 +143,6 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         setupNotificationObservers()
         showSkeletonAnimation()
         fetchMenu()
-    }
-    
-    // MARK: - SetupArchitecture
-    
-    private func setupArchitecture() {
-        let viewController = self
-        let interactor = MenuSceneInteractor()
-        let presenter = MenuScenePresenter()
-        let router = MenuSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
-    }
-    
-    private func fetchMenu() {
-        let request = MenuSceneModels.Request()
-        interactor?.fetchProducts(request: request)
     }
     
     // MARK: - SetupViews

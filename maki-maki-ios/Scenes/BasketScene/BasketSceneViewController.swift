@@ -20,6 +20,25 @@ final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic
     var interactor: (BasketSceneBusinessLogic & BasketSceneDataStore)?
     var router: (BasketSceneRoutingLogic & BasketSceneDataPassing)?
     
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        setupArchitecture()
+    }
+    
+    // MARK: - SetupArchitecture
+    
+    private func setupArchitecture() {
+        let viewController = self
+        let interactor = BasketSceneInteractor()
+        let presenter = BasketScenePresenter()
+        let router = BasketSceneRouter()
+        viewController.interactor = interactor
+        viewController.router = router
+        interactor.presenter = presenter
+        router.dataStore = interactor
+        presenter.viewController = viewController
+    }
+    
     func displaySelectedProducts(selectedProducts: [RestaurantProduct]) {
         self.selectedDishes = selectedProducts
         configureContainerView()
@@ -52,11 +71,6 @@ final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic
     
     // MARK: - LifeCycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupArchitecture()
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -75,20 +89,6 @@ final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic
 
     private func setupNavigationBar() {
         self.navigationItem.title = "Order"
-    }
-    
-    // MARK: - SetupArchitecture
-    
-    private func setupArchitecture() {
-        let viewController = self
-        let interactor = BasketSceneInteractor()
-        let presenter = BasketScenePresenter()
-        let router = BasketSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        router.dataStore = interactor
-        presenter.viewController = viewController
     }
     
     // MARK: - Setup Views
