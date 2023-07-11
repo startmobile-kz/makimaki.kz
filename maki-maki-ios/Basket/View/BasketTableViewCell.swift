@@ -18,9 +18,7 @@ protocol BasketTableViewCellProtocol: AnyObject {
 }
 
 final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
-    
     var presenter: BasketPresenter?
-    
     static let reuseIdentifier = String(describing: BasketTableViewCell.self)
     
     // MARK: - UI
@@ -112,7 +110,6 @@ final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
             make.centerY.equalToSuperview()
             make.trailing.equalToSuperview().offset(-16)
         }
-        
     }
     
     // MARK: - Logic

@@ -97,7 +97,6 @@ final class ContainerView: UIView {
             make.bottom.equalToSuperview().offset(-5)
             make.height.equalTo(53)
         }
-        
     }
     
     // MARK: - Logic

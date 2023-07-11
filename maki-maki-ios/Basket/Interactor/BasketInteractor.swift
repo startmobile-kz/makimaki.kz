@@ -12,7 +12,6 @@ protocol BasketInteractorProtocol {
 }
 
 final class BasketInteractor: BasketInteractorProtocol {
-    
     var basketService: BasketServiceProtocol
     
     init(basketService: BasketServiceProtocol = BasketService()) {
