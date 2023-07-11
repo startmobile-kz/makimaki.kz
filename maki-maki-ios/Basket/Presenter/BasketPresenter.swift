@@ -18,13 +18,14 @@ final class BasketPresenter: BasketPresenterProtocol {
     weak var view: BasketViewProtocol?
     var router: BasketRouterProtocol?
     var basketInteractor: BasketInteractorProtocol
+    var selectedDishes: [RestaurantProduct] = []
+    
+    // MARK: - Lifecycle
     
     init(view: BasketViewProtocol, basketInteractor: BasketInteractorProtocol = BasketInteractor()) {
         self.view = view
         self.basketInteractor = basketInteractor
     }
-    
-    var selectedDishes: [RestaurantProduct] = []
     
     // MARK: - Logic
     
