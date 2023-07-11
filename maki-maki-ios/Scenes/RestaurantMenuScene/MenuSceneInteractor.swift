@@ -9,6 +9,11 @@ import Foundation
 
 protocol MenuSceneBusinessLogic {
     func fetchProducts(request: MenuSceneModels.Request)
+    
+    func sendSectionInfoToPresenter(
+        sectionCount: Int,
+        dividedProducts: [Int: [RestaurantProduct]]
+    )
 }
 
 protocol MenuSceneDataStore {
@@ -16,7 +21,6 @@ protocol MenuSceneDataStore {
 }
 
 final class MenuSceneInteractor: MenuSceneBusinessLogic, MenuSceneDataStore {
-    
     var presenter: MenuScenePresentationLogic?
     var networkWorker: NetworkWorker?
     
@@ -32,6 +36,15 @@ final class MenuSceneInteractor: MenuSceneBusinessLogic, MenuSceneDataStore {
                 print(error.localizedDescription)
             }
         }
-        
+    }
+    
+    func sendSectionInfoToPresenter(
+        sectionCount: Int,
+        dividedProducts: [Int: [RestaurantProduct]]
+    ) {
+        presenter?.calculateNeededHeight(
+            sectionCount: sectionCount,
+            dividedProducts: dividedProducts
+        )
     }
 }
