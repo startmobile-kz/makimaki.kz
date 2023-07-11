@@ -12,7 +12,7 @@ protocol BasketRouterProtocol {
 
 }
 
-class BasketRouter: BasketRouterProtocol {
+final class BasketRouter: BasketRouterProtocol {
     weak var viewController: UIViewController?
     
     static func createModule() -> UIViewController {
@@ -20,13 +20,11 @@ class BasketRouter: BasketRouterProtocol {
         let interactor = BasketInteractor()
         let presenter = BasketPresenter(view: view)
         let router = BasketRouter()
-        
         view.presenter = presenter
         presenter.view = view
         presenter.basketInteractor = interactor
         presenter.router = router
         router.viewController = view
-        
         return view
     }
 }

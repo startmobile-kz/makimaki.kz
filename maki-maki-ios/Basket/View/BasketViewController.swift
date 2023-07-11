@@ -16,13 +16,13 @@ protocol BasketViewProtocol: AnyObject {
     func showOrderFailure()
 }
 
-class BasketViewController: UIViewController {
+final class BasketViewController: UIViewController {
     var presenter: BasketPresenterProtocol?
     var cellView: BasketTableViewCellProtocol?
     var router: BasketRouterProtocol?
     var selectedDishes: [RestaurantProduct] = []
     
-    //MARK: - UI
+    // MARK: - UI
     
     private lazy var orderTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .plain)
@@ -45,20 +45,20 @@ class BasketViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        presenter = BasketPresenter(view: self)
-        presenter?.setSelectedDishes(selectedDishes: selectedDishes)
+
         setupViews()
         setupConstraints()
-        presenter?.getSelectedDishes()
-        
     }
     
     // MARK: - Setup Views
     
     private func setupViews() {
-        view.backgroundColor = .white
+        view.backgroundColor = AppColor.background.uiColor
         let footerViewSize = CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 119)
         orderTableView.tableFooterView = DeliveryFooterView(frame: footerViewSize)
+        
+        presenter = BasketPresenter(view: self)
+        presenter?.setSelectedDishes(selectedDishes: selectedDishes)
         
         [orderTableView, checkoutContainerView].forEach {
             view.addSubview($0)
@@ -82,12 +82,13 @@ class BasketViewController: UIViewController {
     }
 }
 
-//MARK - TableView extention
+// MARK: - TableView extention
 
 extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedDishes.count
     }
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: BasketTableViewCell.reuseIdentifier,
@@ -109,7 +110,6 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-
     }
 }
 

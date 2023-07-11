@@ -11,7 +11,7 @@ protocol BasketInteractorProtocol {
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void)
 }
 
-class BasketInteractor: BasketInteractorProtocol {
+final class BasketInteractor: BasketInteractorProtocol {
     
     var basketService: BasketServiceProtocol
     

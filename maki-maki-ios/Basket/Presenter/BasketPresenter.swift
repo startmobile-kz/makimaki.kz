@@ -14,7 +14,7 @@ protocol BasketPresenterProtocol {
     func createOrder()
 }
 
-class BasketPresenter: BasketPresenterProtocol {
+final class BasketPresenter: BasketPresenterProtocol {
     weak var view: BasketViewProtocol?
     var router: BasketRouterProtocol?
     var basketInteractor: BasketInteractorProtocol
@@ -65,6 +65,7 @@ class BasketPresenter: BasketPresenterProtocol {
             }
         }
     }
+    
     private func calculateTotalPrice(_ dishes: [RestaurantProduct]) -> Int {
         var totalPrice = 0
         for dish in dishes {

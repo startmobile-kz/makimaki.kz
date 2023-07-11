@@ -12,7 +12,7 @@ protocol CheckoutButtonDelegate: AnyObject {
     func checkoutPressed()
 }
 
-class ContainerView: UIView {
+final class ContainerView: UIView {
     
     // MARK: - UI
     

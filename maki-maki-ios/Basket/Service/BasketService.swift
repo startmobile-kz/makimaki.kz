@@ -13,7 +13,7 @@ protocol BasketServiceProtocol {
 
 // MARK: - Service
 
-class BasketService: BasketServiceProtocol {
+final class BasketService: BasketServiceProtocol {
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void) {
         let urlString = "https://app.makimaki.kz/api/v1/client/orders"
         guard let url = URL(string: urlString) else { return }

@@ -11,12 +11,13 @@ import SnapKit
 protocol BasketTableViewCellDelegate: AnyObject {
     func deleteButtonTapped(at indexPath: IndexPath)
 }
+
 protocol BasketTableViewCellProtocol: AnyObject {
     var presenter: BasketPresenter? { get set }
     func setupData(dish: RestaurantProduct)
 }
 
-class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
+final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
     
     var presenter: BasketPresenter?
     
