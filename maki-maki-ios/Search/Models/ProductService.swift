@@ -12,12 +12,12 @@ import Alamofire
 
 class ProductsService {
         
-    func fetchProductsWithAlamofire(completion: @escaping ([Product]) -> Void) {
+    func fetchProductsWithAlamofire(completion: @escaping ([SearchProduct]) -> Void) {
         
         let urlString = "https://app.makimaki.kz/api/v1/client/products"
         guard let url = URL(string: urlString) else { return }
         
-        AF.request(url).validate().responseDecodable(of: [Product].self) { data in
+        AF.request(url).validate().responseDecodable(of: [SearchProduct].self) { data in
             switch data.result {
             case .success(let product):
                 completion(product)
