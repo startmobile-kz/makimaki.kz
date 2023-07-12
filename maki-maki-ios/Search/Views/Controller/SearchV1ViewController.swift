@@ -52,9 +52,14 @@ final class SearchV1ViewController: UIViewController {
     // MARK: - Setup Views
     
     private func setupViews() {
-        view.addSubview(searchContainerView)
-        view.addSubview(searchTableView)
+        view.addSubviews([searchTableView,searchContainerView])
         view.backgroundColor = AppColor.background.uiColor
+    }
+    
+    private func bind() {
+        viewModel.reloadDataCallback = { [weak searchTableView] in
+            searchTableView?.reloadData()
+        }
     }
 
     // MARK: - Setup Constraints
@@ -95,8 +100,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
             }
-            let viewModel = viewModel.createRecentSearchViewModel(
-                history: viewModel.searchHistory[indexPath.row])
+            let viewModel = RecentSearchViewModel(history: viewModel.searchHistory[indexPath.row])
             cell.configure(with: viewModel)
             return cell
         }
@@ -107,8 +111,7 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
         ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
-        let viewModel = viewModel.createSearchResultViewModel(
-            product: viewModel.filteredProducts[indexPath.row])
+        let viewModel = SearchResultCellViewModel(product: viewModel.filteredProducts[indexPath.row])
         cell.configure(with: viewModel)
         return cell
     }

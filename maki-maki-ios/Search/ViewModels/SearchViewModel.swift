@@ -11,13 +11,19 @@ class SearchViewModel {
     
     let service = ProductsService()
     var products: [SearchProduct] = []
+    var searchHistory: [History] = []
     
     var filteredProducts = [SearchProduct]() {
-        didSet {
+        didSet{
+            self.bind()
         }
     }
     
-    var searchHistory: [History] = []
+    var reloadDataCallback: (() -> Void)?
+    
+    func bind() {
+        reloadDataCallback?()
+    }
     
     func fetchProducts() {
         service.fetchProductsWithAlamofire { products in
@@ -33,11 +39,6 @@ class SearchViewModel {
         searchHistory.append(history)
     }
     
-    func createRecentSearchViewModel(history: History) -> RecentSearchViewModel {
-        return RecentSearchViewModel(history: history )
-    }
-    
-    func createSearchResultViewModel(product: SearchProduct) -> SearchResultCellViewModel {
-        return SearchResultCellViewModel(product: product)
-    }
+//    func getSearchResultViewModel(forIndexPath indexPath: IndexPath) -> SearchResultCellViewModel {
+//    }
 }
