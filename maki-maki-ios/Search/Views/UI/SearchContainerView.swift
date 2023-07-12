@@ -19,9 +19,12 @@ protocol SearchContainerViewDelegate: AnyObject {
 
 final class SearchContainerView: UIView {
     
-    private lazy var searchViewController: SearchV1ViewController = SearchV1ViewController()
+    // MARK: - State
     
-    var delegate: SearchContainerViewDelegate?
+    private lazy var searchViewController: SearchV1ViewController = SearchV1ViewController()
+    weak var delegate: SearchContainerViewDelegate?
+    
+    // MARK: - UI
     
     private lazy var searchIconImageView: UIImageView = {
         let imageView = UIImageView()
@@ -44,13 +47,13 @@ final class SearchContainerView: UIView {
     }()
     
     // MARK: - Lifecycle
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()
         setupConstraints()
         setupSearchTextfieldFrame()
         searchViewController.delegate = self
-        
     }
     
     required init?(coder: NSCoder) {
