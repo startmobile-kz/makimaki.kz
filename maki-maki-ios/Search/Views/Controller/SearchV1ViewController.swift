@@ -14,31 +14,15 @@ protocol SearchViewControllerDelegate: AnyObject {
     func recentSearchTapped(word: String)
 }
 
-final class SearchV1ViewController: UIViewController, DishViewControllerDelegate {
-    
-    // MARK: - Add to basket delegate
-    
-    func addToBasket(dish: RestaurantProduct) {
-        // Here need to implement logic of adding to basket VC
-    }
-    
-    var delegate: SearchViewControllerDelegate?
+final class SearchV1ViewController: UIViewController {
+        
+    weak var delegate: SearchViewControllerDelegate?
     
     // MARK: - Properties
-    
-    private var service = ProductsService()
-    private var products = [Product]()
+    private let viewModel = SearchViewModel()
     private var isSearchTextFieldEmpty = true
     private var clearButtonTapped = true
     
-    var filteredProducts = [Product]() {
-        didSet {
-            self.searchTableView.reloadData()
-        }
-    }
-    
-    var searchHistory = [History]()
-
     // MARK: - UI
     
     private lazy var searchContainerView: SearchContainerView = SearchContainerView()
@@ -61,9 +45,8 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         super.viewDidLoad()
         setupViews()
         setupConstraints()
-        fetchProducts()
+        viewModel.fetchProducts()
         searchContainerView.delegate = self
-
     }
     
     // MARK: - Setup Views
@@ -90,26 +73,17 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
             $0.height.equalTo(150)
         }
     }
-    
-    private func fetchProducts() {
-        service.fetchProductsWithAlamofire { products in
-            DispatchQueue.main.async { [weak self] in
-                self?.products = products
-                self?.filteredProducts = products
-                self?.searchTableView.reloadData()
-            }
-        }
-    }
 }
 
 extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
+    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if isSearchTextFieldEmpty {
             searchTableView.rowHeight = 37
-            return searchHistory.count
+            return viewModel.searchHistory.count
         }
         searchTableView.rowHeight = 66
-        return filteredProducts.count
+        return viewModel.filteredProducts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -121,35 +95,40 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
             }
-            cell.setupData(history: searchHistory[indexPath.row])
+            let viewModel = RecentSearchViewModel(history: viewModel.searchHistory[indexPath.row])
+            cell.configure(with: viewModel)
             return cell
         }
+        
         guard let cell = tableView.dequeueReusableCell(
             withIdentifier: SearchResultTableViewCell.reuseID,
             for: indexPath
         ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
-        cell.setupData(dish: filteredProducts[indexPath.row])
+        let product = viewModel.filteredProducts[indexPath.row]
+        let viewModel = SearchResultCellViewModel(product: product)
+        cell.configure(with: viewModel)
         return cell
     }
 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
         if isSearchTextFieldEmpty {
-            delegate?.recentSearchTapped(word: searchHistory[indexPath.row].name)
-            searchContainerView.recentSearchTapped(word: searchHistory[indexPath.row].name)
+            delegate?.recentSearchTapped(word: viewModel.searchHistory[indexPath.row].name)
+            searchContainerView.recentSearchTapped(word: viewModel.searchHistory[indexPath.row].name)
             isSearchTextFieldEmpty = false
-            searchCompleted(word: searchHistory[indexPath.row].name)
             searchTableView.reloadData()
         } else {
             let dishViewController = DishViewController()
-            dishViewController.product = filteredProducts[indexPath.row]
+            dishViewController.product = viewModel.filteredProducts[indexPath.row]
             dishViewController.delegate = self
             present(dishViewController, animated: true)
         }
     }
     
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        
         if isSearchTextFieldEmpty {
             let header = RecentHeaderView()
             header.backgroundColor = AppColor.background.uiColor
@@ -173,25 +152,32 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     
     func clearButtonTapped(isTapped: Bool) {
         clearButtonTapped = isTapped
-        filteredProducts = products
+        viewModel.filteredProducts = viewModel.products
         isSearchTextFieldEmpty = true
         searchTableView.reloadData()
     }
     
     func returnButtonTapped(lastWord: String) {
-        let historyToAdd = History(name: lastWord)
-        searchHistory.append(historyToAdd)
+        viewModel.addToHistory(name: lastWord)
     }
         
     func searchCompleted(word: String) {
         if word.isEmpty {
-            filteredProducts = products
+            viewModel.filteredProducts = viewModel.products
             isSearchTextFieldEmpty = true
             searchTableView.reloadData()
         } else {
-            filteredProducts = products.filter {
+            viewModel.filteredProducts = viewModel.products.filter {
                 $0.name.lowercased().contains(word.lowercased())
             }
         }
+    }
+}
+
+// MARK: - Add to basket delegate
+
+extension SearchV1ViewController: DishViewControllerDelegate {
+    func addToBasket(dish: RestaurantProduct) {
+        // Here need to implement logic of adding to basket VC
     }
 }

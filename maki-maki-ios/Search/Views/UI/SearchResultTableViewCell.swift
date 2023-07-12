@@ -12,7 +12,7 @@ import Kingfisher
 final class SearchResultTableViewCell: UITableViewCell {
     
     static let reuseID = String(describing: SearchResultTableViewCell.self)
-    
+
     // MARK: - UI
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
@@ -87,12 +87,14 @@ final class SearchResultTableViewCell: UITableViewCell {
             make.height.equalTo(17)
         }
     }
-    
-    public func setupData(dish: Product) {
-        productNameLabel.text = dish.name
-        priceLabel.text = "\(dish.price) ₸"
-        let url = URL(string: dish.image ?? " ")
-        productImageView.kf.setImage(with: url)
+}
+
+// MARK: - Extension
+
+extension SearchResultTableViewCell {
+    func configure(with viewModel: SearchResultCellViewModel) {
+        productNameLabel.text = viewModel.productName
+        priceLabel.text = viewModel.productPrice
+        productImageView.kf.setImage(with: viewModel.productImageURL)
     }
-    
 }

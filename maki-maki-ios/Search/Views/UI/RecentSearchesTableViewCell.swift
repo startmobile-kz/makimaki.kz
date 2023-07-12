@@ -71,8 +71,10 @@ final class RecentSearchesTableViewCell: UITableViewCell {
             make.height.equalTo(18)
         }
     }
-    
-    public func setupData(history: History) {
-        recentSearchLabel.text = history.name
+}
+
+extension RecentSearchesTableViewCell {
+    func configure(with viewModel: RecentSearchViewModel) {
+        recentSearchLabel.text = viewModel.recentSearch
     }
 }
