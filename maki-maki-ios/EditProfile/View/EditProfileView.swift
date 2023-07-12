@@ -174,7 +174,8 @@ class EditProfileView: UIView {
         }
     }
     
-    @objc private func saveButtonDidPress() {
+    @objc func saveButtonDidPress() {
+        
         guard let name = nameTextField.text,
               let email = emailTextField.text,
               let phone = phoneTextField.text else {
@@ -183,5 +184,11 @@ class EditProfileView: UIView {
         
         let user = User(name: name, email: email, phone: phone)
         delegate?.saveButtonDidPress(with: user)
+        
+        let userDefaults = UserDefaults.standard
+        userDefaults.set(name, forKey: "name")
+        userDefaults.set(email, forKey: "email")
+        userDefaults.set(phone, forKey: "phone")
+        
     }
 }

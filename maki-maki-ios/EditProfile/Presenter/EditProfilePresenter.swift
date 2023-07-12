@@ -21,6 +21,6 @@ class EditProfilePresenter {
     }
     
     func viewDidLoad() {
-        
+        view?.backgroundColor = AppColor.background.uiColor
     }
 }
