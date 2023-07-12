@@ -32,4 +32,12 @@ class SearchViewModel {
         let history = History(name: name)
         searchHistory.append(history)
     }
+    
+    func createRecentSearchViewModel(history: History) -> RecentSearchViewModel {
+        return RecentSearchViewModel(history: history )
+    }
+    
+    func createSearchResultViewModel(product: SearchProduct) -> SearchResultCellViewModel {
+        return SearchResultCellViewModel(product: product)
+    }
 }

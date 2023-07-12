@@ -16,9 +16,9 @@ protocol SearchViewControllerDelegate: AnyObject {
 
 final class SearchV1ViewController: UIViewController {
         
-    weak var delegate: SearchViewControllerDelegate?
-    
     // MARK: - Properties
+    
+    weak var delegate: SearchViewControllerDelegate?
     private let viewModel = SearchViewModel()
     private var isSearchTextFieldEmpty = true
     private var clearButtonTapped = true
@@ -95,7 +95,8 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
             ) as? RecentSearchesTableViewCell else {
                 fatalError("recent not found")
             }
-            let viewModel = RecentSearchViewModel(history: viewModel.searchHistory[indexPath.row])
+            let viewModel = viewModel.createRecentSearchViewModel(
+                history: viewModel.searchHistory[indexPath.row])
             cell.configure(with: viewModel)
             return cell
         }
@@ -106,8 +107,8 @@ extension SearchV1ViewController: UITableViewDataSource, UITableViewDelegate {
         ) as? SearchResultTableViewCell else {
             fatalError("recent not found")
         }
-        let product = viewModel.filteredProducts[indexPath.row]
-        let viewModel = SearchResultCellViewModel(product: product)
+        let viewModel = viewModel.createSearchResultViewModel(
+            product: viewModel.filteredProducts[indexPath.row])
         cell.configure(with: viewModel)
         return cell
     }
