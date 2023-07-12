@@ -301,21 +301,21 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		1D6610CA2A4324FC00F0F81B /* Model */ = {
+		1D6610CA2A4324FC00F0F81B /* Models */ = {
 			isa = PBXGroup;
 			children = (
 				1D6610CB2A43251F00F0F81B /* ProductModel.swift */,
 				1D6610CD2A43252D00F0F81B /* ProductService.swift */,
 				1D7EE2362A49938000E3756F /* SearchHistory.swift */,
 			);
-			path = Model;
+			path = Models;
 			sourceTree = "<group>";
 		};
 		1D67E3C62A370BC100C9E19B /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				1D67E3C72A370BDD00C9E19B /* SearchContainerView.swift */,
-				1D49D3CC2A4E9DCD008D61DA /* RecentHeaderView.swift */,
+				2751C99D2A5E788000F909D3 /* UI */,
+				2751C99C2A5E787800F909D3 /* Controller */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -323,11 +323,9 @@
 		1D75FE962A2F4C8800D4DBF9 /* Search */ = {
 			isa = PBXGroup;
 			children = (
-				1D6610CA2A4324FC00F0F81B /* Model */,
+				1D6610CA2A4324FC00F0F81B /* Models */,
 				1D67E3C62A370BC100C9E19B /* Views */,
-				1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */,
-				1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */,
-				1D26D70D2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift */,
+				2751C99B2A5E779F00F909D3 /* ViewModels */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -374,6 +372,32 @@
 				2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */,
 			);
 			path = Registration;
+			sourceTree = "<group>";
+		};
+		2751C99B2A5E779F00F909D3 /* ViewModels */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ViewModels;
+			sourceTree = "<group>";
+		};
+		2751C99C2A5E787800F909D3 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		2751C99D2A5E788000F909D3 /* UI */ = {
+			isa = PBXGroup;
+			children = (
+				1D67E3C72A370BDD00C9E19B /* SearchContainerView.swift */,
+				1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */,
+				1D49D3CC2A4E9DCD008D61DA /* RecentHeaderView.swift */,
+				1D26D70D2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift */,
+			);
+			path = UI;
 			sourceTree = "<group>";
 		};
 		275FF01D2A39A00400F0511F /* SelectLocation */ = {
