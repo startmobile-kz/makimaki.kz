@@ -735,6 +735,27 @@
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
 		};
+		F134C18A2A5E67D400E73121 /* Model  */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Model ";
+			sourceTree = "<group>";
+		};
+		F134C18B2A5E67EC00E73121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F134C18C2A5E687C00E73121 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Presenter";
+			sourceTree = "<group>";
+		};
 		F1725D4C2A2F070E0072E258 /* AccountOffersList */ = {
 			isa = PBXGroup;
 			children = (
@@ -786,6 +807,9 @@
 		F187EADD2A263EFE00019242 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
+				F134C18A2A5E67D400E73121 /* Model  */,
+                F134C18B2A5E67EC00E73121 /* View */,
+                F134C18C2A5E687C00E73121 /* Presenter */,
 				F187EADE2A263F5E00019242 /* EditProfileViewController.swift */,
 				F1E293022A543467002C798A /* User.swift */,
 			);
