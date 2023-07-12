@@ -224,6 +224,6 @@ final class DishViewController: UIViewController {
     // MARK: - Add Product to Favorites
     
     @objc func onFavoriteButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
+        likeButton.setImage(AppImage.like_white.uiImage, for: .normal)
     }
 }
