@@ -18,8 +18,6 @@ class EditProfileViewController: UIViewController {
         view = editProfileView
         
         presenter = EditProfilePresenter(view: editProfileView)
-        presenter?.delegate = self
-        
         presenter?.viewDidLoad()
         
         setupNavigationBar()
@@ -27,11 +25,5 @@ class EditProfileViewController: UIViewController {
     
     private func setupNavigationBar() {
         navigationItem.title = "Profile"
-    }
-}
-
-extension EditProfileViewController: EditProfilePresenterDelegate {
-    func profileDidUpdate(user: User) {
-        // Handle profile update
     }
 }

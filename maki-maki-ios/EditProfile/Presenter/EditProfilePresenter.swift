@@ -18,16 +18,9 @@ class EditProfilePresenter {
     
     init(view: EditProfileView) {
         self.view = view
-        self.view?.delegate = self
     }
     
     func viewDidLoad() {
         
-    }
-}
-
-extension EditProfilePresenter: EditProfileViewDelegate {
-    func saveButtonDidPress(with user: User) {
-        delegate?.profileDidUpdate(user: user)
     }
 }
