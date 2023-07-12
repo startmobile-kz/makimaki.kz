@@ -18,6 +18,7 @@ final class DishViewController: UIViewController {
 
     var dish: RestaurantProduct?
     var product: Product?
+    var buttonActive = false
     var count = 1 {
         didSet {
             orderPrice.text = "\((dish?.price ?? 0) * count) ₸"
@@ -224,6 +225,11 @@ final class DishViewController: UIViewController {
     // MARK: - Add Product to Favorites
     
     @objc func onFavoriteButtonPressed() {
-        likeButton.setImage(AppImage.like_white.uiImage, for: .normal)
+        if buttonActive {
+            likeButton.setImage(AppImage.like_black.uiImage, for: .normal)
+        } else {
+            likeButton.setImage(AppImage.like_fill.uiImage, for: .normal)
+        }
+        buttonActive = !buttonActive
     }
 }
