@@ -15,6 +15,9 @@ protocol BasketPresenterProtocol {
 }
 
 final class BasketPresenter: BasketPresenterProtocol {
+    
+    // MARK: - State
+    
     weak var view: BasketViewProtocol?
     var router: BasketRouterProtocol?
     var basketInteractor: BasketInteractorProtocol

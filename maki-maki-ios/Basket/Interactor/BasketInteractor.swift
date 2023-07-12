@@ -12,15 +12,12 @@ protocol BasketInteractorProtocol {
 }
 
 final class BasketInteractor: BasketInteractorProtocol {
-    var basketService: BasketServiceProtocol
     
-    // MARK: - Lifecycle
+    var basketService: BasketServiceProtocol
     
     init(basketService: BasketServiceProtocol = BasketService()) {
         self.basketService = basketService
     }
-    
-    // MARK: - Logic
     
     func createOrder(with basket: Basket, completion: @escaping (Bool) -> Void) {
         basketService.createOrder(with: basket) { isSuccess in

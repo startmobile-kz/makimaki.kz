@@ -17,6 +17,9 @@ protocol BasketViewProtocol: AnyObject {
 }
 
 final class BasketViewController: UIViewController {
+    
+    // MARK: - State
+    
     var presenter: BasketPresenterProtocol?
     var cellView: BasketTableViewCellProtocol?
     var router: BasketRouterProtocol?

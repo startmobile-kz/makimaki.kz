@@ -13,12 +13,12 @@ protocol BasketTableViewCellDelegate: AnyObject {
 }
 
 protocol BasketTableViewCellProtocol: AnyObject {
-    var presenter: BasketPresenter? { get set }
+//    var presenter: BasketPresenter? { get set }
     func setupData(dish: RestaurantProduct)
 }
 
 final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
-    var presenter: BasketPresenter?
+//    var presenter: BasketPresenter?
     static let reuseIdentifier = String(describing: BasketTableViewCell.self)
     
     // MARK: - UI
