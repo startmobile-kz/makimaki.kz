@@ -132,7 +132,7 @@ final class DishViewController: UIViewController {
         }
         
         dishImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(31)
+            make.top.equalToSuperview().offset(41)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(304)
