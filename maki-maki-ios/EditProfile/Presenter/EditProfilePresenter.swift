@@ -22,7 +22,7 @@ class EditProfilePresenter {
     }
     
     func viewDidLoad() {
-        // Perform any setup needed when the view loads
+        
     }
 }
 

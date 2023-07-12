@@ -185,7 +185,3 @@ class EditProfileView: UIView {
         delegate?.saveButtonDidPress(with: user)
     }
 }
-
-extension EditProfileView: MaskedTextFieldDelegateListener {
-    // Implement delegate methods if needed
-}

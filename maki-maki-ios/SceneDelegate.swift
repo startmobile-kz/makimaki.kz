@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             let isAuthoried = true
             if isAuthoried {
                 window.rootViewController =
-                UINavigationController(rootViewController: Main2TabBarController())
+                UINavigationController(rootViewController: EditProfileViewController())
             } else {
                 window.rootViewController =
                     UINavigationController(rootViewController: WelcomePageVerOneViewController())
