@@ -163,6 +163,8 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
     
     @objc func scrollToSection(_ notification: Notification) {
         let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
+        let sectionTopContentOffset: Double = 4
+        let additionalOffset = sectionTopContentOffset * Double(sectionIndex)
         isScrollToSectionCalled = true
         if currentSection != sectionIndex {
             var neededHeight: Double = 0
@@ -171,7 +173,7 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
             } else {
                 neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
             }
-            viewController?.changeContentOffset(neededHeight: neededHeight)
+            viewController?.changeContentOffset(neededHeight: neededHeight + additionalOffset)
             currentSection = sectionIndex
             sendNotification(section: sectionIndex)
         }
