@@ -14,6 +14,13 @@ import SkeletonView
 protocol MenuSceneDisplayLogic: NSObject {
     func displayMenu(viewModel: MenuSceneModels.ViewModel)
     func getNeededHeight(heights: [Double])
+    func makeNavigationBarVisible()
+    func pinCategoriesReplacementViewToTheTop()
+    func bringReplacementMenuToFront()
+    func callLayoutIfNeeded()
+    func hideCategoriesReplacementView()
+    func setupNavigationBar()
+    func changeContentOffset(neededHeight: Double)
 }
 
 final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
@@ -64,22 +71,10 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     public var selectedProducts: [RestaurantProduct] = []
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
-    private var lastContentOffsetY: CGFloat = 0
-    private var isScrollingUp = false
-    private let initialHeaderHeight: CGFloat = 318
-    private let spacingBetweenHeaderAndSection: CGFloat = 32
-    private let categoryMenuHeight: Double = 60
-    private var isScrollToSectionCalled = false
-    private var currentSection = 0
     private var heights: [Double] = []
-    static let notificationName = Notification.Name("scrolledToSection")
     private var isLoaded = false {
         didSet {
             hideSkeletons()
-            interactor?.sendSectionInfoToPresenter(
-                sectionCount: categoriesAndNames.count,
-                dividedProducts: productsByCategoryMap
-            )
             collectionView.reloadData()
         }
     }
@@ -140,7 +135,6 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         setupViews()
         setupConstraints()
         setupNavigationBar()
-        setupNotificationObservers()
         showSkeletonAnimation()
         fetchMenu()
     }
@@ -171,21 +165,10 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
             make.height.equalTo(98)
         }
     }
-    
-    // MARK: - SetupNotificationObservers
-    
-    private func setupNotificationObservers() {
-        NotificationCenter.default.addObserver(
-            self,
-            selector: #selector(scrollToSection),
-            name: CategoryMenuView.notificationName,
-            object: nil
-        )
-    }
 
     // MARK: - SetupNavigationBar
     
-    private func setupNavigationBar() {
+    func setupNavigationBar() {
         title = ""
         navigationItem.rightBarButtonItems = []
         self.navigationController?.navigationBar.setBackgroundImage(UIImage(), for: .default)
@@ -282,85 +265,35 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     // MARK: - ScrollViewDidScroll
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        if isLoaded {
-            if !isScrollToSectionCalled {
-                let yOffset = scrollView.contentOffset.y
-                let heightOfOneRowOfItems: Double = 242
-                let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
-                if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
-                    currentSection += 1
-                    sendNotification(section: currentSection)
-                } else if
-                    currentSection > 0 && yOffset < heights[currentSection - 1] - heightOfOneRowOfItems * 2 {
-                    currentSection -= 1
-                    sendNotification(section: currentSection)
-                }
-            }
-            
-            var sticked = false
-            checkScrollDirection(viewOffsetY: scrollView.contentOffset.y)
-            if scrollView.contentOffset.y > initialHeaderHeight {
-                if !sticked {
-                    UIView.animate(withDuration: 0.1) { [weak self] in
-                        guard let self = self else {
-                            return
-                        }
-                        self.makeNavigationBarVisible()
-                        self.pinCategoriesReplacementViewToTheTop()
-                        self.categoriesReplacementView.bringSubviewToFront(self.view)
-                        self.view.layoutIfNeeded()
-                        sticked = true
-                    }
-                }
-            }
-            if isScrollingUp {
-                if scrollView.contentOffset.y < initialHeaderHeight {
-                    self.hideCategoriesReplacementView()
-                    self.setupNavigationBar()
-                    self.view.layoutIfNeeded()
-                    sticked = false
-                }
-            }
-            lastContentOffsetY = scrollView.contentOffset.y
-        }
+        let safeTopInsetHeight = view.safeAreaLayoutGuide.layoutFrame.minY
+        
+        interactor?.sendScrollStateToPresenter(
+            scrollView: scrollView,
+            safeAreaYCoordinate: safeTopInsetHeight,
+            heights: heights
+        )
     }
     
-    private func sendNotification(section: Int) {
-        let userInfo = ["categoryIndex": section]
-        NotificationCenter.default.post(
-            name: RestaurantViewController.notificationName,
-            object: nil,
-            userInfo: userInfo
-        )
+    func bringReplacementMenuToFront() {
+        categoriesReplacementView.bringSubviewToFront(self.view)
+    }
+    
+    func callLayoutIfNeeded() {
+        view.layoutIfNeeded()
     }
     
     func getNeededHeight(heights: [Double]) {
         self.heights = heights
     }
     
-    // MARK: - Actions
-    
-    @objc func scrollToSection(_ notification: Notification) {
-        let sectionIndex = notification.userInfo?["sectionIndex"] as? Int ?? 0
-        isScrollToSectionCalled = true
-        if currentSection != sectionIndex {
-            var neededHeight: Double = 0
-            if sectionIndex == 0 {
-                neededHeight = 0
-            } else {
-                neededHeight = heights[sectionIndex - 1] - categoryMenuHeight
-            }
-            collectionView.setContentOffset(
-                CGPoint(x: 0, y: neededHeight),
-                animated: true
-            )
-            currentSection = sectionIndex
-            sendNotification(section: sectionIndex)
-        }
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.3) {
-            self.isScrollToSectionCalled = false
-        }
+    func changeContentOffset(neededHeight: Double) {
+        collectionView.setContentOffset(
+            CGPoint(x: 0, y: neededHeight),
+            animated: true
+        )
     }
+    
+    // MARK: - ActionsneededHeight: Double
     
     @objc private func openBasket() {
         let basketSceneViewController = BasketSceneViewController()
@@ -368,7 +301,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         router?.navigateToBasket(destination: basketSceneViewController)
     }
     
-    private func hideCategoriesReplacementView() {
+    func hideCategoriesReplacementView() {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalToSuperview().offset(-64)
             make.leading.equalToSuperview().offset(16)
@@ -377,15 +310,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         }
     }
     
-    private func checkScrollDirection(viewOffsetY: CGFloat) {
-        if lastContentOffsetY > viewOffsetY {
-            isScrollingUp = true
-        } else {
-            isScrollingUp = false
-        }
-    }
-    
-    private func pinCategoriesReplacementViewToTheTop() {
+    func pinCategoriesReplacementViewToTheTop() {
         categoriesReplacementView.snp.remakeConstraints { make in
             make.top.equalTo(self.view.safeAreaLayoutGuide.snp.top)
             make.leading.trailing.equalToSuperview()
@@ -393,7 +318,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         }
     }
     
-    private func makeNavigationBarVisible() {
+    func makeNavigationBarVisible() {
         title = "Smile House Cafe"
         setupNavBarTitle()
         self.navigationController?.navigationBar.topItem?.setHidesBackButton(false, animated: true)

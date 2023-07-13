@@ -6,13 +6,15 @@
 //
 
 import Foundation
+import UIKit
 
 protocol MenuSceneBusinessLogic {
     func fetchProducts(request: MenuSceneModels.Request)
-    
-    func sendSectionInfoToPresenter(
-        sectionCount: Int,
-        dividedProducts: [Int: [RestaurantProduct]]
+
+    func sendScrollStateToPresenter(
+        scrollView: UIScrollView,
+        safeAreaYCoordinate: CGFloat,
+        heights: [Double]
     )
 }
 
@@ -38,13 +40,15 @@ final class MenuSceneInteractor: MenuSceneBusinessLogic, MenuSceneDataStore {
         }
     }
     
-    func sendSectionInfoToPresenter(
-        sectionCount: Int,
-        dividedProducts: [Int: [RestaurantProduct]]
+    func sendScrollStateToPresenter(
+        scrollView: UIScrollView,
+        safeAreaYCoordinate: CGFloat,
+        heights: [Double]
     ) {
-        presenter?.calculateNeededHeight(
-            sectionCount: sectionCount,
-            dividedProducts: dividedProducts
+        presenter?.scrollViewScrolled(
+            scrollView: scrollView,
+            safeAreaYCoordinate: safeAreaYCoordinate,
+            heights: heights
         )
     }
 }
