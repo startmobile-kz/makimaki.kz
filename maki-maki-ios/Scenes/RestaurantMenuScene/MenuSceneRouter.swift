@@ -9,6 +9,7 @@ import UIKit
 
 protocol MenuSceneRoutingLogic {
     func navigateToBasket(destination: BasketSceneViewController)
+    func presentProduct(destination: DishViewController)
 }
 
 protocol MenuSceneDataPassing {
@@ -21,5 +22,9 @@ class MenuSceneRouter: MenuSceneRoutingLogic, MenuSceneDataPassing {
     
     func navigateToBasket(destination: BasketSceneViewController) {
         viewController?.navigationController?.pushViewController(destination, animated: true)
+    }
+    
+    func presentProduct(destination: DishViewController) {
+        viewController?.present(destination, animated: true)
     }
 }

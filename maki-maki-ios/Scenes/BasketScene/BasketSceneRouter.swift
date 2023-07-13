@@ -16,5 +16,6 @@ protocol BasketSceneDataPassing {
 }
 
 class BasketSceneRouter: BasketSceneRoutingLogic, BasketSceneDataPassing {
+    weak var viewController: BasketSceneViewController?
     weak var dataStore: BasketSceneDataStore?
 }

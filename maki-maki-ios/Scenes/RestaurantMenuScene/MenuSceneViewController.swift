@@ -32,22 +32,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupArchitecture()
-    }
-    
-    // MARK: - SetupArchitecture
-    
-    private func setupArchitecture() {
-        let viewController = self
-        let interactor = MenuSceneInteractor()
-        let presenter = MenuScenePresenter()
-        let router = MenuSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        presenter.viewController = viewController
-        router.viewController = viewController
-        router.dataStore = interactor
+        MenuSceneAssembler().assemble(self)
     }
     
     required init?(coder: NSCoder) {
@@ -367,7 +352,7 @@ extension MenuSceneViewController: UICollectionViewDelegate {
         let dishViewController = DishViewController()
         dishViewController.dish = productsByCategoryMap[indexPath.section + 1]?[indexPath.row]
         dishViewController.delegate = self
-        present(dishViewController, animated: true)
+        router?.presentProduct(destination: dishViewController)
     }
 }
 

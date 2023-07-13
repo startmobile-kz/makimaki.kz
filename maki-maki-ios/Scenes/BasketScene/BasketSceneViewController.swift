@@ -22,21 +22,7 @@ final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic
     
     override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
         super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupArchitecture()
-    }
-    
-    // MARK: - SetupArchitecture
-    
-    private func setupArchitecture() {
-        let viewController = self
-        let interactor = BasketSceneInteractor()
-        let presenter = BasketScenePresenter()
-        let router = BasketSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        router.dataStore = interactor
-        presenter.viewController = viewController
+        BasketSceneAssembler().assemble(self)
     }
     
     func displaySelectedProducts(selectedProducts: [RestaurantProduct]) {

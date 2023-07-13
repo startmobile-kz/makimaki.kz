@@ -87,7 +87,6 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
         
         self.heights = heights
         isLoaded = true
-        print("CALCULATED", heights)
     }
     
     func scrollViewScrolled(scrollView: UIScrollView, safeAreaYCoordinate: CGFloat) {
@@ -96,7 +95,6 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
                 let yOffset = scrollView.contentOffset.y
                 let heightOfOneRowOfItems: Double = 242
                 let safeTopInsetHeight = safeAreaYCoordinate
-                print("HEIGHTI IN SCROLL", heights)
                 if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
                     currentSection += 1
                     sendNotification(section: currentSection)
