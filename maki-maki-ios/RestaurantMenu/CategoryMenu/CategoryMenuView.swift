@@ -112,7 +112,6 @@ final class CategoryMenuView: UIView {
     }
     
     func configureCategories(categories: [Category]) {
-        print("CATEGORIES", categories)
         listCategory = categories
         categoryCollectionView.reloadData()
         categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
