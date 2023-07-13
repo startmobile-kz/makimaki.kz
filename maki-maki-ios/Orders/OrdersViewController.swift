@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class OrdersViewController: UIViewController {
     
@@ -61,6 +62,7 @@ final class OrdersViewController: UIViewController {
     
     private var ordersCopy: [Order] = []
     private var sectionIsExpanded: [Bool] = []
+    private var isLoaded = false
     
     // MARK: - UI
     
@@ -68,10 +70,12 @@ final class OrdersViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
+        tableView.register(OrdersSkeletonCell.self, forCellReuseIdentifier: OrdersSkeletonCell.reuseID)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundView = noOrdersView
+        tableView.isSkeletonable = true
         return tableView
     }()
     
@@ -91,6 +95,14 @@ final class OrdersViewController: UIViewController {
         setupConstraints()
         setupData()
         showNoOrdersViewIfNeeded()
+        showSkeletonAnimation()
+    }
+    
+    private func showSkeletonAnimation() {
+        if !isLoaded {
+            ordersTableView.rowHeight = 114
+        }
+        ordersTableView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - SetupData
@@ -222,5 +234,36 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
 extension OrdersViewController: ReorderCellDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
+    }
+}
+
+extension OrdersViewController: SkeletonTableViewDelegate {
+    
+}
+
+extension OrdersViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        skeletonCellForRowAt indexPath: IndexPath
+    ) -> UITableViewCell? {
+        let cell = skeletonView.dequeueReusableCell(
+            withIdentifier: OrdersSkeletonCell.reuseID,
+            for: indexPath
+        ) as? OrdersSkeletonCell
+//        cell?.textField.isHidden = indexPath.row == 0
+        return cell
+    }
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        cellIdentifierForRowAt indexPath: IndexPath
+    ) -> ReusableCellIdentifier {
+        return OrdersSkeletonCell.reuseID
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        return 10
     }
 }
