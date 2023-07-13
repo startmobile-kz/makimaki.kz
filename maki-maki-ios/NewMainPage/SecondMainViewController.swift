@@ -94,7 +94,7 @@ final class SecondMainViewController: UIViewController {
         let view = ViewCartContainer()
         let tap = UITapGestureRecognizer(target: self, action: #selector(self.openBasket))
         view.addGestureRecognizer(tap)
-        view.isSkeletonable = true
+        view.isHiddenWhenSkeletonIsActive = true
         return view
     }()
     
@@ -313,6 +313,7 @@ final class SecondMainViewController: UIViewController {
             case .success(let groupedProducts):
                 self?.categoriesAndNames = groupedProducts.categoriesAndNames
                 self?.productsByCategoryMap = groupedProducts.dividedProducts
+                self?.setupSelectedProducts()
                 self?.isLoaded = true
             case .failure(let error):
                 print(error.localizedDescription)
@@ -360,6 +361,23 @@ final class SecondMainViewController: UIViewController {
         }
     }
     
+    private func setupSelectedProducts() {
+        let productsFromCoreData = CoreDataManager.shared.fetchSelectedProducts()
+        
+        productsFromCoreData.forEach { selectedProduct in
+            let categoryIndex = Int(selectedProduct.category)
+            let products = productsByCategoryMap[categoryIndex] ?? []
+            for product in products {
+                if selectedProduct.id == product.id {
+                    product.count = Int(selectedProduct.count)
+                    selectedProducts.append(product)
+                }
+            }
+        }
+        viewCartContainerView.setupData(products: selectedProducts)
+        setupViewCartAppearance()
+    }
+    
     private func setupViewCartAppearance() {
         viewCartContainerView.isHidden = selectedProducts.isEmpty
     }
@@ -393,6 +411,23 @@ final class SecondMainViewController: UIViewController {
     @objc private func openBasket() {
         let basketViewController = BasketViewController()
         basketViewController.selectedDishes = selectedProducts
+        basketViewController.deleteProductCallback = { [weak self] removedProduct in
+            guard let self = self else {
+                return
+            }
+            CoreDataManager.shared.deleteSelectedProduct(product: removedProduct)
+            self.selectedProducts.removeAll(where: { selectedProduct in
+                selectedProduct.id == removedProduct.id
+            })
+            productsByCategoryMap[removedProduct.category]?.forEach({ product in
+                if product.id == removedProduct.id {
+                    product.count = 0
+                }
+            })
+            self.viewCartContainerView.setupData(products: self.selectedProducts)
+            self.setupViewCartAppearance()
+            self.collectionView.reloadData()
+        }
         self.navigationController?.pushViewController(basketViewController, animated: true)
     }
 }
@@ -570,11 +605,15 @@ extension SecondMainViewController: DishViewControllerDelegate {
         collectionView.reloadData()
          
         productsByCategoryMap.values.forEach { products in
-            selectedProducts.append(contentsOf: products.filter({ product in
-                return product.isSelected && !selectedProducts.contains(where: {$0.id == product.id})
-            }))
+            for product in products {
+                if product.isSelected && !selectedProducts.contains(where: {$0.id == product.id}) {
+                    selectedProducts.append(product)
+                    CoreDataManager.shared.addSelectedProduct(product: product)
+                } else if selectedProducts.contains(where: {$0.id == product.id}) {
+                    CoreDataManager.shared.updateSelectedProduct(product: product)
+                }
+            }
         }
-        
         setupViewCartAppearance()
         viewCartContainerView.setupData(products: selectedProducts)
     }
