@@ -12,12 +12,7 @@ final class ManageAdressesViewController: UIViewController {
     
     // MARK: - State
     
-    var addresses: [Address] = [] {
-        didSet {
-            tableView.reloadData()
-        }
-    }
-    private let service: AddressService = AddressService()
+    private let sharedViewModel = AddressViewModel()
     
     // MARK: - UI
     
@@ -53,8 +48,7 @@ final class ManageAdressesViewController: UIViewController {
     
     func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
-        view.addSubview(tableView)
-        view.addSubview(savedAddressesLabel)
+        view.addSubviews([savedAddressesLabel,tableView])
     }
     
     private func setupNavigationBar() {
@@ -80,16 +74,18 @@ final class ManageAdressesViewController: UIViewController {
     // MARK: - Load Data
     
     private func loadAddreses() {
-        addresses = service.fetchAddresses()
+        sharedViewModel.reloadDataCallback = { [weak self] in
+            self?.tableView.reloadData()
+        }
+        sharedViewModel.fetchAdresses()
     }
-    
 }
 
 // MARK: - Extension: ManageAdressesViewController
 
 extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return addresses.count
+        return sharedViewModel.addresses.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -99,22 +95,16 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
         ) as? ManageAddressesCell else {
             fatalError("Could not cast to CategoryCollectionViewCell")
         }
-        let adress = addresses[indexPath.row]
+        let adress = sharedViewModel.addresses[indexPath.row]
         cell.set(address: adress)
         return cell
-    }
-    
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
     }
     
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {
         tableView.beginUpdates()
-        let currentAddress = addresses[indexPath.row]
-        service.deleteAddress(address: currentAddress)
-        addresses.remove(at: indexPath.row)
+        sharedViewModel.deleteAddress(index: indexPath)
         tableView.deleteRows(at: [indexPath], with: .fade)
         tableView.endUpdates()
     }
@@ -123,7 +113,7 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
     
     func tableView(_ tableView: UITableView, viewForFooterInSection section: Int) -> UIView? {
         let footer =
-            tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer") as? AddressTableViewFooterView
+        tableView.dequeueReusableHeaderFooterView(withIdentifier: "footer") as? AddressTableViewFooterView
         footer?.delegate = self
         return footer
     }

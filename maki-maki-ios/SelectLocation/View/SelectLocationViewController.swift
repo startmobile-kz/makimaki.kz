@@ -4,7 +4,6 @@
 //
 //  Created by Нұрмұхан Дәукес on 14.06.2023.
 //
-
 import UIKit
 import SnapKit
 import YandexMapsMobile
@@ -13,7 +12,7 @@ final class SelectLocationViewController: UIViewController {
     
     // MARK: - State
     
-    private let addressService = AddressService()
+    private let viewModel = AddressViewModel()
     
     // MARK: - Map View UI
     
@@ -91,23 +90,19 @@ final class SelectLocationViewController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        cornerRadius()
+        setCornerRadius()
     }
     
     // MARK: - Setup Views
     
     private func setupViews() {
-        [mapView, addressSelectionView,
+        view.addSubviews([mapView, addressSelectionView,
          selectLocationLabel, yourLocationLabel, locationTextField,
-         saveAsLabel, choiceLocationSegmentedController, saveAddressButton].forEach {
-            view.addSubview($0)
-        }
-        
+         saveAsLabel, choiceLocationSegmentedController, saveAddressButton])
          mapView.addSubview(yandexMap)
     }
     
-    private func cornerRadius() {
+    private func setCornerRadius() {
         addressSelectionView.roundCorners(corners: [.topLeft, .topRight], radius: 20)
     }
     
@@ -182,17 +177,15 @@ final class SelectLocationViewController: UIViewController {
         guard let text = locationTextField.text  else {
             return
         }
-      
-        let newAddress = Address(id: UUID(),
-                                 street: text,
-                                 latitude: 43.297601,
-                                 longitude: 76.974137,
-                                 house: "45",
-                                 flat: "44",
-                                 type: choiceLocationSegmentedController.selectedSegmentIndex )
         
-        addressService.saveAddress(address: newAddress)
+        viewModel.saveAddress(with: Address(id: UUID(),
+                                            street: text,
+                                            latitude: 43.297601,
+                                            longitude: 76.974137,
+                                            house: "12",
+                                            flat: "401",
+                                            type:choiceLocationSegmentedController.selectedSegmentIndex))
+        
         self.navigationController?.popToRootViewController(animated: true)
     }
-
 }
