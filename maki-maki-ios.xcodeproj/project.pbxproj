@@ -118,6 +118,8 @@
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 		F1E293032A543467002C798A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E293022A543467002C798A /* User.swift */; };
+		F1E293092A581ED9002C798A /* RecentSearch.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = F1E293072A581ED9002C798A /* RecentSearch.xcdatamodeld */; };
+		F1E2930B2A58208A002C798A /* SaveRecentSearch.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -247,6 +249,8 @@
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1E293022A543467002C798A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
+		F1E293082A581ED9002C798A /* CoreDataSearch.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = CoreDataSearch.xcdatamodel; sourceTree = "<group>"; };
+		F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SaveRecentSearch.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -332,6 +336,8 @@
 				1D75FE972A2F4CDA00D4DBF9 /* SearchV1ViewController.swift */,
 				1D75FE992A2F563000D4DBF9 /* SearchResultTableViewCell.swift */,
 				1D26D70D2A34614D00C6DEF8 /* RecentSearchesTableViewCell.swift */,
+				F1E2930A2A58208A002C798A /* SaveRecentSearch.swift */,
+				F1E293072A581ED9002C798A /* RecentSearch.xcdatamodeld */,
 			);
 			path = Search;
 			sourceTree = "<group>";
@@ -1068,6 +1074,7 @@
 				03F45A152A45035900BC23B9 /* Basket.swift in Sources */,
 				773799362A36458C00E2CF7F /* StorageManager.swift in Sources */,
 				27A1995C2A2D18AD00ED9096 /* SignUpViewController.swift in Sources */,
+				F1E293092A581ED9002C798A /* RecentSearch.xcdatamodeld in Sources */,
 				9F61734C2A2E655B00299E56 /* ContainerViewController.swift in Sources */,
 				26FC1D5C2A273626003BA971 /* OrdersCell.swift in Sources */,
 				689BC9022A2F37AE008FD14F /* TabBarItem.swift in Sources */,
@@ -1121,6 +1128,7 @@
 				261494F02A3A598800767D1B /* StepperView.swift in Sources */,
 				773A737E2A27840F0029AA44 /* AppImage.swift in Sources */,
 				260815B42A4A168300751BDC /* ReorderCell.swift in Sources */,
+				F1E2930B2A58208A002C798A /* SaveRecentSearch.swift in Sources */,
 				68D810352A2867A000D29827 /* RestaurantCollectionViewCell.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
 				1D67E3C82A370BDD00C9E19B /* SearchContainerView.swift in Sources */,
@@ -1432,6 +1440,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		F1E293072A581ED9002C798A /* RecentSearch.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				F1E293082A581ED9002C798A /* CoreDataSearch.xcdatamodel */,
+			);
+			currentVersion = F1E293082A581ED9002C798A /* CoreDataSearch.xcdatamodel */;
+			path = RecentSearch.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CE9623572A132B1A00C36D03 /* Project object */;
 }
