@@ -38,6 +38,15 @@ final class DishViewController: UIViewController {
         return imageView
     }()
     
+    private lazy var likeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(AppImage.like_black.uiImage, for: .normal)
+        button.backgroundColor = AppColor.background.uiColor
+        button.tintColor = AppColor.heading.uiColor
+        button.addTarget(self, action: #selector(onFavoriteButtonPressed), for: .touchUpInside)
+        return button
+    }()
+    
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
         label.textAlignment = .left
@@ -103,6 +112,7 @@ final class DishViewController: UIViewController {
         view.backgroundColor = AppColor.background.uiColor
         [
             dishImageView,
+            likeButton,
             productNameLabel,
             descriptionLabel,
             stepperView,
@@ -114,6 +124,12 @@ final class DishViewController: UIViewController {
     // MARK: - Setup Constraints
     
     private func setupConstraints() {
+        likeButton.snp.makeConstraints { make in
+            make.top.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
+            make.size.equalTo(24)
+        }
+        
         dishImageView.snp.makeConstraints { make in
             make.top.equalToSuperview().offset(31)
             make.leading.equalToSuperview().offset(31)
@@ -203,5 +219,11 @@ final class DishViewController: UIViewController {
         descriptionLabel.text = product.description
         let url = URL(string: product.image ?? " ")
         dishImageView.kf.setImage(with: url)
+    }
+    
+    // MARK: - Add Product to Favorites
+    
+    @objc func onFavoriteButtonPressed() {
+        self.dismiss(animated: true, completion: nil)
     }
 }

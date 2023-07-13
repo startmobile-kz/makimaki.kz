@@ -52,6 +52,7 @@ final class ProductSectionHeaderView: UICollectionReusableView {
     private func setupConstraints() {
         sectionLabel.snp.makeConstraints { make in
             make.leading.equalToSuperview()
+            make.top.equalToSuperview()
         }
     }
 }

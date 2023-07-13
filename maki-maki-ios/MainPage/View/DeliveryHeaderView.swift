@@ -20,6 +20,7 @@ final class DeliveryHeaderView: UIView {
         label.text = "DELIVER TO"
         label.font = AppFont.semibold.s15()
         label.textColor = AppColor.darkOrange.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
@@ -28,6 +29,7 @@ final class DeliveryHeaderView: UIView {
         label.text = "Navoi 37"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.heading.uiColor
+        label.isSkeletonable = true
         return label
     }()
     
