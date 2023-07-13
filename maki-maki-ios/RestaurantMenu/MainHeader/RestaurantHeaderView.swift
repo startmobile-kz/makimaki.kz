@@ -150,4 +150,8 @@ final class RestaurantHeaderView: UICollectionReusableView {
             make.trailing.equalToSuperview().offset(-16)
         }
     }
+    
+    func setCategories(categories: [Category]) {
+        categoryView.configureCategories(categories: categories)
+    }
 }

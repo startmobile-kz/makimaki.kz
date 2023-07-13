@@ -63,8 +63,8 @@ final class CategoryMenuView: UIView {
         setupViews()
         setupConstraints()
         setupCollection()
+//        fetchCategoriesName()
         setupNotificationObservers()
-        fetchCategoriesName()
     }
     
     required init?(coder aDecoder: NSCoder) {
@@ -111,21 +111,11 @@ final class CategoryMenuView: UIView {
         )
     }
     
-    private func fetchCategoriesName() {
-        RestaurantProductService().fetchCategories { [weak self] result in
-            switch result {
-            case .success(let categories):
-                self?.listCategory = categories.sorted(by: {
-                    $0.id < $1.id
-                })
-                DispatchQueue.main.async {
-                    self?.categoryCollectionView.reloadData()
-                    self?.categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
-                }
-            case .failure(let error):
-                print(error.localizedDescription)
-            }
-        }
+    func configureCategories(categories: [Category]) {
+        print("CATEGORIES", categories)
+        listCategory = categories
+        categoryCollectionView.reloadData()
+        categoryCollectionView.selectItem(at: [0,0], animated: true, scrollPosition: [])
     }
     
     @objc func scrollToCategory(_ notification: Notification) {

@@ -13,8 +13,7 @@ protocol MenuSceneBusinessLogic {
 
     func sendScrollStateToPresenter(
         scrollView: UIScrollView,
-        safeAreaYCoordinate: CGFloat,
-        heights: [Double]
+        safeAreaYCoordinate: CGFloat
     )
 }
 
@@ -28,27 +27,50 @@ final class MenuSceneInteractor: MenuSceneBusinessLogic, MenuSceneDataStore {
     
     func fetchProducts(request: MenuSceneModels.Request) {
         networkWorker = NetworkWorker()
-        networkWorker?.fetchCategoriesWithProducts { [weak self] result in
+        var products = GroupedProducts(
+            categoriesAndNames: [:],
+            dividedProducts: [:]
+        )
+        var categories = [Category]()
+        let group = DispatchGroup()
+        
+        group.enter()
+        networkWorker?.fetchCategories { result in
             switch result {
-            case .success(let groupedProducts):
-                self?.presenter?.presentMenu(
-                    response: MenuSceneModels.Response(groupedProducts: groupedProducts)
-                )
+            case .success(let fetchedCategories):
+                categories = fetchedCategories
             case .failure(let error):
                 print(error.localizedDescription)
             }
+            group.leave()
+        }
+        
+        group.enter()
+        networkWorker?.fetchCategoriesWithProducts { [weak self] result in
+            switch result {
+            case .success(let groupedProducts):
+                products = groupedProducts
+            case .failure(let error):
+                print(error.localizedDescription)
+            }
+            group.leave()
+        }
+        
+        group.notify(queue: .main) {
+            self.presenter?.configureCategories(categories: categories)
+            self.presenter?.presentMenu(
+                response: MenuSceneModels.Response(groupedProducts: products)
+            )
         }
     }
     
     func sendScrollStateToPresenter(
         scrollView: UIScrollView,
-        safeAreaYCoordinate: CGFloat,
-        heights: [Double]
+        safeAreaYCoordinate: CGFloat
     ) {
         presenter?.scrollViewScrolled(
             scrollView: scrollView,
-            safeAreaYCoordinate: safeAreaYCoordinate,
-            heights: heights
+            safeAreaYCoordinate: safeAreaYCoordinate
         )
     }
 }

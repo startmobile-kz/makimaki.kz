@@ -11,10 +11,11 @@ import UIKit
 protocol MenuScenePresentationLogic {
     func presentMenu(response: MenuSceneModels.Response)
     
+    func configureCategories(categories: [Category])
+    
     func scrollViewScrolled(
         scrollView: UIScrollView,
-        safeAreaYCoordinate: CGFloat,
-        heights: [Double]
+        safeAreaYCoordinate: CGFloat
     )
 }
 
@@ -46,12 +47,18 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
         let viewModel = MenuSceneModels.ViewModel(
             categoriesAndNames: categories,
             dividedProducts: products)
-        isLoaded = true
         calculateNeededHeight(
             sectionCount: categories.count,
             dividedProducts: products
         )
         viewController?.displayMenu(viewModel: viewModel)
+    }
+    
+    func configureCategories(categories: [Category]) {
+        let sortedCategories = categories.sorted {
+            $0.id < $1.id
+        }
+        viewController?.setCategories(categories: sortedCategories)
     }
     
     private func calculateNeededHeight(
@@ -79,14 +86,17 @@ final class MenuScenePresenter: MenuScenePresentationLogic {
         }
         
         self.heights = heights
+        isLoaded = true
+        print("CALCULATED", heights)
     }
     
-    func scrollViewScrolled(scrollView: UIScrollView, safeAreaYCoordinate: CGFloat, heights: [Double]) {
+    func scrollViewScrolled(scrollView: UIScrollView, safeAreaYCoordinate: CGFloat) {
         if isLoaded {
             if !isScrollToSectionCalled {
                 let yOffset = scrollView.contentOffset.y
                 let heightOfOneRowOfItems: Double = 242
                 let safeTopInsetHeight = safeAreaYCoordinate
+                print("HEIGHTI IN SCROLL", heights)
                 if yOffset >= heights[currentSection] - safeTopInsetHeight - categoryMenuHeight {
                     currentSection += 1
                     sendNotification(section: currentSection)

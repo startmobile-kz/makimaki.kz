@@ -21,6 +21,7 @@ protocol MenuSceneDisplayLogic: NSObject {
     func hideCategoriesReplacementView()
     func setupNavigationBar()
     func changeContentOffset(neededHeight: Double)
+    func setCategories(categories: [Category])
 }
 
 final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
@@ -69,6 +70,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     
     private var service = RestaurantProductService()
     public var selectedProducts: [RestaurantProduct] = []
+    private var categories: [Category] = []
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
     private var heights: [Double] = []
@@ -269,8 +271,7 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
         
         interactor?.sendScrollStateToPresenter(
             scrollView: scrollView,
-            safeAreaYCoordinate: safeTopInsetHeight,
-            heights: heights
+            safeAreaYCoordinate: safeTopInsetHeight
         )
     }
     
@@ -291,6 +292,13 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
             CGPoint(x: 0, y: neededHeight),
             animated: true
         )
+    }
+    
+    func setCategories(categories: [Category]) {
+        categoriesReplacementView.configureCategories(categories: categories)
+        self.categories = categories
+        collectionView.reloadData()
+//        hideSkeletons()
     }
     
     // MARK: - ActionsneededHeight: Double
@@ -418,6 +426,7 @@ extension MenuSceneViewController: UICollectionViewDataSource {
                 ) as? RestaurantHeaderView else {
                     fatalError("Could not cast to RestaurantHeaderView")
                 }
+                mainHeader.setCategories(categories: categories)
                 return mainHeader
             default :
                 sectionHeader.setSectionHeaderTitle(title: categoriesAndNames[sectionID] ?? "")
