@@ -14,7 +14,6 @@
 		0349DDF62A3BAC3100BACD4F /* PaymentMethodViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDF42A3BAC3100BACD4F /* PaymentMethodViewController.swift */; };
 		037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16702A2F5E3700401843 /* FavoritesViewController.swift */; };
 		037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 037F16722A3058CF00401843 /* FavoritesTableViewCell.swift */; };
-		1D1C64022A448A4200DA83CF /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 1D1C64012A448A4200DA83CF /* Kingfisher */; };
 		03F45A152A45035900BC23B9 /* Basket.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F45A142A45035900BC23B9 /* Basket.swift */; };
 		03F45A172A45070B00BC23B9 /* BasketService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03F45A162A45070B00BC23B9 /* BasketService.swift */; };
 		1D244F282A287588003BBFB8 /* PromoBannerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D244F272A287588003BBFB8 /* PromoBannerCollectionViewCell.swift */; };
@@ -97,6 +96,7 @@
 		9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */; };
 		B41D60962A30ED3900ED3263 /* ResetPasswordViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */; };
 		B423AD5F2A45680700B3AB7C /* AddCreditCardViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */; };
+		B424D4342A5BA76A00BE8E25 /* KeychainManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = B424D4332A5BA76A00BE8E25 /* KeychainManager.swift */; };
 		B48A78F32A4FF6FD00D0D0C0 /* CardScanViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B48A78F22A4FF6FD00D0D0C0 /* CardScanViewController.swift */; };
 		CE15DD362A136D3A006F9968 /* maki_maki_iosTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE15DD352A136D3A006F9968 /* maki_maki_iosTests.swift */; };
 		CE9623632A132B1A00C36D03 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623622A132B1A00C36D03 /* AppDelegate.swift */; };
@@ -211,6 +211,7 @@
 		9FFEE49F2A46F8D10071AE0D /* SnackBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnackBarController.swift; sourceTree = "<group>"; };
 		B41D60952A30ED3900ED3263 /* ResetPasswordViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResetPasswordViewController.swift; sourceTree = "<group>"; };
 		B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddCreditCardViewController.swift; sourceTree = "<group>"; };
+		B424D4332A5BA76A00BE8E25 /* KeychainManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeychainManager.swift; sourceTree = "<group>"; };
 		B48A78F22A4FF6FD00D0D0C0 /* CardScanViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CardScanViewController.swift; sourceTree = "<group>"; };
 		BEADB4B4DF4E567102412C80 /* Pods-maki-maki-ios.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-maki-maki-ios.release.xcconfig"; path = "Target Support Files/Pods-maki-maki-ios/Pods-maki-maki-ios.release.xcconfig"; sourceTree = "<group>"; };
 		CE15DD332A136D3A006F9968 /* maki-maki-iosTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "maki-maki-iosTests.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -622,6 +623,7 @@
 			children = (
 				B423AD5E2A45680700B3AB7C /* AddCreditCardViewController.swift */,
 				B48A78F22A4FF6FD00D0D0C0 /* CardScanViewController.swift */,
+				B424D4332A5BA76A00BE8E25 /* KeychainManager.swift */,
 			);
 			path = AddCreditCard;
 			sourceTree = "<group>";
@@ -1025,6 +1027,7 @@
 				F1725D502A2F07920072E258 /* OffersCell.swift in Sources */,
 				037F16712A2F5E3700401843 /* FavoritesViewController.swift in Sources */,
 				26E2798A2A2F5DE00071863C /* Order.swift in Sources */,
+				B424D4342A5BA76A00BE8E25 /* KeychainManager.swift in Sources */,
 				773A73802A2784160029AA44 /* AppColor.swift in Sources */,
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 				1D6610CC2A43251F00F0F81B /* ProductModel.swift in Sources */,

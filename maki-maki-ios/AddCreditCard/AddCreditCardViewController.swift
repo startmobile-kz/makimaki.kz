@@ -13,7 +13,6 @@ import InputMask
 final class AddCreditCardViewController: UIViewController {
     
     // MARK: - Setup UI Components
-    
     private lazy var creditCardImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.image = UIImage(named: "background")
@@ -80,14 +79,14 @@ final class AddCreditCardViewController: UIViewController {
         textField.rightViewMode = .always
         textField.autocorrectionType = .no
         textField.delegate = self
+        textField.addTarget(self, action: #selector(didChangeCardHolderNameTextField), for: .editingChanged)
         return textField
     }()
     
-   private lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
+    lazy var cardNumberTextfield: SkyFloatingLabelTextField = {
         let textField = SkyFloatingLabelTextField()
         let imageView = UIImageView()
         let image = UIImage(named: "camera")
-        let firstDigit = String((cardHolderNameTextfield.text?.prefix(1))!)
         textField.font = AppFont.reqular.s15()
         textField.title = "CARD NUMBER"
         textField.placeholder = "CARD NUMBER"
@@ -101,9 +100,8 @@ final class AddCreditCardViewController: UIViewController {
         textField.autocorrectionType = .no
         imageView.image = image
         textField.rightView = imageView
-        let text = textField.text ?? ""
-        let integer = Int(text) ?? 0
-        print("Integer", integer)
+        textField.addTarget(self, action: #selector(didChangeCardNumberTextField), for: .editingChanged)
+        textField.delegate = listener2
         return textField
     }()
     
@@ -129,6 +127,7 @@ final class AddCreditCardViewController: UIViewController {
         button.setTitleColor(AppColor.heading.uiColor, for: .normal)
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(saveButtonDidPress), for: .touchUpInside)
         return button
     }()
     
@@ -179,6 +178,7 @@ final class AddCreditCardViewController: UIViewController {
         textField.rightViewMode = .always
         textField.autocorrectionType = .no
         textField.delegate = self
+        textField.addTarget(self, action: #selector(didChangeCVVTextfield), for: .editingChanged)
         return textField
     }()
     
@@ -252,8 +252,8 @@ final class AddCreditCardViewController: UIViewController {
             make.right.equalToSuperview().offset(-24)
         }
     }
-    
     private func setupConstraints2() {
+        
         cardHolderNameTextfield.snp.makeConstraints { make in
             make.height.equalTo(60)
         }
@@ -276,6 +276,7 @@ final class AddCreditCardViewController: UIViewController {
         textFieldsContainer2.snp.makeConstraints { make in
             make.top.equalTo(textFieldsContainer.snp.bottom).offset(37.5)
             make.leading.trailing.equalToSuperview().inset(16)
+            
         }
         
         saveButton.snp.makeConstraints { make in
@@ -284,6 +285,66 @@ final class AddCreditCardViewController: UIViewController {
             make.trailing.equalToSuperview().offset(-16)
             make.height.equalTo(53)
         }
+    }
+    @objc func saveButtonDidPress() {
+                do {
+                    let account = "exampleAccount"
+                    // Save credit card info
+                    try KeychainManager.saveCreditCardInfo(cardNumber: cardNumberTextfield.text!,
+                         cvv: cvcTextField.text!, cardHolderName: cardHolderNameTextfield.text!,
+ expirationDate: dateOfExpireTextField.text!, account: account)
+                    let retrievedInfo = try KeychainManager.retrieveCreditCardInfo(account: account)
+                    print("Retrieved Credit Card Info: \(retrievedInfo)")
+                    
+                    // Update credit card info
+                    let updatedCardNumber = "9876543210987654"
+                    let updatedCVV = "456"
+                    let updatedCardHolderName = "Jane Smith"
+                    let updatedExpirationDate = "12/26"
+                    try KeychainManager.updateCreditCardInfo(cardNumber: updatedCardNumber,
+   cvv: updatedCVV, cardHolderName: updatedCardHolderName,
+expirationDate: updatedExpirationDate, account: account)
+                    
+                    // Delete credit card info
+                    try KeychainManager.deleteCreditCardInfo(account: account)
+                } catch {
+                    // Handle any errors that occur during keychain operations
+                    print("Error: \(error)")
+                }
+            }
+        
+    @objc private func didChangeCardHolderNameTextField(_ textField: UITextField) {
+        cardHolderNameLabel.text = textField.text
+    }
+    
+    @objc private func didChangeCardNumberTextField(_ textField: UITextField) {
+        guard let prefix = textField.text?.prefix(16) else {
+            return
+        }
+        cardNumberTextfield.text = String(prefix)
+        cardNumberLabel.text =
+        cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d{4})",
+                                                       with: "$1 $2 $3 $4",
+                                                       options: .regularExpression, range: nil)
+    }
+    private lazy var listener2: MaskedTextFieldDelegate = {
+        let listener = MaskedTextFieldDelegate()
+        listener.onMaskedTextChangedCallback = { textField, _, _ in
+            let updatedText = textField.text ?? ""
+            self.cardNumberLabel.text = updatedText
+//            if isFilled {
+//                print("Text field is filled: \(updatedText)")
+//            }
+        }
+        listener.delegate = self
+        listener.primaryMaskFormat = "[0000] [0000] [0000] [0000]"
+        return listener
+    }()
+    @objc private func didChangeCVVTextfield(_ textField: UITextField) {
+        guard let prefix = textField.text?.prefix(3) else {
+            return
+        }
+        cvcTextField.text = String(prefix)
     }
 }
 
@@ -297,12 +358,8 @@ extension AddCreditCardViewController: UITextFieldDelegate {
         cardNumberTextfield.text?.replacingOccurrences(of: "(\\d{4})(\\d{4})(\\d{4})(\\d{4})",
                                                        with: "$1 $2 $3 $4",
                                                        options: .regularExpression, range: nil)
-        let integer = cardNumberTextfield
-        if integer.text?.first == "2" || integer.text?.first == "5" {
-            mastercardImageView.image = UIImage(named: "visa")
-        }
-        if cvcTextField.text?.count == 3 && string.isEmpty {
-            return true
+        if cvcTextField.text?.count == 3 {
+            return false
         }
         return true
     }

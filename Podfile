@@ -17,7 +17,6 @@ target 'maki-maki-ios' do
   pod 'SkeletonView', '1.30.4'
   pod 'Kingfisher', '7.7.0'
   pod 'ProgressHUD', '13.6.2'
-  pod 'CardIO', '5.4.0'
   post_install do |installer|
     installer.generated_projects.each do |project|
       project.targets.each do |target|
