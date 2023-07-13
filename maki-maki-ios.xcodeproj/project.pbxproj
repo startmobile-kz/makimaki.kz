@@ -41,6 +41,8 @@
 		274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */; };
 		2751C9942A56B91600F909D3 /* AddressService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751C9932A56B91600F909D3 /* AddressService.swift */; };
 		2751C9962A56B92600F909D3 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751C9952A56B92600F909D3 /* Address.swift */; };
+		2751C9AD2A600FEB00F909D3 /* AddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751C9AC2A600FEB00F909D3 /* AddressViewModel.swift */; };
+		2751C9B12A60103900F909D3 /* ManageAddressViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2751C9B02A60103900F909D3 /* ManageAddressViewModel.swift */; };
 		275F31252A31CFAB00E94CDC /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275F31242A31CFAB00E94CDC /* SignInViewController.swift */; };
 		275FF01F2A39A03600F0511F /* SelectLocationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF01E2A39A03600F0511F /* SelectLocationViewController.swift */; };
 		275FF0232A39A19500F0511F /* OneLineTextField + Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 275FF0222A39A19500F0511F /* OneLineTextField + Extension.swift */; };
@@ -164,6 +166,8 @@
 		274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageVerOneViewController.swift; sourceTree = "<group>"; };
 		2751C9932A56B91600F909D3 /* AddressService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressService.swift; sourceTree = "<group>"; };
 		2751C9952A56B92600F909D3 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
+		2751C9AC2A600FEB00F909D3 /* AddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddressViewModel.swift; sourceTree = "<group>"; };
+		2751C9B02A60103900F909D3 /* ManageAddressViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageAddressViewModel.swift; sourceTree = "<group>"; };
 		275F31242A31CFAB00E94CDC /* SignInViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		275FF01E2A39A03600F0511F /* SelectLocationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectLocationViewController.swift; sourceTree = "<group>"; };
 		275FF0222A39A19500F0511F /* OneLineTextField + Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "OneLineTextField + Extension.swift"; sourceTree = "<group>"; };
@@ -407,6 +411,25 @@
 		2751C9AB2A600EDA00F909D3 /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				2751C9AC2A600FEB00F909D3 /* AddressViewModel.swift */,
+			);
+			path = ViewModel;
+			sourceTree = "<group>";
+		};
+		2751C9AE2A60100100F909D3 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				27943BE22A3086DC003F3C7B /* ManageAdressesViewController.swift */,
+				27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */,
+				27943BE42A3086E9003F3C7B /* ManageAddressesCell.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2751C9AF2A60100700F909D3 /* ViewModel */ = {
+			isa = PBXGroup;
+			children = (
+				2751C9B02A60103900F909D3 /* ManageAddressViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -433,9 +456,8 @@
 		27943BE12A308688003F3C7B /* Manage Addresses */ = {
 			isa = PBXGroup;
 			children = (
-				27943BE22A3086DC003F3C7B /* ManageAdressesViewController.swift */,
-				27943BE42A3086E9003F3C7B /* ManageAddressesCell.swift */,
-				27943BE62A30870D003F3C7B /* ManegAdressesFooterView.swift */,
+				2751C9AF2A60100700F909D3 /* ViewModel */,
+				2751C9AE2A60100100F909D3 /* View */,
 			);
 			path = "Manage Addresses";
 			sourceTree = "<group>";
@@ -1119,6 +1141,7 @@
 				6810396D2A30CDC400162D74 /* TabBarSettings.swift in Sources */,
 				773A737C2A2783A20029AA44 /* UIView+Extensions.swift in Sources */,
 				1D75FE982A2F4CDB00D4DBF9 /* SearchV1ViewController.swift in Sources */,
+				2751C9B12A60103900F909D3 /* ManageAddressViewModel.swift in Sources */,
 				9FFEE49A2A46F7F80071AE0D /* CategoryModel.swift in Sources */,
 				CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */,
 				9F2380542A49C6AA0029A5DD /* RestaurantInfoView.swift in Sources */,
@@ -1143,6 +1166,7 @@
 				274BB5102A2912FC00599092 /* WelcomePageVerOneViewController.swift in Sources */,
 				1D6610CC2A43251F00F0F81B /* ProductModel.swift in Sources */,
 				037F16732A3058CF00401843 /* FavoritesTableViewCell.swift in Sources */,
+				2751C9AD2A600FEB00F909D3 /* AddressViewModel.swift in Sources */,
 				9F23804C2A49C6AA0029A5DD /* CategoryMenuView.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 				9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */,
