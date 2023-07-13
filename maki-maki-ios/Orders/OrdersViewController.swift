@@ -62,7 +62,12 @@ final class OrdersViewController: UIViewController {
     
     private var ordersCopy: [Order] = []
     private var sectionIsExpanded: [Bool] = []
-    private var isLoaded = false
+    private var isLoaded = false {
+        didSet {
+            hideSkeletons()
+            ordersTableView.reloadData()
+        }
+    }
     
     // MARK: - UI
     
@@ -96,13 +101,10 @@ final class OrdersViewController: UIViewController {
         setupData()
         showNoOrdersViewIfNeeded()
         showSkeletonAnimation()
-    }
-    
-    private func showSkeletonAnimation() {
-        if !isLoaded {
-            ordersTableView.rowHeight = 114
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.isLoaded = true
         }
-        ordersTableView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
     }
     
     // MARK: - SetupData
@@ -142,6 +144,20 @@ final class OrdersViewController: UIViewController {
         } else {
             ordersTableView.backgroundView = nil
         }
+    }
+    
+    // MARK: - Skeletons
+    
+    private func showSkeletonAnimation() {
+        if !isLoaded {
+            ordersTableView.rowHeight = 114
+        }
+        ordersTableView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
+    
+    private func hideSkeletons() {
+        ordersTableView.stopSkeletonAnimation()
+        ordersTableView.hideSkeleton(transition: .crossDissolve(0.25))
     }
 }
 
