@@ -112,6 +112,8 @@
 		CE9623652A132B1A00C36D03 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CE9623642A132B1A00C36D03 /* SceneDelegate.swift */; };
 		CE96236C2A132B1C00C36D03 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CE96236B2A132B1C00C36D03 /* Assets.xcassets */; };
 		CE96236F2A132B1C00C36D03 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CE96236D2A132B1C00C36D03 /* LaunchScreen.storyboard */; };
+		F134C18E2A5E68E600E73121 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134C18D2A5E68E600E73121 /* EditProfileView.swift */; };
+		F134C1902A5E695000E73121 /* EditProfilePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F134C18F2A5E695000E73121 /* EditProfilePresenter.swift */; };
 		F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4D2A2F072B0072E258 /* OffersViewController.swift */; };
 		F1725D502A2F07920072E258 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4F2A2F07920072E258 /* OffersCell.swift */; };
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
@@ -241,6 +243,8 @@
 		CE96236B2A132B1C00C36D03 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CE96236E2A132B1C00C36D03 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CE9623702A132B1C00C36D03 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F134C18D2A5E68E600E73121 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		F134C18F2A5E695000E73121 /* EditProfilePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfilePresenter.swift; sourceTree = "<group>"; };
 		F1725D4D2A2F072B0072E258 /* OffersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewController.swift; sourceTree = "<group>"; };
 		F1725D4F2A2F07920072E258 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
@@ -765,6 +769,30 @@
 			path = "maki-maki-ios";
 			sourceTree = "<group>";
 		};
+		F134C18A2A5E67D400E73121 /* Model  */ = {
+			isa = PBXGroup;
+			children = (
+				F1E293022A543467002C798A /* User.swift */,
+			);
+			path = "Model ";
+			sourceTree = "<group>";
+		};
+		F134C18B2A5E67EC00E73121 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F134C18D2A5E68E600E73121 /* EditProfileView.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F134C18C2A5E687C00E73121 /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				F134C18F2A5E695000E73121 /* EditProfilePresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
 		F1725D4C2A2F070E0072E258 /* AccountOffersList */ = {
 			isa = PBXGroup;
 			children = (
@@ -816,8 +844,10 @@
 		F187EADD2A263EFE00019242 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
+				F134C18A2A5E67D400E73121 /* Model  */,
+				F134C18B2A5E67EC00E73121 /* View */,
+				F134C18C2A5E687C00E73121 /* Presenter */,
 				F187EADE2A263F5E00019242 /* EditProfileViewController.swift */,
-				F1E293022A543467002C798A /* User.swift */,
 			);
 			path = EditProfile;
 			sourceTree = "<group>";
@@ -1090,6 +1120,7 @@
 				27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */,
 				2620524B2A382EC900A2DC88 /* DishViewController.swift in Sources */,
 				9F2380522A49C6AA0029A5DD /* RestaurantCharacteristic.swift in Sources */,
+				F134C18E2A5E68E600E73121 /* EditProfileView.swift in Sources */,
 				275FF01F2A39A03600F0511F /* SelectLocationViewController.swift in Sources */,
 				9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */,
 				9F2380572A49C6AA0029A5DD /* ProductCollectionViewCell.swift in Sources */,
@@ -1142,6 +1173,7 @@
 				9F23804C2A49C6AA0029A5DD /* CategoryMenuView.swift in Sources */,
 				68C3EC362A27A31A009A0E02 /* MainViewController.swift in Sources */,
 				9FFEE4A02A46F8D10071AE0D /* SnackBarController.swift in Sources */,
+				F134C1902A5E695000E73121 /* EditProfilePresenter.swift in Sources */,
 				F1725D4E2A2F072B0072E258 /* OffersViewController.swift in Sources */,
 				773799382A3645E500E2CF7F /* UserDefaults+Extensions.swift in Sources */,
 				2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */,

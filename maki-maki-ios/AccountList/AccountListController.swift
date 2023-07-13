@@ -132,8 +132,9 @@ extension AccountListViewController: UITableViewDelegate, UITableViewDataSource 
         }
 
         if indexPath.row == 1 {
+            let editProfilePresenter = EditProfilePresenter(view: EditProfileView())
+            editProfilePresenter.delegate = self
             let editProfileViewController = EditProfileViewController()
-            editProfileViewController.delegate = self
             controller = editProfileViewController
         }
 
@@ -171,7 +172,7 @@ extension AccountListViewController {
     }
 }
 
-extension AccountListViewController: EditProfileDelegate {
+extension AccountListViewController: EditProfilePresenterDelegate {
     func profileDidUpdate(user: User) {
         nameLabel.text = user.name
     }
