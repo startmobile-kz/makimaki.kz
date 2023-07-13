@@ -7,6 +7,6 @@
 
 import Foundation
 
-struct History {
+struct History: Codable, Equatable {
     let name: String
 }

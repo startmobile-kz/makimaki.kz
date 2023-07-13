@@ -63,7 +63,17 @@ final class SearchV1ViewController: UIViewController, DishViewControllerDelegate
         setupConstraints()
         fetchProducts()
         searchContainerView.delegate = self
-
+        if let data = UserDefaults.standard.object(forKey: "key") as? Data {
+            if let decodedHistory = try? JSONDecoder().decode([History].self, from: data) {
+                searchHistory.append(contentsOf: decodedHistory)
+            }
+        }
+        searchTableView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        searchTableView.reloadData()
     }
     
     // MARK: - Setup Views
@@ -181,6 +191,21 @@ extension SearchV1ViewController: SearchContainerViewDelegate {
     func returnButtonTapped(lastWord: String) {
         let historyToAdd = History(name: lastWord)
         searchHistory.append(historyToAdd)
+        let userDefaults = UserDefaults.standard
+        if let existingData = userDefaults.object(forKey: "key") as? Data,
+           var existingHistory = try? JSONDecoder().decode([History].self, from: existingData) {
+            if !existingHistory.contains(where: { $0.name == historyToAdd.name }) {
+                existingHistory.append(historyToAdd)
+                if let encoded = try? JSONEncoder().encode(existingHistory) {
+                    userDefaults.setValue(encoded, forKey: "key")
+                }
+            }
+        } else {
+            if let encoded = try? JSONEncoder().encode([historyToAdd]) {
+                userDefaults.setValue(encoded, forKey: "key")
+            }
+        }
+        userDefaults.synchronize()
     }
         
     func searchCompleted(word: String) {
