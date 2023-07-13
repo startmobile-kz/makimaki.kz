@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import SkeletonView
 
 final class OrdersViewController: UIViewController {
     
@@ -61,6 +62,12 @@ final class OrdersViewController: UIViewController {
     
     private var ordersCopy: [Order] = []
     private var sectionIsExpanded: [Bool] = []
+    private var isLoaded = false {
+        didSet {
+            hideSkeletons()
+            ordersTableView.reloadData()
+        }
+    }
     
     // MARK: - UI
     
@@ -68,10 +75,12 @@ final class OrdersViewController: UIViewController {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
+        tableView.register(OrdersSkeletonCell.self, forCellReuseIdentifier: OrdersSkeletonCell.reuseID)
         tableView.dataSource = self
         tableView.delegate = self
         tableView.separatorStyle = .none
         tableView.backgroundView = noOrdersView
+        tableView.isSkeletonable = true
         return tableView
     }()
     
@@ -91,6 +100,11 @@ final class OrdersViewController: UIViewController {
         setupConstraints()
         setupData()
         showNoOrdersViewIfNeeded()
+        showSkeletonAnimation()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 4) {
+            self.isLoaded = true
+        }
     }
     
     // MARK: - SetupData
@@ -130,6 +144,20 @@ final class OrdersViewController: UIViewController {
         } else {
             ordersTableView.backgroundView = nil
         }
+    }
+    
+    // MARK: - Skeletons
+    
+    private func showSkeletonAnimation() {
+        if !isLoaded {
+            ordersTableView.rowHeight = 114
+        }
+        ordersTableView.showAnimatedSkeleton(transition: .crossDissolve(0.25))
+    }
+    
+    private func hideSkeletons() {
+        ordersTableView.stopSkeletonAnimation()
+        ordersTableView.hideSkeleton(transition: .crossDissolve(0.25))
     }
 }
 
@@ -222,5 +250,25 @@ extension OrdersViewController: OrdersTableHeaderViewDelegate {
 extension OrdersViewController: ReorderCellDelegate {
     func onReorderButtonPressed() {
         self.navigationController?.pushViewController(BasketViewController(), animated: true)
+    }
+}
+
+extension OrdersViewController: SkeletonTableViewDelegate {
+    
+}
+
+extension OrdersViewController: SkeletonTableViewDataSource {
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        cellIdentifierForRowAt indexPath: IndexPath
+    ) -> ReusableCellIdentifier {
+        return OrdersSkeletonCell.reuseID
+    }
+    
+    func collectionSkeletonView(
+        _ skeletonView: UITableView,
+        numberOfRowsInSection section: Int
+    ) -> Int {
+        return 4
     }
 }
