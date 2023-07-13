@@ -13,7 +13,6 @@ import SkeletonView
 
 protocol MenuSceneDisplayLogic: NSObject {
     func displayMenu(viewModel: MenuSceneModels.ViewModel)
-    func getNeededHeight(heights: [Double])
     func makeNavigationBarVisible()
     func pinCategoriesReplacementViewToTheTop()
     func bringReplacementMenuToFront()
@@ -67,13 +66,11 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     }
     
     // MARK: - State
-    
-    private var service = RestaurantProductService()
+
     public var selectedProducts: [RestaurantProduct] = []
     private var categories: [Category] = []
     private var categoriesAndNames: [Int: String] = [:]
     private var productsByCategoryMap: [Int: [RestaurantProduct]] = [:]
-    private var heights: [Double] = []
     private var isLoaded = false {
         didSet {
             hideSkeletons()
@@ -281,10 +278,6 @@ final class MenuSceneViewController: UIViewController, MenuSceneDisplayLogic {
     
     func callLayoutIfNeeded() {
         view.layoutIfNeeded()
-    }
-    
-    func getNeededHeight(heights: [Double]) {
-        self.heights = heights
     }
     
     func changeContentOffset(neededHeight: Double) {
