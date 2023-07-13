@@ -244,17 +244,6 @@ extension OrdersViewController: SkeletonTableViewDelegate {
 extension OrdersViewController: SkeletonTableViewDataSource {
     func collectionSkeletonView(
         _ skeletonView: UITableView,
-        skeletonCellForRowAt indexPath: IndexPath
-    ) -> UITableViewCell? {
-        let cell = skeletonView.dequeueReusableCell(
-            withIdentifier: OrdersSkeletonCell.reuseID,
-            for: indexPath
-        ) as? OrdersSkeletonCell
-//        cell?.textField.isHidden = indexPath.row == 0
-        return cell
-    }
-    func collectionSkeletonView(
-        _ skeletonView: UITableView,
         cellIdentifierForRowAt indexPath: IndexPath
     ) -> ReusableCellIdentifier {
         return OrdersSkeletonCell.reuseID
@@ -264,6 +253,6 @@ extension OrdersViewController: SkeletonTableViewDataSource {
         _ skeletonView: UITableView,
         numberOfRowsInSection section: Int
     ) -> Int {
-        return 10
+        return 4
     }
 }

@@ -115,7 +115,6 @@ class OrdersSkeletonCell: UITableViewCell {
             make.top.equalTo(orderDataLabel.snp.bottom).offset(30)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-//            make.centerX.equalToSuperview()
         }
         
         collapseMenuButton.snp.makeConstraints { make in
@@ -123,10 +122,5 @@ class OrdersSkeletonCell: UITableViewCell {
             make.centerX.equalToSuperview()
             make.width.height.equalTo(32)
         }
-    }
-    
-    override func layoutSubviews() {
-        super.layoutSubviews()
-        setupLayout()
     }
 }
