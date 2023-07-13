@@ -8,7 +8,6 @@
 import Foundation
 
 final class BasketSceneAssembler {
-    
     func assemble(_ viewController: BasketSceneViewController) {
         let interactor = BasketSceneInteractor()
         let presenter = BasketScenePresenter()

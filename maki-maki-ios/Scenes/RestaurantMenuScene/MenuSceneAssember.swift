@@ -8,7 +8,6 @@
 import Foundation
 
 final class MenuSceneAssembler {
-    
     func assemble(_ viewController: MenuSceneViewController) {
         let interactor = MenuSceneInteractor()
         let presenter = MenuScenePresenter()
