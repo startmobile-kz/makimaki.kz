@@ -1,20 +1,29 @@
 //
-//  OrderViewController.swift
+//  BasketSceneViewController.swift
 //  maki-maki-ios
 //
-//  Created by Александр Козлов on 30.05.2023.
+//  Created by Damir Aliyev on 11.07.2023.
 //
 
 import UIKit
 import SnapKit
 import ProgressHUD
 
-final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
+protocol BasketSceneDisplayLogic: NSObject {
+    func displaySelectedProducts(selectedProducts: [RestaurantProduct])
+}
+
+final class BasketSceneViewController: UIViewController, BasketSceneDisplayLogic {
     
     // MARK: - VIP
     
     var interactor: (BasketSceneBusinessLogic & BasketSceneDataStore)?
     var router: (BasketSceneRoutingLogic & BasketSceneDataPassing)?
+    
+    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
+        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
+        BasketSceneAssembler().assemble(self)
+    }
     
     func displaySelectedProducts(selectedProducts: [RestaurantProduct]) {
         self.selectedDishes = selectedProducts
@@ -48,11 +57,6 @@ final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
     
     // MARK: - LifeCycle
     
-    override init(nibName nibNameOrNil: String?, bundle nibBundleOrNil: Bundle?) {
-        super.init(nibName: nibNameOrNil, bundle: nibBundleOrNil)
-        setupArchitecture()
-    }
-    
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
@@ -71,20 +75,6 @@ final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
 
     private func setupNavigationBar() {
         self.navigationItem.title = "Order"
-    }
-    
-    // MARK: - SetupArchitecture
-    
-    private func setupArchitecture() {
-        let viewController = self
-        let interactor = BasketSceneInteractor()
-        let presenter = BasketScenePresenter()
-        let router = BasketSceneRouter()
-        viewController.interactor = interactor
-        viewController.router = router
-        interactor.presenter = presenter
-        router.dataStore = interactor
-        presenter.viewController = viewController
     }
     
     // MARK: - Setup Views
@@ -146,7 +136,7 @@ final class BasketViewController: UIViewController, BasketSceneDisplayLogic {
     }
 }
 
-extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
+extension BasketSceneViewController: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return selectedDishes.count
     }
@@ -178,7 +168,7 @@ extension BasketViewController: UITableViewDataSource, UITableViewDelegate {
 
 // MARK: - Checkout Delegate
 
-extension BasketViewController: CheckoutButtonDelegate {
+extension BasketSceneViewController: CheckoutButtonDelegate {
     func checkoutPressed() {
         createOrder()
         print("done")
