@@ -60,7 +60,6 @@ class OrdersSkeletonCell: UITableViewCell {
         button.layer.borderColor = AppColor.border.cgColor
         button.layer.cornerRadius = 10
         button.isUserInteractionEnabled = false
-//        button.isSkeletonable = true
         return button
     }()
     
