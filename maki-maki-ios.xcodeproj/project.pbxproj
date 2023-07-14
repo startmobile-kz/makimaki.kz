@@ -116,6 +116,7 @@
 		F1725D502A2F07920072E258 /* OffersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D4F2A2F07920072E258 /* OffersCell.swift */; };
 		F1725D732A3027FC0072E258 /* OffersViewControllerV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */; };
 		F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1725D752A30283F0072E258 /* OffersCellV2.swift */; };
+		F17829AD2A61D4AF00F20B6B /* WelcomePagePresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = F17829AC2A61D4AF00F20B6B /* WelcomePagePresenter.swift */; };
 		F187EADF2A263F5E00019242 /* EditProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F187EADE2A263F5E00019242 /* EditProfileViewController.swift */; };
 		F1E293032A543467002C798A /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = F1E293022A543467002C798A /* User.swift */; };
 /* End PBXBuildFile section */
@@ -245,6 +246,7 @@
 		F1725D4F2A2F07920072E258 /* OffersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCell.swift; sourceTree = "<group>"; };
 		F1725D722A3027FC0072E258 /* OffersViewControllerV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersViewControllerV2.swift; sourceTree = "<group>"; };
 		F1725D752A30283F0072E258 /* OffersCellV2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OffersCellV2.swift; sourceTree = "<group>"; };
+		F17829AC2A61D4AF00F20B6B /* WelcomePagePresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePagePresenter.swift; sourceTree = "<group>"; };
 		F187EADE2A263F5E00019242 /* EditProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileViewController.swift; sourceTree = "<group>"; };
 		F1E293022A543467002C798A /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -372,8 +374,9 @@
 			isa = PBXGroup;
 			children = (
 				2620AB5D2A52BAA50031776D /* Model */,
+				F17829AE2A61D89D00F20B6B /* Views */,
+				F17829AF2A61D8B200F20B6B /* Presenters  */,
 				274485FE2A27B3D800F2FFBD /* WelcomePageVerTwoViewController.swift */,
-				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
 				27A1995B2A2D18AD00ED9096 /* SignUpViewController.swift */,
 				2789D5F22A2F6A300030A3B8 /* VerificationViewController.swift */,
 			);
@@ -813,6 +816,22 @@
 			path = Controller;
 			sourceTree = "<group>";
 		};
+		F17829AE2A61D89D00F20B6B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				274BB50F2A2912FC00599092 /* WelcomePageVerOneViewController.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		F17829AF2A61D8B200F20B6B /* Presenters  */ = {
+			isa = PBXGroup;
+			children = (
+				F17829AC2A61D4AF00F20B6B /* WelcomePagePresenter.swift */,
+			);
+			path = "Presenters ";
+			sourceTree = "<group>";
+		};
 		F187EADD2A263EFE00019242 /* EditProfile */ = {
 			isa = PBXGroup;
 			children = (
@@ -1090,6 +1109,7 @@
 				27943BE32A3086DC003F3C7B /* ManageAdressesViewController.swift in Sources */,
 				2620524B2A382EC900A2DC88 /* DishViewController.swift in Sources */,
 				9F2380522A49C6AA0029A5DD /* RestaurantCharacteristic.swift in Sources */,
+				F17829AD2A61D4AF00F20B6B /* WelcomePagePresenter.swift in Sources */,
 				275FF01F2A39A03600F0511F /* SelectLocationViewController.swift in Sources */,
 				9F61734D2A2E655B00299E56 /* BasketTableViewCell.swift in Sources */,
 				9F2380572A49C6AA0029A5DD /* ProductCollectionViewCell.swift in Sources */,
