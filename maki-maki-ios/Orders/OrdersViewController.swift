@@ -10,6 +10,15 @@ import UIKit
 final class OrdersViewController: UIViewController {
     
     // MARK: - State
+        
+    private var service = OrderService()
+    private var order: [OrdersModel] = []
+
+    var filteredOrders = [OrdersModel]() {
+        didSet {
+            self.ordersTableView.reloadData()
+        }
+    }
     
     lazy var orders: [Order] = {
         return [
@@ -64,7 +73,7 @@ final class OrdersViewController: UIViewController {
     
     // MARK: - UI
     
-    private lazy var ordersTableView: UITableView = {
+    lazy var ordersTableView: UITableView = {
         let tableView = UITableView(frame: .zero, style: .grouped)
         tableView.register(OrdersCell.self, forCellReuseIdentifier: OrdersCell.reuseID)
         tableView.register(ReorderCell.self, forCellReuseIdentifier: ReorderCell.reuseID)
@@ -91,6 +100,8 @@ final class OrdersViewController: UIViewController {
         setupConstraints()
         setupData()
         showNoOrdersViewIfNeeded()
+        
+         getOrders()
     }
     
     // MARK: - SetupData
@@ -131,6 +142,22 @@ final class OrdersViewController: UIViewController {
             ordersTableView.backgroundView = nil
         }
     }
+   
+    private func getOrders() {
+        service.getOrdersOfAlamofire { result in
+            switch result {
+            case .success(let orders):
+                DispatchQueue.main.async { [weak self] in
+                    self?.order = orders
+                    self?.filteredOrders = orders
+                    self?.ordersTableView.reloadData()
+                }
+            case .failure(let error):
+                print(error)
+            }
+        }
+    }
+    
 }
 
 // MARK: - UITableView Data Source and Delegate methods
@@ -181,7 +208,11 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
                                                              height:114),
                                                isExpanded: sectionIsExpanded[section])
         headerView.delegate = self
-        headerView.setUp(model: orders[section], section: section)
+        
+        if let order = filteredOrders.first {
+            headerView.setUp(model: order, section: section)
+        }
+         
         return headerView
     }
     

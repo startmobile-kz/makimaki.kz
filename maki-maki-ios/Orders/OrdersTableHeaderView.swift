@@ -169,18 +169,19 @@ final class OrdersTableHeaderView: UIView {
         }
     }
     
-    public func setUp(model: Order, section: Int) {
+    public func setUp(model: OrdersModel, section: Int) {
         self.section = section
-        cafeNameLabel.text = model.cafeName
-        orderStatusLabel.text = model.status
-        if model.status == "Delivered" {
-            orderStatusLabel.backgroundColor = AppColor.green.uiColor
-        } else {
+        cafeNameLabel.text = model.name 
+        if model.status == .cancelled {
+            orderStatusLabel.text = "Cancelled"
             orderStatusLabel.backgroundColor = AppColor.red.uiColor
+        } else {
+            orderStatusLabel.text = "Delivered"
+            orderStatusLabel.backgroundColor = AppColor.green.uiColor
         }
-        orderPriceLabel.text = model.price
+        orderPriceLabel.text = "\(model.finalTotal)"
         let dataComponents = [
-            NSAttributedString(string: NSLocalizedString(model.time, comment: "Data"), attributes: [
+            NSAttributedString(string: NSLocalizedString(model.createdAt, comment: "Data"), attributes: [
                 .foregroundColor: AppColor.paragraph.uiColor,
                 .font: AppFont.reqular.s14()
             ]),
