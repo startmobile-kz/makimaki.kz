@@ -7,8 +7,18 @@
 
 import Foundation
 
+enum OrderStatus: Int, Decodable {
+    case created = 1
+    case awaitingCustomerResponse = 2
+    case accepted = 3
+    case preparing = 4
+    case inTransit = 5
+    case delivered = 6
+    case cancelled = 7
+}
+
  struct OrdersModel: Decodable {
-    var status: Int
+    var status: OrderStatus
     var createdAt: String
     var finalTotal: Int
     var commonTotal: Int

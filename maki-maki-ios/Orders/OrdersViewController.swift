@@ -211,7 +211,6 @@ extension OrdersViewController: UITableViewDataSource, UITableViewDelegate {
         
         if let order = filteredOrders.first {
             headerView.setUp(model: order, section: section)
-            print(order)
         }
          
         return headerView
