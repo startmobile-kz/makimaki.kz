@@ -18,6 +18,7 @@ final class DishViewController: UIViewController {
 
     var dish: RestaurantProduct?
     var product: Product?
+    var likeButtonActive = false
     var count = 1 {
         didSet {
             orderPrice.text = "\((dish?.price ?? 0) * count) ₸"
@@ -30,6 +31,14 @@ final class DishViewController: UIViewController {
     
     // MARK: - UI
     
+    private lazy var dishImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.image = AppImage.pizza_image.uiImage
+        imageView.contentMode = .scaleAspectFill
+        imageView.clipsToBounds = true
+        return imageView
+    }()
+    
     private lazy var likeButton: UIButton = {
         let button = UIButton(type: .system)
         button.setImage(AppImage.like_black.uiImage, for: .normal)
@@ -37,14 +46,6 @@ final class DishViewController: UIViewController {
         button.tintColor = AppColor.heading.uiColor
         button.addTarget(self, action: #selector(onFavoriteButtonPressed), for: .touchUpInside)
         return button
-    }()
-    
-    private lazy var dishImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.image = AppImage.pizza_image.uiImage
-        imageView.contentMode = .scaleAspectFill
-        imageView.clipsToBounds = true
-        return imageView
     }()
     
     private lazy var productNameLabel: UILabel = {
@@ -111,8 +112,8 @@ final class DishViewController: UIViewController {
     private func setupViews() {
         view.backgroundColor = AppColor.background.uiColor
         [
-            likeButton,
             dishImageView,
+            likeButton,
             productNameLabel,
             descriptionLabel,
             stepperView,
@@ -125,13 +126,13 @@ final class DishViewController: UIViewController {
     
     private func setupConstraints() {
         likeButton.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(14)
-            make.trailing.equalToSuperview().offset(-14)
+            make.top.equalToSuperview().offset(16)
+            make.trailing.equalToSuperview().offset(-16)
             make.size.equalTo(24)
         }
         
         dishImageView.snp.makeConstraints { make in
-            make.top.equalToSuperview().offset(31)
+            make.top.equalToSuperview().offset(41)
             make.leading.equalToSuperview().offset(31)
             make.trailing.equalToSuperview().offset(-30)
             make.height.equalTo(304)
@@ -148,7 +149,6 @@ final class DishViewController: UIViewController {
             make.top.equalTo(productNameLabel.snp.bottom).offset(12)
             make.leading.equalToSuperview().offset(16)
             make.trailing.equalToSuperview().offset(-16)
-            make.height.equalTo(37)
         }
         
         stepperView.snp.makeConstraints { make in
@@ -194,7 +194,6 @@ final class DishViewController: UIViewController {
         guard let dish = dish else {
             return
         }
-        
         productNameLabel.text = dish.name
         descriptionLabel.text = "\(dish.description)"
         // swiftlint: disable all
@@ -213,7 +212,6 @@ final class DishViewController: UIViewController {
         guard let product = product else {
             return
         }
-        
         productNameLabel.text = product.name
         orderPrice.text = "\(product.price) ₸"
         descriptionLabel.text = product.description
@@ -224,6 +222,11 @@ final class DishViewController: UIViewController {
     // MARK: - Add Product to Favorites
     
     @objc func onFavoriteButtonPressed() {
-        self.dismiss(animated: true, completion: nil)
+        if likeButtonActive {
+            likeButton.setImage(AppImage.like_black.uiImage, for: .normal)
+        } else {
+            likeButton.setImage(AppImage.like_red.uiImage, for: .normal)
+        }
+        likeButtonActive = !likeButtonActive
     }
 }

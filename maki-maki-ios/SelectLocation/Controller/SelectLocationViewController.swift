@@ -10,7 +10,11 @@ import SnapKit
 import YandexMapsMobile
 
 final class SelectLocationViewController: UIViewController {
-        
+    
+    // MARK: - State
+    
+    private let addressService = AddressService()
+    
     // MARK: - Map View UI
     
     private lazy var mapView: UIView = {
@@ -56,7 +60,10 @@ final class SelectLocationViewController: UIViewController {
     }()
     
     private lazy var choiceLocationSegmentedController: UISegmentedControl = {
-        let control = UISegmentedControl(first: "Home", second: "Work", third: "Other")
+        let control = UISegmentedControl(
+            first: "Home",
+            second: "Work",
+            third: "Other")
         control.layer.cornerRadius = 12
         control.layer.masksToBounds = true
         control.clipsToBounds = true
@@ -69,6 +76,7 @@ final class SelectLocationViewController: UIViewController {
         button.tintColor = AppColor.heading.uiColor
         button.backgroundColor = AppColor.accent.uiColor
         button.layer.cornerRadius = 14
+        button.addTarget(self, action: #selector(saveAddressButtonDidPressed), for: .touchUpInside)
         return button
     }()
 
@@ -76,7 +84,6 @@ final class SelectLocationViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-
         setupViews()
         setupConstraints()
         setupYandexMap()
@@ -168,4 +175,24 @@ final class SelectLocationViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
+    
+    // MARK: - Actions
+    
+    @objc private func saveAddressButtonDidPressed() {
+        guard let text = locationTextField.text  else {
+            return
+        }
+      
+        let newAddress = Address(id: UUID(),
+                                 street: text,
+                                 latitude: 43.297601,
+                                 longitude: 76.974137,
+                                 house: "45",
+                                 flat: "44",
+                                 type: choiceLocationSegmentedController.selectedSegmentIndex )
+        
+        addressService.saveAddress(address: newAddress)
+        self.navigationController?.popToRootViewController(animated: true)
+    }
+
 }
