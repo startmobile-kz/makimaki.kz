@@ -9,9 +9,7 @@ import UIKit
 import SnapKit
 
 final class DeliveryFooterView: UITableViewHeaderFooterView {
-
-    public static let reuseIdentifier = String(describing: DeliveryFooterView.self)
-
+    
     // MARK: - UI
     
     private lazy var courierBackgroundImageView: UIImageView = {
@@ -42,15 +40,14 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
         label.textColor = AppColor.paragraph.uiColor
         return label
     }()
-
-    // MARK: - LifeCycle
-
+    
+    // MARK: - Lifecycle
+    
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
-
+        
         setupViews()
-        setupConstaints()
-
+        setupConstraints()
     }
     
     required init?(coder: NSCoder) {
@@ -60,15 +57,15 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
     // MARK: - Setup Views
     
     private func setupViews() {
-        contentView.addSubview(courierBackgroundImageView)
-        contentView.addSubview(courierImageView)
-        contentView.addSubview(deliveryLabel)
-        contentView.addSubview(deliveryPriceLabel)
+        addSubview(courierBackgroundImageView)
+        addSubview(courierImageView)
+        addSubview(deliveryLabel)
+        addSubview(deliveryPriceLabel)
     }
     
     // MARK: - Setup Constraints
     
-    private func setupConstaints() {
+    private func setupConstraints() {
         courierBackgroundImageView.snp.makeConstraints { make in
             make.size.equalTo(70)
             make.centerY.equalToSuperview()
@@ -89,5 +86,4 @@ final class DeliveryFooterView: UITableViewHeaderFooterView {
             make.trailing.equalToSuperview().offset(-16)
         }
     }
-
 }

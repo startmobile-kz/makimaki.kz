@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		03430AAE2A5B38F9002DB7D5 /* BasketPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */; };
+		03430AB02A5C03F3002DB7D5 /* BasketRouter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */; };
 		0349DDEA2A3AD64800BACD4F /* PaymentsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE72A3AD64700BACD4F /* PaymentsViewController.swift */; };
 		0349DDEB2A3AD64800BACD4F /* ApplePayCardTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE82A3AD64700BACD4F /* ApplePayCardTableViewCell.swift */; };
 		0349DDEC2A3AD64800BACD4F /* PaymentsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0349DDE92A3AD64700BACD4F /* PaymentsTableViewCell.swift */; };
@@ -32,6 +34,7 @@
 		2620AB5F2A52BAB70031776D /* Person.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620AB5E2A52BAB70031776D /* Person.swift */; };
 		2620AB612A52BAC90031776D /* WelcomePageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2620AB602A52BAC90031776D /* WelcomePageService.swift */; };
 		2627DBBC2A2B103B007990B8 /* OrdersViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */; };
+		2679D7CA2A5C517600C4738A /* BasketInteractor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2679D7C92A5C517600C4738A /* BasketInteractor.swift */; };
 		26C63CC12A2F97F50095CF47 /* OrdersList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C63CC02A2F97F50095CF47 /* OrdersList.swift */; };
 		26C63CC52A332FA40095CF47 /* NoOrdersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26C63CC42A332FA40095CF47 /* NoOrdersView.swift */; };
 		26E279862A2F49CA0071863C /* OrdersTableHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */; };
@@ -131,6 +134,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketPresenter.swift; sourceTree = "<group>"; };
+		03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketRouter.swift; sourceTree = "<group>"; };
 		0349DDE72A3AD64700BACD4F /* PaymentsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsViewController.swift; sourceTree = "<group>"; };
 		0349DDE82A3AD64700BACD4F /* ApplePayCardTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplePayCardTableViewCell.swift; sourceTree = "<group>"; };
 		0349DDE92A3AD64700BACD4F /* PaymentsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PaymentsTableViewCell.swift; sourceTree = "<group>"; };
@@ -156,6 +161,7 @@
 		2620AB5E2A52BAB70031776D /* Person.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Person.swift; sourceTree = "<group>"; };
 		2620AB602A52BAC90031776D /* WelcomePageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomePageService.swift; sourceTree = "<group>"; };
 		2627DBBB2A2B103B007990B8 /* OrdersViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersViewController.swift; sourceTree = "<group>"; };
+		2679D7C92A5C517600C4738A /* BasketInteractor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BasketInteractor.swift; sourceTree = "<group>"; };
 		26C63CC02A2F97F50095CF47 /* OrdersList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersList.swift; sourceTree = "<group>"; };
 		26C63CC42A332FA40095CF47 /* NoOrdersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NoOrdersView.swift; sourceTree = "<group>"; };
 		26E279852A2F49CA0071863C /* OrdersTableHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OrdersTableHeaderView.swift; sourceTree = "<group>"; };
@@ -296,13 +302,12 @@
 			path = Favorites;
 			sourceTree = "<group>";
 		};
-		03F45A132A45031F00BC23B9 /* Model */ = {
+		03F45A132A45031F00BC23B9 /* Entity */ = {
 			isa = PBXGroup;
 			children = (
 				03F45A142A45035900BC23B9 /* Basket.swift */,
-				03F45A162A45070B00BC23B9 /* BasketService.swift */,
 			);
-			path = Model;
+			path = Entity;
 			sourceTree = "<group>";
 		};
 		1D6610CA2A4324FC00F0F81B /* Model */ = {
@@ -352,6 +357,49 @@
 				2620AB602A52BAC90031776D /* WelcomePageService.swift */,
 			);
 			path = Model;
+			sourceTree = "<group>";
+		};
+		2679D7C32A5C4F0600C4738A /* View */ = {
+			isa = PBXGroup;
+			children = (
+				9F6173462A2E655B00299E56 /* BasketViewController.swift */,
+				9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */,
+				9F6173472A2E655B00299E56 /* DeliveryFooterView.swift */,
+				9F6173482A2E655B00299E56 /* ContainerViewController.swift */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		2679D7C52A5C4FC600C4738A /* Presenter */ = {
+			isa = PBXGroup;
+			children = (
+				03430AAD2A5B38F9002DB7D5 /* BasketPresenter.swift */,
+			);
+			path = Presenter;
+			sourceTree = "<group>";
+		};
+		2679D7C62A5C500B00C4738A /* Router */ = {
+			isa = PBXGroup;
+			children = (
+				03430AAF2A5C03F2002DB7D5 /* BasketRouter.swift */,
+			);
+			path = Router;
+			sourceTree = "<group>";
+		};
+		2679D7C72A5C502400C4738A /* Interactor */ = {
+			isa = PBXGroup;
+			children = (
+				2679D7C92A5C517600C4738A /* BasketInteractor.swift */,
+			);
+			path = Interactor;
+			sourceTree = "<group>";
+		};
+		2679D7C82A5C514200C4738A /* Service */ = {
+			isa = PBXGroup;
+			children = (
+				03F45A162A45070B00BC23B9 /* BasketService.swift */,
+			);
+			path = Service;
 			sourceTree = "<group>";
 		};
 		26FC1D542A264B1F003BA971 /* Orders */ = {
@@ -678,11 +726,12 @@
 		9F61734E2A2E656100299E56 /* Basket */ = {
 			isa = PBXGroup;
 			children = (
-				03F45A132A45031F00BC23B9 /* Model */,
-				9F6173492A2E655B00299E56 /* BasketTableViewCell.swift */,
-				9F6173462A2E655B00299E56 /* BasketViewController.swift */,
-				9F6173482A2E655B00299E56 /* ContainerViewController.swift */,
-				9F6173472A2E655B00299E56 /* DeliveryFooterView.swift */,
+				2679D7C82A5C514200C4738A /* Service */,
+				2679D7C32A5C4F0600C4738A /* View */,
+				2679D7C72A5C502400C4738A /* Interactor */,
+				2679D7C52A5C4FC600C4738A /* Presenter */,
+				03F45A132A45031F00BC23B9 /* Entity */,
+				2679D7C62A5C500B00C4738A /* Router */,
 			);
 			path = Basket;
 			sourceTree = "<group>";
@@ -1041,7 +1090,9 @@
 			buildActionMask = 2147483647;
 			files = (
 				F1725D762A30283F0072E258 /* OffersCellV2.swift in Sources */,
+				03430AB02A5C03F3002DB7D5 /* BasketRouter.swift in Sources */,
 				27F53B742A2D04A500B42737 /* Logo.swift in Sources */,
+				03430AAE2A5B38F9002DB7D5 /* BasketPresenter.swift in Sources */,
 				2781CD182A27C6AB00964A36 /* AccountCardsViewController.swift in Sources */,
 				27ED00572A538F6F005CD663 /* YandexMapsConfiguration.swift in Sources */,
 				27F5212B2A309ECD0095A5EB /* ForgotPasswordViewController.swift in Sources */,
@@ -1108,6 +1159,7 @@
 				6866811C2A29D60600BC94E7 /* SectionType.swift in Sources */,
 				275FF0232A39A19500F0511F /* OneLineTextField + Extension.swift in Sources */,
 				1D7564C92A28A44D00D31E19 /* CategoryCollectionViewCell.swift in Sources */,
+				2679D7CA2A5C517600C4738A /* BasketInteractor.swift in Sources */,
 				1D49D3CD2A4E9DCD008D61DA /* RecentHeaderView.swift in Sources */,
 				2751C9962A56B92600F909D3 /* Address.swift in Sources */,
 				689BC90C2A2F5087008FD14F /* Main2TabBarController.swift in Sources */,

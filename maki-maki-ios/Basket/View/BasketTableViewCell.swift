@@ -7,12 +7,23 @@
 
 import UIKit
 import SnapKit
-import Kingfisher
 
-final class BasketTableViewCell: UITableViewCell {
+protocol BasketTableViewCellDelegate: AnyObject {
+    func deleteButtonTapped(at indexPath: IndexPath)
+}
 
-    public static let reuseIdentifier = String(describing: BasketTableViewCell.self)
+protocol BasketTableViewCellProtocol: AnyObject {
+    func setupData(dish: RestaurantProduct)
+}
 
+final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
+
+    // MARK: - State
+    
+    static let reuseIdentifier = String(describing: BasketTableViewCell.self)
+    weak var delegate: BasketTableViewCellDelegate?
+    private var indexPath: IndexPath?
+    
     // MARK: - UI
     
     private lazy var productImageView: UIImageView = {
@@ -22,9 +33,8 @@ final class BasketTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private lazy var quantitiyLabel: UILabel = {
+    private lazy var quantityLabel: UILabel = {
         let label = UILabel()
-        label.text = "1  x"
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
         return label
@@ -32,7 +42,6 @@ final class BasketTableViewCell: UITableViewCell {
     
     private lazy var productNameLabel: UILabel = {
         let label = UILabel()
-        label.text = "Pesto Tomato Pizza"
         label.numberOfLines = 0
         label.font = AppFont.medium.s15()
         label.textColor = AppColor.heading.uiColor
@@ -42,13 +51,19 @@ final class BasketTableViewCell: UITableViewCell {
     
     private lazy var priceOrderLabel: UILabel = {
         let label = UILabel()
-        label.text = "$10.95"
         label.font = AppFont.reqular.s15()
         label.textColor = AppColor.paragraph.uiColor
         return label
     }()
     
-    // MARK: - LifeCycle
+    private lazy var deleteButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setImage(UIImage(named: "delete"), for: .normal)
+        button.addTarget(self, action: #selector(deleteButtonTapped), for: .touchUpInside)
+        return button
+    }()
+    
+    // MARK: - Lifecycle
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -65,9 +80,10 @@ final class BasketTableViewCell: UITableViewCell {
     
     private func setupViews() {
         contentView.addSubview(productImageView)
-        contentView.addSubview(quantitiyLabel)
+        contentView.addSubview(quantityLabel)
         contentView.addSubview(productNameLabel)
         contentView.addSubview(priceOrderLabel)
+        contentView.addSubview(deleteButton)
     }
     
     // MARK: - Setup Constraints
@@ -79,14 +95,14 @@ final class BasketTableViewCell: UITableViewCell {
             make.leading.equalTo(16)
         }
         
-        quantitiyLabel.snp.makeConstraints { make in
+        quantityLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
             make.leading.equalTo(productImageView.snp.trailing).offset(16)
         }
         
         productNameLabel.snp.makeConstraints { make in
             make.centerY.equalToSuperview()
-            make.leading.equalTo(quantitiyLabel.snp.trailing).offset(10)
+            make.leading.equalTo(quantityLabel.snp.trailing).offset(10)
             make.width.equalTo(101)
         }
         
@@ -96,12 +112,22 @@ final class BasketTableViewCell: UITableViewCell {
         }
     }
     
-    // MARK: - Public
+    // MARK: - Logic
     
-    public func setupData(dish: RestaurantProduct) {
+    @objc private func deleteButtonTapped() {
+        if let indexPath = indexPath {
+            delegate?.deleteButtonTapped(at: indexPath)
+        }
+    }
+    
+    func configure(with product: RestaurantProduct, at indexPath: IndexPath) {
+        self.indexPath = indexPath
+    }
+    
+    func setupData(dish: RestaurantProduct) {
         let url = URL(string: dish.image ?? "")
         productImageView.kf.setImage(with: url)
-        quantitiyLabel.text = "\(dish.count) X"
+        quantityLabel.text = "\(dish.count) X"
         productNameLabel.text = dish.name
         priceOrderLabel.text = "\(dish.count * dish.price) ₸"
     }
