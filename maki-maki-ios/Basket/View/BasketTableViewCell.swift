@@ -13,18 +13,18 @@ protocol BasketTableViewCellDelegate: AnyObject {
 }
 
 protocol BasketTableViewCellProtocol: AnyObject {
-//    var presenter: BasketPresenter? { get set }
     func setupData(dish: RestaurantProduct)
 }
 
 final class BasketTableViewCell: UITableViewCell, BasketTableViewCellProtocol {
-//    var presenter: BasketPresenter?
+
+    // MARK: - State
+    
     static let reuseIdentifier = String(describing: BasketTableViewCell.self)
-    
-    // MARK: - UI
-    
     weak var delegate: BasketTableViewCellDelegate?
     private var indexPath: IndexPath?
+    
+    // MARK: - UI
     
     private lazy var productImageView: UIImageView = {
         let imageView = UIImageView()
