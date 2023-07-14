@@ -14,6 +14,10 @@ protocol DeliveryHeaderViewDelegate: AnyObject {
 
 final class DeliveryHeaderView: UIView {
     
+    // MARK: - State
+    
+    var manageAddresscontroller = ManageAdressesViewController()
+    
     // MARK: - UI
     private lazy var deliverToLabel: UILabel = {
         let label = UILabel()
@@ -49,6 +53,7 @@ final class DeliveryHeaderView: UIView {
          setupViews()
          setupConstraints()
          setupGestureRecognizers()
+         manageAddresscontroller.delegate = self
     }
     
     // MARK: - SetupViews
@@ -91,5 +96,11 @@ final class DeliveryHeaderView: UIView {
     
     override var intrinsicContentSize: CGSize {
         return CGSize(width: 88, height: 43)
+    }
+}
+
+extension DeliveryHeaderView: ManageAdressesViewControllerDelegate {
+    func updateSelectedAddress(address: Address) {
+        addressLabel.text = address.street
     }
 }

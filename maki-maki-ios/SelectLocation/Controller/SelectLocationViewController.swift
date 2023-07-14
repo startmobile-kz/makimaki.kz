@@ -189,7 +189,8 @@ final class SelectLocationViewController: UIViewController {
                                  longitude: 76.974137,
                                  house: "45",
                                  flat: "44",
-                                 type: choiceLocationSegmentedController.selectedSegmentIndex )
+                                 type: choiceLocationSegmentedController.selectedSegmentIndex
+        )
         
         addressService.saveAddress(address: newAddress)
         self.navigationController?.popToRootViewController(animated: true)

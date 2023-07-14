@@ -8,8 +8,11 @@
 import UIKit
 import SnapKit
 
+protocol ManageAdressesViewControllerDelegate : AnyObject {
+    func updateSelectedAddress(address: Address)
+}
+
 final class ManageAdressesViewController: UIViewController {
-    
     // MARK: - State
     
     var addresses: [Address] = [] {
@@ -17,6 +20,7 @@ final class ManageAdressesViewController: UIViewController {
             tableView.reloadData()
         }
     }
+    weak var delegate: ManageAdressesViewControllerDelegate?
     private let service: AddressService = AddressService()
     
     // MARK: - UI
@@ -82,7 +86,6 @@ final class ManageAdressesViewController: UIViewController {
     private func loadAddreses() {
         addresses = service.fetchAddresses()
     }
-    
 }
 
 // MARK: - Extension: ManageAdressesViewController
@@ -104,10 +107,18 @@ extension ManageAdressesViewController: UITableViewDelegate, UITableViewDataSour
         return cell
     }
     
-    func tableView(_ tableView: UITableView, didDeselectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        var selectedAddress = addresses[indexPath.row]
+        selectedAddress.isSelected = true
+        delegate?.updateSelectedAddress(address: selectedAddress)
+        if delegate != nil {
+            delegate?.updateSelectedAddress(address: selectedAddress)
+        } else {
+            print("Delegate not set")
+        }
+        self.navigationController?.popToRootViewController(animated: true)
     }
-    
+        
     func tableView(_ tableView: UITableView,
                    commit editingStyle: UITableViewCell.EditingStyle,
                    forRowAt indexPath: IndexPath) {

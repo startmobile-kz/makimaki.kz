@@ -16,4 +16,9 @@ struct Address: Codable {
     var house: String
     var flat: String
     var type: Int
+    var isSelected: Bool = false
+    
+    enum CodingKeys: String, CodingKey {
+        case id, street, latitude, longitude, house, flat, type
+    }
 }
