@@ -13,8 +13,11 @@ import Foundation
 import SnackBar_swift
 import Alamofire
 
-final class WelcomePageVerOneViewController: UIViewController {
+final class WelcomePageVerOneViewController: UIViewController, WelcomePageView {
 
+    // MARK: - Properties
+    private var presenter: WelcomePagePresenter?
+    
     // MARK: - UI Components
     private lazy var makiImage: UIImageView = {
         let imageView = UIImageView()
@@ -84,15 +87,17 @@ final class WelcomePageVerOneViewController: UIViewController {
         button.setTitleColor(.black, for: .normal)
         button.layer.cornerRadius = 14
         button.backgroundColor = AppColor.accent.uiColor
-        button.addTarget(self, action: #selector(continueButtonDidPress), for: .touchUpInside)
+        button.addTarget(self, action: #selector(continueButtonTapped), for: .touchUpInside)
         return button
     }()
 
     // MARK: - Lifecycle
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         setUpViews()
         setUpConstraints()
+        presenter = WelcomePagePresenterImpl(view: self, navigationController: self.navigationController)
     }
     
     override func viewDidLayoutSubviews() {
@@ -151,43 +156,18 @@ final class WelcomePageVerOneViewController: UIViewController {
             make.height.equalTo(53)
         }
     }
+    
     // MARK: - Actions
-
-    // swiftlint:disable all
-    @objc private func continueButtonDidPress() {
-        let controller = VerificationViewController()
-        guard let phoneNumber = phoneNumberTextField.text else {
-            showSnackBar(message: "Phone number entered incorrectly.")
-            return
-        }
-        
-        if phoneNumber.isEmpty {
-            showSnackBar(message: "Please enter a phone number.")
-            return
-        }
-        
-        if phoneNumber.count != 18 {
-            showSnackBar(message: "Phone number entered incorrectly.")
-            return
-        }
-
-        let deviceID = UIDevice.current.identifierForVendor?.uuidString ?? ""
-        
-        let formatedPhoneNumber = phoneNumber
-            .replacingOccurrences(of: " ", with: "")
-            .replacingOccurrences(of: "+", with: "")
-            .replacingOccurrences(of: "(", with: "")
-            .replacingOccurrences(of: ")", with: "")
-
-        self.navigationController?.pushViewController(controller, animated: true)
+    
+    @objc private func continueButtonTapped() {
+        presenter?.continueButtonDidPress(phoneNumber: phoneNumberTextField.text)
     }
     
     // MARK: - SnackBar
     
-    private func showSnackBar(message: String) {
+    internal func showSnackBar(message: String) {
         if let view = self.view {
             SnackBarController.showSnackBar(in: view, message: message, duration: .lengthLong)
         }
     }
-    // swiftlint:enable all
 }
